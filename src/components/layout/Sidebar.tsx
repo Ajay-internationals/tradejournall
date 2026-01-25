@@ -23,7 +23,7 @@ import { cn } from '@/lib/utils';
 import { useAuth } from '@/context/AuthContext';
 import { Logo } from './Logo';
 
-export function Sidebar() {
+export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => void }) {
     const navigate = useNavigate();
     const location = useLocation();
     const { profile, signOut } = useAuth();
@@ -64,7 +64,10 @@ export function Sidebar() {
     ];
 
     return (
-        <aside className="w-80 h-[calc(100vh-5rem)] bg-white border-r border-slate-200 flex flex-col fixed left-0 top-20 z-40 font-body overflow-y-auto no-scrollbar pb-4">
+        <aside className={cn(
+            "w-80 h-[calc(100vh-5rem)] bg-white border-r border-slate-200 flex flex-col fixed left-0 top-20 z-40 font-body overflow-y-auto no-scrollbar pb-4 transition-transform duration-300 md:translate-x-0",
+            isOpen ? "translate-x-0" : "-translate-x-full"
+        )}>
             {/* Header / Logo removed - handled by AppShell */}
             <div className="mt-6" />
 
