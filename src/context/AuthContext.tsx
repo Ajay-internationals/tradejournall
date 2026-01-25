@@ -1,0 +1,150 @@
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import type { User, Session } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase';
+import type { UserProfile } from '@/types';
+
+interface AuthContextType {
+    session: Session | null;
+    user: User | null;
+    profile: UserProfile | null;
+    loading: boolean;
+    signOut: () => Promise<void>;
+    refreshProfile: () => Promise<void>;
+    upgradePlan: (plan: 'FREE' | 'PREMIUM') => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+    const [session, setSession] = useState<Session | null>(null);
+    const [user, setUser] = useState<User | null>(null);
+    const [profile, setProfile] = useState<UserProfile | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    const fetchProfile = async (userId: string) => {
+        try {
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .eq('id', userId)
+                .single();
+
+            if (error && error.code === 'PGRST116') {
+                const { data: userData } = await supabase.auth.getUser();
+                if (userData.user) {
+                    const { data: newProfile, error: createError } = await supabase
+                        .from('users')
+                        // @ts-ignore
+                        .insert({
+                            id: userData.user.id,
+                            email: userData.user.email,
+                            full_name: userData.user.user_metadata?.full_name || '',
+                            phone_number: userData.user.user_metadata?.phone_number || '',
+                            plan: 'FREE'
+                        })
+                        .select()
+                        .single();
+
+                    if (newProfile) setProfile(newProfile as UserProfile);
+                }
+            } else if (data) {
+                setProfile(data as UserProfile);
+            }
+        } catch (error) {
+            console.error('Profile Fetch Error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const refreshProfile = async () => {
+        if (user) await fetchProfile(user.id);
+    };
+
+    const upgradePlan = async (plan: 'FREE' | 'PREMIUM') => {
+        if (!user) return;
+        const { error } = await supabase
+            .from('users')
+            // @ts-ignore
+            .update({
+                plan,
+                subscription_status: 'ACTIVE',
+                current_period_end: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+            })
+            .eq('id', user.id);
+
+        if (error) throw error;
+        await refreshProfile();
+    };
+
+    useEffect(() => {
+        let mounted = true;
+
+        const initAuth = async () => {
+            try {
+                const { data: { session: initialSession } } = await supabase.auth.getSession();
+                if (!mounted) return;
+
+                setSession(initialSession);
+                const currentUser = initialSession?.user ?? null;
+                setUser(currentUser);
+
+                if (currentUser) {
+                    await fetchProfile(currentUser.id);
+                }
+            } catch (err) {
+                console.error("Auth Init Failed:", err);
+            } finally {
+                if (mounted) setLoading(false);
+            }
+        };
+
+        initAuth();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            if (!mounted) return;
+            setSession(session);
+            const currentUser = session?.user ?? null;
+            setUser(currentUser);
+
+            if (currentUser) {
+                fetchProfile(currentUser.id);
+            } else {
+                setProfile(null);
+            }
+            setLoading(false);
+        });
+
+        // Safety fallback: guaranteed loading stop
+        const timer = setTimeout(() => {
+            if (mounted) setLoading(false);
+        }, 3500);
+
+        return () => {
+            mounted = false;
+            subscription.unsubscribe();
+            clearTimeout(timer);
+        };
+    }, []);
+
+    const signOut = async () => {
+        await supabase.auth.signOut();
+        setProfile(null);
+        setUser(null);
+        setSession(null);
+    };
+
+    return (
+        <AuthContext.Provider value={{ session, user, profile, loading, signOut, refreshProfile, upgradePlan }}>
+            {children}
+        </AuthContext.Provider>
+    );
+}
+
+export function useAuth() {
+    const context = useContext(AuthContext);
+    if (context === undefined) {
+        throw new Error('useAuth must be used within an AuthProvider');
+    }
+    return context;
+}

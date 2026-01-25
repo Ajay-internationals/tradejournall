@@ -1,0 +1,89 @@
+import { Mic, Zap, Sparkles, Play, Headphones, MessageSquare } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+export default function VoiceCoach() {
+    return (
+        <div className="space-y-12 animate-in fade-in duration-700 pb-20">
+            <div className="flex items-center gap-6">
+                <div className="w-16 h-16 bg-indigo-600 rounded-[2rem] flex items-center justify-center shadow-[0_20px_40px_rgba(79,70,229,0.3)] transform -rotate-3 hover:rotate-0 transition-transform">
+                    <Headphones className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                    <h1 className="text-4xl font-extrabold tracking-tight font-heading">Voice Coach</h1>
+                    <p className="text-slate-500 text-[10px] font-black tracking-[0.4em] uppercase">AI Mindset Analysis</p>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div className="p-12 bg-gradient-to-br from-indigo-600/10 to-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] flex flex-col items-center justify-center text-center space-y-10 min-h-[500px] shadow-2xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-1000">
+                        <Sparkles size={250} />
+                    </div>
+
+                    <div className="w-28 h-28 bg-[var(--app-card)] border border-[var(--app-border)] rounded-full flex items-center justify-center relative shadow-2xl">
+                        <div className="absolute inset-0 bg-indigo-500/20 rounded-full animate-ping" />
+                        <Mic size={40} className="text-indigo-400 relative z-10" />
+                    </div>
+
+                    <div className="space-y-4 relative z-10">
+                        <h2 className="text-3xl font-black font-heading">De-brief Your Trade</h2>
+                        <p className="text-slate-500 max-w-xs mx-auto font-medium leading-relaxed">
+                            Narrate your thoughts, feelings, and the trade context. Let AI analyze your psychological subtext.
+                        </p>
+                    </div>
+
+                    <button className="px-12 py-6 bg-indigo-600 text-white font-black uppercase tracking-[0.3em] text-[10px] rounded-[2rem] hover:scale-105 active:scale-95 transition-all shadow-2xl flex items-center gap-4 relative z-10 hover:bg-indigo-700">
+                        <Play size={18} className="fill-white" />
+                        Initiate Session
+                    </button>
+                </div>
+
+                <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] space-y-10 shadow-2xl flex flex-col">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-2xl font-black font-heading text-[var(--app-text)]">Recent Audit</h3>
+                        <div className="px-4 py-2 bg-indigo-500/10 rounded-full border border-indigo-500/20 shadow-sm">
+                            <span className="text-[9px] font-black text-indigo-400 tracking-widest uppercase">Premium Only</span>
+                        </div>
+                    </div>
+
+                    <div className="space-y-6 flex-1">
+                        <DebriefItem
+                            date="Jan 24, 2026"
+                            mood="Zen Mode"
+                            insight="Detected high emotional stability during the RELIANCE reversal. Patience was your edge today."
+                        />
+                        <DebriefItem
+                            date="Jan 23, 2026"
+                            mood="Anxious"
+                            insight="Narrative suggests FOMO during the morning NIFTY breakout. Volume was ignored in your description."
+                        />
+
+                        <div className="mt-12 p-8 bg-indigo-500/5 border border-indigo-500/10 rounded-[2.5rem] text-center shadow-inner">
+                            <MessageSquare className="w-10 h-10 text-indigo-400 mx-auto mb-4" />
+                            <p className="text-xs font-bold text-[var(--app-text-muted)] leading-relaxed uppercase tracking-widest">
+                                Journaling your voice is the fastest way to master trading psychology.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function DebriefItem({ date, mood, insight }: any) {
+    return (
+        <div className="p-8 bg-[var(--app-bg)]/40 border border-[var(--app-border)] rounded-[2.5rem] flex flex-col gap-4 group cursor-pointer hover:bg-indigo-500/5 transition-all shadow-sm">
+            <div className="flex items-center justify-between">
+                <p className="text-[10px] font-black text-[var(--app-text-muted)] tracking-[0.4em] uppercase">{date}</p>
+                <div className={cn(
+                    "px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest",
+                    mood === 'Zen Mode' ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400"
+                )}>
+                    {mood}
+                </div>
+            </div>
+            <p className="text-sm font-bold text-[var(--app-text-muted)] group-hover:text-[var(--app-text)] leading-relaxed italic transition-colors">"{insight}"</p>
+        </div>
+    );
+}
