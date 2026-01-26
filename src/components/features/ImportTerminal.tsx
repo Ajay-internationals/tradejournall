@@ -334,7 +334,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                             <textarea
                                 value={pasteRaw}
                                 onChange={(e) => setPasteRaw(e.target.value)}
-                                placeholder="Paste copied cells here..."
+                                placeholder={`Example format:\n2025-01-26	XYZ_LTD	BUY	100.5	105.0	10	98.0	STOCKS	BREAKOUT	Good volume`}
                                 className="w-full h-96 bg-slate-50 border border-slate-200 rounded-2xl p-6 text-sm font-mono text-slate-700 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none resize-none shadow-inner transition-all placeholder:text-slate-400"
                             />
                         </div>
