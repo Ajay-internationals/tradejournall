@@ -32,13 +32,13 @@ export default function Rules() {
                         <ShieldCheck className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-black tracking-tighter text-slate-900 uppercase">System Protocol ✨</h1>
-                        <p className="text-slate-400 text-[10px] font-black tracking-[0.4em] uppercase mt-2 opacity-50 italic">Operational Discipline Framework</p>
+                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-slate-900 uppercase">System Protocol ✨</h1>
+                        <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.4em] uppercase mt-2 opacity-50 italic">Operational Discipline Framework</p>
                     </div>
                 </div>
                 <button
                     onClick={() => setIsAdding(true)}
-                    className="px-10 py-5 bg-indigo-600 text-white font-black rounded-full text-[10px] uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-slate-900 transition-all shadow-2xl shadow-indigo-100 hover:scale-105 active:scale-95"
+                    className="px-10 py-5 bg-indigo-600 text-white font-bold font-heading rounded-full text-[10px] uppercase tracking-[0.2em] flex items-center gap-3 hover:bg-slate-900 transition-all shadow-2xl shadow-indigo-100 hover:scale-105 active:scale-95"
                 >
                     <Plus size={20} />
                     New Mandate
@@ -46,13 +46,13 @@ export default function Rules() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 leading-none">
-                <div className="p-14 bg-white border border-slate-200 rounded-[4rem] flex flex-col items-center justify-center text-center space-y-10 shadow-sm group">
+                <div className="p-14 bg-white border border-slate-200 rounded-[4rem] flex flex-col items-center justify-center text-center space-y-10 shadow-sm group font-heading">
                     <div className="w-28 h-28 bg-indigo-50 border border-slate-200 rounded-[3rem] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
                         <Flame size={48} className="text-rose-500" />
                     </div>
                     <div className="space-y-3">
-                        <p className="text-6xl font-black tracking-tighter text-slate-900 leading-none">{completedCount}/{rules.length}</p>
-                        <p className="text-[10px] font-black text-slate-400 tracking-[0.5em] uppercase opacity-40">Persistence Index</p>
+                        <p className="text-6xl font-bold font-heading tracking-tighter text-slate-900 leading-none">{completedCount}/{rules.length}</p>
+                        <p className="text-[10px] font-bold font-heading text-slate-400 tracking-[0.5em] uppercase opacity-40">Persistence Index</p>
                     </div>
                     <p className="text-xs text-slate-400 max-w-[240px] leading-loose italic font-bold">"Institutional discipline is the fundamental divergence between a gambler and an operator."</p>
                 </div>
@@ -67,7 +67,7 @@ export default function Rules() {
                                 value={newRuleText}
                                 onChange={(e) => setNewRuleText(e.target.value)}
                                 placeholder="Define your operational constraint..."
-                                className="flex-1 bg-white border-none rounded-[2rem] py-5 px-10 text-[13px] font-black tracking-tight focus:ring-4 focus:ring-indigo-500/10 outline-none placeholder:opacity-30"
+                                className="flex-1 bg-white border-none rounded-[2rem] py-5 px-10 text-[13px] font-bold font-heading tracking-tight focus:ring-4 focus:ring-indigo-500/10 outline-none placeholder:opacity-30"
                             />
                             <button type="submit" disabled={addRule.isPending} className="p-5 bg-indigo-600 text-white rounded-[1.5rem] shadow-xl hover:bg-slate-900 transition-colors">
                                 {addRule.isPending ? <Loader2 className="animate-spin" size={24} /> : <Check size={24} />}
@@ -80,8 +80,8 @@ export default function Rules() {
 
                     {rules.length === 0 && !isAdding && (
                         <div className="p-24 text-center border-4 border-dashed border-slate-200 rounded-[4rem] opacity-40">
-                            <p className="text-slate-400 font-black uppercase tracking-[0.5em] text-[10px]">Framework Empty</p>
-                            <button onClick={() => setIsAdding(true)} className="mt-6 text-indigo-600 font-black text-xs uppercase tracking-widest underline decoration-2 underline-offset-8">Initialize First Directive</button>
+                            <p className="text-slate-400 font-bold font-heading uppercase tracking-[0.5em] text-[10px]">Framework Empty</p>
+                            <button onClick={() => setIsAdding(true)} className="mt-6 text-indigo-600 font-bold font-heading text-xs uppercase tracking-widest underline decoration-2 underline-offset-8">Initialize First Directive</button>
                         </div>
                     )}
 
@@ -102,7 +102,7 @@ export default function Rules() {
                                 )}>
                                     {rule.completed && <Check size={22} />}
                                 </div>
-                                <span className={cn("text-base font-black tracking-tight", rule.completed && "line-through opacity-40")}>{rule.text}</span>
+                                <span className={cn("text-base font-bold font-heading tracking-tight", rule.completed && "line-through opacity-40")}>{rule.text}</span>
                             </div>
                             <div className="flex items-center gap-6">
                                 <button

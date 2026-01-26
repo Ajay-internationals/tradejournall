@@ -20,8 +20,8 @@ export default function Mistakes() {
                         <AlertOctagon className="w-10 h-10 text-white relative z-10" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-black tracking-tighter text-rose-600 uppercase">Risk Audit ✨</h1>
-                        <p className="text-[10px] font-black text-rose-500 uppercase tracking-[0.4em] mt-2 opacity-60">Execution Leakage Diagnostics</p>
+                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-rose-600 uppercase">Risk Audit ✨</h1>
+                        <p className="text-[10px] font-bold font-heading text-rose-500 uppercase tracking-[0.4em] mt-2 opacity-60">Execution Leakage Diagnostics</p>
                     </div>
                 </div>
                 <div className="flex gap-4">
@@ -36,7 +36,7 @@ export default function Mistakes() {
             </div>
 
             <div className="space-y-10">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.5em] text-indigo-500/30 text-center">Recurring Pattern Identification Matrix</h3>
+                <h3 className="text-[11px] font-bold font-heading uppercase tracking-[0.5em] text-indigo-500/30 text-center">Recurring Pattern Identification Matrix</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     {patterns.map((p) => (
                         <div key={p.title} className="bg-white border border-slate-200 p-10 rounded-[4rem] shadow-sm hover:shadow-lg hover:scale-[1.05] transition-all group relative overflow-hidden">
@@ -48,27 +48,27 @@ export default function Mistakes() {
                                     {p.icon}
                                 </div>
                                 <span className={cn(
-                                    "px-4 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-widest shadow-xl italic",
+                                    "px-4 py-1.5 rounded-xl text-[9px] font-bold font-heading uppercase tracking-widest shadow-xl italic",
                                     p.level === 'Critical' ? "bg-rose-500 text-white shadow-rose-500/20" : "bg-white text-indigo-500 border border-indigo-500/10"
                                 )}>
                                     {p.level} Protocol
                                 </span>
                             </div>
-                            <h4 className="text-2xl font-black tracking-tighter uppercase mb-2 text-slate-900">{p.title}</h4>
+                            <h4 className="text-2xl font-bold font-heading tracking-tighter uppercase mb-2 text-slate-900">{p.title}</h4>
                             <div className="flex items-center gap-6 mb-10 relative z-10">
                                 <div>
-                                    <p className="text-[10px] font-black uppercase text-indigo-500/40 tracking-widest mb-2">Capital Impact</p>
-                                    <p className="text-2xl font-black tracking-tighter text-rose-500">{p.cost}</p>
+                                    <p className="text-[10px] font-bold font-heading uppercase text-indigo-500/40 tracking-widest mb-2">Capital Impact</p>
+                                    <p className="text-2xl font-bold font-heading tracking-tighter text-rose-500">{p.cost}</p>
                                 </div>
                                 <div className="h-10 w-[1px] bg-indigo-500/10" />
                                 <div>
-                                    <p className="text-[10px] font-black uppercase text-indigo-500/40 tracking-widest mb-2">Sync Log</p>
-                                    <p className="text-2xl font-black tracking-tighter text-slate-900">{p.trades}x</p>
+                                    <p className="text-[10px] font-bold font-heading uppercase text-indigo-500/40 tracking-widest mb-2">Sync Log</p>
+                                    <p className="text-2xl font-bold font-heading tracking-tighter text-slate-900">{p.trades}x</p>
                                 </div>
                             </div>
                             <div className="p-6 bg-indigo-600 text-white rounded-[2rem] shadow-3xl">
-                                <p className="text-[9px] font-black uppercase tracking-[0.3em] mb-3 opacity-60">Correction Protocol</p>
-                                <p className="text-[11px] font-black uppercase tracking-widest leading-relaxed">{p.recovery}</p>
+                                <p className="text-[9px] font-bold font-heading uppercase tracking-[0.3em] mb-3 opacity-60">Correction Protocol</p>
+                                <p className="text-[11px] font-bold font-heading uppercase tracking-widest leading-relaxed">{p.recovery}</p>
                             </div>
                         </div>
                     ))}
@@ -80,10 +80,10 @@ export default function Mistakes() {
                     <Search className="text-indigo-300 group-hover:text-indigo-600 transition-colors" size={40} />
                 </div>
                 <div>
-                    <h3 className="text-3xl font-black tracking-tighter uppercase text-slate-900 mb-3">Deep Cognitive Audit ✨</h3>
-                    <p className="text-[11px] font-black text-indigo-500/50 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.2em] opacity-60">Select a trade stream to perform a high-resolution behavior audit and identify neurological resonance triggers.</p>
+                    <h3 className="text-3xl font-bold font-heading tracking-tighter uppercase text-slate-900 mb-3">Deep Cognitive Audit ✨</h3>
+                    <p className="text-[11px] font-bold font-heading text-indigo-500/50 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.2em] opacity-60">Select a trade stream to perform a high-resolution behavior audit and identify neurological resonance triggers.</p>
                 </div>
-                <button className="px-12 py-6 bg-white border border-indigo-500/10 text-indigo-600 font-black uppercase tracking-[0.3em] rounded-3xl text-[10px] hover:bg-black hover:text-white transition-all shadow-3xl hover:scale-105 active:scale-95">Initiate Search Protocol</button>
+                <button className="px-12 py-6 bg-white border border-indigo-500/10 text-indigo-600 font-bold font-heading uppercase tracking-[0.3em] rounded-3xl text-[10px] hover:bg-black hover:text-white transition-all shadow-3xl hover:scale-105 active:scale-95">Initiate Search Protocol</button>
             </div>
         </div>
     );
@@ -93,19 +93,19 @@ function StatusPulse({ label, color }: { label: string, color: string }) {
     return (
         <div className="flex items-center gap-4 px-8 py-4 bg-indigo-500/5 border border-indigo-500/10 rounded-[2rem] shadow-inner">
             <div className={cn("w-2.5 h-2.5 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]", color)} />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500">{label}</span>
+            <span className="text-[10px] font-bold font-heading uppercase tracking-[0.3em] text-indigo-500">{label}</span>
         </div>
     );
 }
 
 function AuditCard({ label, value, sub, icon }: any) {
     return (
-        <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm flex items-center justify-between hover:scale-[1.02] transition-all">
+        <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm flex items-center justify-between hover:scale-[1.02] transition-all font-heading">
             <div className="leading-none">
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500/40 mb-3">{label}</p>
+                <p className="text-[10px] font-bold font-heading uppercase tracking-[0.3em] text-indigo-500/40 mb-3">{label}</p>
                 <div className="flex items-baseline gap-4">
-                    <p className="text-4xl font-black tracking-tighter text-slate-900">{value}</p>
-                    <p className="text-[10px] font-black text-rose-500 uppercase tracking-widest">{sub}</p>
+                    <p className="text-4xl font-bold font-heading tracking-tighter text-slate-900">{value}</p>
+                    <p className="text-[10px] font-bold font-heading text-rose-500 uppercase tracking-widest">{sub}</p>
                 </div>
             </div>
             <div className="w-16 h-16 bg-indigo-500/5 border border-indigo-500/10 rounded-3xl flex items-center justify-center shadow-inner">
