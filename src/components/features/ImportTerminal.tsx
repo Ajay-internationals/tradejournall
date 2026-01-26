@@ -290,79 +290,53 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
             {mode === 'QUICK_PASTE' ? (
                 <div className="space-y-10">
                     <div className="p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] space-y-12">
-                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 items-start">
-                            <div className="space-y-6">
-                                <div className="space-y-4">
+                        <div className="space-y-6">
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between">
                                     <h4 className="text-sm font-bold text-indigo-950 uppercase tracking-widest flex items-center gap-2">
-                                        <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">1</div>
                                         Paste Data Blocks
                                     </h4>
-
-                                    {/* Instruction Guide */}
-                                    <div className="p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-xs text-slate-500 space-y-2">
-                                        <p className="font-bold text-slate-700 dark:text-slate-300">How to copy from Excel/Sheets:</p>
-                                        <ol className="list-decimal list-inside space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                                            <li>Select your columns in this exact order: <strong>Date, Symbol, Side...</strong></li>
-                                            <li>Include multiple rows for bulk import.</li>
-                                            <li>Press <code className="bg-slate-100 px-1 py-0.5 rounded border border-slate-200 font-mono text-[10px]">Ctrl+C</code> to copy.</li>
-                                            <li>Paste directly into the box below.</li>
-                                        </ol>
-                                    </div>
+                                    <button
+                                        onClick={downloadTemplate}
+                                        className="text-[10px] font-bold text-indigo-500 hover:text-indigo-600 flex items-center gap-2 uppercase tracking-wider bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100 transition-colors"
+                                    >
+                                        <Download size={12} /> Template
+                                    </button>
                                 </div>
 
-                                {/* Visual Header Guide */}
-                                <div className="bg-indigo-50/50 dark:bg-slate-800/50 border border-indigo-100 dark:border-slate-700 rounded-2xl p-6">
-                                    <p className="text-[10px] font-bold uppercase text-indigo-400 mb-4 tracking-widest text-center">Required Column Sequence</p>
-                                    <div className="flex flex-wrap gap-2 justify-center">
-                                        {['Date', 'Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'SL', 'Asset', 'Setup', 'Notes'].map((h, i) => (
-                                            <div key={h} className="text-center group relative">
-                                                <div className="bg-white dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 text-indigo-600 dark:text-indigo-300 text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm min-w-[60px]">
-                                                    {h}
-                                                </div>
-                                                <div className="absolute -top-2 -right-1 w-4 h-4 rounded-full bg-indigo-50 text-[8px] flex items-center justify-center text-indigo-400 font-bold border border-indigo-100">{i + 1}</div>
+                                {/* Instruction Guide */}
+                                <div className="p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-xs text-slate-500 space-y-2">
+                                    <p className="font-bold text-slate-700 dark:text-slate-300">How to copy from Excel/Sheets:</p>
+                                    <ol className="list-decimal list-inside space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                        <li>Select your columns in this exact order: <strong>Date, Symbol, Side, Entry, Exit, Qty, SL, Asset, Setup, Notes</strong></li>
+                                        <li>Include multiple rows for bulk import.</li>
+                                        <li>Press <code className="bg-slate-100 px-1 py-0.5 rounded border border-slate-200 font-mono text-[10px]">Ctrl+C</code> to copy.</li>
+                                        <li>Paste directly into the box below.</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            {/* Visual Header Guide */}
+                            <div className="bg-indigo-50/50 dark:bg-slate-800/50 border border-indigo-100 dark:border-slate-700 rounded-2xl p-6">
+                                <p className="text-[10px] font-bold uppercase text-indigo-400 mb-4 tracking-widest text-center">Required Column Sequence</p>
+                                <div className="flex flex-wrap gap-2 justify-center">
+                                    {['Date', 'Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'SL', 'Asset', 'Setup', 'Notes'].map((h, i) => (
+                                        <div key={h} className="text-center group relative">
+                                            <div className="bg-white dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 text-indigo-600 dark:text-indigo-300 text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm min-w-[60px]">
+                                                {h}
                                             </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <textarea
-                                    value={pasteRaw}
-                                    onChange={(e) => setPasteRaw(e.target.value)}
-                                    placeholder="Paste copied cells here..."
-                                    className="w-full h-64 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 text-sm font-mono text-slate-700 dark:text-slate-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none resize-none shadow-inner transition-all placeholder:text-slate-400"
-                                />
-                            </div>
-
-                            <div className="space-y-6">
-                                <h4 className="text-sm font-bold text-indigo-950 uppercase tracking-widest flex items-center gap-2">
-                                    <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">2</div>
-                                    Session Capital
-                                </h4>
-                                <div className="bg-indigo-600 p-10 rounded-3xl space-y-10 shadow-xl shadow-indigo-200/50 relative overflow-hidden">
-                                    <div className="flex flex-col h-full justify-between relative z-10">
-                                        <div className="space-y-2">
-                                            <h4 className="text-2xl font-bold tracking-tight text-white">Starting Balance</h4>
-                                            <p className="text-xs font-medium text-indigo-100 opacity-80">
-                                                Used for daily ROI calculations based on this batch.
-                                            </p>
+                                            <div className="absolute -top-2 -right-1 w-4 h-4 rounded-full bg-indigo-50 text-[8px] flex items-center justify-center text-indigo-400 font-bold border border-indigo-100">{i + 1}</div>
                                         </div>
-                                        <div className="space-y-4 pt-6">
-                                            <input
-                                                type="number"
-                                                value={batchCapital}
-                                                onChange={(e) => setBatchCapital(e.target.value)}
-                                                className="w-full bg-white/10 text-white border border-white/20 rounded-2xl py-4 px-6 text-3xl font-bold focus:bg-white/20  focus:border-white/40 outline-none tracking-tight placeholder:text-white/30 transition-all"
-                                            />
-                                            <button
-                                                onClick={downloadTemplate}
-                                                className="w-full py-4 bg-white text-indigo-600 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-indigo-50 transition-all shadow-lg"
-                                            >
-                                                <Download size={14} /> Download Excel Template
-                                            </button>
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
                             </div>
+
+                            <textarea
+                                value={pasteRaw}
+                                onChange={(e) => setPasteRaw(e.target.value)}
+                                placeholder="Paste copied cells here..."
+                                className="w-full h-96 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 text-sm font-mono text-slate-700 dark:text-slate-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none resize-none shadow-inner transition-all placeholder:text-slate-400"
+                            />
                         </div>
 
                         {parsedPreview.length > 0 && (
