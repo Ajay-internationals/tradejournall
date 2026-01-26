@@ -32,24 +32,22 @@ export default function Strategies() {
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
             {/* Page Header */}
-            {/* Page Header */}
-            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
+            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
                 <div className="flex items-center gap-6">
-                    <div className="w-20 h-20 bg-indigo-600 rounded-[2rem] flex items-center justify-center shadow-3xl relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 to-indigo-800 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <Target className="w-10 h-10 text-white relative z-10" />
+                    <div className="w-20 h-20 bg-indigo-600 rounded-[2.2rem] flex items-center justify-center shadow-2xl shadow-indigo-200 group">
+                        <Target className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-black tracking-tighter dark:text-indigo-100 uppercase">Strategy Labs ✨</h1>
-                        <p className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.4em] mt-2 opacity-60">High-Fidelity Edge Matrix</p>
+                        <h1 className="text-4xl font-black tracking-tighter text-[var(--app-text)] uppercase">Strategy Labs ✨</h1>
+                        <p className="text-[var(--app-text-muted)] text-[10px] font-black tracking-[0.4em] uppercase mt-2 opacity-50 italic">High-Fidelity Edge Matrix</p>
                     </div>
                 </div>
                 <button
                     onClick={() => setIsFormOpen(true)}
-                    className="px-10 py-5 bg-indigo-600 rounded-3xl text-[10px] font-black uppercase tracking-widest flex items-center gap-3 shadow-3xl hover:bg-black transition-all hover:scale-105 active:scale-95 text-white"
+                    className="px-10 py-5 bg-indigo-600 rounded-full text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-3 shadow-2xl shadow-indigo-100 hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all text-white"
                 >
-                    <Plus size={18} />
-                    Architect Lab
+                    <Plus size={20} />
+                    New Architect
                 </button>
             </header>
 
@@ -62,12 +60,12 @@ export default function Strategies() {
                 {/* Add New Strategy Placeholder */}
                 <button
                     onClick={() => setIsFormOpen(true)}
-                    className="flex flex-col items-center justify-center p-10 border-4 border-dashed border-slate-200 rounded-[4rem] hover:border-indigo-500/40 hover:bg-slate-50 transition-all group min-h-[380px] bg-white"
+                    className="flex flex-col items-center justify-center p-14 border-4 border-dashed border-[var(--app-border)] rounded-[4rem] hover:border-indigo-400 hover:bg-slate-50 transition-all group min-h-[420px] bg-[var(--app-card)] shadow-inner"
                 >
-                    <div className="w-16 h-16 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-xl">
-                        <Plus size={28} className="text-indigo-600" />
+                    <div className="w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-lg">
+                        <Plus size={32} className="text-indigo-600" />
                     </div>
-                    <span className="text-[11px] font-black text-indigo-500 uppercase tracking-[0.4em] opacity-40 group-hover:opacity-100 transition-opacity">Deploy New Protocol</span>
+                    <span className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.5em] opacity-60 group-hover:opacity-100 transition-opacity">Deploy Protocol</span>
                 </button>
             </div>
 
@@ -86,7 +84,7 @@ function StrategyCard({ strategy }: any) {
     );
 
     return (
-        <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] hover:border-indigo-500/40 transition-all group relative overflow-hidden flex flex-col shadow-sm">
+        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] hover:border-indigo-400 transition-all group relative overflow-hidden flex flex-col shadow-[var(--shadow-soft)] hover:scale-[1.02] duration-500">
             <div className="relative z-10 flex flex-col h-full leading-none">
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-4">

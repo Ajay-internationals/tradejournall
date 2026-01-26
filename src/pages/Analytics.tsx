@@ -3,13 +3,53 @@ import { useAuth } from '@/context/AuthContext';
 import { useRazorpay } from '@/hooks/useRazorpay';
 import { formatCurrency } from '@/lib/stats';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, CartesianGrid, PieChart, Pie } from 'recharts';
-import { Lock, Zap, BarChart2, Shield, Brain, Target, TrendingDown, PieChart as PieIcon, Activity, Clock, TrendingUp } from 'lucide-react';
+import { Lock, Zap, BarChart2, Shield, Brain, Target, TrendingDown, PieChart as PieIcon, Activity, Clock, TrendingUp, LayoutGrid, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { EquityChart } from '@/components/features/EquityChart';
+import { useState } from 'react';
+
+function SubTab({ active, onClick, icon, label }: any) {
+    return (
+        <button
+            onClick={onClick}
+            className={cn(
+                "flex items-center gap-2.5 px-8 py-3 rounded-full text-[12px] font-black uppercase tracking-widest transition-all shrink-0",
+                active
+                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200 scale-105"
+                    : "text-[var(--app-text-muted)] hover:bg-slate-50 hover:text-indigo-600"
+            )}
+        >
+            {icon} {label}
+        </button>
+    );
+}
+
+function StatCard({ label, value, subValue, icon, variant = 'indigo' }: any) {
+    return (
+        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3rem] shadow-[var(--shadow-soft)] group hover:scale-[1.02] transition-all duration-500 relative overflow-hidden">
+            <div className="flex justify-between items-start mb-6">
+                <div className={cn(
+                    "p-5 rounded-2xl shadow-lg transition-transform group-hover:rotate-6",
+                    variant === 'indigo' ? "bg-indigo-600 text-white" :
+                        variant === 'emerald' ? "bg-emerald-500 text-white" : "bg-rose-500 text-white"
+                )}>
+                    {icon}
+                </div>
+            </div>
+            <div className="space-y-2">
+                <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.3em]">{label}</p>
+                <p className="text-4xl font-black tracking-tighter text-[var(--app-text)]">{value}</p>
+                <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest opacity-60">{subValue}</p>
+            </div>
+        </div>
+    );
+}
 
 export default function Analytics() {
     const { trades } = useTrades();
     const { profile, upgradePlan } = useAuth();
     const { openCheckout } = useRazorpay();
+    const [activeTab, setActiveTab] = useState<'performance' | 'strategies' | 'mistakes'>('performance');
 
     const handleUpgrade = async () => {
         try {
@@ -99,110 +139,132 @@ export default function Analytics() {
 
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
-            <header className="flex items-center gap-6">
-                <div className="w-16 h-16 bg-indigo-600 rounded-[1.8rem] flex items-center justify-center shadow-3xl relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <BarChart2 className="w-8 h-8 text-white relative z-10" />
-                </div>
-                <div>
-                    <h1 className="text-4xl font-black tracking-tighter mb-1 text-slate-900">Analytics ✨</h1>
-                    <p className="sub-text text-indigo-900/40">Real-time performance telemetry.</p>
-                </div>
-            </header>
+            {/* Nav Tabs */}
+            <div className="flex gap-3 p-2 bg-[var(--app-card)] rounded-[2rem] border border-[var(--app-border)] w-fit shadow-[var(--shadow-soft)]">
+                <SubTab active={activeTab === 'performance'} onClick={() => setActiveTab('performance')} icon={<Activity size={18} />} label="Telemetry Overview" />
+                <SubTab active={activeTab === 'strategies'} onClick={() => setActiveTab('strategies')} icon={<LayoutGrid size={18} />} label="Strategy Matrix" />
+                <SubTab active={activeTab === 'mistakes'} onClick={() => setActiveTab('mistakes')} icon={<Target size={18} />} label="Leakage Audit" />
+            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 space-y-8">
-                    {/* Insights Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 leading-none">
-                        <MiniInsightCard label="Best Session" value={bestDay.name} icon={<Clock size={16} />} />
-                        <MiniInsightCard label="Average Alpha" value={formatCurrency(avgWinSize)} icon={<TrendingUp size={16} />} />
-                    </div>
-
-                    {/* Chart Container */}
-                    <div className="p-12 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
-                        <div className="flex items-center justify-between mb-12">
-                            <div>
-                                <h3 className="text-2xl font-black tracking-tighter text-slate-900">Daily Delta</h3>
-                                <p className="text-[10px] font-black text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Net Flow by active day</p>
+            {activeTab === 'performance' && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 leading-none">
+                    <div className="lg:col-span-2 space-y-10">
+                        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)] group">
+                            <div className="flex items-center justify-between mb-12">
+                                <div>
+                                    <h3 className="text-2xl font-black tracking-tighter uppercase text-[var(--app-text)]">Equity Stream ✨</h3>
+                                    <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] mt-2 opacity-50">Growth Telemetry</p>
+                                </div>
+                            </div>
+                            <div className="h-[400px]">
+                                <EquityChart trades={trades} initialCapital={profile?.initial_capital || 100000} />
                             </div>
                         </div>
-                        <div className="h-[350px]">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={dayData}>
-                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" opacity={0.5} />
-                                    <XAxis dataKey="name" fontSize={10} fontWeight="900" stroke="#94a3b8" tickLine={false} axisLine={false} />
-                                    <YAxis fontSize={10} fontWeight="900" stroke="#94a3b8" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} />
-                                    <Tooltip
-                                        cursor={{ fill: 'rgba(99, 102, 241, 0.05)' }}
-                                        contentStyle={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '24px', fontWeight: '900', fontSize: '10px', color: '#0f172a' }}
-                                    />
-                                    <Bar dataKey="value" radius={[12, 12, 12, 12]} barSize={40}>
-                                        {dayData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.value >= 0 ? '#10b981' : '#f43f5e'} />
-                                        ))}
-                                    </Bar>
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </div>
-                </div>
 
-                <div className="space-y-8">
-                    {/* Allocation Card */}
-                    <div className="p-12 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm flex flex-col items-center">
-                        <div className="w-full mb-10">
-                            <h3 className="text-2xl font-black tracking-tighter text-slate-900">Allocation</h3>
-                            <p className="text-[10px] font-black text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Capital distribution</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <MiniInsightCard label="Best Session" value={bestDay.name} icon={<Clock size={20} />} />
+                            <MiniInsightCard label="Average Alpha" value={formatCurrency(avgWinSize)} icon={<TrendingUp size={20} />} />
                         </div>
-                        <div className="h-[250px] w-full">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <PieChart>
-                                    <Pie
-                                        data={assetData.length > 0 ? assetData : [{ name: 'Empty', value: 1 }]}
-                                        cx="50%"
-                                        cy="50%"
-                                        innerRadius={60}
-                                        outerRadius={90}
-                                        paddingAngle={10}
-                                        dataKey="value"
-                                        stroke="none"
-                                    >
-                                        {assetData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
-                                        ))}
-                                    </Pie>
-                                    <Tooltip
-                                        contentStyle={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '24px', fontWeight: '900', fontSize: '10px', color: '#0f172a' }}
-                                    />
-                                </PieChart>
-                            </ResponsiveContainer>
-                        </div>
-                        <div className="w-full mt-6 space-y-3">
-                            {assetData.map((alt, idx) => (
-                                <div key={idx} className="flex items-center justify-between text-[11px] font-black uppercase tracking-tight">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-2.5 h-2.5 rounded-full shadow-lg" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
-                                        <span className="text-indigo-900/60">{alt.name}</span>
-                                    </div>
-                                    <span className="text-slate-900">₹{(alt.value / 1000).toFixed(1)}k</span>
+
+                        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
+                            <div className="flex items-center justify-between mb-12">
+                                <div>
+                                    <h3 className="text-2xl font-black tracking-tighter uppercase text-[var(--app-text)]">Daily Delta</h3>
+                                    <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] mt-2 opacity-50">Net Flow by active day</p>
                                 </div>
-                            ))}
+                            </div>
+                            <div className="h-[350px]">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={dayData}>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--app-border)" opacity={0.5} />
+                                        <XAxis dataKey="name" fontSize={10} fontWeight="900" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} />
+                                        <YAxis fontSize={10} fontWeight="900" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} />
+                                        <Tooltip
+                                            cursor={{ fill: 'rgba(99, 102, 241, 0.05)' }}
+                                            contentStyle={{
+                                                backgroundColor: 'var(--app-card)',
+                                                border: '1px solid var(--app-border)',
+                                                borderRadius: '2rem',
+                                                fontWeight: '900',
+                                                fontSize: '10px',
+                                                boxShadow: 'var(--shadow-soft)'
+                                            }}
+                                        />
+                                        <Bar dataKey="value" radius={[12, 12, 12, 12]} barSize={40}>
+                                            {dayData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={entry.value >= 0 ? '#10b981' : '#f43f5e'} />
+                                            ))}
+                                        </Bar>
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-10">
+                        {/* Allocation Card */}
+                        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)] flex flex-col items-center">
+                            <div className="w-full mb-10 text-center">
+                                <h3 className="text-2xl font-black tracking-tighter uppercase text-[var(--app-text)]">Allocation</h3>
+                                <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] mt-2 opacity-50">Capital distribution</p>
+                            </div>
+                            <div className="h-[250px] w-full">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={assetData.length > 0 ? assetData : [{ name: 'Empty', value: 1 }]}
+                                            cx="50%"
+                                            cy="50%"
+                                            innerRadius={70}
+                                            outerRadius={100}
+                                            paddingAngle={12}
+                                            dataKey="value"
+                                            stroke="none"
+                                        >
+                                            {assetData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip
+                                            contentStyle={{
+                                                backgroundColor: 'var(--app-card)',
+                                                border: '1px solid var(--app-border)',
+                                                borderRadius: '2rem',
+                                                fontWeight: '900',
+                                                fontSize: '10px',
+                                                boxShadow: 'var(--shadow-soft)'
+                                            }}
+                                        />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            </div>
+                            <div className="w-full mt-10 space-y-5">
+                                {assetData.map((alt, idx) => (
+                                    <div key={idx} className="flex items-center justify-between text-[11px] font-black uppercase tracking-[0.1em]">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-3.5 h-3.5 rounded-full shadow-lg" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
+                                            <span className="text-[var(--app-text-muted)]">{alt.name}</span>
+                                        </div>
+                                        <span className="text-[var(--app-text)] font-extrabold tracking-tighter">₹{(alt.value / 1000).toFixed(1)}k</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
 
 function MiniInsightCard({ label, value, icon }: any) {
     return (
-        <div className="p-10 bg-white border border-slate-200 rounded-[3rem] flex items-center justify-between shadow-sm group hover:border-indigo-500/30 transition-all duration-500">
+        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] flex items-center justify-between shadow-[var(--shadow-soft)] group hover:scale-[1.03] transition-all duration-500">
             <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-500/60 mb-3 group-hover:text-indigo-500 transition-colors uppercase">{label}</p>
-                <p className="text-2xl font-black tracking-tighter text-slate-900">{value}</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--app-text-muted)] mb-4 opacity-50 group-hover:opacity-100 transition-opacity uppercase">{label}</p>
+                <p className="text-3xl font-black tracking-tighter text-[var(--app-text)] leading-none">{value}</p>
             </div>
-            <div className="w-14 h-14 bg-indigo-600/10 text-indigo-600 rounded-2xl flex items-center justify-center shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all">
+            <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all transform group-hover:rotate-6">
                 {icon}
             </div>
         </div>
@@ -211,13 +273,13 @@ function MiniInsightCard({ label, value, icon }: any) {
 
 function ProFeatureCard({ icon, title, sub }: any) {
     return (
-        <div className="p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] text-left flex items-start gap-6 transition-all hover:border-indigo-400 group hover:shadow-lg shadow-sm">
-            <div className="w-14 h-14 bg-indigo-600/10 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all">
+        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] text-left flex items-start gap-8 transition-all hover:border-indigo-400 group hover:shadow-[var(--shadow-soft)] shadow-sm">
+            <div className="w-16 h-16 bg-indigo-50 rounded-[2rem] flex items-center justify-center text-indigo-600 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all">
                 {icon}
             </div>
-            <div className="leading-none mt-1">
-                <p className="text-base font-black tracking-tight mb-2 dark:text-indigo-100">{title}</p>
-                <p className="text-[10px] text-indigo-500/50 font-black uppercase tracking-widest leading-none mt-1">{sub}</p>
+            <div className="leading-tight mt-1">
+                <p className="text-xl font-black tracking-tight mb-2 text-[var(--app-text)]">{title}</p>
+                <p className="text-[10px] text-[var(--app-text-muted)] font-black uppercase tracking-[0.2em] opacity-40 leading-none mt-2">{sub}</p>
             </div>
         </div>
     );

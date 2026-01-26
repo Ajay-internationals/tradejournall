@@ -149,58 +149,58 @@ export default function Journal() {
     return (
         <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-body">
             {/* Morning Header */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
                 <div>
-                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-none">Trading Ledger</h1>
-                    <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-4 italic">Historical Execution Stream</p>
+                    <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-[var(--app-text)] leading-none uppercase">Trading Ledger ✨</h1>
+                    <p className="text-[var(--app-text-muted)] font-black uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">Historical Execution Stream</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
-                    <div className="flex items-center gap-2 bg-slate-50 p-1.5 rounded-2xl border border-slate-200">
+                    <div className="flex items-center gap-2 bg-[var(--app-bg)] p-2 rounded-3xl border border-[var(--app-border)] shadow-inner">
                         <button
                             onClick={() => document.getElementById('file-upload')?.click()}
-                            className="flex items-center gap-2 px-4 py-3 bg-white hover:bg-slate-100 text-slate-600 rounded-xl text-xs font-bold transition-all shadow-sm border border-slate-200"
+                            className="flex items-center gap-3 px-6 py-3.5 bg-[var(--app-card)] hover:bg-slate-50 text-[var(--app-text-muted)] rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm border border-[var(--app-border)]"
                         >
                             <Upload size={16} />
-                            Import File
+                            Source Path
                         </button>
                         <input type="file" id="file-upload" className="hidden" accept=".csv,.xlsx" onChange={handleFileUpload} />
 
                         <button
                             onClick={() => setIsPasteModalOpen(true)}
-                            className="flex items-center gap-2 px-4 py-3 bg-white hover:bg-slate-100 text-slate-600 rounded-xl text-xs font-bold transition-all shadow-sm border border-slate-200"
+                            className="flex items-center gap-3 px-6 py-3.5 bg-[var(--app-card)] hover:bg-slate-50 text-[var(--app-text-muted)] rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm border border-[var(--app-border)]"
                         >
                             <StickyNote size={16} />
-                            Paste Data
+                            Quick Sync
                         </button>
                     </div>
 
                     <button
                         onClick={() => { setEditingTrade(undefined); setIsFormOpen(true); }}
-                        className="btn-primary flex items-center gap-3"
+                        className="px-10 py-5 bg-indigo-600 text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-indigo-200 hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all flex items-center gap-3"
                     >
                         <Plus size={20} />
-                        Add Trade
+                        New Entry
                     </button>
                 </div>
             </div>
 
             {/* Filter Bar */}
-            <div className="flex flex-col xl:flex-row gap-6">
+            <div className="flex flex-col xl:flex-row gap-8">
                 <div className="flex-1 relative group">
-                    <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" size={20} />
+                    <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-[var(--app-text-muted)] group-focus-within:text-indigo-600 transition-colors opacity-50" size={20} />
                     <input
                         type="text"
                         placeholder="Search symbols or tags..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full bg-white border border-slate-200 rounded-3xl py-5 pl-16 pr-8 text-sm font-bold focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all outline-none"
+                        className="w-full bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] py-6 pl-20 pr-10 text-[13px] font-black tracking-tight focus:outline-none focus:border-indigo-500 focus:shadow-[var(--shadow-glow)] transition-all outline-none text-[var(--app-text)] shadow-sm"
                     />
                 </div>
                 <div className="flex gap-4">
                     <select
                         value={assetFilter}
                         onChange={(e) => setAssetFilter(e.target.value)}
-                        className="px-8 py-5 bg-white border border-slate-200 rounded-3xl text-sm font-bold text-slate-600 outline-none focus:border-indigo-500 transition-all cursor-pointer appearance-none"
+                        className="px-12 py-6 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] text-[10px] font-black text-indigo-600 uppercase tracking-widest outline-none focus:border-indigo-500 transition-all cursor-pointer appearance-none shadow-sm"
                     >
                         <option value="ALL">ALL ASSETS</option>
                         <option value="INDEX">INDEX</option>
@@ -212,7 +212,7 @@ export default function Journal() {
             </div>
 
             {/* Morning Table Style */}
-            <div className="bg-white border border-slate-200 rounded-[3.5rem] overflow-hidden shadow-sm">
+            <div className="bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] overflow-hidden shadow-[var(--shadow-soft)]">
                 <div className="overflow-x-auto no-scrollbar">
                     <table className="w-full text-left border-collapse">
                         <thead>

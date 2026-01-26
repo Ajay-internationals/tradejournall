@@ -64,10 +64,10 @@ export default function StudentMentorHub() {
     return (
         <div className="space-y-8 animate-in fade-in duration-500 font-body pb-20">
             {/* Nav Tabs */}
-            <div className="flex gap-2 p-1 bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-800 w-fit">
-                <SubTab active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')} icon={<Activity size={16} />} label="Student Home" />
-                <SubTab active={activeTab === 'reviews'} onClick={() => setActiveTab('reviews')} icon={<MessageSquare size={16} />} label="Trade Reviews" />
-                <SubTab active={activeTab === 'weekly'} onClick={() => setActiveTab('weekly')} icon={<Calendar size={16} />} label="Weekly Summary" />
+            <div className="flex gap-3 p-2 bg-[var(--app-card)] rounded-[2rem] border border-[var(--app-border)] w-fit shadow-[var(--shadow-soft)]">
+                <SubTab active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')} icon={<Activity size={18} />} label="Student Home" />
+                <SubTab active={activeTab === 'reviews'} onClick={() => setActiveTab('reviews')} icon={<MessageSquare size={18} />} label="Trade Reviews" />
+                <SubTab active={activeTab === 'weekly'} onClick={() => setActiveTab('weekly')} icon={<Calendar size={18} />} label="Weekly Summary" />
             </div>
 
             {activeTab === 'dashboard' && <StudentHomeDashboard acknowledged={acknowledged} onAcknowledge={handleAcknowledge} />}
@@ -104,7 +104,7 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
                 </div>
 
                 {/* Mentor Feedback Card */}
-                <div className="p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] shadow-sm relative overflow-hidden group">
+                <div className="p-8 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm relative overflow-hidden group">
                     <div className="absolute top-0 right-0 p-8 opacity-5">
                         <MessageSquare size={80} className="text-indigo-600" />
                     </div>
@@ -112,11 +112,11 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
                         <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600">
                             <Star size={24} />
                         </div>
-                        <h2 className="text-xl font-bold text-slate-900 dark:text-white uppercase tracking-tight">Mentor Directive</h2>
+                        <h2 className="text-xl font-bold text-[var(--app-text)] uppercase tracking-tight">Mentor Directive</h2>
                     </div>
 
-                    <div className="bg-white dark:bg-slate-800/40 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 mb-6">
-                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300 leading-relaxed italic">
+                    <div className="bg-[var(--app-bg)] p-6 rounded-2xl border border-[var(--app-border)] mb-6">
+                        <p className="text-sm font-medium text-[var(--app-text)] leading-relaxed italic">
                             "{MOCK_FEEDBACK[0].comment}"
                         </p>
                     </div>
@@ -165,7 +165,7 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
 
             <div className="space-y-8">
                 {/* Weekly Focus */}
-                <div className="p-8 bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-[3rem] shadow-sm relative overflow-hidden">
+                <div className="p-8 bg-[var(--app-card)] text-[var(--app-text)] border border-[var(--app-border)] rounded-[3rem] shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-5">
                         <Target size={120} />
                     </div>
@@ -185,7 +185,7 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
 
                 {/* CTAs */}
                 <div className="space-y-4">
-                    <button className="w-full p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] flex items-center justify-between group hover:border-indigo-400 transition-all shadow-sm">
+                    <button className="w-full p-6 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2rem] flex items-center justify-between group hover:border-indigo-400 transition-all shadow-sm">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center">
                                 <Plus size={20} />
@@ -194,7 +194,7 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
                         </div>
                         <ChevronRight className="text-slate-300 group-hover:text-indigo-400 transition-colors" />
                     </button>
-                    <button className="w-full p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] flex items-center justify-between group hover:border-indigo-400 transition-all shadow-sm">
+                    <button className="w-full p-6 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2rem] flex items-center justify-between group hover:border-indigo-400 transition-all shadow-sm">
                         <div className="flex items-center gap-4">
                             <div className="w-10 h-10 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-xl flex items-center justify-center">
                                 <Award size={20} />
@@ -215,7 +215,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
     return (
         <div className="space-y-8">
             <header className="flex items-center justify-between px-4">
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Execution Audit Stream</h2>
+                <h2 className="text-2xl font-black text-[var(--app-text)] uppercase tracking-tight">Execution Audit Stream</h2>
                 <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Mentor Sync Active</span>
@@ -224,7 +224,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
 
             <div className="grid grid-cols-1 gap-6">
                 {MOCK_FEEDBACK.map(review => (
-                    <div key={review.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-[2.5rem] shadow-sm flex flex-col md:flex-row gap-8 items-start group hover:border-indigo-400/50 transition-all">
+                    <div key={review.id} className="bg-[var(--app-card)] border border-[var(--app-border)] p-8 rounded-[2.5rem] shadow-sm flex flex-col md:flex-row gap-8 items-start group hover:border-indigo-400/50 transition-all">
                         <div className="flex flex-col items-center gap-4 shrink-0">
                             <div className={cn(
                                 "w-16 h-16 rounded-2xl flex items-center justify-center text-3xl font-black shadow-lg",
@@ -246,7 +246,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{new Date(review.date).toLocaleDateString()}</span>
                             </div>
 
-                            <p className="text-base font-medium text-slate-700 dark:text-slate-300 leading-relaxed italic">
+                            <p className="text-base font-medium text-[var(--app-text)] leading-relaxed italic">
                                 "{review.comment}"
                             </p>
 
@@ -280,7 +280,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
 function WeeklyReviewSummary() {
     return (
         <div className="space-y-10">
-            <header className="p-12 bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-[4rem] shadow-sm relative overflow-hidden">
+            <header className="p-12 bg-[var(--app-card)] text-[var(--app-text)] border border-[var(--app-border)] rounded-[4rem] shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12">
                     <Award size={200} />
                 </div>
@@ -296,7 +296,7 @@ function WeeklyReviewSummary() {
             </header>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div className="p-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[3.5rem] shadow-sm space-y-8">
+                <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] shadow-sm space-y-8">
                     <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-rose-50 dark:bg-rose-500/10 text-rose-500 rounded-[1.5rem] flex items-center justify-center">
                             <Shield size={24} />
@@ -313,7 +313,7 @@ function WeeklyReviewSummary() {
                     </div>
                 </div>
 
-                <div className="p-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[3.5rem] shadow-sm space-y-8">
+                <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] shadow-sm space-y-8">
                     <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-500 rounded-[1.5rem] flex items-center justify-center">
                             <Plus size={24} />
@@ -331,12 +331,12 @@ function WeeklyReviewSummary() {
                 </div>
             </div>
 
-            <div className="p-12 bg-white dark:bg-slate-900 border border-indigo-600 rounded-[4rem] shadow-2xl text-center space-y-10">
+            <div className="p-12 bg-[var(--app-card)] border border-indigo-600 rounded-[4rem] shadow-2xl text-center space-y-10">
                 <div className="flex flex-col items-center gap-6">
                     <div className="w-20 h-20 bg-indigo-600 rounded-[2rem] flex items-center justify-center text-white shadow-xl shadow-indigo-500/20">
                         <Target size={40} />
                     </div>
-                    <h3 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">Commit to Next Week's Focus</h3>
+                    <h3 className="text-3xl font-black text-[var(--app-text)] uppercase tracking-tighter">Commit to Next Week's Focus</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -357,17 +357,17 @@ function WeeklyReviewSummary() {
 
 function StatusCard({ label, value, subValue, icon, variant = 'white' }: any) {
     return (
-        <div className="p-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] shadow-sm flex items-center justify-between group hover:border-indigo-400 transition-all">
-            <div className="space-y-2">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">{label}</p>
+        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] shadow-[var(--shadow-soft)] flex items-center justify-between group hover:border-indigo-400 transition-all hover:scale-[1.02]">
+            <div className="space-y-3">
+                <p className="text-[10px] font-black uppercase tracking-widest text-[var(--app-text-muted)] opacity-60">{label}</p>
                 <p className={cn(
-                    "text-3xl font-black leading-none",
+                    "text-4xl font-black leading-none tracking-tighter",
                     variant === 'rose' ? "text-rose-500" :
-                        variant === 'emerald' ? "text-emerald-500" : "text-slate-900 dark:text-white"
+                        variant === 'emerald' ? "text-emerald-500" : "text-[var(--app-text)]"
                 )}>{value}</p>
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{subValue}</p>
+                <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest opacity-40">{subValue}</p>
             </div>
-            <div className="w-16 h-16 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-800 rounded-2xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+            <div className="w-20 h-20 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-3xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform text-indigo-600">
                 {icon}
             </div>
         </div>
@@ -379,10 +379,10 @@ function SubTab({ active, onClick, icon, label }: any) {
         <button
             onClick={onClick}
             className={cn(
-                "flex items-center gap-2 px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all shrink-0",
+                "flex items-center gap-2.5 px-8 py-3 rounded-full text-[12px] font-black uppercase tracking-widest transition-all shrink-0",
                 active
-                    ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-200 dark:border-slate-700"
-                    : "text-slate-500 hover:text-indigo-400"
+                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200 scale-105"
+                    : "text-[var(--app-text-muted)] hover:bg-slate-50 hover:text-indigo-600"
             )}
         >
             {icon} {label}

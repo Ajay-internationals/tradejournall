@@ -54,16 +54,16 @@ export default function Settings() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-body">
+        <div className="max-w-4xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-body">
             {/* Header */}
-            <header className="flex flex-col md:flex-row items-center justify-between gap-8 p-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[3rem] shadow-sm">
+            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
                 <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 bg-slate-900 dark:bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-                        <User className="w-8 h-8 text-white" />
+                    <div className="w-20 h-20 bg-slate-900 rounded-[2rem] flex items-center justify-center shadow-2xl">
+                        <User className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white leading-none">System Settings</h1>
-                        <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-4 italic">Profile & Configuration Hub</p>
+                        <h1 className="text-3xl font-black tracking-tighter text-[var(--app-text)] leading-none uppercase">Terminal Control ✨</h1>
+                        <p className="text-[var(--app-text-muted)] font-black uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">Profile & Protocol Config</p>
                     </div>
                 </div>
                 <button
@@ -85,31 +85,31 @@ export default function Settings() {
             </header>
 
             {/* Profile Section */}
-            <div className="p-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[3.5rem] shadow-sm relative overflow-hidden group">
+            <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4.5rem] shadow-[var(--shadow-soft)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-16 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-1000 text-indigo-600">
-                    <User size={200} />
+                    <User size={250} />
                 </div>
 
                 <div className="relative z-10">
-                    <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
+                    <div className="flex flex-col md:flex-row items-center gap-10 mb-14">
                         <div className="relative">
-                            <div className="w-28 h-28 bg-white dark:bg-slate-800 border-4 border-slate-50 dark:border-slate-900 rounded-[2rem] flex items-center justify-center text-3xl font-bold text-indigo-600 shadow-xl overflow-hidden">
+                            <div className="w-32 h-32 bg-white border border-[var(--app-border)] rounded-[2.5rem] flex items-center justify-center text-4xl font-black text-indigo-600 shadow-2xl overflow-hidden ring-4 ring-indigo-50">
                                 {formData.avatar_url ? (
                                     <img src={formData.avatar_url} alt="Profile" className="w-full h-full object-cover" />
                                 ) : (profile?.full_name?.[0] || 'T')}
                             </div>
-                            <button className="absolute -bottom-2 -right-2 p-3 bg-white dark:bg-slate-800 text-indigo-600 rounded-xl shadow-xl hover:scale-110 active:scale-95 transition-all border border-slate-100 dark:border-slate-700">
-                                <Camera size={18} />
+                            <button className="absolute -bottom-3 -right-3 p-4 bg-indigo-600 text-white rounded-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all border border-white">
+                                <Camera size={20} />
                             </button>
                         </div>
 
                         <div className="text-center md:text-left leading-none">
-                            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{profile?.full_name || 'Trader Account'}</h2>
-                            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest leading-none">{profile?.email}</p>
-                            <div className="mt-6">
+                            <h2 className="text-3xl font-black text-[var(--app-text)] tracking-tighter mb-4">{profile?.full_name || 'Trader Account'}</h2>
+                            <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] leading-none opacity-50">{profile?.email}</p>
+                            <div className="mt-8">
                                 <span className={cn(
-                                    "px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase border",
-                                    profile?.plan === 'PREMIUM' ? "bg-amber-50 dark:bg-amber-500/10 text-amber-600 border-amber-200 dark:border-amber-500/20" : "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 border-indigo-200 dark:border-indigo-500/20"
+                                    "px-8 py-3 rounded-full text-[9px] font-black tracking-[0.3em] uppercase border shadow-sm",
+                                    profile?.plan === 'PREMIUM' ? "bg-amber-50 text-amber-600 border-amber-200" : "bg-indigo-50 text-indigo-600 border-indigo-200"
                                 )}>
                                     {profile?.plan || 'STANDARD'} Membership
                                 </span>
@@ -117,49 +117,49 @@ export default function Settings() {
                         </div>
                     </div>
 
-                    <form onSubmit={handleProfileUpdate} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-4">Full Identity</label>
+                    <form onSubmit={handleProfileUpdate} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--app-text-muted)] ml-6 opacity-40">Full Identity</label>
                             <div className="relative">
-                                <AtSign className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 w-4 h-4" />
+                                <AtSign className="absolute left-8 top-1/2 -translate-y-1/2 text-slate-300 w-5 h-5" />
                                 <input
                                     type="text"
                                     value={formData.full_name}
                                     onChange={e => setFormData({ ...formData, full_name: e.target.value })}
-                                    className="w-full pl-14 pr-8 py-4 bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-2xl focus:border-indigo-500 outline-none transition-all font-bold text-sm text-slate-900 dark:text-white"
+                                    className="w-full pl-18 pr-10 py-6 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[2rem] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-black text-sm text-[var(--app-text)] shadow-sm"
                                 />
                             </div>
                         </div>
 
-                        <div className="space-y-3">
-                            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-4">Phone Channel</label>
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--app-text-muted)] ml-6 opacity-40">Phone Channel</label>
                             <div className="relative">
-                                <Smartphone className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 w-4 h-4" />
+                                <Smartphone className="absolute left-8 top-1/2 -translate-y-1/2 text-slate-300 w-5 h-5" />
                                 <input
                                     type="text"
                                     value={formData.phone_number}
                                     onChange={e => setFormData({ ...formData, phone_number: e.target.value })}
-                                    className="w-full pl-14 pr-8 py-4 bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-2xl focus:border-indigo-500 outline-none transition-all font-bold text-sm text-slate-900 dark:text-white"
+                                    className="w-full pl-18 pr-10 py-6 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[2rem] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-black text-sm text-[var(--app-text)] shadow-sm"
                                 />
                             </div>
                         </div>
 
-                        <div className="md:col-span-2 space-y-3">
-                            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-4">Avatar Data Stream (URL)</label>
+                        <div className="md:col-span-2 space-y-4">
+                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--app-text-muted)] ml-6 opacity-40">Avatar Stream (URL)</label>
                             <input
                                 type="text"
                                 value={formData.avatar_url}
                                 onChange={e => setFormData({ ...formData, avatar_url: e.target.value })}
-                                className="w-full px-8 py-4 bg-white dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 rounded-2xl focus:border-indigo-500 outline-none transition-all font-bold text-sm text-slate-900 dark:text-white"
+                                className="w-full px-10 py-6 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[2rem] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-black text-sm text-[var(--app-text)] shadow-sm"
                             />
                         </div>
 
                         <button
                             disabled={isUpdating}
                             type="submit"
-                            className="md:col-span-2 py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-slate-900 transition-all shadow-xl shadow-indigo-500/10 flex items-center justify-center gap-3"
+                            className="md:col-span-2 py-6 bg-indigo-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-slate-900 transition-all shadow-2xl shadow-indigo-100 flex items-center justify-center gap-4 mt-4"
                         >
-                            {isUpdating ? <Loader2 className="animate-spin w-5 h-5" /> : 'Save Profile Changes'}
+                            {isUpdating ? <Loader2 className="animate-spin w-5 h-5" /> : 'Sync Profile Profile'}
                         </button>
                     </form>
                 </div>

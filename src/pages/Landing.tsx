@@ -165,19 +165,19 @@ export default function Landing() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="py-12 md:py-24 px-6">
-                <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[4rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-indigo-500/20">
+            <section className="py-24 px-6">
+                <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[5rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-indigo-200">
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-indigo-700 -z-10" />
-                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 blur-3xl rounded-full" />
+                    <div className="absolute -top-32 -right-32 w-80 h-80 bg-white/10 blur-3xl rounded-full" />
 
-                    <h2 className="text-4xl md:text-6xl font-black text-white mb-8">Ready to master the markets?</h2>
+                    <h2 className="text-4xl md:text-7xl font-black text-white mb-10 tracking-tighter">Ready to master the markets?</h2>
                     <button
                         onClick={() => navigate('/login', { state: { defaultSignUp: true } })}
-                        className="px-12 py-5 bg-white text-indigo-600 rounded-2xl font-black hover:scale-105 transition-all shadow-2xl"
+                        className="px-16 py-6 bg-white text-indigo-600 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-2xl active:scale-95"
                     >
                         Start Your Free Trial
                     </button>
-                    <p className="mt-8 text-indigo-100 font-medium">Join 5,000+ traders improving their edge today.</p>
+                    <p className="mt-10 text-indigo-100 font-black text-[10px] uppercase tracking-[0.4em] opacity-60">Join 5,000+ traders improving their edge today.</p>
                 </div>
             </section>
 

@@ -8,7 +8,7 @@
 
 @layer base {
   :root {
-    --app-bg: #ffffff;
+    --app-bg: #f8fafc;
     --app-card: #ffffff;
     --app-header-bg: #ffffff;
     --app-sidebar-bg: #ffffff;
@@ -17,6 +17,9 @@
     --app-text-muted: #64748b;
     --app-accent: #6366f1;
     --app-nav-active: #f5f3ff;
+
+    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.08);
 
     --font-heading: 'Quicksand', 'Outfit', 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
@@ -32,6 +35,9 @@
     --app-text-muted: #94a3b8;
     --app-accent: #818cf8;
     --app-nav-active: rgba(99, 102, 241, 0.1);
+
+    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(129, 140, 248, 0.15);
   }
 }
 

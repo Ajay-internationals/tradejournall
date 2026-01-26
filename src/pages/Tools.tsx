@@ -81,7 +81,7 @@ export default function Tools() {
 
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
-            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
+            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] shadow-sm">
                 <div className="flex items-center gap-6">
                     <div className="w-20 h-20 bg-indigo-600 rounded-[2rem] flex items-center justify-center shadow-3xl relative overflow-hidden group">
                         <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 to-indigo-800 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -100,7 +100,7 @@ export default function Tools() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 leading-none">
                 {/* Position Size Calculator */}
-                <div className="p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm relative overflow-hidden group hover:scale-[1.01] transition-all duration-500">
+                <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-sm relative overflow-hidden group hover:scale-[1.01] transition-all duration-500">
                     <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:rotate-12 transition-transform duration-1000 text-indigo-500">
                         <Scale size={250} />
                     </div>
@@ -146,7 +146,7 @@ export default function Tools() {
                 </div>
 
                 {/* Compound Growth Calculator */}
-                <div className="p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm relative overflow-hidden group hover:scale-[1.01] transition-all duration-500">
+                <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-sm relative overflow-hidden group hover:scale-[1.01] transition-all duration-500">
                     <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-1000 text-emerald-500">
                         <TrendingUp size={250} />
                     </div>
@@ -176,7 +176,7 @@ export default function Tools() {
                     </button>
 
                     {compoundStats.result > 0 && (
-                        <div className="mt-12 p-10 bg-indigo-950 text-white border border-indigo-500/20 rounded-[3rem] animate-in slide-in-from-bottom-8 shadow-3xl relative overflow-hidden">
+                        <div className="mt-12 p-10 bg-[var(--app-accent)] text-white border border-white/10 rounded-[3rem] animate-in slide-in-from-bottom-8 shadow-3xl relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
                                 <Activity size={100} />
                             </div>
@@ -191,7 +191,7 @@ export default function Tools() {
                 </div>
 
                 {/* Edge Simulator */}
-                <div className="lg:col-span-2 p-16 bg-white border border-slate-200 rounded-[5rem] shadow-sm relative overflow-hidden group">
+                <div className="lg:col-span-2 p-16 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[5rem] shadow-sm relative overflow-hidden group">
                     <div className="absolute top-0 right-0 p-20 opacity-[0.03] pointer-events-none text-indigo-500 group-hover:scale-105 transition-all">
                         <Activity size={400} />
                     </div>
@@ -214,7 +214,7 @@ export default function Tools() {
                             </div>
                         </div>
 
-                        <div className="flex-1 min-h-[450px] bg-indigo-500/5 rounded-[3rem] p-10 border border-indigo-500/10 shadow-inner">
+                        <div className="flex-1 min-h-[450px] bg-[var(--app-bg)] rounded-[3rem] p-10 border border-[var(--app-border)] shadow-inner">
                             {simData.length > 0 ? (
                                 <div className="h-full w-full">
                                     <p className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.5em] mb-12 text-center opacity-60">Equity Stream Variance Matrix</p>
@@ -272,7 +272,7 @@ function InputGroup({ label, value, onChange, placeholder, isRed = false }: any)
                 placeholder={placeholder}
                 onChange={(e) => onChange(e.target.value)}
                 className={cn(
-                    "w-full bg-indigo-500/5 border border-indigo-500/10 rounded-2xl py-5 px-8 text-sm font-black focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all shadow-inner text-slate-900 placeholder:text-slate-400",
+                    "w-full bg-[var(--app-bg)] border border-[var(--app-border)] rounded-2xl py-5 px-8 text-sm font-black focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all shadow-inner text-[var(--app-text)] placeholder:text-slate-400",
                     isRed && "bg-rose-500/5 text-rose-500 border-rose-500/20 focus:border-rose-500 focus:ring-rose-500/5"
                 )}
             />

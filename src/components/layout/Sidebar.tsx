@@ -98,7 +98,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                                             )}>
                                                 {item.icon}
                                             </div>
-                                            <span className="text-sm font-bold tracking-tight">{item.label}</span>
+                                            <span className="text-base font-extrabold tracking-tight">{item.label}</span>
                                         </div>
                                         {isActive && <div className="w-1 h-5 bg-gradient-to-b from-violet-500 to-purple-500 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.5)]" />}
                                     </button>

@@ -251,7 +251,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                         </div>
                     </div>
 
-                    <div className="bg-white dark:bg-slate-900 p-10 rounded-[3.5rem] shadow-3xl space-y-6">
+                    <div className="bg-[var(--app-card)] p-10 rounded-[3.5rem] shadow-3xl space-y-6">
                         <p className="text-sm font-black uppercase tracking-tight text-indigo-900/40 dark:text-indigo-100/40">
                             The terminal cannot journalize imports because the <span className="text-indigo-600 italic">Trade Records</span> schema is missing.
                         </p>
@@ -274,7 +274,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
 
     return (
         <div className="space-y-12 animate-in fade-in duration-700 font-body">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white/40 dark:bg-indigo-950/20 backdrop-blur-3xl border border-indigo-500/10 rounded-[3.5rem] shadow-2xl ring-1 ring-indigo-500/5">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] shadow-2xl">
                 <div className="space-y-2 text-center md:text-left">
                     <h3 className="text-2xl font-black italic tracking-tighter dark:text-indigo-100 uppercase">Input Matrix ✨</h3>
                     <p className="text-[10px] font-black text-indigo-500/50 uppercase tracking-[0.3em]">Choose your data synchronization method.</p>
@@ -288,7 +288,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
 
             {mode === 'QUICK_PASTE' ? (
                 <div className="space-y-10">
-                    <div className="p-10 bg-white/40 dark:bg-indigo-950/20 backdrop-blur-3xl border border-indigo-500/10 rounded-[4rem] shadow-2xl space-y-16">
+                    <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-2xl space-y-16">
                         <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start">
                             <div className="space-y-4">
                                 <h4 className="text-sm font-black italic text-indigo-600 uppercase tracking-widest ml-4">1. Raw Data Input Protocol 📝</h4>
@@ -296,7 +296,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                     value={pasteRaw}
                                     onChange={(e) => setPasteRaw(e.target.value)}
                                     placeholder="Paste raw Excel/Google Sheets cells here..."
-                                    className="w-full h-80 bg-indigo-500/5 dark:bg-indigo-950/30 border border-indigo-500/10 rounded-[3rem] p-10 text-xl font-black text-indigo-900 dark:text-indigo-100 focus:border-indigo-500 outline-none resize-none shadow-inner dark:placeholder:text-indigo-100/10"
+                                    className="w-full h-80 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[3rem] p-10 text-xl font-black text-[var(--app-text)] focus:border-indigo-500 outline-none resize-none shadow-inner placeholder:text-slate-400"
                                 />
                             </div>
                             <div className="bg-indigo-600 p-12 rounded-[3.5rem] space-y-10 shadow-3xl relative overflow-hidden">
@@ -327,7 +327,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                         <Zap size={14} className="fill-indigo-500" /> Stream Preview ({parsedPreview.length} entries detected)
                                     </h5>
                                 </div>
-                                <div className="overflow-x-auto no-scrollbar rounded-[2.5rem] border border-indigo-500/10 max-h-96 shadow-inner bg-indigo-500/5">
+                                <div className="overflow-x-auto no-scrollbar rounded-[2.5rem] border border-[var(--app-border)] max-h-96 shadow-inner bg-[var(--app-bg)]">
                                     <table className="w-full text-left">
                                         <thead className="bg-indigo-600 text-white sticky top-0 z-10">
                                             <tr>
@@ -342,12 +342,12 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                                 <tr key={i} className="hover:bg-indigo-500/10 transition-colors group">
                                                     <td className="px-8 py-5">
                                                         <div className="flex flex-col">
-                                                            <span className="text-xs font-black italic dark:text-indigo-100">{p.date}</span>
+                                                            <span className="text-xs font-black italic text-[var(--app-text)]">{p.date}</span>
                                                             <span className="text-[9px] text-indigo-500 font-black uppercase tracking-widest">{p.asset}</span>
                                                         </div>
                                                     </td>
                                                     <td className="px-8 py-5">
-                                                        <span className="font-black text-sm uppercase italic dark:text-indigo-100">{p.instrument}</span>
+                                                        <span className="font-black text-sm uppercase italic text-[var(--app-text)]">{p.instrument}</span>
                                                     </td>
                                                     <td className="px-8 py-5">
                                                         <span className={cn(
@@ -361,7 +361,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                                     </td>
                                                     <td className="px-8 py-5 text-right">
                                                         <div className="flex flex-col items-end">
-                                                            <span className="font-black text-xs italic dark:text-indigo-100">₹{p.entry} → ₹{p.exit}</span>
+                                                            <span className="font-black text-xs italic text-[var(--app-text)]">₹{p.entry} → ₹{p.exit}</span>
                                                             {p.is_sl_missing ? (
                                                                 <span className="text-rose-500 text-[8px] font-black uppercase tracking-widest mt-1">NO STOP LOSS</span>
                                                             ) : (

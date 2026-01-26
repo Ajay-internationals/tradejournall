@@ -4,14 +4,15 @@ import { formatCurrency } from '@/lib/stats';
 
 interface EquityChartProps {
     trades: Trade[];
+    initialCapital?: number;
 }
 
-export function EquityChart({ trades }: EquityChartProps) {
+export function EquityChart({ trades, initialCapital = 0 }: EquityChartProps) {
     // Sort trades by date ascending
     const sortedTrades = [...trades].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-    // Calculate cumulative PnL
-    let cumulative = 0;
+    // Calculate cumulative PnL starting from initial capital
+    let cumulative = initialCapital;
     const data = sortedTrades.map((t) => {
         cumulative += t.net_pnl;
         return {

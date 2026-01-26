@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { Logo } from './Logo';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
+import { Zap } from 'lucide-react';
 
 export function PublicHeader() {
     const navigate = useNavigate();
@@ -7,52 +7,37 @@ export function PublicHeader() {
     return (
         <nav className="fixed top-0 w-full z-50 bg-white border-b border-slate-100">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                <div className="group cursor-pointer" onClick={() => navigate('/')}>
-                    <Logo />
-                </div>
+                <Link to="/" className="flex items-center gap-4 group">
+                    <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-200 group-hover:scale-110 transition-all duration-300">
+                        <Zap size={28} fill="currentColor" />
+                    </div>
+                    <span className="text-2xl font-black tracking-tighter text-slate-900">
+                        Trade Adhyayan
+                    </span>
+                </Link>
 
-                <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-500">
-                    <HeaderLink href="/#features" label="Features" />
-                    <HeaderLink href="/pricing" label="Pricing" />
-                    <HeaderLink href="/partner" label="Partner" />
-                    <HeaderLink href="/about" label="About" />
-                </div>
-
-                <div className="flex items-center gap-6">
-                    <button
-                        onClick={() => navigate('/login')}
-                        className="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors"
+                <div className="hidden md:flex items-center gap-10">
+                    <HeaderLink label="Methodology" href="/#features" />
+                    <HeaderLink label="Vault" href="/pricing" />
+                    <Link
+                        to="/login"
+                        className="px-8 py-3.5 bg-indigo-600 text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-indigo-100 hover:bg-slate-900 hover:scale-105 transition-all active:scale-95"
                     >
-                        Login
-                    </button>
-                    <button
-                        onClick={() => navigate('/login')}
-                        className="px-6 py-2.5 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/10"
-                    >
-                        Get Started
-                    </button>
+                        Initialize
+                    </Link>
                 </div>
             </div>
         </nav>
     );
 }
 
-function HeaderLink({ href, label }: { href: string; label: string }) {
-    const navigate = useNavigate();
-    const isAnchor = href.startsWith('/#');
-
+function HeaderLink({ label, href }: { label: string; href: string }) {
     return (
-        <a
-            href={href}
-            onClick={(e) => {
-                if (!isAnchor) {
-                    e.preventDefault();
-                    navigate(href);
-                }
-            }}
-            className="hover:text-indigo-600 transition-colors font-bold text-sm tracking-tight"
+        <Link
+            to={href}
+            className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition-colors"
         >
             {label}
-        </a>
+        </Link>
     );
 }
