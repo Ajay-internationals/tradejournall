@@ -73,16 +73,16 @@ export default function Mentorship() {
                 <div>
                     <div className="flex items-center gap-3 mb-4">
                         <div className="px-3 py-1 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-full">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600">Unified Portal</span>
+                            <span className="text-[10px] font-bold font-heading uppercase tracking-widest text-indigo-600">Unified Portal</span>
                         </div>
                         {role === 'mentor' && (
                             <div className="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-full">
-                                <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600">Mentor Active</span>
+                                <span className="text-[10px] font-bold font-heading uppercase tracking-widest text-emerald-600">Mentor Active</span>
                             </div>
                         )}
                     </div>
-                    <h1 className="text-4xl font-black tracking-tighter text-slate-900 leading-none uppercase">Mentorship Portal ✨</h1>
-                    <p className="text-slate-400 font-black uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">
+                    <h1 className="text-4xl font-bold font-heading tracking-tighter text-slate-900 leading-none uppercase">Mentorship Portal</h1>
+                    <p className="text-slate-400 font-bold font-heading uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">
                         {role === 'student' ? 'Guided Performance Hub' : 'Academy Management Terminal'}
                     </p>
                 </div>
@@ -91,7 +91,7 @@ export default function Mentorship() {
                     <button
                         onClick={() => setRole('student')}
                         className={cn(
-                            "px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all",
+                            "px-8 py-4 rounded-2xl text-[10px] font-bold font-heading uppercase tracking-widest transition-all",
                             role === 'student' ? "bg-indigo-600 text-white shadow-lg" : "text-slate-400 hover:text-indigo-600"
                         )}
                     >
@@ -100,7 +100,7 @@ export default function Mentorship() {
                     <button
                         onClick={() => setRole('mentor')}
                         className={cn(
-                            "px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all",
+                            "px-8 py-4 rounded-2xl text-[10px] font-bold font-heading uppercase tracking-widest transition-all",
                             role === 'mentor' ? "bg-indigo-600 text-white shadow-lg" : "text-slate-400 hover:text-indigo-600"
                         )}
                     >
@@ -136,16 +136,18 @@ function StudentView({ activeTab, setActiveTab }: any) {
     return (
         <div className="space-y-10">
             {/* Student Navigation - Updated Tabs */}
-            <div className="flex gap-3 p-2 bg-white rounded-[2rem] border border-slate-200 w-fit shadow-sm">
+            <div className="flex gap-3 p-2 bg-white rounded-[2rem] border border-slate-200 w-full md:w-fit shadow-sm overflow-x-auto no-scrollbar scroll-smooth">
                 <SubTab active={activeTab === 'overview'} onClick={() => setActiveTab('overview')} icon={<Activity size={18} />} label="Overview" />
-                <SubTab active={activeTab === 'journal'} onClick={() => setActiveTab('journal')} icon={<FileText size={18} />} label="Trade Journal" />
+                <SubTab active={activeTab === 'journal'} onClick={() => setActiveTab('journal')} icon={<FileText size={18} />} label="Journal" />
                 <SubTab active={activeTab === 'strategy'} onClick={() => setActiveTab('strategy')} icon={<Brain size={18} />} label="Strategy" />
+                <SubTab active={activeTab === 'guidance'} onClick={() => setActiveTab('guidance')} icon={<Zap size={18} />} label="Guidance" />
                 <SubTab active={activeTab === 'weekly'} onClick={() => setActiveTab('weekly')} icon={<Calendar size={18} />} label="Weekly" />
             </div>
 
             {activeTab === 'overview' && <StudentHomeDashboard acknowledged={acknowledged} onAcknowledge={handleAcknowledge} />}
             {activeTab === 'journal' && <TradeReviewView acknowledged={acknowledged} onAcknowledge={handleAcknowledge} />}
             {activeTab === 'strategy' && <StrategyAuditView />}
+            {activeTab === 'guidance' && <MentorGuidancePlans />}
             {activeTab === 'weekly' && <WeeklyReviewSummary />}
         </div>
     );
@@ -170,7 +172,7 @@ function MentorView({ activeTab, setActiveTab, selectedStudent, setSelectedStude
                     {activeTab === 'dashboard' && (
                         <>
                             <section>
-                                <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2 ml-4">
+                                <h3 className="text-xs font-bold font-heading uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2 ml-4">
                                     <Users size={16} className="text-indigo-600" /> Student Oversight
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -180,7 +182,7 @@ function MentorView({ activeTab, setActiveTab, selectedStudent, setSelectedStude
                                 </div>
                             </section>
                             <section className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
-                                <h3 className="text-xl font-black mb-8 uppercase tracking-tighter">Daily Review Queue</h3>
+                                <h3 className="text-xl font-bold font-heading mb-8 uppercase tracking-tighter">Daily Review Queue</h3>
                                 <ReviewQueue />
                             </section>
                         </>
@@ -236,16 +238,16 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
                         <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-600">
                             <Star size={24} />
                         </div>
-                        <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Mentor Directive</h2>
+                        <h2 className="text-xl font-bold font-heading text-slate-900 uppercase tracking-tight">Mentor Directive</h2>
                     </div>
 
                     <div className="bg-indigo-50 p-8 rounded-3xl border border-slate-200 mb-8">
-                        <p className="text-lg font-medium text-slate-900 leading-relaxed italic">
+                        <p className="text-lg font-heading font-medium text-slate-900 leading-relaxed italic">
                             "{MOCK_FEEDBACK[0].comment}"
                         </p>
                     </div>
 
-                    <button className="px-10 py-5 bg-indigo-600 text-white rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-lg hover:bg-slate-900 transition-all">
+                    <button className="px-10 py-5 bg-indigo-600 text-white rounded-2xl text-xs font-bold font-heading uppercase tracking-[0.2em] shadow-lg hover:bg-slate-900 transition-all">
                         View Detailed Audit
                     </button>
                 </div>
@@ -256,8 +258,8 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
                     <div className="absolute top-0 right-0 p-8 opacity-5 rotate-12">
                         <Target size={140} />
                     </div>
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-8 italic">Weekly Focus</h3>
-                    <p className="text-xl font-black leading-tight mb-8">
+                    <h3 className="text-[10px] font-bold font-heading uppercase tracking-[0.4em] text-slate-400 mb-8 italic">Weekly Focus</h3>
+                    <p className="text-xl font-bold font-heading leading-tight mb-8">
                         {MOCK_WEEKLY.nextWeekRules[0]}
                     </p>
                     <div className="space-y-4">
@@ -278,10 +280,10 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
     return (
         <div className="space-y-8">
             <header className="flex items-center justify-between px-4">
-                <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Execution Audit Stream</h2>
+                <h2 className="text-2xl font-bold font-heading text-slate-900 uppercase tracking-tight">Execution Audit Stream</h2>
                 <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Mentor Sync Active</span>
+                    <span className="text-[10px] font-bold font-heading uppercase tracking-widest text-slate-400">Mentor Sync Active</span>
                 </div>
             </header>
 
@@ -290,26 +292,26 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                     <div key={review.id} className="bg-white border border-slate-200 p-10 rounded-[3rem] shadow-sm flex flex-col md:flex-row gap-10 items-start group hover:border-indigo-400 transition-all">
                         <div className="flex flex-col items-center gap-4 shrink-0">
                             <div className={cn(
-                                "w-20 h-20 rounded-3xl flex items-center justify-center text-4xl font-black shadow-xl",
+                                "w-20 h-20 rounded-3xl flex items-center justify-center text-4xl font-bold font-heading shadow-xl",
                                 review.rating === 'A' ? "bg-emerald-500 text-white" :
                                     review.rating === 'B' ? "bg-amber-500 text-white" : "bg-rose-500 text-white"
                             )}>
                                 {review.rating}
                             </div>
-                            <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest">{review.type} Grade</span>
+                            <span className="text-[10px] font-bold font-heading uppercase text-slate-400 tracking-widest">{review.type} Grade</span>
                         </div>
 
                         <div className="flex-1 space-y-8">
                             <div className="flex items-center justify-between">
                                 <div className="flex flex-wrap gap-3">
                                     {review.tags.map(tag => (
-                                        <span key={tag} className="px-5 py-2 bg-indigo-50 text-slate-400 text-[9px] font-black uppercase tracking-widest rounded-full border border-slate-200">{tag}</span>
+                                        <span key={tag} className="px-5 py-2 bg-indigo-50 text-slate-400 text-[9px] font-bold font-heading uppercase tracking-widest rounded-full border border-slate-200">{tag}</span>
                                     ))}
                                 </div>
-                                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest italic">{new Date(review.date).toLocaleDateString()}</span>
+                                <span className="text-[10px] font-bold font-heading text-slate-400 uppercase tracking-widest italic">{new Date(review.date).toLocaleDateString()}</span>
                             </div>
 
-                            <p className="text-xl font-medium text-slate-900 leading-relaxed italic">
+                            <p className="text-xl font-heading font-medium text-slate-900 leading-relaxed italic">
                                 "{review.comment}"
                             </p>
 
@@ -318,7 +320,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                                     onClick={() => onAcknowledge(review.id)}
                                     disabled={acknowledged.includes(review.id)}
                                     className={cn(
-                                        "px-10 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all",
+                                        "px-10 py-4 rounded-2xl text-[10px] font-bold font-heading uppercase tracking-widest transition-all",
                                         acknowledged.includes(review.id)
                                             ? "bg-indigo-50 border border-emerald-500/20 text-emerald-500 cursor-default flex items-center gap-3"
                                             : "bg-indigo-600 text-white shadow-xl hover:bg-slate-900"
@@ -328,7 +330,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                                         <><CheckCircle2 size={16} /> Acknowledged</>
                                     ) : 'Lock Feedback'}
                                 </button>
-                                <button className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors flex items-center gap-3">
+                                <button className="text-[10px] font-bold font-heading uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors flex items-center gap-3">
                                     <MessageSquare size={16} /> Add Reflection
                                 </button>
                             </div>
@@ -348,7 +350,7 @@ function StrategyAuditView() {
                     <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 rounded-[2rem] flex items-center justify-center">
                         <Brain size={32} />
                     </div>
-                    <h3 className="text-2xl font-black uppercase tracking-tighter">Approved Setups</h3>
+                    <h3 className="text-2xl font-bold font-heading uppercase tracking-tighter">Approved Setups</h3>
                 </div>
                 <div className="space-y-6">
                     <ProgressBar label="ORB Breakout" value={85} />
@@ -362,7 +364,7 @@ function StrategyAuditView() {
                     <div className="w-16 h-16 bg-indigo-600 text-white rounded-[2rem] flex items-center justify-center">
                         <Target size={32} />
                     </div>
-                    <h3 className="text-2xl font-black uppercase tracking-tighter">Setup Protocol</h3>
+                    <h3 className="text-2xl font-bold font-heading uppercase tracking-tighter">Setup Protocol</h3>
                 </div>
                 <div className="space-y-6">
                     {['2R Minimum Requirement', 'No Entry Post 2:30 PM', 'Max SL: 0.5% Capital'].map(m => (
@@ -385,10 +387,10 @@ function WeeklyReviewSummary() {
                     <Trophy size={200} />
                 </div>
                 <div className="relative z-10 max-w-4xl">
-                    <h2 className="text-[12px] font-black uppercase tracking-[0.5em] text-indigo-400 mb-8 italic">Batch Summary: {MOCK_WEEKLY.period}</h2>
-                    <h3 className="text-5xl font-black tracking-tighter mb-10 leading-tight">Focusing on Execution Process.</h3>
+                    <h2 className="text-[12px] font-bold font-heading uppercase tracking-[0.5em] text-indigo-400 mb-8 italic">Batch Summary: {MOCK_WEEKLY.period}</h2>
+                    <h3 className="text-5xl font-bold font-heading tracking-tighter mb-10 leading-tight">Focusing on Execution Process.</h3>
                     <div className="p-10 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-[3rem] backdrop-blur-sm">
-                        <p className="text-xl font-medium text-indigo-900 dark:text-indigo-100 leading-relaxed italic">
+                        <p className="text-xl font-heading font-medium text-indigo-900 dark:text-indigo-100 leading-relaxed italic">
                             "{MOCK_WEEKLY.mentorNote}"
                         </p>
                     </div>
@@ -402,26 +404,26 @@ function StudentProfileView({ student, onBack }: any) {
     const [subTab, setSubTab] = useState('overview');
     return (
         <div className="space-y-10 animate-in slide-in-from-right-4 duration-500">
-            <button onClick={onBack} className="flex items-center gap-3 text-xs font-black text-slate-400 hover:text-indigo-600 transition-colors uppercase tracking-[0.3em] mb-4">
+            <button onClick={onBack} className="flex items-center gap-3 text-xs font-bold font-heading text-slate-400 hover:text-indigo-600 transition-colors uppercase tracking-[0.3em] mb-4">
                 <ChevronRight className="rotate-180" size={16} /> Return to Home
             </button>
 
             <div className="flex flex-col xl:flex-row items-center justify-between p-12 bg-indigo-600 text-white rounded-[4rem] shadow-2xl relative overflow-hidden group">
                 <div className="absolute right-0 top-0 p-12 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-1000"><Users size={240} /></div>
                 <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-                    <div className="w-28 h-28 bg-white/20 backdrop-blur-3xl rounded-[2.5rem] flex items-center justify-center text-5xl font-black shadow-inner border border-white/20">{student.name[0]}</div>
+                    <div className="w-28 h-28 bg-white/20 backdrop-blur-3xl rounded-[2.5rem] flex items-center justify-center text-5xl font-bold font-heading shadow-inner border border-white/20">{student.name[0]}</div>
                     <div className="text-center md:text-left">
-                        <h2 className="text-5xl font-black mb-4 tracking-tighter">{student.name}</h2>
+                        <h2 className="text-5xl font-bold font-heading mb-4 tracking-tighter">{student.name}</h2>
                         <div className="flex gap-4">
-                            <span className="px-5 py-2 bg-white/10 rounded-full text-[10px] font-black uppercase tracking-widest">ID: ST-10029</span>
-                            <span className="px-5 py-2 bg-emerald-50 shadow-lg rounded-full text-[10px] font-black uppercase tracking-widest">Risk: {student.risk}</span>
+                            <span className="px-5 py-2 bg-white/10 rounded-full text-[10px] font-bold font-heading uppercase tracking-widest">ID: ST-10029</span>
+                            <span className="px-5 py-2 bg-emerald-50 shadow-lg rounded-full text-[10px] font-bold font-heading uppercase tracking-widest">Risk: {student.risk}</span>
                         </div>
                     </div>
                 </div>
                 <div className="relative z-10 flex gap-12 text-center items-center mt-10 xl:mt-0 bg-white/5 p-8 rounded-[3rem] border border-white/10 backdrop-blur-md">
-                    <div><p className="text-[10px] uppercase font-black opacity-60 tracking-wider mb-3">Total P&L</p><p className="text-4xl font-black leading-none">₹48.2K</p></div>
+                    <div><p className="text-[10px] uppercase font-bold font-heading opacity-60 tracking-wider mb-3">Total P&L</p><p className="text-4xl font-bold font-heading leading-none">₹48.2K</p></div>
                     <div className="w-[1px] h-10 bg-white/20" />
-                    <div><p className="text-[10px] uppercase font-black opacity-60 tracking-wider mb-3">Discipline</p><p className="text-4xl font-black leading-none">{student.discipline}%</p></div>
+                    <div><p className="text-[10px] uppercase font-bold font-heading opacity-60 tracking-wider mb-3">Discipline</p><p className="text-4xl font-bold font-heading leading-none">{student.discipline}%</p></div>
                 </div>
             </div>
 
@@ -430,7 +432,7 @@ function StudentProfileView({ student, onBack }: any) {
                     <button
                         key={t}
                         onClick={() => setSubTab(t)}
-                        className={cn("pb-6 text-[11px] font-black uppercase tracking-widest transition-all relative", subTab === t ? "text-indigo-600" : "text-slate-400 hover:text-slate-600")}
+                        className={cn("pb-6 text-[11px] font-bold font-heading uppercase tracking-widest transition-all relative", subTab === t ? "text-indigo-600" : "text-slate-400 hover:text-slate-600")}
                     >
                         {t}
                         {subTab === t && <div className="absolute bottom-0 left-0 w-full h-1 bg-indigo-600 rounded-full" />}
@@ -441,11 +443,11 @@ function StudentProfileView({ student, onBack }: any) {
             {subTab === 'overview' && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     <div className="p-12 bg-white border border-slate-200 shadow-sm rounded-[4rem]">
-                        <h3 className="text-xl font-black mb-10 uppercase tracking-tighter">Performance Curve</h3>
-                        <div className="h-72 bg-indigo-50 border border-slate-200 rounded-[2.5rem] flex items-center justify-center font-black text-slate-300 uppercase tracking-widest italic text-xs">Node Stats Integration Pending...</div>
+                        <h3 className="text-xl font-bold font-heading mb-10 uppercase tracking-tighter">Performance Curve</h3>
+                        <div className="h-72 bg-indigo-50 border border-slate-200 rounded-[2.5rem] flex items-center justify-center font-bold font-heading text-slate-300 uppercase tracking-widest italic text-xs">Node Stats Integration Pending...</div>
                     </div>
                     <div className="p-12 bg-white border border-slate-200 shadow-sm rounded-[4rem]">
-                        <h3 className="text-xl font-black mb-10 uppercase tracking-tighter">Setup Efficiency</h3>
+                        <h3 className="text-xl font-bold font-heading mb-10 uppercase tracking-tighter">Setup Efficiency</h3>
                         <div className="space-y-8">
                             <ProgressBar label="ORB Breakout" value={72} />
                             <ProgressBar label="VWAP Reversal" value={55} />
@@ -476,7 +478,7 @@ function SubTab({ active, onClick, icon, label }: any) {
         <button
             onClick={onClick}
             className={cn(
-                "flex items-center gap-3 px-10 py-4 rounded-2xl text-[12px] font-black uppercase tracking-widest transition-all shrink-0",
+                "flex items-center gap-3 px-10 py-4 rounded-2xl text-[12px] font-bold font-heading uppercase tracking-widest transition-all shrink-0",
                 active
                     ? "bg-indigo-600 text-white shadow-xl scale-105"
                     : "text-slate-400 hover:bg-slate-50 hover:text-indigo-600"
@@ -491,9 +493,9 @@ function StatusCard({ label, value, subValue, icon, variant = 'white' }: any) {
     return (
         <div className="p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm flex items-center justify-between group hover:border-indigo-400 transition-all">
             <div className="space-y-4">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 opacity-60 italic">{label}</p>
+                <p className="text-[10px] font-bold font-heading uppercase tracking-widest text-slate-400 opacity-60 italic">{label}</p>
                 <p className={cn(
-                    "text-5xl font-black leading-none tracking-tighter",
+                    "text-5xl font-bold font-heading leading-none tracking-tighter",
                     variant === 'rose' ? "text-rose-500" :
                         variant === 'emerald' ? "text-emerald-500" : "text-slate-900"
                 )}>{value}</p>
@@ -513,12 +515,12 @@ function StudentCard({ student, onClick, wide = false }: any) {
             wide ? "flex flex-col md:flex-row items-center justify-between" : "space-y-8"
         )} onClick={onClick}>
             <div className="flex items-center gap-6">
-                <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 rounded-[1.5rem] flex items-center justify-center text-2xl font-black shadow-inner">
+                <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 rounded-[1.5rem] flex items-center justify-center text-2xl font-bold font-heading shadow-inner">
                     {student.name[0]}
                 </div>
                 <div className="leading-none">
-                    <h4 className="font-black text-xl text-slate-900 uppercase tracking-tighter">{student.name}</h4>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-3 italic">{student.status}</p>
+                    <h4 className="font-bold font-heading text-xl text-slate-900 uppercase tracking-tighter">{student.name}</h4>
+                    <p className="text-[10px] font-bold font-heading text-slate-400 uppercase tracking-widest mt-3 italic">{student.status}</p>
                 </div>
             </div>
 
@@ -529,7 +531,7 @@ function StudentCard({ student, onClick, wide = false }: any) {
             </div>
 
             {!wide && (
-                <button className="w-full py-5 bg-indigo-50 border border-slate-200 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all">
+                <button className="w-full py-5 bg-indigo-50 border border-slate-200 rounded-2xl text-[10px] font-bold font-heading uppercase tracking-widest text-slate-400 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all">
                     Open Audit
                 </button>
             )}
@@ -540,8 +542,8 @@ function StudentCard({ student, onClick, wide = false }: any) {
 function Metric({ label, value, color }: any) {
     return (
         <div className="leading-none">
-            <p className="text-[10px] font-black uppercase text-slate-400 mb-3 tracking-widest opacity-60">{label}</p>
-            <p className={cn("text-xl font-black tracking-tighter", color)}>{value}</p>
+            <p className="text-[10px] font-bold font-heading uppercase text-slate-400 mb-3 tracking-widest opacity-60">{label}</p>
+            <p className={cn("text-xl font-bold font-heading tracking-tighter", color)}>{value}</p>
         </div>
     );
 }
@@ -549,7 +551,7 @@ function Metric({ label, value, color }: any) {
 function AlertsPanel() {
     return (
         <div className="p-10 bg-white border border-rose-100 dark:border-rose-500/20 rounded-[3.5rem] shadow-sm">
-            <h3 className="text-xs font-black uppercase tracking-widest mb-8 flex items-center gap-3 text-rose-500 italic">
+            <h3 className="text-xs font-bold font-heading uppercase tracking-widest mb-8 flex items-center gap-3 text-rose-500 italic">
                 <AlertCircle size={18} /> Priority Audit
             </h3>
             <div className="space-y-6">
@@ -564,8 +566,8 @@ function AlertsPanel() {
 function AlertItem({ type, text }: any) {
     return (
         <div className="p-6 bg-rose-50/50 dark:bg-rose-500/5 rounded-2xl border border-rose-100/50 dark:border-rose-500/10 text-[11px] leading-relaxed">
-            <span className="font-black uppercase text-rose-600 mr-3">{type}:</span>
-            <span className="font-medium text-slate-600 dark:text-slate-400 italic">{text}</span>
+            <span className="font-bold font-heading uppercase text-rose-600 mr-3">{type}:</span>
+            <span className="font-heading font-medium text-slate-600 dark:text-slate-400 italic">{text}</span>
         </div>
     );
 }
@@ -573,11 +575,11 @@ function AlertItem({ type, text }: any) {
 function MentorCapacity({ ratio }: { ratio: string }) {
     return (
         <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
-            <h3 className="text-xs font-black uppercase tracking-widest mb-8 text-slate-400 italic">Academy Capacity</h3>
+            <h3 className="text-xs font-bold font-heading uppercase tracking-widest mb-8 text-slate-400 italic">Academy Capacity</h3>
             <div className="space-y-6">
                 <div className="flex justify-between items-end">
-                    <p className="text-xs font-black uppercase text-slate-900 dark:text-white">Active Load</p>
-                    <p className="text-2xl font-black text-indigo-600 leading-none">{ratio}</p>
+                    <p className="text-xs font-bold font-heading uppercase text-slate-900 dark:text-white">Active Load</p>
+                    <p className="text-2xl font-bold font-heading text-indigo-600 leading-none">{ratio}</p>
                 </div>
                 <div className="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
                     <div className="h-full bg-indigo-500 rounded-full" style={{ width: '40%' }}></div>
@@ -593,10 +595,10 @@ function ReviewQueue() {
             {[1, 2].map(i => (
                 <div key={i} className="flex items-center justify-between p-8 bg-indigo-50 border border-slate-200 rounded-3xl hover:border-indigo-400 transition-all group">
                     <div className="flex gap-6 items-center">
-                        <div className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-400 font-black text-[10px] tracking-widest">#LOG-{290 + i}</div>
+                        <div className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-400 font-bold font-heading text-[10px] tracking-widest">#LOG-{290 + i}</div>
                         <p className="text-base font-bold text-slate-900 uppercase tracking-tight">EOD Log: Student-00{i}</p>
                     </div>
-                    <button className="px-8 py-3 bg-indigo-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-900 transition-all">Audit Now</button>
+                    <button className="px-8 py-3 bg-indigo-600 text-white rounded-xl text-[10px] font-bold font-heading uppercase tracking-widest hover:bg-slate-900 transition-all">Audit Now</button>
                 </div>
             ))}
         </div>
@@ -606,7 +608,7 @@ function ReviewQueue() {
 function ProgressBar({ label, value }: { label: string, value: number }) {
     return (
         <div>
-            <div className="flex justify-between text-[11px] font-black uppercase mb-4 tracking-widest leading-none italic">
+            <div className="flex justify-between text-[11px] font-bold font-heading uppercase mb-4 tracking-widest leading-none italic">
                 <span className="text-slate-400">{label}</span>
                 <span className="text-indigo-600">{value}% Accuracy</span>
             </div>
@@ -620,7 +622,7 @@ function ProgressBar({ label, value }: { label: string, value: number }) {
 function ReviewEntryCard() {
     return (
         <div className="bg-white border border-slate-200 rounded-[4rem] p-12 shadow-sm">
-            <h3 className="text-2xl font-black mb-10 uppercase tracking-tighter">Submit Audit Note</h3>
+            <h3 className="text-2xl font-bold font-heading mb-10 uppercase tracking-tighter">Submit Audit Note</h3>
             <div className="flex gap-6 mb-10">
                 <RatingButton label="A" sub="Perfect Process" />
                 <RatingButton label="B" sub="Protocol Drift" active />
@@ -628,9 +630,9 @@ function ReviewEntryCard() {
             </div>
             <textarea
                 placeholder="Diagnostic feedback for the operator..."
-                className="w-full bg-indigo-50 border border-slate-200 rounded-[2.5rem] p-10 text-base font-medium min-h-[180px] mb-10 focus:border-indigo-600 outline-none transition-all placeholder:text-slate-300 italic"
+                className="w-full bg-indigo-50 border border-slate-200 rounded-[2.5rem] p-10 text-base font-heading font-medium min-h-[180px] mb-10 focus:border-indigo-600 outline-none transition-all placeholder:text-slate-300 italic"
             ></textarea>
-            <button className="w-full py-6 bg-indigo-600 text-white rounded-[2rem] font-black uppercase tracking-[0.3em] text-[11px] shadow-2xl shadow-indigo-500/20 hover:bg-slate-900 transition-all">
+            <button className="w-full py-6 bg-indigo-600 text-white rounded-[2rem] font-bold font-heading uppercase tracking-[0.3em] text-[11px] shadow-2xl shadow-indigo-500/20 hover:bg-slate-900 transition-all">
                 Publish Official Audit
             </button>
         </div>
@@ -643,8 +645,8 @@ function RatingButton({ label, sub, active = false }: any) {
             "flex-1 p-8 rounded-[2rem] border transition-all text-center group",
             active ? "bg-indigo-600 border-indigo-600 text-white shadow-xl scale-105" : "bg-indigo-50 border-slate-200 hover:bg-slate-50"
         )}>
-            <p className="text-5xl font-black">{label}</p>
-            <p className={cn("text-[10px] uppercase font-black mt-4 tracking-widest", active ? "text-indigo-100" : "text-slate-400")}>{sub}</p>
+            <p className="text-5xl font-bold font-heading">{label}</p>
+            <p className={cn("text-[10px] uppercase font-bold font-heading mt-4 tracking-widest", active ? "text-indigo-100" : "text-slate-400")}>{sub}</p>
         </button>
     );
 }
@@ -653,12 +655,12 @@ function ChecklistSection() {
     const points = ['Stop-Loss Hardware-Set', 'Rule-Based Entry Confirmed', 'Max Daily Loss Cap', 'RR 1:2.5 Minimum'];
     return (
         <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-400 text-center italic">Institutional Focus</h3>
+            <h3 className="text-[10px] font-bold font-heading uppercase tracking-[0.4em] mb-10 text-slate-400 text-center italic">Institutional Focus</h3>
             <div className="space-y-6">
                 {points.map(p => (
                     <div key={p} className="flex items-center gap-5 group">
                         <CheckCircle2 size={20} className="text-emerald-500 shrink-0" />
-                        <span className="text-sm font-black text-slate-400 group-hover:text-indigo-600 transition-colors uppercase tracking-widest italic">{p}</span>
+                        <span className="text-sm font-bold font-heading text-slate-400 group-hover:text-indigo-600 transition-colors uppercase tracking-widest italic">{p}</span>
                     </div>
                 ))}
             </div>
@@ -669,15 +671,15 @@ function ChecklistSection() {
 function ReviewTimeline() {
     return (
         <div className="p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm">
-            <h3 className="text-3xl font-black mb-12 text-slate-900 uppercase tracking-tighter">Audit History</h3>
+            <h3 className="text-3xl font-bold font-heading mb-12 text-slate-900 uppercase tracking-tighter">Audit History</h3>
             <div className="space-y-16">
                 <div className="relative pl-12 border-l-4 border-slate-100 dark:border-slate-800 pb-12 last:pb-0 group">
                     <div className="absolute left-[-14px] top-0 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white dark:border-slate-900 shadow-xl scale-125"></div>
-                    <p className="text-[11px] font-black text-indigo-500 mb-4 uppercase tracking-[0.2em] italic">Jan 24, 2026 • EOD Audit</p>
-                    <p className="text-xl font-medium text-slate-900 leading-relaxed mb-8 italic">"Outstanding emotional control. You transitioned from a losing morning to a break-even afternoon without forcing any revenge trades. This is the hallmark of professional scaling."</p>
+                    <p className="text-[11px] font-bold font-heading text-indigo-500 mb-4 uppercase tracking-[0.2em] italic">Jan 24, 2026 • EOD Audit</p>
+                    <p className="text-xl font-heading font-medium text-slate-900 leading-relaxed mb-8 italic">"Outstanding emotional control. You transitioned from a losing morning to a break-even afternoon without forcing any revenge trades. This is the hallmark of professional scaling."</p>
                     <div className="flex gap-4">
-                        <span className="px-5 py-2 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-full text-[9px] font-black uppercase text-indigo-600 tracking-wider">Protocol Maintained</span>
-                        <span className="px-5 py-2 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-full text-[9px] font-black uppercase text-emerald-600 tracking-wider">Zero Revenge Trades</span>
+                        <span className="px-5 py-2 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-full text-[9px] font-bold font-heading uppercase text-indigo-600 tracking-wider">Protocol Maintained</span>
+                        <span className="px-5 py-2 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-full text-[9px] font-bold font-heading uppercase text-emerald-600 tracking-wider">Zero Revenge Trades</span>
                     </div>
                 </div>
             </div>
@@ -693,20 +695,91 @@ function WeeklyReviewHub() {
                     <Zap size={200} className="fill-indigo-600 text-indigo-600" />
                 </div>
                 <div className="relative z-10">
-                    <h3 className="text-5xl font-black mb-6 tracking-tighter uppercase">Academy Performance</h3>
-                    <p className="text-indigo-400 font-black uppercase tracking-[0.4em] text-[12px] mb-16 italic">Batch Analysis: JAN 19 - 25</p>
+                    <h3 className="text-5xl font-bold font-heading mb-6 tracking-tighter uppercase">Academy Performance</h3>
+                    <p className="text-indigo-400 font-bold font-heading uppercase tracking-[0.4em] text-[12px] mb-16 italic">Batch Analysis: JAN 19 - 25</p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
                         <div className="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 backdrop-blur-sm">
-                            <p className="text-[10px] opacity-40 font-black uppercase tracking-widest mb-4 italic">Total Delta</p>
-                            <p className="text-4xl font-black uppercase tracking-tighter text-emerald-500">+₹4.2L</p>
+                            <p className="text-[10px] opacity-40 font-bold font-heading uppercase tracking-widest mb-4 italic">Total Delta</p>
+                            <p className="text-4xl font-bold font-heading uppercase tracking-tighter text-emerald-500">+₹4.2L</p>
                         </div>
                         <div className="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 backdrop-blur-sm">
-                            <p className="text-[10px] opacity-40 font-black uppercase tracking-widest mb-4 italic">Avg Accuracy</p>
-                            <p className="text-4xl font-black uppercase tracking-tighter text-indigo-400">74%</p>
+                            <p className="text-[10px] opacity-40 font-bold font-heading uppercase tracking-widest mb-4 italic">Avg Accuracy</p>
+                            <p className="text-4xl font-bold font-heading uppercase tracking-tighter text-indigo-400">74%</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    );
+}
+
+function MentorGuidancePlans() {
+    return (
+        <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="text-center max-w-2xl mx-auto px-4">
+                <h2 className="text-3xl font-bold font-heading text-slate-900 mb-4 uppercase tracking-tight">Institutional Guidance</h2>
+                <p className="text-slate-500 font-heading font-medium text-sm">Select a professional roadmap to accelerate your edge. No redirects, start immediately.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
+                <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm hover:border-indigo-400 transition-all group flex flex-col">
+                    <div className="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 className="text-xs font-bold font-heading text-indigo-600 uppercase tracking-widest mb-2">Silver Tier</h3>
+                            <p className="text-4xl font-bold font-heading text-slate-900">₹4,999<span className="text-xs text-slate-400">/mo</span></p>
+                        </div>
+                        <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
+                            <Users size={24} />
+                        </div>
+                    </div>
+                    <div className="space-y-4 mb-10 flex-1">
+                        <PlanFeature text="Daily EOD Trade Audits" />
+                        <PlanFeature text="Weekly performance review" />
+                        <PlanFeature text="Psychology focus sessions" />
+                    </div>
+                    <button className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold font-heading uppercase tracking-widest text-[10px] hover:bg-slate-900 transition-all shadow-lg shadow-indigo-500/20">
+                        Enroll in Silver
+                    </button>
+                </div>
+
+                <div className="p-10 bg-slate-900 border border-slate-800 rounded-[3rem] shadow-2xl hover:border-indigo-500 transition-all group flex flex-col relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-8 opacity-10">
+                        <Zap size={80} className="text-indigo-400" />
+                    </div>
+                    <div className="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 className="text-xs font-bold font-heading text-indigo-400 uppercase tracking-widest mb-2">Gold Elite</h3>
+                            <p className="text-4xl font-bold font-heading text-white">₹9,999<span className="text-xs text-slate-500">/mo</span></p>
+                        </div>
+                        <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white">
+                            <Trophy size={24} />
+                        </div>
+                    </div>
+                    <div className="space-y-4 mb-10 flex-1">
+                        <PlanFeature text="All Silver features" dark />
+                        <PlanFeature text="One-on-One strategy sessions" dark />
+                        <PlanFeature text="Institutional reporting" dark />
+                        <PlanFeature text="Priority 24/7 mentor access" dark />
+                    </div>
+                    <button className="w-full py-5 bg-white text-slate-900 rounded-2xl font-bold font-heading uppercase tracking-widest text-[10px] hover:bg-indigo-600 hover:text-white transition-all">
+                        Enroll in Gold Elite
+                    </button>
+                </div>
+            </div>
+
+            <div className="p-10 bg-indigo-50 border border-indigo-100 rounded-[2.5rem] text-center max-w-lg mx-auto mb-10 mx-4">
+                <p className="text-[10px] font-bold font-heading text-indigo-600 uppercase tracking-widest mb-2 italic">Custom Academy Needs?</p>
+                <p className="text-xs font-heading font-medium text-slate-600 leading-relaxed">Contact our enterprise team for customized student management solutions.</p>
+            </div>
+        </div>
+    );
+}
+
+function PlanFeature({ text, dark = false }: { text: string, dark?: boolean }) {
+    return (
+        <div className="flex items-center gap-3">
+            <CheckCircle2 size={16} className={dark ? "text-indigo-400" : "text-emerald-500"} />
+            <span className={cn("text-sm font-heading font-medium", dark ? "text-slate-300" : "text-slate-600")}>{text}</span>
         </div>
     );
 }

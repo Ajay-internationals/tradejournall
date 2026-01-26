@@ -75,6 +75,10 @@ export default function Mistakes() {
                 </div>
             </div>
 
+            <div className="flex gap-3 p-2 bg-white rounded-2xl border border-slate-200 w-full md:w-fit shadow-sm overflow-x-auto no-scrollbar scroll-smooth">
+                {/* Navigation tabs content would go here if this were the intended element */}
+            </div>
+
             <div className="p-16 bg-white border border-dashed border-slate-200 rounded-[5rem] text-center space-y-10 shadow-sm">
                 <div className="w-24 h-24 bg-indigo-500/5 rounded-[2.5rem] flex items-center justify-center mx-auto shadow-inner border border-indigo-500/10 group hover:scale-110 transition-all">
                     <Search className="text-indigo-300 group-hover:text-indigo-600 transition-colors" size={40} />

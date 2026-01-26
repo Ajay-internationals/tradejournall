@@ -140,7 +140,7 @@ export default function Analytics() {
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
             {/* Nav Tabs */}
-            <div className="flex gap-3 p-2 bg-white rounded-2xl border border-slate-200 w-fit shadow-sm">
+            <div className="flex gap-3 p-2 bg-white rounded-2xl border border-slate-200 w-full md:w-fit shadow-sm overflow-x-auto no-scrollbar scroll-smooth">
                 <SubTab active={activeTab === 'performance'} onClick={() => setActiveTab('performance')} icon={<Activity size={18} />} label="Overview" />
                 <SubTab active={activeTab === 'strategies'} onClick={() => setActiveTab('strategies')} icon={<LayoutGrid size={18} />} label="Strategies" />
                 <SubTab active={activeTab === 'mistakes'} onClick={() => setActiveTab('mistakes')} icon={<Target size={18} />} label="Mistakes" />
