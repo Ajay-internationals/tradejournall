@@ -42,9 +42,9 @@ export function AppShell() {
                         {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
                     </button>
 
-                    <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-500 dark:to-purple-500 rounded-full shadow-lg shadow-purple-500/20">
-                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
-                        <span className="text-[10px] font-black uppercase tracking-widest text-white">System Nominal</span>
+                    <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-500/10 rounded-full border border-indigo-100 dark:border-indigo-500/20">
+                        <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">System Active</span>
                     </div>
                 </div>
             </header>

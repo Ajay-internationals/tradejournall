@@ -56,14 +56,14 @@ export default function Settings() {
     return (
         <div className="max-w-4xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-body">
             {/* Header */}
-            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
+            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm">
                 <div className="flex items-center gap-6">
-                    <div className="w-20 h-20 bg-slate-900 rounded-[2rem] flex items-center justify-center shadow-2xl">
-                        <User className="w-10 h-10 text-white" />
+                    <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center shadow-lg">
+                        <User className="w-8 h-8 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-black tracking-tighter text-[var(--app-text)] leading-none uppercase">Terminal Control ✨</h1>
-                        <p className="text-[var(--app-text-muted)] font-black uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">Profile & Protocol Config</p>
+                        <h1 className="text-2xl font-bold tracking-tight text-[var(--app-text)] leading-none uppercase">Account Settings</h1>
+                        <p className="text-[var(--app-text-muted)] font-bold uppercase tracking-widest text-[10px] mt-2 opacity-50">Profile & Security</p>
                     </div>
                 </div>
                 <button
@@ -104,14 +104,14 @@ export default function Settings() {
                         </div>
 
                         <div className="text-center md:text-left leading-none">
-                            <h2 className="text-3xl font-black text-[var(--app-text)] tracking-tighter mb-4">{profile?.full_name || 'Trader Account'}</h2>
-                            <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] leading-none opacity-50">{profile?.email}</p>
-                            <div className="mt-8">
+                            <h2 className="text-2xl font-bold text-[var(--app-text)] tracking-tight mb-3">{profile?.full_name || 'Trader Account'}</h2>
+                            <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-wider leading-none opacity-50">{profile?.email}</p>
+                            <div className="mt-6">
                                 <span className={cn(
-                                    "px-8 py-3 rounded-full text-[9px] font-black tracking-[0.3em] uppercase border shadow-sm",
+                                    "px-6 py-2 rounded-full text-[9px] font-bold tracking-widest uppercase border shadow-sm",
                                     profile?.plan === 'PREMIUM' ? "bg-amber-50 text-amber-600 border-amber-200" : "bg-indigo-50 text-indigo-600 border-indigo-200"
                                 )}>
-                                    {profile?.plan || 'STANDARD'} Membership
+                                    {profile?.plan || 'Free'} Membership
                                 </span>
                             </div>
                         </div>
@@ -119,27 +119,27 @@ export default function Settings() {
 
                     <form onSubmit={handleProfileUpdate} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-4">
-                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--app-text-muted)] ml-6 opacity-40">Full Identity</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-[var(--app-text-muted)] ml-6 opacity-40">Full Name</label>
                             <div className="relative">
                                 <AtSign className="absolute left-8 top-1/2 -translate-y-1/2 text-slate-300 w-5 h-5" />
                                 <input
                                     type="text"
                                     value={formData.full_name}
                                     onChange={e => setFormData({ ...formData, full_name: e.target.value })}
-                                    className="w-full pl-18 pr-10 py-6 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[2rem] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-black text-sm text-[var(--app-text)] shadow-sm"
+                                    className="w-full pl-18 pr-10 py-5 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-bold text-sm text-[var(--app-text)]"
                                 />
                             </div>
                         </div>
 
                         <div className="space-y-4">
-                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--app-text-muted)] ml-6 opacity-40">Phone Channel</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-[var(--app-text-muted)] ml-6 opacity-40">Phone Number</label>
                             <div className="relative">
                                 <Smartphone className="absolute left-8 top-1/2 -translate-y-1/2 text-slate-300 w-5 h-5" />
                                 <input
                                     type="text"
                                     value={formData.phone_number}
                                     onChange={e => setFormData({ ...formData, phone_number: e.target.value })}
-                                    className="w-full pl-18 pr-10 py-6 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[2rem] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-black text-sm text-[var(--app-text)] shadow-sm"
+                                    className="w-full pl-18 pr-10 py-5 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-bold text-sm text-[var(--app-text)]"
                                 />
                             </div>
                         </div>
@@ -157,9 +157,9 @@ export default function Settings() {
                         <button
                             disabled={isUpdating}
                             type="submit"
-                            className="md:col-span-2 py-6 bg-indigo-600 text-white rounded-full font-black uppercase tracking-[0.3em] text-[10px] hover:bg-slate-900 transition-all shadow-2xl shadow-indigo-100 flex items-center justify-center gap-4 mt-4"
+                            className="md:col-span-2 py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-wider text-[11px] hover:bg-slate-900 transition-all shadow-lg flex items-center justify-center gap-4 mt-4"
                         >
-                            {isUpdating ? <Loader2 className="animate-spin w-5 h-5" /> : 'Sync Profile Profile'}
+                            {isUpdating ? <Loader2 className="animate-spin w-5 h-5" /> : 'Update Profile'}
                         </button>
                     </form>
                 </div>

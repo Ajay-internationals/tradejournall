@@ -30,7 +30,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
 
     const menuItems = [
         {
-            label: 'CORE', items: [
+            label: 'Main', items: [
                 { icon: <LayoutDashboard size={20} />, label: 'Overview', path: '/dashboard' },
                 { icon: <Activity size={20} />, label: 'Journal', path: '/journal' },
                 { icon: <Zap size={20} />, label: 'Analytics', path: '/analytics' },
@@ -38,14 +38,14 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
             ]
         },
         {
-            label: 'EDGE', items: [
+            label: 'Performance', items: [
                 { icon: <Shield size={20} />, label: 'Mistakes', path: '/mistakes' },
                 { icon: <Target size={20} />, label: 'Rules', path: '/rules' },
                 { icon: <Brain size={20} />, label: 'Strategies', path: '/strategies' },
             ]
         },
         {
-            label: 'GROWTH', items: [
+            label: 'Mentorship', items: [
                 { icon: <Users size={20} />, label: 'Mentor Hub', path: '/student-mentor-hub' },
                 { icon: <Calendar size={20} />, label: 'Mentor Admin', path: '/mentorship' },
                 { icon: <BookOpen size={20} />, label: 'Mentor Guidance', path: '/mentor-guidance' },
@@ -55,7 +55,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
             ]
         },
         {
-            label: 'SYSTEM', items: [
+            label: 'Tools', items: [
                 { icon: <Link size={20} />, label: 'Broker Link', path: '/broker-link' },
                 { icon: <Wrench size={20} />, label: 'Tools', path: '/tools' },
                 { icon: <Globe size={20} />, label: 'Community', path: '/community' },
@@ -98,9 +98,9 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                                             )}>
                                                 {item.icon}
                                             </div>
-                                            <span className="text-base font-extrabold tracking-tight">{item.label}</span>
+                                            <span className="text-sm font-bold tracking-tight">{item.label}</span>
                                         </div>
-                                        {isActive && <div className="w-1 h-5 bg-gradient-to-b from-violet-500 to-purple-500 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.5)]" />}
+                                        {isActive && <div className="w-1 h-5 bg-indigo-500 rounded-full" />}
                                     </button>
                                 );
                             })}
@@ -111,17 +111,17 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
 
             {/* User Profile / Status */}
             <div className="p-8 space-y-4">
-                <div className="p-6 bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-[2.5rem] flex flex-col items-center gap-4 text-center transition-colors">
-                    <div className="w-14 h-14 bg-gradient-to-br from-violet-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl border border-white/20 dark:border-white/10 overflow-hidden">
+                <div className="p-6 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-3xl flex items-center gap-4 transition-colors">
+                    <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/20 dark:border-white/10 overflow-hidden shrink-0">
                         {profile?.avatar_url ? (
                             <img src={profile.avatar_url} alt="User" className="w-full h-full object-cover" />
                         ) : (
-                            <Zap className="text-white fill-white" size={24} />
+                            <Zap className="text-white fill-white" size={20} />
                         )}
                     </div>
                     <div>
-                        <p className="font-bold text-slate-900 dark:text-white leading-none mb-2">{profile?.full_name?.split(' ')[0] || 'Trader'}</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{profile?.plan || 'STANDARD'}</p>
+                        <p className="font-bold text-slate-900 dark:text-white leading-tight">{profile?.full_name?.split(' ')[0] || 'Trader'}</p>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{profile?.plan || 'Free'}</p>
                     </div>
                 </div>
 
@@ -129,8 +129,8 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                     onClick={() => signOut()}
                     className="w-full flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-2xl transition-all font-bold text-sm"
                 >
-                    <LogOut size={20} />
-                    Logout Account
+                    <LogOut size={18} />
+                    Logout
                 </button>
             </div>
         </aside>

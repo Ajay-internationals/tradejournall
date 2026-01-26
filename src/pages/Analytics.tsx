@@ -13,9 +13,9 @@ function SubTab({ active, onClick, icon, label }: any) {
         <button
             onClick={onClick}
             className={cn(
-                "flex items-center gap-2.5 px-8 py-3 rounded-full text-[12px] font-black uppercase tracking-widest transition-all shrink-0",
+                "flex items-center gap-2.5 px-8 py-3 rounded-full text-[12px] font-bold uppercase tracking-wider transition-all shrink-0",
                 active
-                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200 scale-105"
+                    ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200"
                     : "text-[var(--app-text-muted)] hover:bg-slate-50 hover:text-indigo-600"
             )}
         >
@@ -36,10 +36,10 @@ function StatCard({ label, value, subValue, icon, variant = 'indigo' }: any) {
                     {icon}
                 </div>
             </div>
-            <div className="space-y-2">
-                <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.3em]">{label}</p>
-                <p className="text-4xl font-black tracking-tighter text-[var(--app-text)]">{value}</p>
-                <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest opacity-60">{subValue}</p>
+            <div className="space-y-1">
+                <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-wider">{label}</p>
+                <p className="text-3xl font-bold tracking-tight text-[var(--app-text)]">{value}</p>
+                <p className="text-[10px] font-medium text-[var(--app-text-muted)] uppercase tracking-wide opacity-60">{subValue}</p>
             </div>
         </div>
     );
@@ -140,20 +140,20 @@ export default function Analytics() {
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
             {/* Nav Tabs */}
-            <div className="flex gap-3 p-2 bg-[var(--app-card)] rounded-[2rem] border border-[var(--app-border)] w-fit shadow-[var(--shadow-soft)]">
-                <SubTab active={activeTab === 'performance'} onClick={() => setActiveTab('performance')} icon={<Activity size={18} />} label="Telemetry Overview" />
-                <SubTab active={activeTab === 'strategies'} onClick={() => setActiveTab('strategies')} icon={<LayoutGrid size={18} />} label="Strategy Matrix" />
-                <SubTab active={activeTab === 'mistakes'} onClick={() => setActiveTab('mistakes')} icon={<Target size={18} />} label="Leakage Audit" />
+            <div className="flex gap-3 p-2 bg-[var(--app-card)] rounded-2xl border border-[var(--app-border)] w-fit shadow-sm">
+                <SubTab active={activeTab === 'performance'} onClick={() => setActiveTab('performance')} icon={<Activity size={18} />} label="Overview" />
+                <SubTab active={activeTab === 'strategies'} onClick={() => setActiveTab('strategies')} icon={<LayoutGrid size={18} />} label="Strategies" />
+                <SubTab active={activeTab === 'mistakes'} onClick={() => setActiveTab('mistakes')} icon={<Target size={18} />} label="Mistakes" />
             </div>
 
             {activeTab === 'performance' && (
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 leading-none">
                     <div className="lg:col-span-2 space-y-10">
-                        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)] group">
-                            <div className="flex items-center justify-between mb-12">
+                        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm group">
+                            <div className="flex items-center justify-between mb-8">
                                 <div>
-                                    <h3 className="text-2xl font-black tracking-tighter uppercase text-[var(--app-text)]">Equity Stream ✨</h3>
-                                    <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] mt-2 opacity-50">Growth Telemetry</p>
+                                    <h3 className="text-xl font-bold tracking-tight text-[var(--app-text)]">Equity Curve</h3>
+                                    <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest mt-1 opacity-50">Growth over time</p>
                                 </div>
                             </div>
                             <div className="h-[400px]">
@@ -166,19 +166,19 @@ export default function Analytics() {
                             <MiniInsightCard label="Average Alpha" value={formatCurrency(avgWinSize)} icon={<TrendingUp size={20} />} />
                         </div>
 
-                        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
-                            <div className="flex items-center justify-between mb-12">
+                        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm">
+                            <div className="flex items-center justify-between mb-8">
                                 <div>
-                                    <h3 className="text-2xl font-black tracking-tighter uppercase text-[var(--app-text)]">Daily Delta</h3>
-                                    <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] mt-2 opacity-50">Net Flow by active day</p>
+                                    <h3 className="text-xl font-bold tracking-tight text-[var(--app-text)]">Daily Performance</h3>
+                                    <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest mt-1 opacity-50">Net P&L by day</p>
                                 </div>
                             </div>
                             <div className="h-[350px]">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <BarChart data={dayData}>
                                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--app-border)" opacity={0.5} />
-                                        <XAxis dataKey="name" fontSize={10} fontWeight="900" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} />
-                                        <YAxis fontSize={10} fontWeight="900" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} />
+                                        <XAxis dataKey="name" fontSize={10} fontWeight="700" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} />
+                                        <YAxis fontSize={10} fontWeight="700" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} />
                                         <Tooltip
                                             cursor={{ fill: 'rgba(99, 102, 241, 0.05)' }}
                                             contentStyle={{
@@ -203,10 +203,10 @@ export default function Analytics() {
 
                     <div className="space-y-10">
                         {/* Allocation Card */}
-                        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)] flex flex-col items-center">
-                            <div className="w-full mb-10 text-center">
-                                <h3 className="text-2xl font-black tracking-tighter uppercase text-[var(--app-text)]">Allocation</h3>
-                                <p className="text-[10px] font-black text-[var(--app-text-muted)] uppercase tracking-[0.4em] mt-2 opacity-50">Capital distribution</p>
+                        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm flex flex-col items-center">
+                            <div className="w-full mb-8 text-center">
+                                <h3 className="text-xl font-bold tracking-tight text-[var(--app-text)]">Allocation</h3>
+                                <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest mt-1 opacity-50">Capital distribution</p>
                             </div>
                             <div className="h-[250px] w-full">
                                 <ResponsiveContainer width="100%" height="100%">
@@ -240,12 +240,12 @@ export default function Analytics() {
                             </div>
                             <div className="w-full mt-10 space-y-5">
                                 {assetData.map((alt, idx) => (
-                                    <div key={idx} className="flex items-center justify-between text-[11px] font-black uppercase tracking-[0.1em]">
+                                    <div key={idx} className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wide">
                                         <div className="flex items-center gap-4">
-                                            <div className="w-3.5 h-3.5 rounded-full shadow-lg" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
+                                            <div className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
                                             <span className="text-[var(--app-text-muted)]">{alt.name}</span>
                                         </div>
-                                        <span className="text-[var(--app-text)] font-extrabold tracking-tighter">₹{(alt.value / 1000).toFixed(1)}k</span>
+                                        <span className="text-[var(--app-text)] font-bold tracking-tight">₹{(alt.value / 1000).toFixed(1)}k</span>
                                     </div>
                                 ))}
                             </div>
