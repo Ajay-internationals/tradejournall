@@ -59,29 +59,29 @@ export default function Journal() {
             {/* Morning Header */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
                 <div>
-                    <h1 className="text-3xl md:text-5xl font-black tracking-tighter text-[var(--app-text)] leading-none uppercase">Trading Ledger ✨</h1>
-                    <p className="text-[var(--app-text-muted)] font-black uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">Historical Execution Stream</p>
+                    <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--app-text)] leading-none">Trade Journal ✨</h1>
+                    <p className="text-[var(--app-text-muted)] font-medium text-sm mt-4 opacity-70">Track your performance and execution history</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
                     <button
                         onClick={() => setIsTerminalOpen(!isTerminalOpen)}
                         className={cn(
-                            "flex items-center gap-3 px-8 py-5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-sm border",
+                            "flex items-center gap-3 px-8 py-5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all shadow-sm border",
                             isTerminalOpen
                                 ? "bg-slate-900 text-white border-slate-900"
                                 : "bg-white text-indigo-600 border-indigo-100 hover:bg-slate-50"
                         )}
                     >
                         {isTerminalOpen ? <X size={18} /> : <Upload size={18} />}
-                        {isTerminalOpen ? "Close Terminal" : "Bulk Sync Center"}
+                        {isTerminalOpen ? "Close Terminal" : "Import & Sync"}
                     </button>
 
                     <button
                         onClick={() => { setEditingTrade(undefined); setIsFormOpen(true); }}
-                        className="px-10 py-5 bg-indigo-600 text-white rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-indigo-200 hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all flex items-center gap-3"
+                        className="px-10 py-5 bg-indigo-600 text-white rounded-full text-[11px] font-bold uppercase tracking-widest shadow-2xl shadow-indigo-200 hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all flex items-center gap-3"
                     >
                         <Plus size={20} />
-                        New Entry
+                        Add Trade
                     </button>
                 </div>
             </div>
@@ -102,14 +102,14 @@ export default function Journal() {
                         placeholder="Search symbols or tags..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] py-6 pl-20 pr-10 text-[13px] font-black tracking-tight focus:outline-none focus:border-indigo-500 focus:shadow-[var(--shadow-glow)] transition-all outline-none text-[var(--app-text)] shadow-sm"
+                        className="w-full bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] py-6 pl-20 pr-10 text-[13px] font-medium tracking-tight focus:outline-none focus:border-indigo-500 focus:shadow-[var(--shadow-glow)] transition-all outline-none text-[var(--app-text)] shadow-sm"
                     />
                 </div>
                 <div className="flex gap-4">
                     <select
                         value={assetFilter}
                         onChange={(e) => setAssetFilter(e.target.value)}
-                        className="px-12 py-6 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] text-[10px] font-black text-indigo-600 uppercase tracking-widest outline-none focus:border-indigo-500 transition-all cursor-pointer appearance-none shadow-sm"
+                        className="px-12 py-6 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] text-[10px] font-bold text-indigo-600 uppercase tracking-widest outline-none focus:border-indigo-500 transition-all cursor-pointer appearance-none shadow-sm"
                     >
                         <option value="ALL">ALL ASSETS</option>
                         <option value="INDEX">INDEX</option>
@@ -126,11 +126,11 @@ export default function Journal() {
                     <table className="w-full text-left border-collapse">
                         <thead>
                             <tr className="bg-slate-50/50">
-                                <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic border-b border-slate-100">Date/Instrument</th>
-                                <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic border-b border-slate-100 text-center">Protocol</th>
-                                <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic border-b border-slate-100 text-center">Status</th>
-                                <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic border-b border-slate-100 text-right">Result</th>
-                                <th className="px-10 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] italic border-b border-slate-100 text-center">Actions</th>
+                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100">Trade / Symbol</th>
+                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-center">Strategy</th>
+                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-center">Status</th>
+                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-right">Net P&L</th>
+                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
@@ -139,7 +139,7 @@ export default function Journal() {
                                     <td className="px-6 md:px-10 py-6 md:py-8">
                                         <div className="flex items-center gap-4 md:gap-5">
                                             <div className={cn(
-                                                "w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-[10px] md:text-xs font-black text-white shadow-lg",
+                                                "w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-[10px] md:text-xs font-bold text-white shadow-lg",
                                                 trade.net_pnl >= 0 ? "bg-emerald-500" : "bg-rose-500"
                                             )}>
                                                 {trade.direction === 'LONG' ? 'UP' : 'DN'}
@@ -160,7 +160,7 @@ export default function Journal() {
                                     <td className="px-6 md:px-10 py-2 md:py-8">
                                         <div className="flex flex-row md:flex-col items-center gap-2">
                                             <span className={cn(
-                                                "px-3 md:px-4 py-1.5 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest leading-none",
+                                                "px-4 md:px-5 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest shadow-sm",
                                                 trade.net_pnl >= 0 ? "bg-emerald-50 text-emerald-600 border border-emerald-100" : "bg-rose-50 text-rose-600 border border-rose-100"
                                             )}>
                                                 {trade.net_pnl >= 0 ? 'Verified Win' : 'Logged Loss'}
@@ -170,10 +170,10 @@ export default function Journal() {
                                     </td>
                                     <td className="px-6 md:px-10 py-2 md:py-8 text-left md:text-right">
                                         <div className="flex flex-row md:flex-col items-baseline md:items-end gap-2">
-                                            <p className={cn("text-base md:text-lg font-black italic tracking-tighter leading-none", trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500")}>
+                                            <p className={cn("text-base md:text-lg font-bold italic tracking-tight leading-none", trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500")}>
                                                 {trade.net_pnl >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl)}
                                             </p>
-                                            <p className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest">Net Realized</p>
+                                            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Realized Value</p>
                                         </div>
                                     </td>
                                     <td className="px-6 md:px-10 py-6 md:py-8">

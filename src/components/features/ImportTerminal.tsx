@@ -276,8 +276,8 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
         <div className="space-y-12 animate-in fade-in duration-700 font-body">
             <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] shadow-2xl">
                 <div className="space-y-2 text-center md:text-left">
-                    <h3 className="text-2xl font-black italic tracking-tighter dark:text-indigo-100 uppercase">Input Matrix ✨</h3>
-                    <p className="text-[10px] font-black text-indigo-500/50 uppercase tracking-[0.3em]">Choose your data synchronization method.</p>
+                    <h3 className="text-2xl font-bold italic tracking-tighter dark:text-indigo-100 uppercase">Input Matrix ✨</h3>
+                    <p className="text-[10px] font-bold text-indigo-500/50 uppercase tracking-[0.3em]">Choose your data synchronization method.</p>
                 </div>
                 <div className="flex bg-indigo-500/5 backdrop-blur-3xl p-2 rounded-[2.5rem] border border-indigo-500/10">
                     <TabButton active={mode === 'QUICK_PASTE'} onClick={() => setMode('QUICK_PASTE')} label="Quick Paste" icon={<ClipboardPaste size={18} />} />
@@ -292,12 +292,12 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                         <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start">
                             <div className="space-y-6">
                                 <div className="flex items-center justify-between ml-4">
-                                    <h4 className="text-sm font-black italic text-indigo-600 uppercase tracking-widest">1. Data Ingestion Stream 📝</h4>
+                                    <h4 className="text-sm font-bold italic text-indigo-600 uppercase tracking-widest">1. Data Ingestion Stream 📝</h4>
                                     <div className="flex items-center gap-4">
                                         <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Accepted Formats:</span>
                                         <div className="flex gap-2">
                                             {['Excel', 'CSV', 'Google Sheets'].map(f => (
-                                                <span key={f} className="px-3 py-1 bg-slate-100 rounded-full text-[8px] font-black text-slate-500">{f}</span>
+                                                <span key={f} className="px-3 py-1 bg-slate-100 rounded-full text-[8px] font-bold text-slate-500">{f}</span>
                                             ))}
                                         </div>
                                     </div>
@@ -305,11 +305,11 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
 
                                 {/* Visual Header Guide */}
                                 <div className="bg-indigo-50 border border-indigo-100 rounded-3xl p-6 mx-2">
-                                    <p className="text-[10px] font-black uppercase text-indigo-600 mb-3 tracking-widest text-center">Required Header Sequential Order</p>
+                                    <p className="text-[10px] font-bold uppercase text-indigo-600 mb-3 tracking-widest text-center">Required Header Sequential Order</p>
                                     <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
                                         {['Date', 'Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'SL', 'Asset', 'Setup', 'Notes'].map((h, i) => (
                                             <div key={h} className="text-center">
-                                                <div className="bg-indigo-600 text-white text-[9px] font-black py-1.5 rounded-lg shadow-sm">{h}</div>
+                                                <div className="bg-indigo-600 text-white text-[9px] font-bold py-1.5 rounded-lg shadow-sm">{h}</div>
                                                 <span className="text-[8px] text-indigo-300 font-bold mt-1 block">col {i + 1}</span>
                                             </div>
                                         ))}
@@ -320,7 +320,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                     value={pasteRaw}
                                     onChange={(e) => setPasteRaw(e.target.value)}
                                     placeholder="Paste raw cells here (Format: Date  Instrument  Side  Entry  Exit  Qty ...)"
-                                    className="w-full h-80 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[3rem] p-10 text-xl font-black text-[var(--app-text)] focus:border-indigo-500 outline-none resize-none shadow-inner placeholder:text-slate-400"
+                                    className="w-full h-80 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[3rem] p-10 text-xl font-medium text-[var(--app-text)] focus:border-indigo-500 outline-none resize-none shadow-inner placeholder:text-slate-400"
                                 />
                             </div>
                             <div className="bg-indigo-600 p-12 rounded-[3.5rem] space-y-10 shadow-3xl relative overflow-hidden">
@@ -329,8 +329,8 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 </div>
                                 <div className="flex flex-col h-full justify-between">
                                     <div className="space-y-4">
-                                        <h4 className="text-3xl font-black italic uppercase tracking-tighter text-white">2. Equity Basis</h4>
-                                        <p className="text-[10px] font-black text-indigo-100 leading-relaxed uppercase tracking-[0.2em] opacity-80">
+                                        <h4 className="text-3xl font-bold italic uppercase tracking-tighter text-white">2. Equity Basis</h4>
+                                        <p className="text-[10px] font-medium text-indigo-100 leading-relaxed uppercase tracking-[0.2em] opacity-90">
                                             Input starting capital for session sync.
                                         </p>
                                     </div>
@@ -339,11 +339,11 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                             type="number"
                                             value={batchCapital}
                                             onChange={(e) => setBatchCapital(e.target.value)}
-                                            className="w-full bg-white text-indigo-950 border-none rounded-3xl py-6 px-10 text-4xl font-black shadow-2xl focus:ring-8 focus:ring-white/10 outline-none italic tracking-tighter"
+                                            className="w-full bg-white text-indigo-950 border-none rounded-3xl py-6 px-10 text-4xl font-bold shadow-2xl focus:ring-8 focus:ring-white/10 outline-none italic tracking-tighter"
                                         />
                                         <button
                                             onClick={downloadTemplate}
-                                            className="w-full py-5 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all border border-white/10"
+                                            className="w-full py-5 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-3 transition-all border border-white/10"
                                         >
                                             <Download size={16} /> Download Blueprint
                                         </button>
@@ -355,7 +355,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                         {parsedPreview.length > 0 && (
                             <div className="space-y-8 animate-in slide-in-from-bottom-6 duration-700">
                                 <div className="flex items-center justify-between px-6 pb-4 border-b border-indigo-500/10">
-                                    <h5 className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-500 flex items-center gap-3">
+                                    <h5 className="text-[10px] font-bold uppercase tracking-[0.4em] text-indigo-500 flex items-center gap-3">
                                         <Zap size={14} className="fill-indigo-500" /> Stream Preview ({parsedPreview.length} entries detected)
                                     </h5>
                                 </div>
@@ -363,10 +363,10 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                     <table className="w-full text-left">
                                         <thead className="bg-indigo-600 text-white sticky top-0 z-10">
                                             <tr>
-                                                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest">Temporal</th>
-                                                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest">Asset</th>
-                                                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest">Flux</th>
-                                                <th className="px-8 py-5 text-[10px] font-black uppercase tracking-widest text-right">Price Matrix</th>
+                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest">Temporal</th>
+                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest">Asset</th>
+                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest">Flux</th>
+                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest text-right">Price Matrix</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-indigo-500/10">
@@ -409,7 +409,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 <button
                                     onClick={handlePasteSync}
                                     disabled={isImporting}
-                                    className="w-full py-6 bg-indigo-600 text-white rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] shadow-3xl hover:bg-black transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-4 italic"
+                                    className="w-full py-6 bg-indigo-600 text-white rounded-3xl font-bold uppercase text-[11px] tracking-[0.3em] shadow-3xl hover:bg-black transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-4 italic"
                                 >
                                     {isImporting ? <Loader2 className="animate-spin" size={20} /> : <ClipboardPaste size={20} />}
                                     Commit Sync Operation
@@ -425,9 +425,9 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                 >
                     <input type="file" ref={fileInputRef} onChange={handleFileImport} className="hidden" accept=".xlsx,.csv" />
                     <Upload className="w-24 h-24 text-indigo-200 mx-auto mb-10 group-hover:text-indigo-600 transition-all group-hover:scale-110" />
-                    <h4 className="text-4xl font-black italic tracking-tighter mb-4 dark:text-indigo-100 uppercase">Binary Stream Upload</h4>
-                    <p className="text-[11px] font-black text-indigo-500/50 uppercase tracking-[0.4em] mb-12">Click or drag binary trade logs (.xlsx, .csv)</p>
-                    <button className="px-12 py-6 bg-white dark:bg-slate-800 border border-indigo-500/10 text-[10px] font-black uppercase tracking-widest rounded-2xl hover:border-indigo-500 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto" onClick={(e) => { e.stopPropagation(); downloadTemplate(); }}>
+                    <h4 className="text-4xl font-bold italic tracking-tighter mb-4 dark:text-indigo-100 uppercase">Binary Stream Upload</h4>
+                    <p className="text-[11px] font-bold text-indigo-500/50 uppercase tracking-[0.4em] mb-12">Click or drag binary trade logs (.xlsx, .csv)</p>
+                    <button className="px-12 py-6 bg-white dark:bg-slate-800 border border-indigo-500/10 text-[10px] font-bold uppercase tracking-widest rounded-2xl hover:border-indigo-500 transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto" onClick={(e) => { e.stopPropagation(); downloadTemplate(); }}>
                         <Download size={16} /> Get Blueprint
                     </button>
                 </div>
@@ -462,8 +462,8 @@ function ImportHistory({ imports, isImportsLoading, deleteImport }: any) {
                         <div className="flex items-center gap-10">
                             <div className="w-20 h-20 bg-indigo-600 rounded-3xl flex items-center justify-center text-white shadow-3xl"><History size={32} /></div>
                             <div className="space-y-1">
-                                <p className="text-2xl font-black italic tracking-tighter dark:text-indigo-100 uppercase">{imp.filename}</p>
-                                <p className="text-[10px] text-indigo-500 font-black uppercase tracking-[0.2em]">{new Date(imp.created_at).toLocaleDateString()} • {imp.success_count} SUCCESS • {imp.fail_count} FAILED</p>
+                                <p className="text-2xl font-bold italic tracking-tighter dark:text-indigo-100 uppercase">{imp.filename}</p>
+                                <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-[0.2em]">{new Date(imp.created_at).toLocaleDateString()} • {imp.success_count} SUCCESS • {imp.fail_count} FAILED</p>
                             </div>
                         </div>
                         <button onClick={() => deleteImport.mutate(imp.id)} className="p-6 bg-rose-500/10 text-rose-500 rounded-3xl opacity-0 group-hover:opacity-100 hover:bg-rose-500 hover:text-white transition-all shadow-3xl transform hover:rotate-12"><Trash2 size={24} /></button>
@@ -485,10 +485,10 @@ function StatusIndicator({ status }: any) {
                     {status.type === 'success' ? <CheckCircle2 size={32} /> : <AlertCircle size={32} />}
                 </div>
                 <div className="flex-1">
-                    <p className="text-3xl font-black italic tracking-tighter uppercase">{status.type === 'success' ? 'Sync Success' : 'Sync Warning'}</p>
-                    <p className="text-[11px] font-black uppercase tracking-widest opacity-80 mt-1">{status.message}</p>
+                    <p className="text-3xl font-bold italic tracking-tighter uppercase">{status.type === 'success' ? 'Sync Success' : 'Sync Warning'}</p>
+                    <p className="text-[11px] font-bold uppercase tracking-widest opacity-80 mt-1">{status.message}</p>
                 </div>
-                <button onClick={() => window.location.reload()} className="px-12 py-6 bg-white text-indigo-950 rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-3xl hover:bg-black hover:text-white transition-all italic">Refresh Stream</button>
+                <button onClick={() => window.location.reload()} className="px-12 py-6 bg-white text-indigo-950 rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-3xl hover:bg-black hover:text-white transition-all italic">Refresh Stream</button>
             </div>
         </div>
     );
