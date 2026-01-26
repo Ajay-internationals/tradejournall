@@ -38,7 +38,7 @@ export default function Strategies() {
                         <Target className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-slate-900 uppercase">Strategy Labs ✨</h1>
+                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-slate-900 uppercase">Strategy Labs</h1>
                         <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.4em] uppercase mt-2 opacity-50 italic">High-Fidelity Edge Matrix</p>
                     </div>
                 </div>

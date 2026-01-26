@@ -32,7 +32,7 @@ export default function Rules() {
                         <ShieldCheck className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-slate-900 uppercase">System Protocol ✨</h1>
+                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-slate-900 uppercase">System Protocol</h1>
                         <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.4em] uppercase mt-2 opacity-50 italic">Operational Discipline Framework</p>
                     </div>
                 </div>

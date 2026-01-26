@@ -20,7 +20,7 @@ export default function Mistakes() {
                         <AlertOctagon className="w-10 h-10 text-white relative z-10" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-rose-600 uppercase">Risk Audit ✨</h1>
+                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-rose-600 uppercase">Risk Audit</h1>
                         <p className="text-[10px] font-bold font-heading text-rose-500 uppercase tracking-[0.4em] mt-2 opacity-60">Execution Leakage Diagnostics</p>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ export default function Mistakes() {
                     <Search className="text-indigo-300 group-hover:text-indigo-600 transition-colors" size={40} />
                 </div>
                 <div>
-                    <h3 className="text-3xl font-bold font-heading tracking-tighter uppercase text-slate-900 mb-3">Deep Cognitive Audit ✨</h3>
+                    <h3 className="text-3xl font-bold font-heading tracking-tighter uppercase text-slate-900 mb-3">Deep Cognitive Audit</h3>
                     <p className="text-[11px] font-bold font-heading text-indigo-500/50 max-w-lg mx-auto leading-relaxed uppercase tracking-[0.2em] opacity-60">Select a trade stream to perform a high-resolution behavior audit and identify neurological resonance triggers.</p>
                 </div>
                 <button className="px-12 py-6 bg-white border border-indigo-500/10 text-indigo-600 font-bold font-heading uppercase tracking-[0.3em] rounded-3xl text-[10px] hover:bg-black hover:text-white transition-all shadow-3xl hover:scale-105 active:scale-95">Initiate Search Protocol</button>

@@ -189,6 +189,79 @@ export default function Landing() {
                 </div>
             </section>
 
+            {/* About Us Section */}
+            <section id="about-us" className="py-24 px-6 bg-white">
+                <div className="max-w-4xl mx-auto text-center space-y-12">
+                    <div className="inline-flex items-center gap-3 px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold font-heading uppercase tracking-widest">
+                        <span>Our Mission</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-bold font-heading text-slate-900">Empowering the disciplined trader.</h2>
+                    <p className="text-lg md:text-xl text-slate-500 leading-relaxed font-heading font-medium">
+                        Trade Adhyayan was born from a simple observation: most traders fail not because they lack strategy, but because they lack <span className="text-indigo-600 font-bold">systematic review</span>.
+                        We provide the mirror that reflects your true trading behavior, helping you eliminate mistakes and scale your edge.
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-slate-100">
+                        <Stat label="Active Traders" value="5,000+" />
+                        <Stat label="Trades Logged" value="1.2M+" />
+                        <Stat label="Edge Found" value="84%" />
+                        <Stat label="Uptime" value="99.9%" />
+                    </div>
+                </div>
+            </section>
+
+            {/* Partner Section */}
+            <section id="partner" className="py-24 px-6 bg-slate-50/50">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-6">Trusted Partners</h2>
+                        <p className="text-slate-500 font-heading font-medium">Collaborating with industry leaders to bring you the best data.</p>
+                    </div>
+                    <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                        {/* Partner Placeholders - utilizing text for simplicity as per request */}
+                        <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-indigo-600 transition-colors">Zerodha</h3>
+                        <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-cyan-600 transition-colors">Upstox</h3>
+                        <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-emerald-600 transition-colors">AngelOne</h3>
+                        <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-indigo-900 transition-colors">Dhan</h3>
+                        <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-blue-600 transition-colors">Fyers</h3>
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact Us Section */}
+            <section id="contact-us" className="py-24 px-6 bg-white border-t border-slate-100">
+                <div className="max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                        <div>
+                            <h2 className="text-4xl font-bold font-heading text-slate-900 mb-6">Let's Talk</h2>
+                            <p className="text-slate-500 text-lg mb-10 font-heading font-medium">Have questions about the platform or want to explore enterprise solutions? We're here to help.</p>
+
+                            <div className="space-y-8">
+                                <ContactItem icon={<Mail className="w-6 h-6" />} label="Email Us" value="support@tradeadhyayan.com" />
+                                <ContactItem icon={<Phone className="w-6 h-6" />} label="Call Us" value="+91 98765 43210" />
+                                <ContactItem icon={<Users className="w-6 h-6" />} label="Support" value="24/7 Live Chat" />
+                            </div>
+                        </div>
+                        <form className="space-y-6 bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold font-heading uppercase text-slate-400 ml-4">Full Name</label>
+                                <input type="text" className="w-full px-8 py-4 bg-white border border-slate-200 rounded-2xl font-heading font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/10" placeholder="John Doe" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold font-heading uppercase text-slate-400 ml-4">Email Address</label>
+                                <input type="email" className="w-full px-8 py-4 bg-white border border-slate-200 rounded-2xl font-heading font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/10" placeholder="john@example.com" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold font-heading uppercase text-slate-400 ml-4">Message</label>
+                                <textarea rows={4} className="w-full px-8 py-4 bg-white border border-slate-200 rounded-2xl font-heading font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/10 resize-none" placeholder="How can we help you?" />
+                            </div>
+                            <button type="button" className="w-full py-4 bg-indigo-600 text-white font-bold font-heading uppercase tracking-wider rounded-xl hover:bg-slate-900 transition-all shadow-lg shadow-indigo-500/20">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
             {/* Final CTA Section */}
             <section className="py-24 px-6">
                 <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[5rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-indigo-200">
@@ -346,5 +419,28 @@ function FooterLink({ href, label }: { href: string, label: string }) {
                 {label}
             </a>
         </li>
+    );
+}
+
+function Stat({ label, value }: { label: string, value: string }) {
+    return (
+        <div>
+            <p className="text-3xl font-bold font-heading text-slate-900 mb-1">{value}</p>
+            <p className="text-xs font-bold font-heading text-slate-400 uppercase tracking-wider">{label}</p>
+        </div>
+    );
+}
+
+function ContactItem({ icon, label, value }: any) {
+    return (
+        <div className="flex items-center gap-6">
+            <div className="w-14 h-14 bg-white border border-slate-200 rounded-2xl flex items-center justify-center text-indigo-600 shadow-sm">
+                {icon}
+            </div>
+            <div>
+                <p className="text-xs font-bold font-heading text-slate-400 uppercase tracking-wider mb-1">{label}</p>
+                <p className="text-lg font-bold font-heading text-slate-900">{value}</p>
+            </div>
+        </div>
     );
 }
