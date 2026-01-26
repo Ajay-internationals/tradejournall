@@ -162,25 +162,27 @@ export default function Landing() {
                         <PricingCard
                             title="Starter"
                             price="Free"
-                            description="Master the discipline basics."
-                            features={['Manual Journaling', 'Standard Analytics']}
+                            description="For beginners starting their journey."
+                            features={['Manual Trade Logs', 'Basic Analytics', 'Single Device']}
                         />
                         <PricingCard
                             title="Pro"
                             price="₹499"
                             period="/ mo"
-                            description="Advanced broker integrated tools."
+                            description="Advanced tools for serious traders."
                             isFeatured
-                            features={['Auto Broker Sync', 'Setup Analysis']}
+                            features={['Automated Broker Sync', 'Psychology Matrix', 'Strategy Heatmaps']}
                         />
                         <PricingCard
                             title="Mentor"
                             price="₹4999"
                             period="/ mo"
-                            description="For academies and teams."
+                            description="For academies and professional teams."
                             features={[
-                                'Student Management',
-                                'Mass Review System'
+                                'Student Management Portal',
+                                'Mass Review System',
+                                'Institutional Reporting',
+                                'Custom Setup Audits'
                             ]}
                         />
                     </div>

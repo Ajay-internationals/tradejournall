@@ -192,10 +192,10 @@ export default function Journal() {
                                     </div>
 
                                     {/* 4. P&L */}
-                                    <div className="col-span-2 text-right md:text-right">
-                                        <div className="flex flex-col items-center md:items-end">
+                                    <div className="col-span-2 text-right">
+                                        <div className="flex flex-col items-end">
                                             <span className={cn(
-                                                "text-xl md:text-lg font-bold tracking-tight",
+                                                "text-lg font-bold tracking-tight",
                                                 trade.net_pnl >= 0 ? "text-emerald-600" : "text-rose-600"
                                             )}>
                                                 {trade.net_pnl >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl)}
@@ -204,9 +204,9 @@ export default function Journal() {
                                     </div>
 
                                     {/* 5. Actions */}
-                                    <div className="col-span-2 flex justify-center gap-3 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                                        <button onClick={() => handleEdit(trade)} className="w-10 h-10 flex items-center justify-center bg-slate-50 border border-slate-100 text-slate-400 rounded-xl hover:bg-indigo-500 hover:text-white transition-all"><Edit3 size={14} /></button>
-                                        <button onClick={() => handleDelete(trade.id)} className="w-10 h-10 flex items-center justify-center bg-slate-50 border border-slate-100 text-slate-400 rounded-xl hover:bg-rose-500 hover:text-white transition-all"><Trash2 size={14} /></button>
+                                    <div className="col-span-2 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button onClick={() => handleEdit(trade)} className="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-indigo-500 hover:text-white transition-all"><Edit3 size={14} /></button>
+                                        <button onClick={() => handleDelete(trade.id)} className="w-9 h-9 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl hover:bg-rose-500 hover:text-white transition-all"><Trash2 size={14} /></button>
                                     </div>
                                 </div>
                             </div>
