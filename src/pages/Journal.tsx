@@ -16,7 +16,9 @@ import {
     Edit3,
     MoreHorizontal,
     Upload,
-    X
+    X,
+    CheckCircle2,
+    AlertCircle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TradeForm } from '@/components/features/TradeForm';
@@ -55,33 +57,33 @@ export default function Journal() {
     };
 
     return (
-        <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-body">
-            {/* Morning Header */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
-                <div>
-                    <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--app-text)] leading-none">Trade Journal ✨</h1>
-                    <p className="text-[var(--app-text-muted)] font-medium text-sm mt-4 opacity-70">Track your performance and execution history</p>
+        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-20 font-['Quicksand'] bg-[var(--app-bg)] min-h-screen p-6 md:p-10">
+            {/* Cute Header Card */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-[3rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+                <div className="text-center md:text-left">
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-indigo-950 dark:text-white leading-none mb-2">My Trading Diary 🌸</h1>
+                    <p className="text-indigo-400 dark:text-slate-400 font-semibold text-sm">Every trade tells a story. Keep writing yours!</p>
                 </div>
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap justify-center gap-4">
                     <button
                         onClick={() => setIsTerminalOpen(!isTerminalOpen)}
                         className={cn(
-                            "flex items-center gap-3 px-8 py-5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all shadow-sm border",
+                            "flex items-center gap-3 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-sm border border-transparent",
                             isTerminalOpen
-                                ? "bg-slate-900 text-white border-slate-900"
-                                : "bg-white text-indigo-600 border-indigo-100 hover:bg-slate-50"
+                                ? "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                                : "bg-indigo-50 text-indigo-600 hover:bg-indigo-100 dark:bg-slate-800 dark:text-indigo-400"
                         )}
                     >
-                        {isTerminalOpen ? <X size={18} /> : <Upload size={18} />}
-                        {isTerminalOpen ? "Close Terminal" : "Import & Sync"}
+                        {isTerminalOpen ? <X size={16} /> : <Upload size={16} />}
+                        {isTerminalOpen ? "Close Sync" : "Sync Data"}
                     </button>
 
                     <button
                         onClick={() => { setEditingTrade(undefined); setIsFormOpen(true); }}
-                        className="px-10 py-5 bg-indigo-600 text-white rounded-full text-[11px] font-bold uppercase tracking-widest shadow-2xl shadow-indigo-200 hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all flex items-center gap-3"
+                        className="px-8 py-4 bg-indigo-500 text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-indigo-200/50 hover:bg-indigo-600 hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
                     >
-                        <Plus size={20} />
-                        Add Trade
+                        <Plus size={18} />
+                        Add Entry
                     </button>
                 </div>
             </div>
@@ -93,110 +95,126 @@ export default function Journal() {
                 </div>
             )}
 
-            {/* Filter Bar */}
-            <div className="flex flex-col xl:flex-row gap-8">
+            {/* Bubbly Filter Bar */}
+            <div className="flex flex-col xl:flex-row gap-6">
                 <div className="flex-1 relative group">
-                    <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-[var(--app-text-muted)] group-focus-within:text-indigo-600 transition-colors opacity-50" size={20} />
+                    <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-indigo-300 group-focus-within:text-indigo-500 transition-colors" size={20} />
                     <input
                         type="text"
-                        placeholder="Search symbols or tags..."
+                        placeholder="Find a trade..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] py-6 pl-20 pr-10 text-[13px] font-medium tracking-tight focus:outline-none focus:border-indigo-500 focus:shadow-[var(--shadow-glow)] transition-all outline-none text-[var(--app-text)] shadow-sm"
+                        className="w-full bg-white dark:bg-slate-900 border-none rounded-[2rem] py-5 pl-16 pr-8 text-sm font-bold text-indigo-900 dark:text-white placeholder:text-indigo-300 focus:ring-4 focus:ring-indigo-50 transition-all shadow-[0_4px_20px_rgb(0,0,0,0.02)] outline-none"
                     />
                 </div>
                 <div className="flex gap-4">
-                    <select
-                        value={assetFilter}
-                        onChange={(e) => setAssetFilter(e.target.value)}
-                        className="px-12 py-6 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] text-[10px] font-bold text-indigo-600 uppercase tracking-widest outline-none focus:border-indigo-500 transition-all cursor-pointer appearance-none shadow-sm"
-                    >
-                        <option value="ALL">ALL ASSETS</option>
-                        <option value="INDEX">INDEX</option>
-                        <option value="STOCKS">STOCKS</option>
-                        <option value="COMMODITIES">COMMODITIES</option>
-                        <option value="CRYPTO">CRYPTO</option>
-                    </select>
+                    <div className="relative">
+                        <select
+                            value={assetFilter}
+                            onChange={(e) => setAssetFilter(e.target.value)}
+                            className="px-10 py-5 bg-white dark:bg-slate-900 border-none rounded-[2rem] text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest outline-none focus:ring-4 focus:ring-indigo-50 transition-all cursor-pointer appearance-none shadow-[0_4px_20px_rgb(0,0,0,0.02)] min-w-[150px]"
+                        >
+                            <option value="ALL">All Assets</option>
+                            <option value="INDEX">Index</option>
+                            <option value="STOCKS">Stocks</option>
+                            <option value="COMMODITIES">Commodities</option>
+                            <option value="CRYPTO">Crypto</option>
+                        </select>
+                        <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-indigo-300 pointer-events-none" size={14} />
+                    </div>
                 </div>
             </div>
 
-            {/* Morning Table Style */}
-            <div className="bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] overflow-hidden shadow-[var(--shadow-soft)]">
-                <div className="overflow-x-auto no-scrollbar">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-50/50">
-                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100">Trade / Symbol</th>
-                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-center">Strategy</th>
-                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-center">Status</th>
-                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-right">Net P&L</th>
-                                <th className="px-10 py-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100">
-                            {filteredTrades.map((trade) => (
-                                <tr key={trade.id} className="hover:bg-slate-50 transition-all group flex flex-col md:table-row border-b border-slate-100 last:border-0">
-                                    <td className="px-6 md:px-10 py-6 md:py-8">
-                                        <div className="flex items-center gap-4 md:gap-5">
-                                            <div className={cn(
-                                                "w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-[10px] md:text-xs font-bold text-white shadow-lg",
-                                                trade.net_pnl >= 0 ? "bg-emerald-500" : "bg-rose-500"
-                                            )}>
-                                                {trade.direction === 'LONG' ? 'UP' : 'DN'}
-                                            </div>
-                                            <div>
-                                                <p className="text-sm md:text-base font-bold text-slate-900 uppercase tracking-tight leading-none mb-1 md:mb-2">{trade.instrument}</p>
-                                                <div className="flex items-center gap-2 md:gap-3">
-                                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{new Date(trade.date).toLocaleDateString()}</span>
-                                                    <span className="w-1 h-1 bg-slate-200 rounded-full" />
-                                                    <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">{trade.asset_class}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 md:px-10 py-2 md:py-8 text-left md:text-center text-xs md:text-sm font-bold text-slate-600 italic tracking-tight hidden md:table-cell">
-                                        {trade.strategy}
-                                    </td>
-                                    <td className="px-6 md:px-10 py-2 md:py-8">
-                                        <div className="flex flex-row md:flex-col items-center gap-2">
-                                            <span className={cn(
-                                                "px-4 md:px-5 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest shadow-sm",
-                                                trade.net_pnl >= 0 ? "bg-emerald-50 text-emerald-600 border border-emerald-100" : "bg-rose-50 text-rose-600 border border-rose-100"
-                                            )}>
-                                                {trade.net_pnl >= 0 ? 'Verified Win' : 'Logged Loss'}
-                                            </span>
-                                            <span className="md:hidden text-[10px] font-bold text-slate-400">— {trade.strategy}</span>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 md:px-10 py-2 md:py-8 text-left md:text-right">
-                                        <div className="flex flex-row md:flex-col items-baseline md:items-end gap-2">
-                                            <p className={cn("text-base md:text-lg font-bold italic tracking-tight leading-none", trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500")}>
-                                                {trade.net_pnl >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl)}
-                                            </p>
-                                            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">Realized Value</p>
-                                        </div>
-                                    </td>
-                                    <td className="px-6 md:px-10 py-6 md:py-8">
-                                        <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3">
-                                            <button onClick={() => handleEdit(trade)} className="p-3 md:p-4 bg-slate-50 text-slate-400 rounded-xl md:rounded-2xl hover:bg-white hover:text-indigo-600 hover:shadow-lg transition-all border border-transparent hover:border-indigo-100"><Edit3 size={16} /></button>
-                                            <button onClick={() => handleDelete(trade.id)} className="p-3 md:p-4 bg-slate-50 text-slate-400 rounded-xl md:rounded-2xl hover:bg-rose-50 hover:text-rose-600 hover:shadow-lg transition-all border border-transparent hover:border-rose-100"><Trash2 size={16} /></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-
-                {filteredTrades.length === 0 && (
-                    <div className="p-20 text-center space-y-6">
-                        <div className="w-20 h-20 bg-slate-50 rounded-[2.5rem] flex items-center justify-center mx-auto text-slate-300">
-                            <Activity size={40} />
+            {/* Floating Card List */}
+            <div className="space-y-4">
+                {filteredTrades.length === 0 ? (
+                    <div className="p-20 text-center space-y-6 bg-white dark:bg-slate-900 rounded-[3rem] border border-dashed border-indigo-100">
+                        <div className="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mx-auto text-indigo-300">
+                            <StickyNote size={32} />
                         </div>
                         <div>
-                            <p className="text-slate-900 font-bold text-lg">No trades found in the ledger.</p>
-                            <p className="text-slate-400 font-medium text-sm mt-1">Start executing and logging your setups.</p>
+                            <p className="text-indigo-900 dark:text-white font-bold text-lg">Your diary is empty!</p>
+                            <p className="text-indigo-400 text-sm mt-1">Add your first trade to start the story.</p>
                         </div>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 gap-4">
+                        {/* Header Row (Hidden on mobile) */}
+                        <div className="hidden md:grid grid-cols-12 gap-4 px-8 py-3 text-xs font-bold text-indigo-300 uppercase tracking-widest">
+                            <div className="col-span-4 pl-4">Entry Details</div>
+                            <div className="col-span-2 text-center">Setup</div>
+                            <div className="col-span-2 text-center">Status</div>
+                            <div className="col-span-2 text-right">Gain/Loss</div>
+                            <div className="col-span-2 text-center">Options</div>
+                        </div>
+
+                        {filteredTrades.map((trade) => (
+                            <div key={trade.id} className="group bg-white dark:bg-slate-900 p-2 rounded-[2.5rem] hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all border border-transparent hover:border-indigo-50 dark:hover:border-slate-800">
+                                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center p-4">
+
+                                    {/* 1. Details */}
+                                    <div className="col-span-4 flex items-center gap-5">
+                                        <div className={cn(
+                                            "w-14 h-14 rounded-[1.5rem] flex flex-col items-center justify-center text-[10px] font-bold shadow-sm shrink-0 transition-transform group-hover:scale-110",
+                                            trade.net_pnl >= 0
+                                                ? "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
+                                                : "bg-rose-100 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400"
+                                        )}>
+                                            <span className="text-lg mb-[-4px]">{trade.direction === 'LONG' ? '🚀' : '📉'}</span>
+                                            <span>{trade.direction === 'LONG' ? 'BUY' : 'SELL'}</span>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-lg font-bold text-indigo-950 dark:text-white leading-tight">{trade.instrument}</h3>
+                                            <div className="flex items-center gap-2 mt-1">
+                                                <span className="px-3 py-1 bg-indigo-50 dark:bg-slate-800 rounded-full text-[10px] font-bold text-indigo-500 uppercase tracking-wide">
+                                                    {new Date(trade.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                                                </span>
+                                                <span className="text-[10px] font-bold text-indigo-300 uppercase tracking-widest">{trade.asset_class}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* 2. Setup */}
+                                    <div className="col-span-2 text-center hidden md:block">
+                                        <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-slate-800 px-4 py-2 rounded-xl border border-indigo-100/50 dark:border-slate-700 pointer-events-none">
+                                            {trade.strategy}
+                                        </span>
+                                    </div>
+
+                                    {/* 3. Status */}
+                                    <div className="col-span-2 flex justify-center">
+                                        <span className={cn(
+                                            "px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wide flex items-center gap-2",
+                                            trade.net_pnl >= 0
+                                                ? "bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-900/20 dark:border-emerald-900/30"
+                                                : "bg-rose-50 text-rose-600 border border-rose-100 dark:bg-rose-900/20 dark:border-rose-900/30"
+                                        )}>
+                                            {trade.net_pnl >= 0 ? <CheckCircle2 size={14} /> : <AlertCircle size={14} />}
+                                            {trade.net_pnl >= 0 ? 'Win' : 'Loss'}
+                                        </span>
+                                    </div>
+
+                                    {/* 4. P&L */}
+                                    <div className="col-span-2 text-right">
+                                        <div className="flex flex-col items-end">
+                                            <span className={cn(
+                                                "text-xl font-bold tracking-tight",
+                                                trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500"
+                                            )}>
+                                                {trade.net_pnl >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl)}
+                                            </span>
+                                            <span className="text-[10px] font-bold text-indigo-300 uppercase tracking-widest">Realized</span>
+                                        </div>
+                                    </div>
+
+                                    {/* 5. Actions */}
+                                    <div className="col-span-2 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button onClick={() => handleEdit(trade)} className="w-10 h-10 flex items-center justify-center bg-indigo-50 text-indigo-400 rounded-full hover:bg-indigo-500 hover:text-white transition-all"><Edit3 size={16} /></button>
+                                        <button onClick={() => handleDelete(trade.id)} className="w-10 h-10 flex items-center justify-center bg-rose-50 text-rose-400 rounded-full hover:bg-rose-500 hover:text-white transition-all"><Trash2 size={16} /></button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 )}
             </div>
@@ -207,8 +225,6 @@ export default function Journal() {
                     editTrade={editingTrade}
                 />
             )}
-
-
         </div>
     );
 }
