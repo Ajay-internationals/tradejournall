@@ -23,7 +23,7 @@ export default function Pricing() {
             description: 'Professional tools for traders',
             features: ['Automated Broker Sync', 'Advanced strategy data', 'Psychology & bias tracking', 'Bulk Excel imports', 'Personalized reports'],
             cta: 'Start Pro Trial',
-            popular: false,
+            popular: true,
         },
         {
             name: 'Mentor',
@@ -31,15 +31,11 @@ export default function Pricing() {
             period: 'per month',
             description: 'A Trading Coach in Your Corner',
             subDescription: 'The Mentor Plan brings human accountability to your trading.',
-            popular: true,
+            popular: false,
             sections: [
                 {
-                    title: 'What Changes for You',
-                    items: ['Daily trade reviews', 'Mistakes called out clearly', 'Discipline tracked objectively', 'Stop repeating errors'],
-                },
-                {
                     title: 'What You Get',
-                    items: ['EOD Mentor Reviews', 'Weekly Performance Review', 'Psychology Feedback', 'Community Access', 'Multiple Account Tracking'],
+                    items: ['Daily trade reviews', 'Weekly Performance Review', 'Psychology Feedback', 'Community Access'],
                 },
             ],
             cta: 'Upgrade to Mentor',
@@ -49,16 +45,12 @@ export default function Pricing() {
             price: '₹9,999',
             period: 'per month',
             description: 'Operate Like a Professional',
-            subDescription: 'Mentor+ is for traders who want personalized transformation.',
+            subDescription: 'Mentor+ is for traders seeking personalized coaching.',
             popular: false,
             sections: [
                 {
-                    title: 'Everything in Mentor, Plus',
-                    items: ['Monthly 1:1 Video Calls', 'Priority EOD Reviews', 'Custom Trading Rulebook', 'Personalized Roadmap'],
-                },
-                {
-                    title: 'What You’re Paying For',
-                    items: ['Time', 'Experience', 'Accountability'],
+                    title: 'Elite Features',
+                    items: ['Monthly 1:1 Video Calls', 'Priority EOD Reviews', 'Custom Trading Roadmap'],
                 },
             ],
             cta: 'Apply for Mentor+',

@@ -112,8 +112,8 @@ export default function Landing() {
             <section id="features" className="py-12 md:py-24 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12 md:mb-20">
-                        <h2 className="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">Core Edge</h2>
-                        <h3 className="text-3xl md:text-6xl font-black">Everything you need to grow.</h3>
+                        <h2 className="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">Powerful Features</h2>
+                        <h3 className="text-3xl md:text-5xl font-bold">Everything you need to grow.</h3>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
