@@ -26,14 +26,14 @@ export default function Rules() {
 
     return (
         <div className="space-y-12 animate-in fade-in duration-700 font-body pb-20">
-            <div className="flex items-center justify-between p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
+            <div className="flex items-center justify-between p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm">
                 <div className="flex items-center gap-6">
                     <div className="w-20 h-20 bg-indigo-600 rounded-[2.2rem] flex items-center justify-center shadow-2xl shadow-indigo-200">
                         <ShieldCheck className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-black tracking-tighter text-[var(--app-text)] uppercase">System Protocol ✨</h1>
-                        <p className="text-[var(--app-text-muted)] text-[10px] font-black tracking-[0.4em] uppercase mt-2 opacity-50 italic">Operational Discipline Framework</p>
+                        <h1 className="text-4xl font-black tracking-tighter text-slate-900 uppercase">System Protocol ✨</h1>
+                        <p className="text-slate-400 text-[10px] font-black tracking-[0.4em] uppercase mt-2 opacity-50 italic">Operational Discipline Framework</p>
                     </div>
                 </div>
                 <button
@@ -46,15 +46,15 @@ export default function Rules() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 leading-none">
-                <div className="p-14 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] flex flex-col items-center justify-center text-center space-y-10 shadow-[var(--shadow-soft)] group">
-                    <div className="w-28 h-28 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[3rem] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+                <div className="p-14 bg-white border border-slate-200 rounded-[4rem] flex flex-col items-center justify-center text-center space-y-10 shadow-sm group">
+                    <div className="w-28 h-28 bg-indigo-50 border border-slate-200 rounded-[3rem] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
                         <Flame size={48} className="text-rose-500" />
                     </div>
                     <div className="space-y-3">
-                        <p className="text-6xl font-black tracking-tighter text-[var(--app-text)] leading-none">{completedCount}/{rules.length}</p>
-                        <p className="text-[10px] font-black text-[var(--app-text-muted)] tracking-[0.5em] uppercase opacity-40">Persistence Index</p>
+                        <p className="text-6xl font-black tracking-tighter text-slate-900 leading-none">{completedCount}/{rules.length}</p>
+                        <p className="text-[10px] font-black text-slate-400 tracking-[0.5em] uppercase opacity-40">Persistence Index</p>
                     </div>
-                    <p className="text-xs text-[var(--app-text-muted)] max-w-[240px] leading-loose italic font-bold">"Institutional discipline is the fundamental divergence between a gambler and an operator."</p>
+                    <p className="text-xs text-slate-400 max-w-[240px] leading-loose italic font-bold">"Institutional discipline is the fundamental divergence between a gambler and an operator."</p>
                 </div>
 
                 <div className="lg:col-span-2 space-y-6">
@@ -79,8 +79,8 @@ export default function Rules() {
                     )}
 
                     {rules.length === 0 && !isAdding && (
-                        <div className="p-24 text-center border-4 border-dashed border-[var(--app-border)] rounded-[4rem] opacity-40">
-                            <p className="text-[var(--app-text-muted)] font-black uppercase tracking-[0.5em] text-[10px]">Framework Empty</p>
+                        <div className="p-24 text-center border-4 border-dashed border-slate-200 rounded-[4rem] opacity-40">
+                            <p className="text-slate-400 font-black uppercase tracking-[0.5em] text-[10px]">Framework Empty</p>
                             <button onClick={() => setIsAdding(true)} className="mt-6 text-indigo-600 font-black text-xs uppercase tracking-widest underline decoration-2 underline-offset-8">Initialize First Directive</button>
                         </div>
                     )}
@@ -92,13 +92,13 @@ export default function Rules() {
                                 "p-10 border rounded-[3.5rem] flex items-center justify-between transition-all group hover:scale-[1.01]",
                                 rule.completed
                                     ? "bg-emerald-50 text-emerald-700 border-emerald-100 shadow-sm"
-                                    : "bg-[var(--app-card)] border-[var(--app-border)] text-[var(--app-text)] shadow-[var(--shadow-soft)] hover:border-indigo-400"
+                                    : "bg-white border-slate-200 text-slate-900 shadow-sm hover:border-indigo-400"
                             )}
                         >
                             <div className="flex items-center gap-6 cursor-pointer flex-1" onClick={() => toggleRule.mutate({ id: rule.id, completed: !rule.completed })}>
                                 <div className={cn(
                                     "w-12 h-12 rounded-2xl flex items-center justify-center transition-all",
-                                    rule.completed ? "bg-emerald-500 text-white shadow-lg" : "bg-[var(--app-bg)] border border-[var(--app-border)]"
+                                    rule.completed ? "bg-emerald-500 text-white shadow-lg" : "bg-indigo-50 border border-slate-200"
                                 )}>
                                     {rule.completed && <Check size={22} />}
                                 </div>

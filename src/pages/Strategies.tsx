@@ -32,14 +32,14 @@ export default function Strategies() {
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
             {/* Page Header */}
-            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-[var(--shadow-soft)]">
+            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm">
                 <div className="flex items-center gap-6">
                     <div className="w-20 h-20 bg-indigo-600 rounded-[2.2rem] flex items-center justify-center shadow-2xl shadow-indigo-200 group">
                         <Target className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-black tracking-tighter text-[var(--app-text)] uppercase">Strategy Labs ✨</h1>
-                        <p className="text-[var(--app-text-muted)] text-[10px] font-black tracking-[0.4em] uppercase mt-2 opacity-50 italic">High-Fidelity Edge Matrix</p>
+                        <h1 className="text-4xl font-black tracking-tighter text-slate-900 uppercase">Strategy Labs ✨</h1>
+                        <p className="text-slate-400 text-[10px] font-black tracking-[0.4em] uppercase mt-2 opacity-50 italic">High-Fidelity Edge Matrix</p>
                     </div>
                 </div>
                 <button
@@ -60,7 +60,7 @@ export default function Strategies() {
                 {/* Add New Strategy Placeholder */}
                 <button
                     onClick={() => setIsFormOpen(true)}
-                    className="flex flex-col items-center justify-center p-14 border-4 border-dashed border-[var(--app-border)] rounded-[4rem] hover:border-indigo-400 hover:bg-slate-50 transition-all group min-h-[420px] bg-[var(--app-card)] shadow-inner"
+                    className="flex flex-col items-center justify-center p-14 border-4 border-dashed border-slate-200 rounded-[4rem] hover:border-indigo-400 hover:bg-slate-50 transition-all group min-h-[420px] bg-white shadow-inner"
                 >
                     <div className="w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-lg">
                         <Plus size={32} className="text-indigo-600" />
@@ -84,7 +84,7 @@ function StrategyCard({ strategy }: any) {
     );
 
     return (
-        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] hover:border-indigo-400 transition-all group relative overflow-hidden flex flex-col shadow-[var(--shadow-soft)] hover:scale-[1.02] duration-500">
+        <div className="p-12 bg-white border border-slate-200 rounded-[4rem] hover:border-indigo-400 transition-all group relative overflow-hidden flex flex-col shadow-sm hover:scale-[1.02] duration-500">
             <div className="relative z-10 flex flex-col h-full leading-none">
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-4">
@@ -100,7 +100,7 @@ function StrategyCard({ strategy }: any) {
                     )}
                 </div>
 
-                <p className="text-indigo-900/40 dark:text-indigo-100/30 text-xs mb-12 leading-relaxed flex-1 font-black uppercase tracking-tight">
+                <p className="text-indigo-900/40 text-xs mb-12 leading-relaxed flex-1 font-black uppercase tracking-tight">
                     "{description}"
                 </p>
 
@@ -121,7 +121,7 @@ function StrategyCard({ strategy }: any) {
                     </div>
                     <div className="space-y-2">
                         <p className="text-[9px] font-black text-indigo-500/50 uppercase tracking-widest">Sync Log</p>
-                        <p className="text-xl font-black tracking-tighter dark:text-indigo-100">{stats.totalTrades}</p>
+                        <p className="text-xl font-black tracking-tighter text-slate-900">{stats.totalTrades}</p>
                     </div>
                 </div>
 
@@ -164,7 +164,7 @@ function StrategyCard({ strategy }: any) {
                                             {trade.direction[0]}
                                         </div>
                                         <div>
-                                            <p className="text-sm font-black tracking-tighter dark:text-indigo-100 uppercase">{trade.instrument}</p>
+                                            <p className="text-slate-900 uppercase">{trade.instrument}</p>
                                             <p className="text-[9px] text-indigo-500 opacity-40 font-black uppercase tracking-widest mt-1">{new Date(trade.date).toLocaleDateString()}</p>
                                         </div>
                                     </div>

@@ -17,9 +17,9 @@ export function AppShell() {
     }, [location.pathname]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-[var(--app-bg)] text-[var(--app-text)] transition-all duration-500 font-body">
+        <div className="flex h-screen overflow-hidden bg-slate-50 text-indigo-950 transition-all duration-500 font-body">
             {/* Consistent Top Title Bar - Span full width */}
-            <header className="fixed top-0 left-0 right-0 h-20 bg-[var(--app-header-bg)] border-b border-[var(--app-border)] z-[90] flex items-center justify-between px-6 lg:px-12 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
+            <header className="fixed top-0 left-0 right-0 h-20 bg-white border-b border-slate-200 z-[90] flex items-center justify-between px-6 lg:px-12 transition-all duration-300 shadow-sm">
                 <div className="flex items-center gap-4">
                     {/* Mobile Menu Toggle */}
                     <button
@@ -35,16 +35,9 @@ export function AppShell() {
                 </div>
 
                 <div className="flex items-center gap-4 md:gap-8">
-                    <button
-                        onClick={toggleTheme}
-                        className="p-3 bg-[var(--app-card)] border border-[var(--app-border)] rounded-2xl text-[var(--app-text-muted)] hover:text-[var(--app-accent)] hover:scale-110 active:scale-95 transition-all shadow-sm"
-                    >
-                        {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-                    </button>
-
-                    <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-500/10 rounded-full border border-indigo-100 dark:border-indigo-500/20">
+                    <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-full border border-indigo-100">
                         <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">System Active</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-600">System Active</span>
                     </div>
                 </div>
             </header>
@@ -60,7 +53,7 @@ export function AppShell() {
             )}
 
             {/* Main scrollable area */}
-            <main className="flex-1 overflow-y-auto pt-20 ml-0 md:ml-80 no-scrollbar bg-[var(--app-bg)] transition-colors duration-300 w-full">
+            <main className="flex-1 overflow-y-auto pt-20 ml-0 md:ml-80 no-scrollbar bg-slate-50 transition-colors duration-300 w-full">
                 <div className="max-w-[1400px] mx-auto p-4 md:p-12">
                     <Outlet />
                 </div>

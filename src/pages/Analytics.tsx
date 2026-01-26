@@ -16,7 +16,7 @@ function SubTab({ active, onClick, icon, label }: any) {
                 "flex items-center gap-2.5 px-8 py-3 rounded-full text-[12px] font-bold uppercase tracking-wider transition-all shrink-0",
                 active
                     ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200"
-                    : "text-[var(--app-text-muted)] hover:bg-slate-50 hover:text-indigo-600"
+                    : "text-slate-400 hover:bg-slate-50 hover:text-indigo-600"
             )}
         >
             {icon} {label}
@@ -26,7 +26,7 @@ function SubTab({ active, onClick, icon, label }: any) {
 
 function StatCard({ label, value, subValue, icon, variant = 'indigo' }: any) {
     return (
-        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3rem] shadow-[var(--shadow-soft)] group hover:scale-[1.02] transition-all duration-500 relative overflow-hidden">
+        <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm group hover:scale-[1.02] transition-all duration-500 relative overflow-hidden">
             <div className="flex justify-between items-start mb-6">
                 <div className={cn(
                     "p-5 rounded-2xl shadow-lg transition-transform group-hover:rotate-6",
@@ -37,9 +37,9 @@ function StatCard({ label, value, subValue, icon, variant = 'indigo' }: any) {
                 </div>
             </div>
             <div className="space-y-1">
-                <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-wider">{label}</p>
-                <p className="text-3xl font-bold tracking-tight text-[var(--app-text)]">{value}</p>
-                <p className="text-[10px] font-medium text-[var(--app-text-muted)] uppercase tracking-wide opacity-60">{subValue}</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{label}</p>
+                <p className="text-3xl font-bold tracking-tight text-slate-900">{value}</p>
+                <p className="text-[10px] font-medium text-slate-400 uppercase tracking-wide opacity-60">{subValue}</p>
             </div>
         </div>
     );
@@ -140,7 +140,7 @@ export default function Analytics() {
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
             {/* Nav Tabs */}
-            <div className="flex gap-3 p-2 bg-[var(--app-card)] rounded-2xl border border-[var(--app-border)] w-fit shadow-sm">
+            <div className="flex gap-3 p-2 bg-white rounded-2xl border border-slate-200 w-fit shadow-sm">
                 <SubTab active={activeTab === 'performance'} onClick={() => setActiveTab('performance')} icon={<Activity size={18} />} label="Overview" />
                 <SubTab active={activeTab === 'strategies'} onClick={() => setActiveTab('strategies')} icon={<LayoutGrid size={18} />} label="Strategies" />
                 <SubTab active={activeTab === 'mistakes'} onClick={() => setActiveTab('mistakes')} icon={<Target size={18} />} label="Mistakes" />
@@ -149,11 +149,11 @@ export default function Analytics() {
             {activeTab === 'performance' && (
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 leading-none">
                     <div className="lg:col-span-2 space-y-10">
-                        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm group">
+                        <div className="p-10 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm group">
                             <div className="flex items-center justify-between mb-8">
                                 <div>
-                                    <h3 className="text-xl font-bold tracking-tight text-[var(--app-text)]">Equity Curve</h3>
-                                    <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest mt-1 opacity-50">Growth over time</p>
+                                    <h3 className="text-xl font-bold tracking-tight text-slate-900">Equity Curve</h3>
+                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 opacity-50">Growth over time</p>
                                 </div>
                             </div>
                             <div className="h-[400px]">
@@ -166,28 +166,28 @@ export default function Analytics() {
                             <MiniInsightCard label="Average Alpha" value={formatCurrency(avgWinSize)} icon={<TrendingUp size={20} />} />
                         </div>
 
-                        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm">
+                        <div className="p-10 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm">
                             <div className="flex items-center justify-between mb-8">
                                 <div>
-                                    <h3 className="text-xl font-bold tracking-tight text-[var(--app-text)]">Daily Performance</h3>
-                                    <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest mt-1 opacity-50">Net P&L by day</p>
+                                    <h3 className="text-xl font-bold tracking-tight text-slate-900">Daily Performance</h3>
+                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 opacity-50">Net P&L by day</p>
                                 </div>
                             </div>
                             <div className="h-[350px]">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <BarChart data={dayData}>
                                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--app-border)" opacity={0.5} />
-                                        <XAxis dataKey="name" fontSize={10} fontWeight="700" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} />
-                                        <YAxis fontSize={10} fontWeight="700" stroke="var(--app-text-muted)" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} />
+                                        <XAxis dataKey="name" fontSize={10} fontWeight="700" stroke="#94a3b8" tickLine={false} axisLine={false} />
+                                        <YAxis fontSize={10} fontWeight="700" stroke="#94a3b8" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} />
                                         <Tooltip
                                             cursor={{ fill: 'rgba(99, 102, 241, 0.05)' }}
                                             contentStyle={{
-                                                backgroundColor: 'var(--app-card)',
-                                                border: '1px solid var(--app-border)',
+                                                backgroundColor: '#fff',
+                                                border: '1px solid #e2e8f0',
                                                 borderRadius: '2rem',
                                                 fontWeight: '900',
                                                 fontSize: '10px',
-                                                boxShadow: 'var(--shadow-soft)'
+                                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
                                             }}
                                         />
                                         <Bar dataKey="value" radius={[12, 12, 12, 12]} barSize={40}>
@@ -203,10 +203,10 @@ export default function Analytics() {
 
                     <div className="space-y-10">
                         {/* Allocation Card */}
-                        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[2.5rem] shadow-sm flex flex-col items-center">
+                        <div className="p-10 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm flex flex-col items-center">
                             <div className="w-full mb-8 text-center">
-                                <h3 className="text-xl font-bold tracking-tight text-[var(--app-text)]">Allocation</h3>
-                                <p className="text-[10px] font-bold text-[var(--app-text-muted)] uppercase tracking-widest mt-1 opacity-50">Capital distribution</p>
+                                <h3 className="text-xl font-bold tracking-tight text-slate-900">Allocation</h3>
+                                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 opacity-50">Capital distribution</p>
                             </div>
                             <div className="h-[250px] w-full">
                                 <ResponsiveContainer width="100%" height="100%">
@@ -227,12 +227,12 @@ export default function Analytics() {
                                         </Pie>
                                         <Tooltip
                                             contentStyle={{
-                                                backgroundColor: 'var(--app-card)',
-                                                border: '1px solid var(--app-border)',
+                                                backgroundColor: '#fff',
+                                                border: '1px solid #e2e8f0',
                                                 borderRadius: '2rem',
                                                 fontWeight: '900',
                                                 fontSize: '10px',
-                                                boxShadow: 'var(--shadow-soft)'
+                                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
                                             }}
                                         />
                                     </PieChart>
@@ -243,9 +243,9 @@ export default function Analytics() {
                                     <div key={idx} className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wide">
                                         <div className="flex items-center gap-4">
                                             <div className="w-3 h-3 rounded-full shadow-sm" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
-                                            <span className="text-[var(--app-text-muted)]">{alt.name}</span>
+                                            <span className="text-slate-400">{alt.name}</span>
                                         </div>
-                                        <span className="text-[var(--app-text)] font-bold tracking-tight">₹{(alt.value / 1000).toFixed(1)}k</span>
+                                        <span className="text-slate-900 font-bold tracking-tight">₹{(alt.value / 1000).toFixed(1)}k</span>
                                     </div>
                                 ))}
                             </div>
@@ -259,10 +259,10 @@ export default function Analytics() {
 
 function MiniInsightCard({ label, value, icon }: any) {
     return (
-        <div className="p-12 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] flex items-center justify-between shadow-[var(--shadow-soft)] group hover:scale-[1.03] transition-all duration-500">
+        <div className="p-12 bg-white border border-slate-200 rounded-[3.5rem] flex items-center justify-between shadow-sm group hover:scale-[1.03] transition-all duration-500">
             <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--app-text-muted)] mb-4 opacity-50 group-hover:opacity-100 transition-opacity uppercase">{label}</p>
-                <p className="text-3xl font-black tracking-tighter text-[var(--app-text)] leading-none">{value}</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4 opacity-50 group-hover:opacity-100 transition-opacity uppercase">{label}</p>
+                <p className="text-3xl font-black tracking-tighter text-slate-900 leading-none">{value}</p>
             </div>
             <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all transform group-hover:rotate-6">
                 {icon}
@@ -273,13 +273,13 @@ function MiniInsightCard({ label, value, icon }: any) {
 
 function ProFeatureCard({ icon, title, sub }: any) {
     return (
-        <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3.5rem] text-left flex items-start gap-8 transition-all hover:border-indigo-400 group hover:shadow-[var(--shadow-soft)] shadow-sm">
+        <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-left flex items-start gap-8 transition-all hover:border-indigo-400 group hover:shadow-sm shadow-sm">
             <div className="w-16 h-16 bg-indigo-50 rounded-[2rem] flex items-center justify-center text-indigo-600 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all">
                 {icon}
             </div>
             <div className="leading-tight mt-1">
-                <p className="text-xl font-black tracking-tight mb-2 text-[var(--app-text)]">{title}</p>
-                <p className="text-[10px] text-[var(--app-text-muted)] font-black uppercase tracking-[0.2em] opacity-40 leading-none mt-2">{sub}</p>
+                <p className="text-xl font-black tracking-tight mb-2 text-slate-900">{title}</p>
+                <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] opacity-40 leading-none mt-2">{sub}</p>
             </div>
         </div>
     );

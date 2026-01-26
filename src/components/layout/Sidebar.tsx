@@ -65,7 +65,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
 
     return (
         <aside className={cn(
-            "w-80 h-[calc(100vh-5rem)] bg-[var(--app-sidebar-bg)] border-r border-[var(--app-border)] flex flex-col fixed left-0 top-20 z-40 overflow-y-auto no-scrollbar pb-4 transition-transform duration-300 md:translate-x-0 font-body",
+            "w-80 h-[calc(100vh-5rem)] bg-white border-r border-slate-200 flex flex-col fixed left-0 top-20 z-40 overflow-y-auto no-scrollbar pb-4 transition-transform duration-300 md:translate-x-0 font-body",
             isOpen ? "translate-x-0" : "-translate-x-full"
         )}>
             {/* Header / Logo removed - handled by AppShell */}
@@ -86,14 +86,14 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                                         className={cn(
                                             "w-full flex items-center justify-between px-6 py-3 rounded-xl transition-all duration-300 group relative",
                                             isActive
-                                                ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
-                                                : "text-slate-500 hover:bg-slate-50 dark:hover:bg-white/5 dark:text-slate-400 dark:hover:text-white hover:text-slate-900"
+                                                ? "bg-indigo-50 text-indigo-600 shadow-sm"
+                                                : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
                                         )}
                                     >
                                         <div className="flex items-center gap-4">
                                             <div className={cn(
                                                 "transition-colors",
-                                                isActive ? "text-violet-600 dark:text-violet-500" : "text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white"
+                                                isActive ? "text-indigo-600" : "text-slate-400 group-hover:text-slate-600"
                                             )}>
                                                 {item.icon}
                                             </div>
@@ -110,8 +110,8 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
 
             {/* User Profile / Status */}
             <div className="p-8 space-y-4">
-                <div className="p-6 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-3xl flex items-center gap-4 transition-colors">
-                    <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/20 dark:border-white/10 overflow-hidden shrink-0">
+                <div className="p-6 bg-white border border-slate-200 rounded-3xl flex items-center gap-4 transition-colors shadow-sm">
+                    <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg border border-white/20 overflow-hidden shrink-0">
                         {profile?.avatar_url ? (
                             <img src={profile.avatar_url} alt="User" className="w-full h-full object-cover" />
                         ) : (
@@ -119,14 +119,14 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                         )}
                     </div>
                     <div>
-                        <p className="font-bold text-slate-900 dark:text-white leading-tight">{profile?.full_name?.split(' ')[0] || 'Trader'}</p>
+                        <p className="font-bold text-slate-900 leading-tight">{profile?.full_name?.split(' ')[0] || 'Trader'}</p>
                         <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{profile?.plan || 'Free'}</p>
                     </div>
                 </div>
 
                 <button
                     onClick={() => signOut()}
-                    className="w-full flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-2xl transition-all font-bold text-sm"
+                    className="w-full flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-2xl transition-all font-bold text-sm"
                 >
                     <LogOut size={18} />
                     Logout
