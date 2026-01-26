@@ -1,7 +1,0 @@
-Remaining Cleanup:
-- Journal.tsx (Sweep bg-slate-50 for var variants)
-- PublicHeader.tsx (Final syntax check and Link/Zap imports)
-- Rules.tsx (Purge dark containers)
-- Strategies.tsx (Purge dark containers)
-- Settings.tsx (Purge dark containers)
-- PatternAI.tsx (Purge dark containers)

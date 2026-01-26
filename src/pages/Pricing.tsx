@@ -12,12 +12,7 @@ export default function Pricing() {
             price: '₹0',
             period: 'forever',
             description: 'For traders exploring journal mechanics',
-            features: [
-                'Manual trade entry',
-                'Basic P&L analytics',
-                'Daily trade journal',
-                'Rule checklists',
-            ],
+            features: ['Manual trade entry', 'Basic P&L analytics', 'Daily trade journal', 'Rule checklists'],
             cta: 'Get Started',
             popular: false,
         },
@@ -26,30 +21,47 @@ export default function Pricing() {
             price: '₹499',
             period: 'per month',
             description: 'Professional tools for traders',
-            features: [
-                'Automated Broker Sync',
-                'Advanced strategy data',
-                'Psychology & bias tracking',
-                'Bulk Excel imports',
-                'Personalized reports',
-            ],
+            features: ['Automated Broker Sync', 'Advanced strategy data', 'Psychology & bias tracking', 'Bulk Excel imports', 'Personalized reports'],
             cta: 'Start Pro Trial',
-            popular: true,
+            popular: false,
         },
         {
             name: 'Mentor',
-            price: '₹4999',
+            price: '₹4,999',
             period: 'per month',
-            description: 'For serious operators & mentors seeking guidance.',
-            features: [
-                'Track Students & Multiple Accounts',
-                'Weekly Structured Strategy Review',
-                'EOD Trade Review Notes',
-                'Pattern & Behavior Feedback',
-                'Actionable Improvement Checklist',
+            description: 'A Trading Coach in Your Corner',
+            subDescription: 'The Mentor Plan brings human accountability to your trading.',
+            popular: true,
+            sections: [
+                {
+                    title: 'What Changes for You',
+                    items: ['Daily trade reviews', 'Mistakes called out clearly', 'Discipline tracked objectively', 'Stop repeating errors'],
+                },
+                {
+                    title: 'What You Get',
+                    items: ['EOD Mentor Reviews', 'Weekly Performance Review', 'Psychology Feedback', 'Community Access', 'Multiple Account Tracking'],
+                },
             ],
-            cta: 'Get Started',
+            cta: 'Upgrade to Mentor',
+        },
+        {
+            name: 'Mentor+',
+            price: '₹9,999',
+            period: 'per month',
+            description: 'Operate Like a Professional',
+            subDescription: 'Mentor+ is for traders who want personalized transformation.',
             popular: false,
+            sections: [
+                {
+                    title: 'Everything in Mentor, Plus',
+                    items: ['Monthly 1:1 Video Calls', 'Priority EOD Reviews', 'Custom Trading Rulebook', 'Personalized Roadmap'],
+                },
+                {
+                    title: 'What You’re Paying For',
+                    items: ['Time', 'Experience', 'Accountability'],
+                },
+            ],
+            cta: 'Apply for Mentor+',
         },
     ];
 
@@ -78,54 +90,80 @@ export default function Pricing() {
 
             {/* Pricing Cards */}
             <section className="pb-20 px-6">
-                <div className="max-w-6xl mx-auto font-body">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto font-body">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {plans.map((plan) => (
                             <div
                                 key={plan.name}
                                 className={cn(
-                                    "relative p-10 rounded-[3rem] border-2 transition-all hover:-translate-y-2 flex flex-col shadow-xl",
+                                    "relative p-8 rounded-[3rem] border-2 transition-all hover:-translate-y-2 flex flex-col shadow-xl",
                                     plan.popular
-                                        ? 'bg-slate-900 text-white border-transparent'
+                                        ? 'bg-slate-900 text-white border-transparent scale-[1.02] z-10'
                                         : 'bg-white border-slate-100'
                                 )}
                             >
                                 {plan.popular && (
-                                    <div className="absolute top-8 right-8 px-4 py-1.5 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full">
-                                        Popular
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-full shadow-lg whitespace-nowrap">
+                                        Most Comprehensive
                                     </div>
                                 )}
 
-                                <div className="mb-10">
-                                    <h3 className="text-xs font-black uppercase tracking-[0.3em] mb-4 text-indigo-500">{plan.name}</h3>
-                                    <div className="flex items-baseline gap-2 mb-6">
-                                        <span className="text-5xl font-black">{plan.price}</span>
-                                        {plan.period !== 'forever' && <span className="text-slate-500 font-bold uppercase text-[10px] tracking-widest">/{plan.period}</span>}
+                                <div className="mb-8">
+                                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 text-indigo-500">{plan.name}</h3>
+                                    <div className="flex items-baseline gap-2 mb-4">
+                                        <span className="text-4xl font-black">{plan.price}</span>
+                                        {plan.period !== 'forever' && <span className="text-slate-500 font-bold uppercase text-[9px] tracking-widest">/{plan.period}</span>}
                                     </div>
                                     <p className={cn(
-                                        "text-sm font-bold uppercase tracking-widest leading-relaxed",
-                                        plan.popular ? "text-indigo-400" : "text-slate-600"
+                                        "text-[12px] font-black uppercase tracking-widest leading-none mb-4",
+                                        plan.popular ? "text-indigo-400" : "text-slate-900"
                                     )}>
                                         {plan.description}
                                     </p>
+                                    {plan.subDescription && (
+                                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter opacity-80 leading-relaxed italic">
+                                            {plan.subDescription}
+                                        </p>
+                                    )}
                                 </div>
 
-                                <ul className="space-y-4 mb-12 flex-1">
-                                    {plan.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center gap-3">
-                                            <CheckCircle2 size={16} className={plan.popular ? "text-indigo-400" : "text-emerald-500"} />
+                                <div className="space-y-6 mb-10 flex-1">
+                                    {plan.features?.map((feature, idx) => (
+                                        <div key={idx} className="flex items-center gap-3">
+                                            <CheckCircle2 size={14} className={plan.popular ? "text-indigo-400" : "text-emerald-500"} />
                                             <span className={cn(
-                                                "text-[11px] font-bold uppercase tracking-tight",
+                                                "text-[10px] font-bold uppercase tracking-tight",
                                                 plan.popular ? "text-white/90" : "text-slate-700"
                                             )}>{feature}</span>
-                                        </li>
+                                        </div>
                                     ))}
-                                </ul>
+
+                                    {plan.sections?.map((section, sIdx) => (
+                                        <div key={sIdx} className="space-y-3 pt-4 border-t border-slate-100/10 first:border-t-0 first:pt-0">
+                                            <h4 className={cn(
+                                                "text-[9px] font-black uppercase tracking-[0.2em]",
+                                                plan.popular ? "text-indigo-300" : "text-indigo-600"
+                                            )}>{section.title}</h4>
+                                            {section.items.map((item, iIdx) => (
+                                                <div key={iIdx} className="flex items-start gap-3">
+                                                    <div className={cn(
+                                                        "w-1.5 h-1.5 rounded-full mt-1.5 shrink-0",
+                                                        plan.popular ? "bg-indigo-400" : "bg-indigo-600"
+                                                    )} />
+                                                    <span className={cn(
+                                                        "text-[10px] font-bold uppercase tracking-tight leading-tight",
+                                                        plan.popular ? "text-white/80" : "text-slate-600"
+                                                    )}>{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </div>
 
                                 <button
-                                    onClick={() => navigate(plan.name === 'Mentor' ? '/partner' : '/login')}
+                                    onClick={() => navigate(plan.name.includes('Mentor') ? '/login' : '/login')}
                                     className={cn(
-                                        "w-full py-5 rounded-3xl font-black uppercase tracking-widest text-[11px] transition-all",
+                                        "w-full py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all",
                                         plan.popular
                                             ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-[0_20px_40px_rgba(79,70,229,0.3)]'
                                             : 'bg-slate-100 text-slate-900 hover:bg-slate-200'
