@@ -46,8 +46,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
         },
         {
             label: 'Mentorship', items: [
-                { icon: <Users size={20} />, label: 'Mentor Hub', path: '/student-mentor-hub' },
-                { icon: <Calendar size={20} />, label: 'Mentor Admin', path: '/mentorship' },
+                { icon: <Users size={20} />, label: 'Mentorship', path: '/mentorship' },
                 { icon: <BookOpen size={20} />, label: 'Mentor Guidance', path: '/mentor-guidance' },
                 { icon: <Trophy size={20} />, label: 'Challenges', path: '/challenges' },
                 { icon: <Rocket size={20} />, label: 'Roadmap', path: '/roadmap' },

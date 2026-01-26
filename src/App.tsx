@@ -29,7 +29,7 @@ import MentorGuidance from '@/pages/MentorGuidance';
 import Community from '@/pages/Community';
 import BrokerLink from '@/pages/BrokerLink';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
-import StudentMentorHub from '@/pages/StudentMentorHub';
+
 import TermsAndConditions from '@/pages/TermsAndConditions';
 import RefundPolicy from '@/pages/RefundPolicy';
 
@@ -95,7 +95,7 @@ export default function App() {
                   <Route path="/tools" element={<Tools />} />
                   <Route path="/community" element={<Community />} />
                   <Route path="/mentorship" element={<Mentorship />} />
-                  <Route path="/student-mentor-hub" element={<StudentMentorHub />} />
+
                   <Route path="/mentor-guidance" element={<MentorGuidance />} />
                   <Route path="/broker-link" element={<BrokerLink />} />
                   <Route path="/settings" element={<Settings />} />
