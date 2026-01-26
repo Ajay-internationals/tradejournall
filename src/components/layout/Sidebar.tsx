@@ -66,7 +66,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
 
     return (
         <aside className={cn(
-            "w-80 h-[calc(100vh-5rem)] bg-white dark:bg-[#070b14] border-r border-slate-200 dark:border-white/5 flex flex-col fixed left-0 top-20 z-40 overflow-y-auto no-scrollbar pb-4 transition-transform duration-300 md:translate-x-0 font-body",
+            "w-80 h-[calc(100vh-5rem)] bg-[var(--app-sidebar-bg)] border-r border-[var(--app-border)] flex flex-col fixed left-0 top-20 z-40 overflow-y-auto no-scrollbar pb-4 transition-transform duration-300 md:translate-x-0 font-body",
             isOpen ? "translate-x-0" : "-translate-x-full"
         )}>
             {/* Header / Logo removed - handled by AppShell */}

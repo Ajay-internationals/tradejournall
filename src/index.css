@@ -2,20 +2,21 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
+@theme {
+  --dark-mode: class;
+}
+
 @layer base {
   :root {
     --app-bg: #ffffff;
-    /* Strictly White */
     --app-card: #ffffff;
-    /* Strictly White */
-    --app-border: #e2e8f0;
+    --app-header-bg: #ffffff;
+    --app-sidebar-bg: #ffffff;
+    --app-border: #f1f5f9;
     --app-text: #0f172a;
     --app-text-muted: #64748b;
     --app-accent: #6366f1;
-
-    --color-brand-primary: #6366f1;
-    --color-brand-secondary: #0ea5e9;
-    --color-navy: #0a0e1a;
+    --app-nav-active: #f5f3ff;
 
     --font-heading: 'Quicksand', 'Outfit', 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
@@ -24,10 +25,13 @@
   .dark {
     --app-bg: #0f172a;
     --app-card: #1e293b;
-    --app-border: #334155;
+    --app-header-bg: #0f172a;
+    --app-sidebar-bg: #070b14;
+    --app-border: #1e293b;
     --app-text: #f8fafc;
     --app-text-muted: #94a3b8;
     --app-accent: #818cf8;
+    --app-nav-active: rgba(99, 102, 241, 0.1);
   }
 }
 

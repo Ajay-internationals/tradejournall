@@ -23,7 +23,7 @@ export function Logo({ className, iconOnly = false }: { className?: string; icon
                 </svg>
             </div>
             {!iconOnly && (
-                <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">
+                <span className="text-xl font-black tracking-tight text-[var(--app-text)] group-hover:text-indigo-600 transition-colors">
                     Trade Adhyayan
                 </span>
             )}

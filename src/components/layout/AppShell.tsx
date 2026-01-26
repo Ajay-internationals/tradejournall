@@ -19,7 +19,7 @@ export function AppShell() {
     return (
         <div className="flex h-screen overflow-hidden bg-[var(--app-bg)] text-[var(--app-text)] transition-all duration-500 font-body">
             {/* Consistent Top Title Bar - Span full width */}
-            <header className="fixed top-0 left-0 right-0 h-20 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 z-[90] flex items-center justify-between px-6 lg:px-12 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
+            <header className="fixed top-0 left-0 right-0 h-20 bg-[var(--app-header-bg)] border-b border-[var(--app-border)] z-[90] flex items-center justify-between px-6 lg:px-12 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
                 <div className="flex items-center gap-4">
                     {/* Mobile Menu Toggle */}
                     <button
@@ -37,7 +37,7 @@ export function AppShell() {
                 <div className="flex items-center gap-4 md:gap-8">
                     <button
                         onClick={toggleTheme}
-                        className="p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:scale-110 active:scale-95 transition-all shadow-sm"
+                        className="p-3 bg-[var(--app-card)] border border-[var(--app-border)] rounded-2xl text-[var(--app-text-muted)] hover:text-[var(--app-accent)] hover:scale-110 active:scale-95 transition-all shadow-sm"
                     >
                         {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
                     </button>

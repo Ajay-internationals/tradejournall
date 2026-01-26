@@ -68,10 +68,19 @@ export default function Settings() {
                 </div>
                 <button
                     onClick={toggleTheme}
-                    className="flex items-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-2xl text-xs font-bold transition-all hover:bg-slate-50 dark:hover:bg-slate-750 active:scale-95 shadow-sm"
+                    className="flex items-center gap-3 px-8 py-4 bg-[var(--app-card)] border border-[var(--app-border)] text-[var(--app-text)] rounded-2xl text-xs font-bold transition-all hover:bg-[var(--app-nav-active)] active:scale-95 shadow-sm"
                 >
-                    {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-                    {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
+                    {theme === 'light' ? (
+                        <>
+                            <Moon size={16} className="text-indigo-600" />
+                            <span>Switch to Dark Mode</span>
+                        </>
+                    ) : (
+                        <>
+                            <Sun size={16} className="text-amber-400" />
+                            <span>Switch to Light Mode</span>
+                        </>
+                    )}
                 </button>
             </header>
 
