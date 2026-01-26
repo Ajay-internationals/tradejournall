@@ -290,12 +290,36 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                 <div className="space-y-10">
                     <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] shadow-2xl space-y-16">
                         <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start">
-                            <div className="space-y-4">
-                                <h4 className="text-sm font-black italic text-indigo-600 uppercase tracking-widest ml-4">1. Raw Data Input Protocol 📝</h4>
+                            <div className="space-y-6">
+                                <div className="flex items-center justify-between ml-4">
+                                    <h4 className="text-sm font-black italic text-indigo-600 uppercase tracking-widest">1. Data Ingestion Stream 📝</h4>
+                                    <div className="flex items-center gap-4">
+                                        <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Accepted Formats:</span>
+                                        <div className="flex gap-2">
+                                            {['Excel', 'CSV', 'Google Sheets'].map(f => (
+                                                <span key={f} className="px-3 py-1 bg-slate-100 rounded-full text-[8px] font-black text-slate-500">{f}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Visual Header Guide */}
+                                <div className="bg-indigo-50 border border-indigo-100 rounded-3xl p-6 mx-2">
+                                    <p className="text-[10px] font-black uppercase text-indigo-600 mb-3 tracking-widest text-center">Required Header Sequential Order</p>
+                                    <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
+                                        {['Date', 'Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'SL', 'Asset', 'Setup', 'Notes'].map((h, i) => (
+                                            <div key={h} className="text-center">
+                                                <div className="bg-indigo-600 text-white text-[9px] font-black py-1.5 rounded-lg shadow-sm">{h}</div>
+                                                <span className="text-[8px] text-indigo-300 font-bold mt-1 block">col {i + 1}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
                                 <textarea
                                     value={pasteRaw}
                                     onChange={(e) => setPasteRaw(e.target.value)}
-                                    placeholder="Paste raw Excel/Google Sheets cells here..."
+                                    placeholder="Paste raw cells here (Format: Date  Instrument  Side  Entry  Exit  Qty ...)"
                                     className="w-full h-80 bg-[var(--app-bg)] border border-[var(--app-border)] rounded-[3rem] p-10 text-xl font-black text-[var(--app-text)] focus:border-indigo-500 outline-none resize-none shadow-inner placeholder:text-slate-400"
                                 />
                             </div>
@@ -303,19 +327,27 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none text-white">
                                     <Wallet size={120} />
                                 </div>
-                                <div className="flex items-center gap-6 text-white relative z-10">
-                                    <h4 className="text-3xl font-black italic uppercase tracking-tighter">2. Equity Baseline</h4>
-                                </div>
-                                <div className="space-y-6 relative z-10">
-                                    <input
-                                        type="number"
-                                        value={batchCapital}
-                                        onChange={(e) => setBatchCapital(e.target.value)}
-                                        className="w-full bg-white text-indigo-950 border-none rounded-3xl py-6 px-10 text-4xl font-black shadow-2xl focus:ring-8 focus:ring-white/10 outline-none italic tracking-tighter"
-                                    />
-                                    <p className="text-[10px] font-black text-indigo-100 leading-relaxed uppercase tracking-[0.2em] opacity-60">
-                                        Synchronize your starting capital for accurate telemetry.
-                                    </p>
+                                <div className="flex flex-col h-full justify-between">
+                                    <div className="space-y-4">
+                                        <h4 className="text-3xl font-black italic uppercase tracking-tighter text-white">2. Equity Basis</h4>
+                                        <p className="text-[10px] font-black text-indigo-100 leading-relaxed uppercase tracking-[0.2em] opacity-80">
+                                            Input starting capital for session sync.
+                                        </p>
+                                    </div>
+                                    <div className="space-y-4 pt-8">
+                                        <input
+                                            type="number"
+                                            value={batchCapital}
+                                            onChange={(e) => setBatchCapital(e.target.value)}
+                                            className="w-full bg-white text-indigo-950 border-none rounded-3xl py-6 px-10 text-4xl font-black shadow-2xl focus:ring-8 focus:ring-white/10 outline-none italic tracking-tighter"
+                                        />
+                                        <button
+                                            onClick={downloadTemplate}
+                                            className="w-full py-5 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all border border-white/10"
+                                        >
+                                            <Download size={16} /> Download Blueprint
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

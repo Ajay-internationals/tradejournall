@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { TradeForm } from '@/components/features/TradeForm';
+import { ImportTerminal } from '@/components/features/ImportTerminal';
 import type { Trade } from '@/types';
 import * as XLSX from 'xlsx';
 
@@ -27,104 +28,11 @@ export default function Journal() {
     const { trades, deleteTrade, addTrade } = useTrades();
     const [searchTerm, setSearchTerm] = useState('');
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const [isPasteModalOpen, setIsPasteModalOpen] = useState(false);
-    const [pasteContent, setPasteContent] = useState('');
+    const [isTerminalOpen, setIsTerminalOpen] = useState(false);
     const [editingTrade, setEditingTrade] = useState<Trade | undefined>();
     const [assetFilter, setAssetFilter] = useState('ALL');
 
-    const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
 
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-            const bstr = evt.target?.result;
-            const wb = XLSX.read(bstr, { type: 'binary' });
-            const wsname = wb.SheetNames[0];
-            const ws = wb.Sheets[wsname];
-            const data = XLSX.utils.sheet_to_json(ws);
-
-            processImportedData(data);
-        };
-        reader.readAsBinaryString(file);
-    };
-
-    const processImportedData = async (data: any[]) => {
-        let importedCount = 0;
-        let errorCount = 0;
-
-        for (const row of data) {
-            try {
-                // More comprehensive field mapping
-                const dateRaw = row['Date'] || row['date'] || row['Time'] || row['time'] || row['Trade Date'] || new Date().toISOString();
-                const instrument = row['Instrument'] || row['Symbol'] || row['Script'] || row['instrument'] || row['symbol'] || 'Unknown';
-
-                // Direction detection
-                const sideRaw = (row['Type'] || row['Side'] || row['direction'] || row['Action'] || 'LONG').toString().toUpperCase();
-                const direction = (sideRaw.includes('B') || sideRaw.includes('L')) ? 'LONG' : 'SHORT';
-
-                const entryPrice = parseFloat(row['Entry'] || row['Price'] || row['Avg. Price'] || row['entry_price'] || row['Avg Price'] || '0');
-                const exitPrice = parseFloat(row['Exit'] || row['Exit Price'] || row['exit_price'] || row['Sell Price'] || '0');
-                const qty = Math.abs(parseFloat(row['Qty'] || row['Quantity'] || row['quantity'] || '1'));
-                const fees = parseFloat(row['Fees'] || row['Brokerage'] || row['fees'] || row['brokerage'] || '0');
-
-                // PnL Calculation if missing
-                let netPnl = parseFloat(row['PnL'] || row['Net P&L'] || row['Profit/Loss'] || row['net_pnl'] || '0');
-                if (netPnl === 0 && entryPrice !== 0 && exitPrice !== 0) {
-                    const gross = direction === 'LONG' ? (exitPrice - entryPrice) * qty : (entryPrice - exitPrice) * qty;
-                    netPnl = gross - fees;
-                }
-
-                // Create trade object matching our schema
-                const newTrade = {
-                    date: new Date(dateRaw).toISOString(),
-                    instrument: instrument.toString().toUpperCase(),
-                    asset_class: 'INDEX', // Default
-                    direction: direction as 'LONG' | 'SHORT',
-                    entry_price: entryPrice,
-                    exit_price: exitPrice || (netPnl > 0 ? entryPrice + 10 : entryPrice - 10),
-                    quantity: qty,
-                    fees: fees,
-                    net_pnl: netPnl,
-                    gross_pnl: netPnl + fees,
-                    stop_loss: parseFloat(row['SL'] || row['Stop Loss'] || '0'),
-                    strategy: row['Strategy'] || 'Imported',
-                    tags: ['imported'],
-                    notes: row['Notes'] || 'Imported from file',
-                    emotion: 'NEUTRAL'
-                };
-
-                await addTrade.mutateAsync(newTrade as any);
-                importedCount++;
-            } catch (err) {
-                console.error("Failed to import row:", row, err);
-                errorCount++;
-            }
-        }
-
-        if (errorCount > 0) {
-            alert(`Import completed: ${importedCount} trades added, ${errorCount} failed.`);
-        } else {
-            alert(`Success! Successfully imported ${importedCount} trades.`);
-        }
-    };
-
-    const handlePasteSubmit = () => {
-        // Very basic CSV parsing for paste
-        const rows = pasteContent.split('\n').filter(r => r.trim());
-        const headers = rows[0].split(',').map(h => h.trim());
-        const data = rows.slice(1).map(row => {
-            const values = row.split(',');
-            const obj: any = {};
-            headers.forEach((h, i) => {
-                obj[h] = values[i]?.trim();
-            });
-            return obj;
-        });
-        processImportedData(data);
-        setIsPasteModalOpen(false);
-        setPasteContent('');
-    };
 
     const filteredTrades = useMemo(() => {
         return trades.filter(t => {
@@ -155,24 +63,18 @@ export default function Journal() {
                     <p className="text-[var(--app-text-muted)] font-black uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">Historical Execution Stream</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
-                    <div className="flex items-center gap-2 bg-[var(--app-bg)] p-2 rounded-3xl border border-[var(--app-border)] shadow-inner">
-                        <button
-                            onClick={() => document.getElementById('file-upload')?.click()}
-                            className="flex items-center gap-3 px-6 py-3.5 bg-[var(--app-card)] hover:bg-slate-50 text-[var(--app-text-muted)] rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm border border-[var(--app-border)]"
-                        >
-                            <Upload size={16} />
-                            Source Path
-                        </button>
-                        <input type="file" id="file-upload" className="hidden" accept=".csv,.xlsx" onChange={handleFileUpload} />
-
-                        <button
-                            onClick={() => setIsPasteModalOpen(true)}
-                            className="flex items-center gap-3 px-6 py-3.5 bg-[var(--app-card)] hover:bg-slate-50 text-[var(--app-text-muted)] rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm border border-[var(--app-border)]"
-                        >
-                            <StickyNote size={16} />
-                            Quick Sync
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => setIsTerminalOpen(!isTerminalOpen)}
+                        className={cn(
+                            "flex items-center gap-3 px-8 py-5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all shadow-sm border",
+                            isTerminalOpen
+                                ? "bg-slate-900 text-white border-slate-900"
+                                : "bg-white text-indigo-600 border-indigo-100 hover:bg-slate-50"
+                        )}
+                    >
+                        {isTerminalOpen ? <X size={18} /> : <Upload size={18} />}
+                        {isTerminalOpen ? "Close Terminal" : "Bulk Sync Center"}
+                    </button>
 
                     <button
                         onClick={() => { setEditingTrade(undefined); setIsFormOpen(true); }}
@@ -183,6 +85,13 @@ export default function Journal() {
                     </button>
                 </div>
             </div>
+
+            {/* Inline Import Terminal */}
+            {isTerminalOpen && (
+                <div className="animate-in slide-in-from-top-4 duration-500">
+                    <ImportTerminal onComplete={() => setIsTerminalOpen(false)} />
+                </div>
+            )}
 
             {/* Filter Bar */}
             <div className="flex flex-col xl:flex-row gap-8">
@@ -299,30 +208,7 @@ export default function Journal() {
                 />
             )}
 
-            {/* Paste Data Modal */}
-            {isPasteModalOpen && (
-                <div className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/40 backdrop-blur-md p-4 animate-in fade-in duration-300">
-                    <div className="w-full max-w-2xl bg-white border border-slate-200 p-8 rounded-[2.5rem] shadow-2xl space-y-6">
-                        <div className="flex items-center justify-between">
-                            <h3 className="text-xl font-bold flex items-center gap-3 text-slate-900">
-                                <StickyNote className="text-indigo-600" size={24} /> Paste Trade Data
-                            </h3>
-                            <button onClick={() => setIsPasteModalOpen(false)} className="p-2 hover:bg-slate-100 rounded-full transition-colors"><X size={20} /></button>
-                        </div>
-                        <p className="text-sm text-slate-500">Paste your CSV data here. First row must be headers (Date, Instrument, Type, Price, Qty, PnL).</p>
-                        <textarea
-                            value={pasteContent}
-                            onChange={(e) => setPasteContent(e.target.value)}
-                            className="w-full h-64 bg-slate-50 border border-slate-200 rounded-2xl p-4 font-mono text-xs focus:ring-4 focus:ring-indigo-500/10 outline-none"
-                            placeholder="Date,Instrument,Type,Price,Qty,PnL&#10;2024-01-25,NIFTY 21500 CE,BUY,150,50,2500..."
-                        />
-                        <div className="flex gap-4">
-                            <button onClick={() => setIsPasteModalOpen(false)} className="flex-1 py-4 bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-all">Cancel</button>
-                            <button onClick={handlePasteSubmit} className="flex-1 py-4 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/20">Import Data</button>
-                        </div>
-                    </div>
-                </div>
-            )}
+
         </div>
     );
 }
