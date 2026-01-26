@@ -5,7 +5,7 @@ export function PublicHeader() {
     const navigate = useNavigate();
 
     return (
-        <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
+        <nav className="fixed top-0 w-full z-50 bg-white border-b border-slate-100">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                 <div className="group cursor-pointer" onClick={() => navigate('/')}>
                     <Logo />

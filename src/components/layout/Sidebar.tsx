@@ -87,7 +87,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                                         className={cn(
                                             "w-full flex items-center justify-between px-6 py-3 rounded-xl transition-all duration-300 group relative",
                                             isActive
-                                                ? "bg-gradient-to-r from-violet-600/10 to-purple-600/10 dark:from-violet-600/20 dark:to-purple-600/20 text-violet-600 dark:text-violet-400"
+                                                ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
                                                 : "text-slate-500 hover:bg-slate-50 dark:hover:bg-white/5 dark:text-slate-400 dark:hover:text-white hover:text-slate-900"
                                         )}
                                     >
