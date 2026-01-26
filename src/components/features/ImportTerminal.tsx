@@ -241,22 +241,22 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
 
     if (isTableMissing) {
         return (
-            <div className="p-16 bg-rose-500/5 border-4 border-rose-500/20 rounded-[4rem] animate-in zoom-in-95 duration-500 font-body">
+            <div className="p-16 bg-rose-50 border-4 border-rose-100 rounded-[4rem] animate-in zoom-in-95 duration-500 font-body">
                 <div className="max-w-2xl mx-auto space-y-10">
                     <div className="flex items-center gap-8 text-rose-500">
                         <Database size={64} className="animate-bounce" />
                         <div>
                             <h2 className="text-4xl font-black italic tracking-tighter uppercase">Migration Sync Alert</h2>
-                            <p className="text-[10px] font-black uppercase text-rose-500/60 tracking-[0.4em] mt-2">Action Required: Tables Missing</p>
+                            <p className="text-[10px] font-black uppercase text-rose-400 tracking-[0.4em] mt-2">Action Required: Tables Missing</p>
                         </div>
                     </div>
 
-                    <div className="bg-[var(--app-card)] p-10 rounded-[3.5rem] shadow-3xl space-y-6">
-                        <p className="text-sm font-black uppercase tracking-tight text-indigo-900/40 dark:text-indigo-100/40">
+                    <div className="bg-white p-10 rounded-[3.5rem] shadow-xl space-y-6">
+                        <p className="text-sm font-black uppercase tracking-tight text-indigo-300">
                             The terminal cannot journalize imports because the <span className="text-indigo-600 italic">Trade Records</span> schema is missing.
                         </p>
                         <div className="relative group">
-                            <pre className="bg-indigo-950 text-indigo-300 p-8 rounded-3xl text-[10px] font-mono leading-loose overflow-x-auto no-scrollbar">
+                            <pre className="bg-slate-900 text-slate-300 p-8 rounded-3xl text-[10px] font-mono leading-loose overflow-x-auto no-scrollbar">
                                 {sqlCode}
                             </pre>
                             <button
@@ -275,12 +275,12 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
     return (
         <div className="space-y-12 animate-in fade-in duration-700 font-['Quicksand']">
             {/* Header */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)]">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white border border-indigo-50 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)]">
                 <div className="space-y-2 text-center md:text-left">
-                    <h3 className="text-3xl font-bold tracking-tight text-indigo-950 dark:text-indigo-100">Trade Import</h3>
+                    <h3 className="text-3xl font-bold tracking-tight text-indigo-950">Trade Import</h3>
                     <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Synchronize your trading data from external sources.</p>
                 </div>
-                <div className="flex bg-slate-50 dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-100 dark:border-slate-700">
+                <div className="flex bg-slate-50 p-1.5 rounded-2xl border border-slate-100">
                     <TabButton active={mode === 'QUICK_PASTE'} onClick={() => setMode('QUICK_PASTE')} label="Clipboard Paste" icon={<ClipboardPaste size={16} />} />
                     <TabButton active={mode === 'FILE'} onClick={() => setMode('FILE')} label="Upload File" icon={<Upload size={16} />} />
                     <TabButton active={mode === 'HISTORY'} onClick={() => setMode('HISTORY')} label="Sync Logs" icon={<History size={16} />} />
@@ -289,7 +289,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
 
             {mode === 'QUICK_PASTE' ? (
                 <div className="space-y-10">
-                    <div className="p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] space-y-12">
+                    <div className="p-10 bg-white border border-indigo-50 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] space-y-12">
                         <div className="space-y-6">
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
@@ -305,9 +305,9 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 </div>
 
                                 {/* Instruction Guide */}
-                                <div className="p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-xs text-slate-500 space-y-2">
-                                    <p className="font-bold text-slate-700 dark:text-slate-300">How to copy from Excel/Sheets:</p>
-                                    <ol className="list-decimal list-inside space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-500 space-y-2">
+                                    <p className="font-bold text-slate-700">How to copy from Excel/Sheets:</p>
+                                    <ol className="list-decimal list-inside space-y-1 bg-white p-3 rounded-xl border border-slate-100">
                                         <li>Select your columns in this exact order: <strong>Date, Symbol, Side, Entry, Exit, Qty, SL, Asset, Setup, Notes</strong></li>
                                         <li>Include multiple rows for bulk import.</li>
                                         <li>Press <code className="bg-slate-100 px-1 py-0.5 rounded border border-slate-200 font-mono text-[10px]">Ctrl+C</code> to copy.</li>
@@ -317,12 +317,12 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                             </div>
 
                             {/* Visual Header Guide */}
-                            <div className="bg-indigo-50/50 dark:bg-slate-800/50 border border-indigo-100 dark:border-slate-700 rounded-2xl p-6">
+                            <div className="bg-indigo-50/50 border border-indigo-100 rounded-2xl p-6">
                                 <p className="text-[10px] font-bold uppercase text-indigo-400 mb-4 tracking-widest text-center">Required Column Sequence</p>
                                 <div className="flex flex-wrap gap-2 justify-center">
                                     {['Date', 'Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'SL', 'Asset', 'Setup', 'Notes'].map((h, i) => (
                                         <div key={h} className="text-center group relative">
-                                            <div className="bg-white dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 text-indigo-600 dark:text-indigo-300 text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm min-w-[60px]">
+                                            <div className="bg-white border border-indigo-100 text-indigo-600 text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm min-w-[60px]">
                                                 {h}
                                             </div>
                                             <div className="absolute -top-2 -right-1 w-4 h-4 rounded-full bg-indigo-50 text-[8px] flex items-center justify-center text-indigo-400 font-bold border border-indigo-100">{i + 1}</div>
@@ -335,7 +335,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 value={pasteRaw}
                                 onChange={(e) => setPasteRaw(e.target.value)}
                                 placeholder="Paste copied cells here..."
-                                className="w-full h-96 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 text-sm font-mono text-slate-700 dark:text-slate-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none resize-none shadow-inner transition-all placeholder:text-slate-400"
+                                className="w-full h-96 bg-slate-50 border border-slate-200 rounded-2xl p-6 text-sm font-mono text-slate-700 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none resize-none shadow-inner transition-all placeholder:text-slate-400"
                             />
                         </div>
 
@@ -441,11 +441,11 @@ function ImportHistory({ imports, isImportsLoading, deleteImport }: any) {
                 <div className="p-40 text-center"><Loader2 className="animate-spin mx-auto text-indigo-600 w-16 h-16" /></div>
             ) : (
                 imports.map((imp: any) => (
-                    <div key={imp.id} className="p-10 bg-white/40 dark:bg-indigo-950/20 backdrop-blur-3xl border border-indigo-500/10 rounded-[3.5rem] flex items-center justify-between hover:border-indigo-500 transition-all group shadow-2xl ring-1 ring-indigo-500/5">
+                    <div key={imp.id} className="p-10 bg-white/40 backdrop-blur-3xl border border-indigo-500/10 rounded-[3.5rem] flex items-center justify-between hover:border-indigo-500 transition-all group shadow-2xl ring-1 ring-indigo-500/5">
                         <div className="flex items-center gap-10">
                             <div className="w-20 h-20 bg-indigo-600 rounded-3xl flex items-center justify-center text-white shadow-3xl"><History size={32} /></div>
                             <div className="space-y-1">
-                                <p className="text-2xl font-bold italic tracking-tighter dark:text-indigo-100 uppercase">{imp.filename}</p>
+                                <p className="text-2xl font-bold italic tracking-tighter uppercase">{imp.filename}</p>
                                 <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-[0.2em]">{new Date(imp.created_at).toLocaleDateString()} • {imp.success_count} SUCCESS • {imp.fail_count} FAILED</p>
                             </div>
                         </div>
