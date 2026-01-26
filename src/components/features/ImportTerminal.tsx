@@ -274,44 +274,52 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
 
     return (
         <div className="space-y-12 animate-in fade-in duration-700 font-['Quicksand']">
-            {/* Cute Header */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-[3.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)]">
                 <div className="space-y-2 text-center md:text-left">
-                    <h3 className="text-3xl font-bold tracking-tight text-indigo-950 dark:text-indigo-100">Add Data 🌸</h3>
-                    <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Choose how you want to add your trades.</p>
+                    <h3 className="text-3xl font-bold tracking-tight text-indigo-950 dark:text-indigo-100">Trade Import</h3>
+                    <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Synchronize your trading data from external sources.</p>
                 </div>
-                <div className="flex bg-indigo-50/50 dark:bg-slate-800 p-2 rounded-[2.5rem] border border-indigo-100 dark:border-slate-700">
-                    <TabButton active={mode === 'QUICK_PASTE'} onClick={() => setMode('QUICK_PASTE')} label="Quick Paste" icon={<ClipboardPaste size={18} />} />
-                    <TabButton active={mode === 'FILE'} onClick={() => setMode('FILE')} label="Excel File" icon={<Upload size={18} />} />
-                    <TabButton active={mode === 'HISTORY'} onClick={() => setMode('HISTORY')} label="History" icon={<History size={18} />} />
+                <div className="flex bg-slate-50 dark:bg-slate-800 p-1.5 rounded-2xl border border-slate-100 dark:border-slate-700">
+                    <TabButton active={mode === 'QUICK_PASTE'} onClick={() => setMode('QUICK_PASTE')} label="Clipboard Paste" icon={<ClipboardPaste size={16} />} />
+                    <TabButton active={mode === 'FILE'} onClick={() => setMode('FILE')} label="Upload File" icon={<Upload size={16} />} />
+                    <TabButton active={mode === 'HISTORY'} onClick={() => setMode('HISTORY')} label="Sync Logs" icon={<History size={16} />} />
                 </div>
             </div>
 
             {mode === 'QUICK_PASTE' ? (
                 <div className="space-y-10">
-                    <div className="p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-[4rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] space-y-16">
-                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start">
+                    <div className="p-10 bg-white dark:bg-slate-900 border border-indigo-50 dark:border-slate-800 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] space-y-12">
+                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 items-start">
                             <div className="space-y-6">
-                                <div className="flex items-center justify-between ml-4">
-                                    <h4 className="text-sm font-bold text-indigo-600 uppercase tracking-widest">1. Paste Data Here 📝</h4>
-                                    <div className="flex items-center gap-4">
-                                        <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Accepted:</span>
-                                        <div className="flex gap-2">
-                                            {['Excel', 'CSV', 'Google Sheets'].map(f => (
-                                                <span key={f} className="px-3 py-1 bg-indigo-50 dark:bg-slate-800 rounded-full text-[8px] font-bold text-indigo-500">{f}</span>
-                                            ))}
-                                        </div>
+                                <div className="space-y-4">
+                                    <h4 className="text-sm font-bold text-indigo-950 uppercase tracking-widest flex items-center gap-2">
+                                        <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">1</div>
+                                        Paste Data Blocks
+                                    </h4>
+
+                                    {/* Instruction Guide */}
+                                    <div className="p-5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-xs text-slate-500 space-y-2">
+                                        <p className="font-bold text-slate-700 dark:text-slate-300">How to copy from Excel/Sheets:</p>
+                                        <ol className="list-decimal list-inside space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                            <li>Select your columns in this exact order: <strong>Date, Symbol, Side...</strong></li>
+                                            <li>Include multiple rows for bulk import.</li>
+                                            <li>Press <code className="bg-slate-100 px-1 py-0.5 rounded border border-slate-200 font-mono text-[10px]">Ctrl+C</code> to copy.</li>
+                                            <li>Paste directly into the box below.</li>
+                                        </ol>
                                     </div>
                                 </div>
 
                                 {/* Visual Header Guide */}
-                                <div className="bg-indigo-50/50 dark:bg-slate-800/50 border border-indigo-100 dark:border-slate-700 rounded-3xl p-6 mx-2">
-                                    <p className="text-[10px] font-bold uppercase text-indigo-400 mb-3 tracking-widest text-center">Required Column Order</p>
-                                    <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
+                                <div className="bg-indigo-50/50 dark:bg-slate-800/50 border border-indigo-100 dark:border-slate-700 rounded-2xl p-6">
+                                    <p className="text-[10px] font-bold uppercase text-indigo-400 mb-4 tracking-widest text-center">Required Column Sequence</p>
+                                    <div className="flex flex-wrap gap-2 justify-center">
                                         {['Date', 'Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'SL', 'Asset', 'Setup', 'Notes'].map((h, i) => (
-                                            <div key={h} className="text-center">
-                                                <div className="bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 text-[9px] font-bold py-2 rounded-lg shadow-sm">{h}</div>
-                                                <span className="text-[8px] text-indigo-300 font-bold mt-1 block">{i + 1}</span>
+                                            <div key={h} className="text-center group relative">
+                                                <div className="bg-white dark:bg-slate-900 border border-indigo-100 dark:border-slate-700 text-indigo-600 dark:text-indigo-300 text-[10px] font-bold py-2 px-4 rounded-lg shadow-sm min-w-[60px]">
+                                                    {h}
+                                                </div>
+                                                <div className="absolute -top-2 -right-1 w-4 h-4 rounded-full bg-indigo-50 text-[8px] flex items-center justify-center text-indigo-400 font-bold border border-indigo-100">{i + 1}</div>
                                             </div>
                                         ))}
                                     </div>
@@ -320,86 +328,86 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 <textarea
                                     value={pasteRaw}
                                     onChange={(e) => setPasteRaw(e.target.value)}
-                                    placeholder="Paste your cells here..."
-                                    className="w-full h-80 bg-slate-50 dark:bg-slate-950 border border-indigo-50 dark:border-slate-800 rounded-[3rem] p-10 text-lg font-medium text-slate-700 dark:text-slate-300 focus:border-indigo-300 outline-none resize-none shadow-inner placeholder:text-slate-300"
+                                    placeholder="Paste copied cells here..."
+                                    className="w-full h-64 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 text-sm font-mono text-slate-700 dark:text-slate-300 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none resize-none shadow-inner transition-all placeholder:text-slate-400"
                                 />
                             </div>
-                            <div className="bg-indigo-500 p-12 rounded-[3.5rem] space-y-10 shadow-xl shadow-indigo-200/50 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none text-white">
-                                    <Wallet size={120} />
-                                </div>
-                                <div className="flex flex-col h-full justify-between">
-                                    <div className="space-y-4">
-                                        <h4 className="text-3xl font-bold tracking-tight text-white">2. Starting Balance</h4>
-                                        <p className="text-xs font-medium text-indigo-100 uppercase tracking-widest opacity-80">
-                                            For today's session
-                                        </p>
-                                    </div>
-                                    <div className="space-y-4 pt-8">
-                                        <input
-                                            type="number"
-                                            value={batchCapital}
-                                            onChange={(e) => setBatchCapital(e.target.value)}
-                                            className="w-full bg-white text-indigo-950 border-none rounded-[2rem] py-6 px-10 text-4xl font-bold shadow-2xl focus:ring-8 focus:ring-white/10 outline-none tracking-tight"
-                                        />
-                                        <button
-                                            onClick={downloadTemplate}
-                                            className="w-full py-5 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-3 transition-all border border-white/10"
-                                        >
-                                            <Download size={16} /> Download Template
-                                        </button>
+
+                            <div className="space-y-6">
+                                <h4 className="text-sm font-bold text-indigo-950 uppercase tracking-widest flex items-center gap-2">
+                                    <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs">2</div>
+                                    Session Capital
+                                </h4>
+                                <div className="bg-indigo-600 p-10 rounded-3xl space-y-10 shadow-xl shadow-indigo-200/50 relative overflow-hidden">
+                                    <div className="flex flex-col h-full justify-between relative z-10">
+                                        <div className="space-y-2">
+                                            <h4 className="text-2xl font-bold tracking-tight text-white">Starting Balance</h4>
+                                            <p className="text-xs font-medium text-indigo-100 opacity-80">
+                                                Used for daily ROI calculations based on this batch.
+                                            </p>
+                                        </div>
+                                        <div className="space-y-4 pt-6">
+                                            <input
+                                                type="number"
+                                                value={batchCapital}
+                                                onChange={(e) => setBatchCapital(e.target.value)}
+                                                className="w-full bg-white/10 text-white border border-white/20 rounded-2xl py-4 px-6 text-3xl font-bold focus:bg-white/20  focus:border-white/40 outline-none tracking-tight placeholder:text-white/30 transition-all"
+                                            />
+                                            <button
+                                                onClick={downloadTemplate}
+                                                className="w-full py-4 bg-white text-indigo-600 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-indigo-50 transition-all shadow-lg"
+                                            >
+                                                <Download size={14} /> Download Excel Template
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {parsedPreview.length > 0 && (
-                            <div className="space-y-8 animate-in slide-in-from-bottom-6 duration-700">
-                                <div className="flex items-center justify-between px-6 pb-4 border-b border-indigo-50">
-                                    <h5 className="text-[10px] font-bold uppercase tracking-widest text-indigo-500 flex items-center gap-3">
-                                        <Zap size={14} className="fill-indigo-500" /> Preview ({parsedPreview.length} trades)
+                            <div className="space-y-6 animate-in slide-in-from-bottom-6 duration-700 pt-6 border-t border-dashed border-indigo-100">
+                                <div className="flex items-center justify-between">
+                                    <h5 className="text-xs font-bold uppercase tracking-widest text-indigo-900 flex items-center gap-2">
+                                        <CheckCircle2 size={16} className="text-emerald-500" />
+                                        Ready to Import ({parsedPreview.length} entries)
                                     </h5>
                                 </div>
-                                <div className="overflow-x-auto no-scrollbar rounded-[2.5rem] border border-indigo-50 max-h-96 shadow-inner bg-slate-50">
+                                <div className="overflow-x-auto rounded-2xl border border-slate-200 max-h-80 bg-white">
                                     <table className="w-full text-left">
-                                        <thead className="bg-indigo-500 text-white sticky top-0 z-10">
+                                        <thead className="bg-slate-50 text-slate-500 sticky top-0 z-10 border-b border-slate-200">
                                             <tr>
-                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest">Date / Asset</th>
-                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest">Symbol</th>
-                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest">Side</th>
-                                                <th className="px-8 py-5 text-[10px] font-bold uppercase tracking-widest text-right">Price Info</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Date / Asset</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Symbol</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Side</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-right">Execution</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="divide-y divide-indigo-100">
+                                        <tbody className="divide-y divide-slate-100">
                                             {parsedPreview.map((p, i) => (
-                                                <tr key={i} className="hover:bg-indigo-50 transition-colors group">
-                                                    <td className="px-8 py-5">
+                                                <tr key={i} className="hover:bg-slate-50 transition-colors group">
+                                                    <td className="px-6 py-3">
                                                         <div className="flex flex-col">
                                                             <span className="text-xs font-bold text-slate-700">{p.date}</span>
                                                             <span className="text-[9px] text-indigo-400 font-bold uppercase tracking-widest">{p.asset}</span>
                                                         </div>
                                                     </td>
-                                                    <td className="px-8 py-5">
-                                                        <span className="font-bold text-sm uppercase text-slate-700">{p.instrument}</span>
+                                                    <td className="px-6 py-3">
+                                                        <span className="font-bold text-xs uppercase text-slate-700">{p.instrument}</span>
                                                     </td>
-                                                    <td className="px-8 py-5">
+                                                    <td className="px-6 py-3">
                                                         <span className={cn(
-                                                            "px-3 py-1 rounded-full text-[9px] font-bold uppercase shadow-sm",
+                                                            "px-2 py-1 rounded text-[9px] font-bold uppercase",
                                                             p.direction.toUpperCase().includes('BUY') || p.direction.toUpperCase().includes('LONG')
-                                                                ? "bg-emerald-100 text-emerald-600"
-                                                                : "bg-rose-100 text-rose-600"
+                                                                ? "bg-emerald-50 text-emerald-600"
+                                                                : "bg-rose-50 text-rose-600"
                                                         )}>
                                                             {p.direction}
                                                         </span>
                                                     </td>
-                                                    <td className="px-8 py-5 text-right">
+                                                    <td className="px-6 py-3 text-right">
                                                         <div className="flex flex-col items-end">
-                                                            <span className="font-bold text-xs text-slate-600">₹{p.entry} → ₹{p.exit}</span>
-                                                            {p.is_sl_missing ? (
-                                                                <span className="text-rose-400 text-[8px] font-bold uppercase tracking-widest mt-1">Missing SL</span>
-                                                            ) : (
-                                                                <span className="text-emerald-500 text-[8px] font-bold uppercase tracking-widest mt-1">Risk: ₹{p.sl}</span>
-                                                            )}
+                                                            <span className="font-mono text-xs text-slate-600">₹{p.entry} → ₹{p.exit}</span>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -410,10 +418,10 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 <button
                                     onClick={handlePasteSync}
                                     disabled={isImporting}
-                                    className="w-full py-6 bg-indigo-600 text-white rounded-3xl font-bold uppercase text-xs tracking-widest shadow-xl shadow-indigo-200 hover:bg-indigo-700 transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-3"
+                                    className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2"
                                 >
-                                    {isImporting ? <Loader2 className="animate-spin" size={20} /> : <CheckCircle2 size={20} />}
-                                    Sync Data
+                                    {isImporting ? <Loader2 className="animate-spin" size={16} /> : <CheckCircle2 size={16} />}
+                                    Confirm Import
                                 </button>
                             </div>
                         )}
@@ -422,14 +430,14 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
             ) : mode === 'FILE' ? (
                 <div
                     onClick={() => !isImporting && fileInputRef.current?.click()}
-                    className="p-32 border-4 border-dashed border-indigo-100 rounded-[5rem] text-center cursor-pointer hover:bg-indigo-50 transition-all group shadow-sm bg-white"
+                    className="p-20 border-2 border-dashed border-indigo-200 rounded-3xl text-center cursor-pointer hover:bg-indigo-50 transition-all group shadow-sm bg-white"
                 >
                     <input type="file" ref={fileInputRef} onChange={handleFileImport} className="hidden" accept=".xlsx,.csv" />
-                    <Upload className="w-24 h-24 text-indigo-100 mx-auto mb-10 group-hover:text-indigo-400 transition-all group-hover:scale-110" />
-                    <h4 className="text-3xl font-bold tracking-tight mb-4 text-indigo-900 uppercase">Upload File</h4>
-                    <p className="text-xs font-bold text-indigo-300 uppercase tracking-widest mb-12">Excel (.xlsx) or CSV</p>
-                    <button className="px-12 py-6 bg-white border border-indigo-100 text-[10px] font-bold uppercase tracking-widest rounded-2xl hover:border-indigo-300 transition-all shadow-lg hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto" onClick={(e) => { e.stopPropagation(); downloadTemplate(); }}>
-                        <Download size={16} /> Get Template
+                    <Upload className="w-16 h-16 text-indigo-200 mx-auto mb-6 group-hover:text-indigo-500 transition-all group-hover:scale-110" />
+                    <h4 className="text-xl font-bold tracking-tight mb-2 text-indigo-900">Upload Data File</h4>
+                    <p className="text-xs font-medium text-slate-400 mb-8">Supports .xlsx and .csv formats</p>
+                    <button className="px-8 py-3 bg-white border border-indigo-200 text-[10px] font-bold uppercase tracking-widest rounded-xl hover:border-indigo-400 transition-all shadow-sm flex items-center gap-2 mx-auto" onClick={(e) => { e.stopPropagation(); downloadTemplate(); }}>
+                        <Download size={14} /> Download Template
                     </button>
                 </div>
             ) : (
