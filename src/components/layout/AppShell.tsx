@@ -19,7 +19,7 @@ export function AppShell() {
     return (
         <div className="flex h-screen overflow-hidden bg-[var(--app-bg)] text-[var(--app-text)] transition-all duration-500 font-body">
             {/* Consistent Top Title Bar - Span full width */}
-            <header className="fixed top-0 left-0 right-0 h-20 bg-white/60 dark:bg-indigo-950/40 backdrop-blur-3xl border-b border-indigo-500/10 z-[90] flex items-center justify-between px-6 lg:px-12 shadow-2xl transition-all duration-500 ring-1 ring-indigo-500/5">
+            <header className="fixed top-0 left-0 right-0 h-20 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 z-[90] flex items-center justify-between px-6 lg:px-12 transition-all duration-300 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
                 <div className="flex items-center gap-4">
                     {/* Mobile Menu Toggle */}
                     <button
@@ -37,14 +37,14 @@ export function AppShell() {
                 <div className="flex items-center gap-4 md:gap-8">
                     <button
                         onClick={toggleTheme}
-                        className="p-3 bg-white dark:bg-indigo-900/50 border border-indigo-500/10 rounded-2xl text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 hover:scale-110 active:scale-95 transition-all shadow-lg"
+                        className="p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:scale-110 active:scale-95 transition-all shadow-sm"
                     >
                         {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
                     </button>
 
-                    <div className="hidden md:flex items-center gap-4 px-6 py-3 bg-indigo-600 text-white rounded-full shadow-2xl ring-1 ring-indigo-400/30">
-                        <div className="w-2 h-2 bg-white rounded-full animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-                        <span className="text-[11px] font-black uppercase tracking-[0.2em]">Everything is Good! ✨</span>
+                    <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-500 dark:to-purple-500 rounded-full shadow-lg shadow-purple-500/20">
+                        <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-white">System Nominal</span>
                     </div>
                 </div>
             </header>
@@ -60,7 +60,7 @@ export function AppShell() {
             )}
 
             {/* Main scrollable area */}
-            <main className="flex-1 overflow-y-auto pt-20 ml-0 md:ml-80 no-scrollbar bg-[var(--app-bg)] transition-all duration-300 w-full">
+            <main className="flex-1 overflow-y-auto pt-20 ml-0 md:ml-80 no-scrollbar bg-[var(--app-bg)] transition-colors duration-300 w-full">
                 <div className="max-w-[1400px] mx-auto p-4 md:p-12">
                     <Outlet />
                 </div>

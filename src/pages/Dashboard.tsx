@@ -136,7 +136,7 @@ export default function Dashboard() {
                         </div>
                         <button
                             onClick={() => setIsFormOpen(true)}
-                            className="btn-primary flex items-center gap-3"
+                            className="px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-2xl font-black uppercase tracking-widest text-[11px] flex items-center gap-3 shadow-xl shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all"
                         >
                             <Plus size={20} />
                             Log Trade

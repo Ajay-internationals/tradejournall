@@ -49,42 +49,64 @@ export default function Journal() {
         reader.readAsBinaryString(file);
     };
 
-    const processImportedData = (data: any[]) => {
+    const processImportedData = async (data: any[]) => {
         let importedCount = 0;
-        data.forEach(row => {
-            // Basic fuzzy matching for columns
-            const date = row['Date'] || row['date'] || row['Time'] || new Date().toISOString();
-            const instrument = row['Instrument'] || row['Symbol'] || row['Script'] || 'Unknown';
-            const type = (row['Type'] || row['Side'] || 'BUY').toUpperCase().includes('B') ? 'LONG' : 'SHORT';
-            const price = parseFloat(row['Price'] || row['Avg. Price'] || '0');
-            const qty = parseFloat(row['Qty'] || row['Quantity'] || '0');
-            const pnl = parseFloat(row['PnL'] || row['Net P&L'] || row['Profit/Loss'] || '0');
+        let errorCount = 0;
 
-            // Create trade object matching our schema
-            const newTrade = {
-                date: new Date(date).toISOString(),
-                instrument: instrument,
-                asset_class: 'INDEX', // Default
-                direction: type as 'LONG' | 'SHORT',
-                entry_price: price, // Simplified for now
-                exit_price: pnl > 0 ? price + 10 : price - 10, // Dummy calc if missing
-                quantity: qty || 50,
-                stop_loss: price * 0.95,
-                take_profit: price * 1.05,
-                fees: 0,
-                net_pnl: pnl,
-                setup: 'Manual Import',
-                strategy: 'Discretionary',
-                mistakes: [],
-                tags: ['imported'],
-                notes: 'Imported from Excel',
-                psychology: 'Neutral'
-            };
+        for (const row of data) {
+            try {
+                // More comprehensive field mapping
+                const dateRaw = row['Date'] || row['date'] || row['Time'] || row['time'] || row['Trade Date'] || new Date().toISOString();
+                const instrument = row['Instrument'] || row['Symbol'] || row['Script'] || row['instrument'] || row['symbol'] || 'Unknown';
 
-            addTrade.mutate(newTrade as any); // Type assertion needed due to Omit
-            importedCount++;
-        });
-        alert(`Successfully queued ${importedCount} trades for import.`);
+                // Direction detection
+                const sideRaw = (row['Type'] || row['Side'] || row['direction'] || row['Action'] || 'LONG').toString().toUpperCase();
+                const direction = (sideRaw.includes('B') || sideRaw.includes('L')) ? 'LONG' : 'SHORT';
+
+                const entryPrice = parseFloat(row['Entry'] || row['Price'] || row['Avg. Price'] || row['entry_price'] || row['Avg Price'] || '0');
+                const exitPrice = parseFloat(row['Exit'] || row['Exit Price'] || row['exit_price'] || row['Sell Price'] || '0');
+                const qty = Math.abs(parseFloat(row['Qty'] || row['Quantity'] || row['quantity'] || '1'));
+                const fees = parseFloat(row['Fees'] || row['Brokerage'] || row['fees'] || row['brokerage'] || '0');
+
+                // PnL Calculation if missing
+                let netPnl = parseFloat(row['PnL'] || row['Net P&L'] || row['Profit/Loss'] || row['net_pnl'] || '0');
+                if (netPnl === 0 && entryPrice !== 0 && exitPrice !== 0) {
+                    const gross = direction === 'LONG' ? (exitPrice - entryPrice) * qty : (entryPrice - exitPrice) * qty;
+                    netPnl = gross - fees;
+                }
+
+                // Create trade object matching our schema
+                const newTrade = {
+                    date: new Date(dateRaw).toISOString(),
+                    instrument: instrument.toString().toUpperCase(),
+                    asset_class: 'INDEX', // Default
+                    direction: direction as 'LONG' | 'SHORT',
+                    entry_price: entryPrice,
+                    exit_price: exitPrice || (netPnl > 0 ? entryPrice + 10 : entryPrice - 10),
+                    quantity: qty,
+                    fees: fees,
+                    net_pnl: netPnl,
+                    gross_pnl: netPnl + fees,
+                    stop_loss: parseFloat(row['SL'] || row['Stop Loss'] || '0'),
+                    strategy: row['Strategy'] || 'Imported',
+                    tags: ['imported'],
+                    notes: row['Notes'] || 'Imported from file',
+                    emotion: 'NEUTRAL'
+                };
+
+                await addTrade.mutateAsync(newTrade as any);
+                importedCount++;
+            } catch (err) {
+                console.error("Failed to import row:", row, err);
+                errorCount++;
+            }
+        }
+
+        if (errorCount > 0) {
+            alert(`Import completed: ${importedCount} trades added, ${errorCount} failed.`);
+        } else {
+            alert(`Success! Successfully imported ${importedCount} trades.`);
+        }
     };
 
     const handlePasteSubmit = () => {
@@ -204,18 +226,18 @@ export default function Journal() {
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {filteredTrades.map((trade) => (
-                                <tr key={trade.id} className="hover:bg-slate-50 transition-all group">
-                                    <td className="px-10 py-8">
-                                        <div className="flex items-center gap-5">
+                                <tr key={trade.id} className="hover:bg-slate-50 transition-all group flex flex-col md:table-row border-b border-slate-100 last:border-0">
+                                    <td className="px-6 md:px-10 py-6 md:py-8">
+                                        <div className="flex items-center gap-4 md:gap-5">
                                             <div className={cn(
-                                                "w-12 h-12 rounded-2xl flex items-center justify-center text-xs font-black text-white shadow-lg",
+                                                "w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center text-[10px] md:text-xs font-black text-white shadow-lg",
                                                 trade.net_pnl >= 0 ? "bg-emerald-500" : "bg-rose-500"
                                             )}>
                                                 {trade.direction === 'LONG' ? 'UP' : 'DN'}
                                             </div>
                                             <div>
-                                                <p className="text-base font-bold text-slate-900 uppercase tracking-tight leading-none mb-2">{trade.instrument}</p>
-                                                <div className="flex items-center gap-3">
+                                                <p className="text-sm md:text-base font-bold text-slate-900 uppercase tracking-tight leading-none mb-1 md:mb-2">{trade.instrument}</p>
+                                                <div className="flex items-center gap-2 md:gap-3">
                                                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{new Date(trade.date).toLocaleDateString()}</span>
                                                     <span className="w-1 h-1 bg-slate-200 rounded-full" />
                                                     <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">{trade.asset_class}</span>
@@ -223,29 +245,32 @@ export default function Journal() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-10 py-8 text-center text-sm font-bold text-slate-600 italic tracking-tight">{trade.strategy}</td>
-                                    <td className="px-10 py-8">
-                                        <div className="flex flex-col items-center gap-1">
+                                    <td className="px-6 md:px-10 py-2 md:py-8 text-left md:text-center text-xs md:text-sm font-bold text-slate-600 italic tracking-tight hidden md:table-cell">
+                                        {trade.strategy}
+                                    </td>
+                                    <td className="px-6 md:px-10 py-2 md:py-8">
+                                        <div className="flex flex-row md:flex-col items-center gap-2">
                                             <span className={cn(
-                                                "px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest leading-none",
+                                                "px-3 md:px-4 py-1.5 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest leading-none",
                                                 trade.net_pnl >= 0 ? "bg-emerald-50 text-emerald-600 border border-emerald-100" : "bg-rose-50 text-rose-600 border border-rose-100"
                                             )}>
                                                 {trade.net_pnl >= 0 ? 'Verified Win' : 'Logged Loss'}
                                             </span>
+                                            <span className="md:hidden text-[10px] font-bold text-slate-400">— {trade.strategy}</span>
                                         </div>
                                     </td>
-                                    <td className="px-10 py-8 text-right">
-                                        <div className="flex flex-col items-end gap-1">
-                                            <p className={cn("text-lg font-black italic tracking-tighter leading-none", trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500")}>
+                                    <td className="px-6 md:px-10 py-2 md:py-8 text-left md:text-right">
+                                        <div className="flex flex-row md:flex-col items-baseline md:items-end gap-2">
+                                            <p className={cn("text-base md:text-lg font-black italic tracking-tighter leading-none", trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500")}>
                                                 {trade.net_pnl >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl)}
                                             </p>
-                                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Net Realized</p>
+                                            <p className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest">Net Realized</p>
                                         </div>
                                     </td>
-                                    <td className="px-10 py-8">
-                                        <div className="flex items-center justify-center gap-3">
-                                            <button onClick={() => handleEdit(trade)} className="p-4 bg-slate-50 text-slate-400 rounded-2xl hover:bg-white hover:text-indigo-600 hover:shadow-lg transition-all border border-transparent hover:border-indigo-100"><Edit3 size={18} /></button>
-                                            <button onClick={() => handleDelete(trade.id)} className="p-4 bg-slate-50 text-slate-400 rounded-2xl hover:bg-rose-50 hover:text-rose-600 hover:shadow-lg transition-all border border-transparent hover:border-rose-100"><Trash2 size={18} /></button>
+                                    <td className="px-6 md:px-10 py-6 md:py-8">
+                                        <div className="flex items-center justify-start md:justify-center gap-2 md:gap-3">
+                                            <button onClick={() => handleEdit(trade)} className="p-3 md:p-4 bg-slate-50 text-slate-400 rounded-xl md:rounded-2xl hover:bg-white hover:text-indigo-600 hover:shadow-lg transition-all border border-transparent hover:border-indigo-100"><Edit3 size={16} /></button>
+                                            <button onClick={() => handleDelete(trade.id)} className="p-3 md:p-4 bg-slate-50 text-slate-400 rounded-xl md:rounded-2xl hover:bg-rose-50 hover:text-rose-600 hover:shadow-lg transition-all border border-transparent hover:border-rose-100"><Trash2 size={16} /></button>
                                         </div>
                                     </td>
                                 </tr>

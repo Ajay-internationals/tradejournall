@@ -46,7 +46,8 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
         },
         {
             label: 'GROWTH', items: [
-                { icon: <Users size={20} />, label: 'Mentor Hub', path: '/mentorship' },
+                { icon: <Users size={20} />, label: 'Mentor Hub', path: '/student-mentor-hub' },
+                { icon: <Calendar size={20} />, label: 'Mentor Admin', path: '/mentorship' },
                 { icon: <BookOpen size={20} />, label: 'Mentor Guidance', path: '/mentor-guidance' },
                 { icon: <Trophy size={20} />, label: 'Challenges', path: '/challenges' },
                 { icon: <Rocket size={20} />, label: 'Roadmap', path: '/roadmap' },
@@ -65,7 +66,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
 
     return (
         <aside className={cn(
-            "w-80 h-[calc(100vh-5rem)] bg-white border-r border-slate-200 flex flex-col fixed left-0 top-20 z-40 font-body overflow-y-auto no-scrollbar pb-4 transition-transform duration-300 md:translate-x-0",
+            "w-80 h-[calc(100vh-5rem)] bg-white dark:bg-[#070b14] border-r border-slate-200 dark:border-white/5 flex flex-col fixed left-0 top-20 z-40 overflow-y-auto no-scrollbar pb-4 transition-transform duration-300 md:translate-x-0 font-body",
             isOpen ? "translate-x-0" : "-translate-x-full"
         )}>
             {/* Header / Logo removed - handled by AppShell */}
@@ -84,22 +85,22 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                                         key={item.path}
                                         onClick={() => navigate(item.path)}
                                         className={cn(
-                                            "w-full flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-300 group",
+                                            "w-full flex items-center justify-between px-6 py-3 rounded-xl transition-all duration-300 group relative",
                                             isActive
-                                                ? "bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-sm"
-                                                : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                                                ? "bg-gradient-to-r from-violet-600/10 to-purple-600/10 dark:from-violet-600/20 dark:to-purple-600/20 text-violet-600 dark:text-violet-400"
+                                                : "text-slate-500 hover:bg-slate-50 dark:hover:bg-white/5 dark:text-slate-400 dark:hover:text-white hover:text-slate-900"
                                         )}
                                     >
                                         <div className="flex items-center gap-4">
                                             <div className={cn(
-                                                "p-1.5 rounded-xl transition-colors",
-                                                isActive ? "bg-white shadow-sm" : "bg-transparent group-hover:bg-whiteScale"
+                                                "transition-colors",
+                                                isActive ? "text-violet-600 dark:text-violet-500" : "text-slate-400 group-hover:text-slate-600 dark:group-hover:text-white"
                                             )}>
                                                 {item.icon}
                                             </div>
                                             <span className="text-sm font-bold tracking-tight">{item.label}</span>
                                         </div>
-                                        {isActive && <div className="w-1.5 h-6 bg-indigo-600 rounded-full" />}
+                                        {isActive && <div className="w-1 h-5 bg-gradient-to-b from-violet-500 to-purple-500 rounded-full shadow-[0_0_10px_rgba(139,92,246,0.5)]" />}
                                     </button>
                                 );
                             })}
@@ -110,23 +111,23 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
 
             {/* User Profile / Status */}
             <div className="p-8 space-y-4">
-                <div className="p-6 bg-slate-50 border border-slate-100 rounded-[2rem] flex flex-col items-center gap-4 text-center">
-                    <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-slate-100 overflow-hidden">
+                <div className="p-6 bg-white dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-[2.5rem] flex flex-col items-center gap-4 text-center transition-colors">
+                    <div className="w-14 h-14 bg-gradient-to-br from-violet-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl border border-white/20 dark:border-white/10 overflow-hidden">
                         {profile?.avatar_url ? (
                             <img src={profile.avatar_url} alt="User" className="w-full h-full object-cover" />
                         ) : (
-                            <Zap className="text-indigo-600 fill-indigo-600" size={24} />
+                            <Zap className="text-white fill-white" size={24} />
                         )}
                     </div>
                     <div>
-                        <p className="font-bold text-slate-900 leading-none mb-2">{profile?.full_name?.split(' ')[0] || 'Trader'}</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{profile?.plan || 'STANDARD'} STREAM</p>
+                        <p className="font-bold text-slate-900 dark:text-white leading-none mb-2">{profile?.full_name?.split(' ')[0] || 'Trader'}</p>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{profile?.plan || 'STANDARD'}</p>
                     </div>
                 </div>
 
                 <button
                     onClick={() => signOut()}
-                    className="w-full flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-2xl transition-all font-bold text-sm"
+                    className="w-full flex items-center gap-4 px-6 py-4 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-2xl transition-all font-bold text-sm"
                 >
                     <LogOut size={20} />
                     Logout Account

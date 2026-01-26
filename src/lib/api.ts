@@ -191,6 +191,43 @@ export const api = {
             return data;
         }
     },
+    rules: {
+        list: async (userId: string) => {
+            const { data, error } = await supabase
+                .from('rules')
+                .select('*')
+                .eq('user_id', userId)
+                .order('created_at', { ascending: true });
+            if (error) throw error;
+            return data;
+        },
+        create: async (userId: string, text: string) => {
+            const { data, error } = await supabase
+                .from('rules')
+                .insert({ user_id: userId, text } as any)
+                .select()
+                .single();
+            if (error) throw error;
+            return data;
+        },
+        toggle: async (id: string, completed: boolean) => {
+            const { data, error } = await supabase
+                .from('rules')
+                .update({ completed } as never)
+                .eq('id', id)
+                .select()
+                .single();
+            if (error) throw error;
+            return data;
+        },
+        delete: async (id: string) => {
+            const { error } = await supabase
+                .from('rules')
+                .delete()
+                .eq('id', id);
+            if (error) throw error;
+        }
+    },
     users: {
         updateProfile: async (userId: string, updates: { full_name?: string, avatar_url?: string, phone_number?: string }) => {
             const { data, error } = await supabase

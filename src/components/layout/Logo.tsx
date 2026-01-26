@@ -12,7 +12,7 @@ export function Logo({ className, iconOnly = false }: { className?: string; icon
                         width="80"
                         height="80"
                         rx="24"
-                        className="fill-indigo-600"
+                        className="fill-indigo-700"
                     />
                     {/* Custom Lightning Bolt Path - Unique design */}
                     <path
@@ -23,7 +23,7 @@ export function Logo({ className, iconOnly = false }: { className?: string; icon
                 </svg>
             </div>
             {!iconOnly && (
-                <span className="text-xl font-black tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
+                <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">
                     Trade Adhyayan
                 </span>
             )}

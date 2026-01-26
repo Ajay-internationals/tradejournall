@@ -79,14 +79,24 @@ export function calculateStats(trades: Trade[], masterCapital: number = 0): Trad
 export function getRealQuantity(symbol: string, quantity: number): number {
     const sym = symbol.toUpperCase();
 
-    // If the quantity is already a lot-size (e.g. 50, 75, 25), we don't multiply
-    // This handles users who PASTE real quantities vs users who ENTER lot counts
-    if (quantity >= 10) return quantity;
+    // Mapping of common Indian indices to their current lot sizes
+    const lotSizes: Record<string, number> = {
+        'NIFTY': 25,
+        'BANKNIFTY': 15,
+        'FINNIFTY': 25,
+        'SENSEX': 10,
+        'MIDCAPNIFTY': 50,
+        'BANKEX': 15,
+    };
 
-    if (sym.includes('NIFTY')) return quantity * 65;
-    if (sym.includes('SENSEX')) return quantity * 20;
-    if (sym.includes('BANKNIFTY')) return quantity * 15;
-    if (sym.includes('FINNIFTY')) return quantity * 25;
+    for (const [index, size] of Object.entries(lotSizes)) {
+        if (sym.includes(index)) {
+            // If quantity < 100, we assume it's number of lots (except for stocks)
+            // If quantity >= 100, we assume it's total shares
+            if (quantity < 100) return quantity * size;
+            return quantity;
+        }
+    }
 
     return quantity;
 }

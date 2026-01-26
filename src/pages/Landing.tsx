@@ -18,27 +18,27 @@ export default function Landing() {
             <PublicHeader />
 
             {/* Hero Section */}
-            <section className="relative pt-40 pb-20 px-6 overflow-hidden">
+            <section className="relative pt-20 md:pt-40 pb-10 md:pb-20 px-6 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-to-b from-indigo-50 to-transparent blur-[120px] rounded-full -z-10" />
 
                 <div className="max-w-6xl mx-auto text-center">
-                    <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-indigo-50 border border-indigo-100 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-indigo-50 border border-indigo-100 mb-8 md:mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         <Sparkles className="w-5 h-5 text-indigo-600" />
                         <span className="text-xs md:text-sm font-bold tracking-wide text-indigo-600">The Ultimate Trading Journal for Indian Markets ✨</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1] text-slate-900">
+                    <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight mb-4 md:mb-8 leading-[1.1] text-slate-900">
                         Refine Your Edge.<br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-600 to-indigo-600">Trade Like a Pro.</span>
                     </h1>
 
-                    <h2 className="text-xl md:text-3xl font-semibold text-slate-600 mb-10 max-w-4xl mx-auto leading-relaxed">
+                    <h2 className="text-lg md:text-3xl font-semibold text-slate-600 mb-6 md:mb-10 max-w-4xl mx-auto leading-relaxed">
                         Automatic broker sync, psychology tracking, and institutional-grade analytics for serious traders.
                     </h2>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 md:mb-16">
                         <button
-                            onClick={() => navigate('/login')}
+                            onClick={() => navigate('/login', { state: { defaultSignUp: true } })}
                             className="w-full sm:w-auto px-10 py-5 bg-indigo-600 text-white rounded-2xl font-bold transition-all hover:bg-indigo-700 hover:scale-105 shadow-xl shadow-indigo-500/25 flex items-center justify-center gap-3"
                         >
                             Get Started for Free
@@ -65,13 +65,13 @@ export default function Landing() {
             </section>
 
             {/* The Problem Section */}
-            <section className="py-24 px-6 bg-slate-50/50">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <section className="py-12 md:py-24 px-6 bg-slate-50/50">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6 md:mb-8 leading-tight">
                             Stop making the same mistakes over and over.
                         </h2>
-                        <div className="space-y-6 mb-12">
+                        <div className="space-y-6 mb-10 md:mb-12">
                             <ProblemItem text="Excel journals take too much time to maintain" />
                             <ProblemItem text="Hard to spot emotional patterns and bias" />
                             <ProblemItem text="No visibility on strategy-wise performance" />
@@ -109,11 +109,11 @@ export default function Landing() {
             </section>
 
             {/* Key Features Section */}
-            <section id="features" className="py-24 px-6 bg-white">
+            <section id="features" className="py-12 md:py-24 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-20">
+                    <div className="text-center mb-12 md:mb-20">
                         <h2 className="text-indigo-600 font-bold tracking-widest uppercase text-sm mb-4">Core Edge</h2>
-                        <h3 className="text-4xl md:text-6xl font-black">Everything you need to grow.</h3>
+                        <h3 className="text-3xl md:text-6xl font-black">Everything you need to grow.</h3>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -126,10 +126,10 @@ export default function Landing() {
             </section>
 
             {/* Pricing Section */}
-            <section id="pricing" className="py-24 px-6 bg-slate-50/50">
+            <section id="pricing" className="py-12 md:py-24 px-6 bg-slate-50/50">
                 <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-6xl font-black mb-4">Fair Pricing</h2>
+                    <div className="text-center mb-12 md:mb-16">
+                        <h2 className="text-3xl md:text-6xl font-black mb-4">Fair Pricing</h2>
                         <p className="text-slate-500 text-lg font-medium">Invest in your discipline, not just your capital.</p>
                     </div>
 
@@ -165,14 +165,14 @@ export default function Landing() {
             </section>
 
             {/* Final CTA Section */}
-            <section className="py-24 px-6">
-                <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[4rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-indigo-500/20">
+            <section className="py-12 md:py-24 px-6">
+                <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[4rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-indigo-500/20">
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-indigo-700 -z-10" />
                     <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 blur-3xl rounded-full" />
 
                     <h2 className="text-4xl md:text-6xl font-black text-white mb-8">Ready to master the markets?</h2>
                     <button
-                        onClick={() => navigate('/login')}
+                        onClick={() => navigate('/login', { state: { defaultSignUp: true } })}
                         className="px-12 py-5 bg-white text-indigo-600 rounded-2xl font-black hover:scale-105 transition-all shadow-2xl"
                     >
                         Start Your Free Trial
@@ -289,7 +289,7 @@ function PricingCard({ title, price, period, description, features, isFeatured =
             </div>
 
             <button
-                onClick={() => navigate('/login')}
+                onClick={() => navigate('/login', { state: { defaultSignUp: true } })}
                 className={cn(
                     "w-full py-5 rounded-2xl font-bold transition-all",
                     isFeatured

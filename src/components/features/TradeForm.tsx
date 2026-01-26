@@ -212,7 +212,11 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
 
                     <div className="grid grid-cols-2 gap-6">
                         <InputGroup label="Quantity" name="quantity" value={formData.quantity} onChange={handleChange} />
-                        <InputGroup label="Baseline Cap" name="initial_capital" value={formData.initial_capital} onChange={handleChange} isBlue icon={<Wallet size={12} />} />
+                        <InputGroup label="Brokerage/Fees" name="fees" value={formData.fees} onChange={handleChange} isRed />
+                    </div>
+
+                    <div className="grid grid-cols-1">
+                        <InputGroup label="Baseline Capital / Equity" name="initial_capital" value={formData.initial_capital} onChange={handleChange} isBlue icon={<Wallet size={12} />} />
                     </div>
 
                     <div className="space-y-6 pt-4">

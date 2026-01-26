@@ -68,16 +68,31 @@ export default function MentorGuidance() {
                             <div className="absolute top-0 right-0 p-8 opacity-5">
                                 <Zap size={100} />
                             </div>
-                            <h3 className="text-xl font-black mb-8 border-b border-slate-100 pb-6 uppercase tracking-widest text-indigo-600">Mentor Plan Inclusions</h3>
+                            <h3 className="text-xl font-black mb-8 border-b border-slate-100 dark:border-slate-800 pb-6 uppercase tracking-widest text-indigo-600">Mentor Plan Inclusions</h3>
                             <div className="space-y-4">
                                 <PlanFeature text="Multiple trading accounts (self + students)" />
                                 <PlanFeature text="Student performance tracking dashboard" />
-                                <PlanFeature text="Community access with professional moderation" />
                                 <PlanFeature text="Weekly Structured Review (Strategy & Discipline)" />
                                 <PlanFeature text="End-of-Day (EOD) Review notes on logged trades" />
                                 <PlanFeature text="Behavioral Feedback Heatmaps" />
                                 <PlanFeature text="Improvement checklist & Action points" />
                             </div>
+
+                            <div className="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="px-3 py-1 bg-amber-50 dark:bg-amber-500/10 rounded-full border border-amber-200 dark:border-amber-500/20">
+                                        <span className="text-[10px] font-black text-amber-600 uppercase tracking-widest">New: Mentor+</span>
+                                    </div>
+                                    <span className="text-sm font-bold text-slate-400">₹9,999 / mo</span>
+                                </div>
+                                <div className="space-y-3">
+                                    <PlanFeature text="1× monthly 1:1 video call" />
+                                    <PlanFeature text="Priority EOD reviews" />
+                                    <PlanFeature text="Custom rulebook creation" />
+                                    <PlanFeature text="Personalized improvement roadmap" />
+                                </div>
+                            </div>
+
                             <div className="mt-12 p-6 bg-indigo-50 rounded-2xl">
                                 <p className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-2 italic underline">Limited Capacity</p>
                                 <p className="text-xs font-bold text-slate-500">Mentors maintain a restricted ratio (1:30) to ensure high-quality, personalized attention for every student.</p>

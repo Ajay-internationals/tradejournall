@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Mail, Lock, ArrowRight, Loader2, User as UserIcon, Phone, Sparkles, TrendingUp, Wallet, Globe } from 'lucide-react';
@@ -10,6 +10,7 @@ export default function Login() {
     const { user } = useAuth();
     const { theme } = useTheme();
     const navigate = useNavigate();
+    const { state } = useLocation();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,7 +19,7 @@ export default function Login() {
     const [experience, setExperience] = useState('BEGINNER');
     const [capital, setCapital] = useState('100000');
     const [referralSource, setReferralSource] = useState('GOOGLE');
-    const [isSignUp, setIsSignUp] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(state?.defaultSignUp || false);
 
     useEffect(() => {
         if (user) {
@@ -33,7 +34,7 @@ export default function Login() {
         setLoading(true);
         try {
             if (isSignUp) {
-                const { error } = await supabase.auth.signUp({
+                const { data, error } = await supabase.auth.signUp({
                     email,
                     password,
                     options: {
@@ -41,27 +42,42 @@ export default function Login() {
                             full_name: fullName,
                             phone_number: phone,
                             experience: experience,
-                            initial_capital: parseFloat(capital),
+                            initial_capital: parseFloat(capital) || 0,
                             referral_source: referralSource
                         }
                     }
                 });
                 if (error) throw error;
-                alert('Check your email for the confirmation link!');
+                if (data.user && data.session) {
+                    navigate('/dashboard');
+                } else {
+                    alert('Registration successful! Please check your email for a confirmation link before logging in.');
+                }
             } else {
-                const { error } = await supabase.auth.signInWithPassword({
+                const { data, error } = await supabase.auth.signInWithPassword({
                     email,
                     password,
                 });
-                if (error) throw error;
-                navigate('/dashboard');
+
+                if (error) {
+                    if (error.message.includes('Email not confirmed')) {
+                        throw new Error('Please confirm your email address before logging in. Check your inbox (and spam folder) for the verification link.');
+                    }
+                    throw error;
+                }
+
+                if (data.session) {
+                    navigate('/dashboard');
+                }
             }
         } catch (error: any) {
-            alert(error.message);
+            console.error('Auth Error:', error);
+            alert(error.message || 'An unexpected error occurred during authentication.');
         } finally {
             setLoading(false);
         }
     };
+
 
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-8 font-body">

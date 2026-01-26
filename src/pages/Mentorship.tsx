@@ -73,7 +73,7 @@ export default function Mentorship() {
             </header>
 
             {/* Sub-Navigation */}
-            <div className="flex gap-2 p-1 bg-slate-100/50 rounded-2xl border border-slate-200 w-fit">
+            <div className="flex gap-2 p-1 bg-white rounded-2xl border border-slate-200 w-fit">
                 <SubTab active={activeTab === 'dashboard'} onClick={() => setActiveTab('dashboard')} icon={<Activity size={16} />} label="Overview" />
                 <SubTab active={activeTab === 'students'} onClick={() => setActiveTab('students')} icon={<Users size={16} />} label="Students" />
                 <SubTab active={activeTab === 'weekly'} onClick={() => setActiveTab('weekly')} icon={<Calendar size={16} />} label="Weekly" />
@@ -118,7 +118,7 @@ export default function Mentorship() {
 
 function OnboardingStep({ label, value }: any) {
     return (
-        <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center">
+        <div className="p-6 bg-white border border-slate-200 rounded-2xl text-center">
             <p className="text-[10px] font-bold uppercase text-indigo-600 mb-1">{label}</p>
             <p className="text-xs font-bold text-slate-900">{value}</p>
         </div>
@@ -179,7 +179,7 @@ function StudentCard({ student, onClick, wide = false }: any) {
             </div>
 
             {!wide && (
-                <button className="w-full py-3 bg-slate-50 border border-slate-100 rounded-xl text-[9px] font-bold uppercase tracking-widest text-slate-400 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all">
+                <button className="w-full py-3 bg-white border border-slate-200 rounded-xl text-[9px] font-bold uppercase tracking-widest text-slate-400 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all">
                     Open Profile
                 </button>
             )}
@@ -244,7 +244,7 @@ function ReviewQueue() {
     return (
         <div className="space-y-4">
             {[1, 2].map(i => (
-                <div key={i} className="flex items-center justify-between p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:border-indigo-200 transition-all">
+                <div key={i} className="flex items-center justify-between p-5 bg-white border border-slate-200 rounded-2xl hover:border-indigo-200 transition-all">
                     <div className="flex gap-4 items-center">
                         <div className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-400 font-bold text-[10px]">#Log-293</div>
                         <p className="text-sm font-bold text-slate-800">New Trade Log by Student-00{i}</p>
@@ -299,7 +299,7 @@ function StudentProfileView({ student, onBack }: any) {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div className="p-10 bg-white border border-slate-200 shadow-sm rounded-[2.5rem]">
                         <h3 className="text-lg font-bold mb-8">Performance Curve</h3>
-                        <div className="h-64 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center font-bold text-slate-300 uppercase tracking-widest italic">Chart Rendering Hub...</div>
+                        <div className="h-64 bg-white border border-slate-200 rounded-2xl flex items-center justify-center font-bold text-slate-300 uppercase tracking-widest italic">Chart Rendering Hub...</div>
                     </div>
                     <div className="p-10 bg-white border border-slate-200 shadow-sm rounded-[2.5rem]">
                         <h3 className="text-lg font-bold mb-8">Strategy Efficiency</h3>
@@ -338,7 +338,7 @@ function ReviewEntryCard() {
             </div>
             <textarea
                 placeholder="Feedback summary for the student..."
-                className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-6 text-sm font-medium min-h-[140px] mb-8 focus:border-indigo-600 outline-none transition-all placeholder:text-slate-300"
+                className="w-full bg-white border border-slate-200 rounded-2xl p-6 text-sm font-medium min-h-[140px] mb-8 focus:border-indigo-600 outline-none transition-all placeholder:text-slate-300"
             ></textarea>
             <button className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-lg shadow-indigo-500/10 hover:bg-slate-900 transition-all">
                 Publish Review
