@@ -32,27 +32,27 @@ export default function Strategies() {
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
             {/* Page Header */}
-            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm">
+            <header className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
                 <div className="flex items-center gap-6">
-                    <div className="w-20 h-20 bg-indigo-600 rounded-[2.2rem] flex items-center justify-center shadow-2xl shadow-indigo-200 group">
-                        <Target className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
+                    <div className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-3xl flex items-center justify-center shadow-xl shadow-indigo-100 group transition-transform hover:rotate-3">
+                        <Target className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-bold font-heading tracking-tighter text-slate-900 uppercase">Strategy Labs</h1>
-                        <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.4em] uppercase mt-2 opacity-50 italic">High-Fidelity Edge Matrix</p>
+                        <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">Strategy Labs</h1>
+                        <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.3em] uppercase mt-2 opacity-50 italic">High-Fidelity Edge Matrix</p>
                     </div>
                 </div>
                 <button
                     onClick={() => setIsFormOpen(true)}
-                    className="px-10 py-5 bg-indigo-600 rounded-full text-[10px] font-bold font-heading uppercase tracking-[0.2em] flex items-center gap-3 shadow-2xl shadow-indigo-100 hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all text-white"
+                    className="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-black font-heading rounded-2xl text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl shadow-indigo-100 hover:scale-105 active:scale-95 transition-all"
                 >
-                    <Plus size={20} />
+                    <Plus size={18} />
                     New Architect
                 </button>
             </header>
 
             {/* Strategy Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {strategiesWithStats.map((strategy) => (
                     <StrategyCard key={strategy.name} strategy={strategy} />
                 ))}
@@ -60,12 +60,12 @@ export default function Strategies() {
                 {/* Add New Strategy Placeholder */}
                 <button
                     onClick={() => setIsFormOpen(true)}
-                    className="flex flex-col items-center justify-center p-14 border-4 border-dashed border-slate-200 rounded-[4rem] hover:border-indigo-400 hover:bg-slate-50 transition-all group min-h-[420px] bg-white shadow-inner"
+                    className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-slate-200 rounded-[3rem] hover:border-indigo-400 hover:bg-indigo-50/10 transition-all group min-h-[380px] bg-white shadow-sm"
                 >
-                    <div className="w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-lg">
-                        <Plus size={32} className="text-indigo-600" />
+                    <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-inner">
+                        <Plus size={24} className="text-slate-400 group-hover:text-indigo-600" />
                     </div>
-                    <span className="text-[10px] font-bold font-heading text-indigo-400 uppercase tracking-[0.5em] opacity-60 group-hover:opacity-100 transition-opacity">Deploy Protocol</span>
+                    <span className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-[0.4em] opacity-60 group-hover:opacity-100 transition-opacity">Deploy Protocol</span>
                 </button>
             </div>
 
@@ -84,67 +84,66 @@ function StrategyCard({ strategy }: any) {
     );
 
     return (
-        <div className="p-12 bg-white border border-slate-200 rounded-[4rem] hover:border-indigo-400 transition-all group relative overflow-hidden flex flex-col shadow-sm hover:scale-[1.02] duration-500 font-heading">
+        <div className="p-10 bg-white border border-slate-200 rounded-[3rem] hover:border-indigo-200 transition-all group relative overflow-hidden flex flex-col shadow-sm hover:scale-[1.01] duration-500 font-heading">
             <div className="relative z-10 flex flex-col h-full leading-none">
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center text-indigo-600 shadow-inner">
-                            <TrendingUp size={24} />
+                        <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                            <TrendingUp size={20} />
                         </div>
-                        <h3 className="text-2xl font-bold font-heading tracking-tighter text-slate-900 uppercase">{name}</h3>
+                        <h3 className="text-2xl font-black font-heading tracking-tight text-slate-900 uppercase">{name}</h3>
                     </div>
                     {stats.profitFactor >= 2 && (
-                        <div className="px-3 py-1 bg-emerald-500 text-white rounded-lg shadow-xl shadow-emerald-500/20 animate-pulse">
-                            <span className="text-[8px] font-bold font-heading uppercase tracking-widest">Master Edge</span>
+                        <div className="px-3 py-1 bg-emerald-500 text-white rounded-lg shadow-lg shadow-emerald-100 animate-pulse">
+                            <span className="text-[7px] font-black font-heading uppercase tracking-widest">Master Edge</span>
                         </div>
                     )}
                 </div>
 
-                <p className="text-indigo-900/40 text-xs mb-12 leading-relaxed flex-1 font-bold font-heading uppercase tracking-tight">
+                <p className="text-slate-400 text-[11px] mb-10 leading-relaxed flex-1 font-bold uppercase tracking-tight opacity-60">
                     "{description}"
                 </p>
 
-                <div className="grid grid-cols-3 gap-6 py-8 border-t border-indigo-500/10">
-                    <div className="space-y-2">
-                        <p className="text-[9px] font-bold font-heading text-indigo-500/50 uppercase tracking-widest">Alpha (%)</p>
+                <div className="grid grid-cols-3 gap-4 pb-8 border-b border-slate-50">
+                    <div className="space-y-1">
+                        <p className="text-[8px] font-black font-heading text-slate-400 uppercase tracking-widest opacity-40">Alpha</p>
                         <p className={cn(
-                            "text-xl font-bold font-heading tracking-tighter",
+                            "text-lg font-black font-heading tracking-tight",
                             stats.winRate >= 50 ? "text-emerald-500" : "text-rose-500"
                         )}>{stats.winRate.toFixed(1)}%</p>
                     </div>
-                    <div className="space-y-2">
-                        <p className="text-[9px] font-bold font-heading text-indigo-500/50 uppercase tracking-widest">P Factor</p>
+                    <div className="space-y-1">
+                        <p className="text-[8px] font-black font-heading text-slate-400 uppercase tracking-widest opacity-40">P. Factor</p>
                         <p className={cn(
-                            "text-xl font-bold font-heading tracking-tighter",
-                            stats.profitFactor >= 1.5 ? "text-indigo-600" : "text-rose-400"
+                            "text-lg font-black font-heading tracking-tight",
+                            stats.profitFactor >= 1.5 ? "text-indigo-600" : "text-slate-400"
                         )}>{stats.profitFactor.toFixed(2)}</p>
                     </div>
-                    <div className="space-y-2">
-                        <p className="text-[9px] font-bold font-heading text-indigo-500/50 uppercase tracking-widest">Sync Log</p>
-                        <p className="text-xl font-bold font-heading tracking-tighter text-slate-900">{stats.totalTrades}</p>
+                    <div className="space-y-1">
+                        <p className="text-[8px] font-black font-heading text-slate-400 uppercase tracking-widest opacity-40">Frequency</p>
+                        <p className="text-lg font-black font-heading tracking-tight text-slate-900">{stats.totalTrades}</p>
                     </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-6 gap-6">
-                    <span className="text-[9px] font-bold font-heading text-indigo-500/40 uppercase tracking-widest">1:{stats.avgRR.toFixed(2)} R:R Delta</span>
-                    <div className="flex gap-4">
+                <div className="flex items-center justify-between pt-6">
+                    <span className="text-[8px] font-black font-heading text-slate-300 uppercase tracking-widest">1:{stats.avgRR.toFixed(2)} R:R Delta</span>
+                    <div className="flex gap-3">
                         <button
                             onClick={() => setShowTrades(!showTrades)}
-                            className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl text-[9px] font-bold font-heading uppercase tracking-widest hover:bg-black transition-all shadow-xl"
+                            className="flex items-center gap-2 px-5 py-2.5 bg-slate-900 text-white rounded-xl text-[9px] font-black font-heading uppercase tracking-widest hover:bg-indigo-600 transition-all shadow-xl active:scale-95"
                         >
-                            <Activity size={12} />
-                            {showTrades ? 'Secure' : 'Reveal'} Stream
+                            <Activity size={10} />
+                            {showTrades ? 'Secure' : 'Reveal'}
                         </button>
                         <button
                             onClick={() => {
                                 const url = `${window.location.origin}/share/strategy/${name.toLowerCase().replace(/\s+/g, '-')}`;
                                 navigator.clipboard.writeText(url);
-                                alert('Strategy Stream URL Copied to Clipboard!');
+                                alert('Strategy Stream URL Copied!');
                             }}
-                            className="flex items-center gap-2 text-[9px] font-bold font-heading text-indigo-500 uppercase tracking-widest hover:text-indigo-800 transition-colors"
+                            className="w-10 h-10 flex items-center justify-center bg-slate-50 border border-slate-100 text-slate-400 rounded-xl hover:text-indigo-600 hover:bg-white transition-all"
                         >
-                            <Share2 size={12} />
-                            Share
+                            <Share2 size={14} />
                         </button>
                     </div>
                 </div>
