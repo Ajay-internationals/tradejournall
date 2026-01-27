@@ -75,7 +75,7 @@ export default function Landing() {
                     </h1>
 
                     <h2 className="text-lg md:text-3xl font-semibold text-slate-600 mb-6 md:mb-10 max-w-4xl mx-auto leading-relaxed">
-                        Instant clipboard sync, psychology tracking, and institutional-grade analytics for serious traders.
+                        Instant Trade Import, psychology tracking, and institutional-grade analytics for serious traders.
                     </h2>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 md:mb-16">
@@ -100,7 +100,7 @@ export default function Landing() {
                     {/* Trust Badges */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8 border-t border-slate-100 max-w-3xl mx-auto">
                         <TrustBadge icon={<CheckCircle2 className="text-emerald-500 w-5 h-5" />} text="100% Secure & Private" />
-                        <TrustBadge icon={<Zap className="text-indigo-500 w-5 h-5" />} text="Instant Clipboard Sync" />
+                        <TrustBadge icon={<Zap className="text-indigo-500 w-5 h-5" />} text="Instant Trade Import" />
                         <TrustBadge icon={<Lock className="text-sky-500 w-5 h-5" />} text="Bank-Grade Encryption" />
                     </div>
                 </div>
@@ -159,7 +159,7 @@ export default function Landing() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <MiniFeature icon={<Zap className="text-indigo-600" />} title="Quick Paste" text="Copy your trade book and paste directly to journal." />
+                        <MiniFeature icon={<Zap className="text-indigo-600" />} title="Instant Import" text="Copy your trade book and paste directly to journal." />
                         <MiniFeature icon={<Target className="text-emerald-500" />} title="Strategy Analysis" text="Deep dive into setup-wise win rate & ROI." />
                         <MiniFeature icon={<BarChart className="text-sky-600" />} title="Visual Equity" text="Beautiful performance charts and telemetry." />
                         <MiniFeature icon={<Brain className="text-purple-600" />} title="Psychology" text="Track emotions to prevent revenge trading." />

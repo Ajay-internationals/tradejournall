@@ -1,9 +1,9 @@
 import { useTrades } from '@/hooks/useTrades';
 import { useAuth } from '@/context/AuthContext';
 import { useRazorpay } from '@/hooks/useRazorpay';
-import { formatCurrency } from '@/lib/stats';
+import { calculateStats, formatCurrency } from '@/lib/stats';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, CartesianGrid, PieChart, Pie } from 'recharts';
-import { Lock, Zap, BarChart2, Shield, Brain, Target, TrendingDown, PieChart as PieIcon, Activity, Clock, TrendingUp, LayoutGrid, ChevronUp } from 'lucide-react';
+import { Lock, Zap, BarChart2, Shield, Brain, Target, TrendingDown, PieChart as PieIcon, Activity, Clock, TrendingUp, LayoutGrid, ChevronUp, Plus, XCircle, Wallet, Trophy, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { EquityChart } from '@/components/features/EquityChart';
 import { useState } from 'react';
@@ -96,10 +96,9 @@ export default function Analytics() {
     const assetData = Object.entries(assetStats).map(([name, value]) => ({ name, value }));
     const PIE_COLORS = ['#6366f1', '#a855f7', '#0ea5e9', '#10b981', '#f43f5e'];
 
+    const stats = calculateStats(trades, profile?.initial_capital || 0);
+
     const bestDay = [...dayData].sort((a, b) => b.value - a.value)[0];
-    const avgWinSize = trades.filter(t => t.net_pnl > 0).length > 0
-        ? trades.filter(t => t.net_pnl > 0).reduce((acc, curr) => acc + curr.net_pnl, 0) / trades.filter(t => t.net_pnl > 0).length
-        : 0;
 
     if (!isPremium) {
         return (
@@ -147,105 +146,129 @@ export default function Analytics() {
             </div>
 
             {activeTab === 'performance' && (
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 leading-none">
-                    <div className="lg:col-span-2 space-y-8">
-                        <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
-                            <div className="flex items-center justify-between mb-10">
-                                <div>
-                                    <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Equity Curve</h3>
-                                    <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Normalized Capital Flux</p>
-                                </div>
-                            </div>
-                            <div className="h-[400px]">
-                                <EquityChart trades={trades} initialCapital={profile?.initial_capital || 100000} />
-                            </div>
-                        </div>
+                <div className="space-y-10">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 leading-none">
+                        <StatCard label="Invested Amount" value={formatCurrency(profile?.initial_capital || 0)} icon={<Wallet size={20} />} />
+                        <StatCard label="Total P/L" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? 'emerald' : 'rose'} icon={stats.netPnl >= 0 ? <TrendingUp size={20} /> : <TrendingDown size={20} />} />
+                        <StatCard label="Avg R:R" value={`${stats.avgRR.toFixed(2)}x`} icon={<Target size={20} />} />
+                        <StatCard label="Profit Factor" value={`${stats.profitFactor.toFixed(2)}x`} icon={<Activity size={20} />} />
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <MiniInsightCard label="Best Session" value={bestDay.name} icon={<Clock size={20} />} />
-                            <MiniInsightCard label="Average Alpha" value={formatCurrency(avgWinSize)} icon={<TrendingUp size={20} />} />
-                        </div>
+                        <StatCard label="Best Trade" value={formatCurrency(stats.bestTrade)} variant="emerald" icon={<Trophy size={20} />} />
+                        <StatCard label="Worst Trade" value={formatCurrency(stats.worstTrade)} variant="rose" icon={<TrendingDown size={20} />} />
+                        <StatCard label="Total Trades" value={stats.totalTrades} icon={<BarChart2 size={20} />} />
+                        <StatCard label="Winning Trades" value={stats.winningTrades} variant="emerald" icon={<CheckCircle2 size={20} />} />
 
-                        <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
-                            <div className="flex items-center justify-between mb-10">
-                                <div>
-                                    <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Execution Timing</h3>
-                                    <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Daily Performance Alpha</p>
-                                </div>
-                            </div>
-                            <div className="h-[350px]">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <BarChart data={dayData}>
-                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                                        <XAxis dataKey="name" fontSize={10} fontWeight="800" stroke="#94a3b8" tickLine={false} axisLine={false} dy={10} />
-                                        <YAxis fontSize={10} fontWeight="800" stroke="#94a3b8" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} dx={-10} />
-                                        <Tooltip
-                                            cursor={{ fill: '#f8fafc' }}
-                                            contentStyle={{
-                                                backgroundColor: '#fff',
-                                                border: '1px solid #e2e8f0',
-                                                borderRadius: '1.5rem',
-                                                fontWeight: '900',
-                                                fontSize: '10px',
-                                                boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
-                                            }}
-                                        />
-                                        <Bar dataKey="value" radius={[8, 8, 8, 8]} barSize={40}>
-                                            {dayData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={entry.value >= 0 ? '#10b981' : '#f43f5e'} />
-                                            ))}
-                                        </Bar>
-                                    </BarChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </div>
+                        <StatCard label="Losing Trades" value={stats.losingTrades} variant="rose" icon={<XCircle size={20} />} />
+                        <StatCard label="Win %" value={`${stats.winRate.toFixed(1)}%`} variant={stats.winRate >= 50 ? 'emerald' : 'indigo'} icon={<Target size={20} />} />
+                        <StatCard label="Total Profit" value={formatCurrency(stats.totalProfit)} variant="emerald" icon={<TrendingUp size={20} />} />
+                        <StatCard label="Total Loss" value={formatCurrency(stats.totalLoss)} variant="rose" icon={<TrendingDown size={20} />} />
+
+                        <StatCard label="Average Profit" value={formatCurrency(stats.avgWin)} variant="emerald" icon={<Plus size={20} />} />
+                        <StatCard label="Average Loss" value={formatCurrency(stats.avgLoss)} variant="rose" icon={<TrendingDown size={20} />} />
+                        <StatCard label="Net P&L" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? 'emerald' : 'rose'} icon={<Activity size={20} />} />
+                        <StatCard label="Avg P&L per Trade" value={formatCurrency(stats.avgPnlPerTrade)} icon={<Target size={20} />} />
                     </div>
 
-                    <div className="space-y-8">
-                        <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm flex flex-col items-center">
-                            <div className="w-full mb-10 text-center">
-                                <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Allocation</h3>
-                                <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Asset Class Exposure</p>
-                            </div>
-                            <div className="h-[250px] w-full">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <PieChart>
-                                        <Pie
-                                            data={assetData.length > 0 ? assetData : [{ name: 'Empty', value: 1 }]}
-                                            cx="50%"
-                                            cy="50%"
-                                            innerRadius={70}
-                                            outerRadius={100}
-                                            paddingAngle={8}
-                                            dataKey="value"
-                                            stroke="none"
-                                        >
-                                            {assetData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
-                                            ))}
-                                        </Pie>
-                                        <Tooltip
-                                            contentStyle={{
-                                                backgroundColor: '#fff',
-                                                border: '1px solid #e2e8f0',
-                                                borderRadius: '1.5rem',
-                                                fontWeight: '900',
-                                                fontSize: '10px'
-                                            }}
-                                        />
-                                    </PieChart>
-                                </ResponsiveContainer>
-                            </div>
-                            <div className="w-full mt-10 space-y-4">
-                                {assetData.map((alt, idx) => (
-                                    <div key={idx} className="flex items-center justify-between text-[11px] font-black font-heading uppercase tracking-widest">
-                                        <div className="flex items-center gap-4 text-slate-400">
-                                            <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
-                                            <span>{alt.name}</span>
-                                        </div>
-                                        <span className="text-slate-900 tracking-tight">₹{(alt.value / 1000).toFixed(1)}k</span>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 leading-none">
+                        <div className="lg:col-span-2 space-y-8">
+                            <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
+                                <div className="flex items-center justify-between mb-10">
+                                    <div>
+                                        <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Equity Curve</h3>
+                                        <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Normalized Capital Flux</p>
                                     </div>
-                                ))}
+                                </div>
+                                <div className="h-[400px]">
+                                    <EquityChart trades={trades} initialCapital={profile?.initial_capital || 100000} />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <MiniInsightCard label="Best Session" value={bestDay.name} icon={<Clock size={20} />} />
+                                <MiniInsightCard label="Max Drawdown" value={formatCurrency(stats.maxDrawdown)} icon={<TrendingDown size={20} />} />
+                            </div>
+
+                            <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
+                                <div className="flex items-center justify-between mb-10">
+                                    <div>
+                                        <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Execution Timing</h3>
+                                        <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Daily Performance Alpha</p>
+                                    </div>
+                                </div>
+                                <div className="h-[350px]">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <BarChart data={dayData}>
+                                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                                            <XAxis dataKey="name" fontSize={10} fontWeight="800" stroke="#94a3b8" tickLine={false} axisLine={false} dy={10} />
+                                            <YAxis fontSize={10} fontWeight="800" stroke="#94a3b8" tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val / 1000}k`} dx={-10} />
+                                            <Tooltip
+                                                cursor={{ fill: '#f8fafc' }}
+                                                contentStyle={{
+                                                    backgroundColor: '#fff',
+                                                    border: '1px solid #e2e8f0',
+                                                    borderRadius: '1.5rem',
+                                                    fontWeight: '900',
+                                                    fontSize: '10px',
+                                                    boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
+                                                }}
+                                            />
+                                            <Bar dataKey="value" radius={[8, 8, 8, 8]} barSize={40}>
+                                                {dayData.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={entry.value >= 0 ? '#10b981' : '#f43f5e'} />
+                                                ))}
+                                            </Bar>
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-8">
+                            <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm flex flex-col items-center">
+                                <div className="w-full mb-10 text-center">
+                                    <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Allocation</h3>
+                                    <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Asset Class Exposure</p>
+                                </div>
+                                <div className="h-[250px] w-full">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <PieChart>
+                                            <Pie
+                                                data={assetData.length > 0 ? assetData : [{ name: 'Empty', value: 1 }]}
+                                                cx="50%"
+                                                cy="50%"
+                                                innerRadius={70}
+                                                outerRadius={100}
+                                                paddingAngle={8}
+                                                dataKey="value"
+                                                stroke="none"
+                                            >
+                                                {assetData.map((entry, index) => (
+                                                    <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                                                ))}
+                                            </Pie>
+                                            <Tooltip
+                                                contentStyle={{
+                                                    backgroundColor: '#fff',
+                                                    border: '1px solid #e2e8f0',
+                                                    borderRadius: '1.5rem',
+                                                    fontWeight: '900',
+                                                    fontSize: '10px'
+                                                }}
+                                            />
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                </div>
+                                <div className="w-full mt-10 space-y-4">
+                                    {assetData.map((alt, idx) => (
+                                        <div key={idx} className="flex items-center justify-between text-[11px] font-black font-heading uppercase tracking-widest">
+                                            <div className="flex items-center gap-4 text-slate-400">
+                                                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
+                                                <span>{alt.name}</span>
+                                            </div>
+                                            <span className="text-slate-900 tracking-tight">₹{(alt.value / 1000).toFixed(1)}k</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>

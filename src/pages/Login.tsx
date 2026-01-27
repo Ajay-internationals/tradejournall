@@ -20,6 +20,7 @@ export default function Login() {
     const [capital, setCapital] = useState('100000');
     const [referralSource, setReferralSource] = useState('GOOGLE');
     const [isSignUp, setIsSignUp] = useState(state?.defaultSignUp || false);
+    const [isSignUpComplete, setIsSignUpComplete] = useState(false);
 
     useEffect(() => {
         if (user) {
@@ -51,7 +52,7 @@ export default function Login() {
                 if (data.user && data.session) {
                     navigate('/dashboard');
                 } else {
-                    alert('Registration successful! Please check your email for a confirmation link before logging in.');
+                    setIsSignUpComplete(true);
                 }
             } else {
                 const { data, error } = await supabase.auth.signInWithPassword({
@@ -85,110 +86,146 @@ export default function Login() {
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-indigo-500/5 blur-[120px] rounded-full -z-10" />
 
             <div className="w-full max-w-md bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-2xl shadow-indigo-500/5 relative overflow-hidden">
-                <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center mb-10 transform hover:scale-110 transition-transform cursor-pointer" onClick={() => navigate('/')}>
-                        <Logo className="scale-125" iconOnly />
+                {isSignUpComplete ? (
+                    <div className="text-center py-10 space-y-8 animate-in zoom-in duration-500">
+                        <div className="w-24 h-24 bg-emerald-50 text-emerald-600 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 shadow-inner">
+                            <Mail size={40} className="animate-bounce" />
+                        </div>
+                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Check Your Inbox</h2>
+                        <p className="text-slate-500 font-bold leading-relaxed text-sm">
+                            We've sent a verification link to <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-4">{email}</span>. Please click the link to activate your institutional terminal access.
+                        </p>
+                        <div className="space-y-4 pt-4">
+                            <button
+                                onClick={() => window.open('https://mail.google.com', '_blank')}
+                                className="w-full py-5 bg-indigo-600 text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-indigo-500/10 flex items-center justify-center gap-3"
+                            >
+                                Open Gmail <ArrowRight size={18} />
+                            </button>
+                            <button
+                                onClick={() => setIsSignUpComplete(false)}
+                                className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors"
+                            >
+                                Back to Login
+                            </button>
+                        </div>
+                        <div className="p-6 bg-slate-50 border border-slate-100 rounded-3xl text-left">
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                                <Sparkles size={12} className="text-amber-500" /> Pro Tip
+                            </p>
+                            <p className="text-[10px] font-bold text-slate-500 leading-normal">
+                                If you don't see it within 2 minutes, check your **Spam** folder or ensures your email is typed correctly.
+                            </p>
+                        </div>
                     </div>
-                    <h1 className="text-4xl font-bold tracking-tight mb-3 text-slate-900 leading-none">
-                        {isSignUp ? 'Create Account' : 'Welcome Back'}
-                    </h1>
-                    <p className="text-slate-400 text-xs font-bold tracking-wider uppercase">
-                        {isSignUp ? 'Empower your trading journey' : 'Access your professional journal'}
-                    </p>
-                </div>
+                ) : (
+                    <>
+                        <div className="text-center mb-12">
+                            <div className="inline-flex items-center justify-center mb-10 transform hover:scale-110 transition-transform cursor-pointer" onClick={() => navigate('/')}>
+                                <Logo className="scale-125" iconOnly />
+                            </div>
+                            <h1 className="text-4xl font-bold tracking-tight mb-3 text-slate-900 leading-none">
+                                {isSignUp ? 'Create Account' : 'Welcome Back'}
+                            </h1>
+                            <p className="text-slate-400 text-xs font-bold tracking-wider uppercase">
+                                {isSignUp ? 'Empower your trading journey' : 'Access your professional journal'}
+                            </p>
+                        </div>
 
-                <form onSubmit={handleAuth} className="space-y-6">
-                    <div className="space-y-4">
-                        {isSignUp && (
-                            <>
-                                <InputWrapper icon={<UserIcon size={18} />}>
+                        <form onSubmit={handleAuth} className="space-y-6">
+                            <div className="space-y-4">
+                                {isSignUp && (
+                                    <>
+                                        <InputWrapper icon={<UserIcon size={18} />}>
+                                            <input
+                                                type="text"
+                                                required
+                                                placeholder="Full Name"
+                                                className="login-input"
+                                                value={fullName}
+                                                onChange={(e) => setFullName(e.target.value)}
+                                            />
+                                        </InputWrapper>
+                                        <InputWrapper icon={<Phone size={18} />}>
+                                            <input
+                                                type="tel"
+                                                required
+                                                placeholder="Phone Number"
+                                                className="login-input"
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
+                                            />
+                                        </InputWrapper>
+                                        <InputWrapper icon={<TrendingUp size={18} />}>
+                                            <select
+                                                value={experience}
+                                                onChange={(e) => setExperience(e.target.value)}
+                                                className="login-input appearance-none"
+                                            >
+                                                <option value="BEGINNER">Beginner (0-1 Years)</option>
+                                                <option value="INTERMEDIATE">Intermediate (1-3 Years)</option>
+                                                <option value="ADVANCED">Advanced (3+ Years)</option>
+                                            </select>
+                                        </InputWrapper>
+                                    </>
+                                )}
+                                <InputWrapper icon={<Mail size={18} />}>
                                     <input
-                                        type="text"
+                                        type="email"
                                         required
-                                        placeholder="Full Name"
+                                        placeholder="Email Address"
                                         className="login-input"
-                                        value={fullName}
-                                        onChange={(e) => setFullName(e.target.value)}
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                     />
                                 </InputWrapper>
-                                <InputWrapper icon={<Phone size={18} />}>
+                                <InputWrapper icon={<Lock size={18} />}>
                                     <input
-                                        type="tel"
+                                        type="password"
                                         required
-                                        placeholder="Phone Number"
+                                        placeholder="Account Password"
                                         className="login-input"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </InputWrapper>
-                                <InputWrapper icon={<TrendingUp size={18} />}>
-                                    <select
-                                        value={experience}
-                                        onChange={(e) => setExperience(e.target.value)}
-                                        className="login-input appearance-none"
-                                    >
-                                        <option value="BEGINNER">Beginner (0-1 Years)</option>
-                                        <option value="INTERMEDIATE">Intermediate (1-3 Years)</option>
-                                        <option value="ADVANCED">Advanced (3+ Years)</option>
-                                    </select>
-                                </InputWrapper>
-                            </>
-                        )}
-                        <InputWrapper icon={<Mail size={18} />}>
-                            <input
-                                type="email"
-                                required
-                                placeholder="Email Address"
-                                className="login-input"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </InputWrapper>
-                        <InputWrapper icon={<Lock size={18} />}>
-                            <input
-                                type="password"
-                                required
-                                placeholder="Account Password"
-                                className="login-input"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </InputWrapper>
-                    </div>
+                            </div>
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full py-5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-indigo-500/10 flex items-center justify-center gap-3"
-                    >
-                        {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isSignUp ? 'Register Account' : 'Dashboard Access')}
-                        {!loading && <ArrowRight size={18} />}
-                    </button>
-                </form>
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full py-5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-indigo-500/10 flex items-center justify-center gap-3"
+                            >
+                                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (isSignUp ? 'Register Account' : 'Dashboard Access')}
+                                {!loading && <ArrowRight size={18} />}
+                            </button>
+                        </form>
 
-                <div className="mt-10 text-center space-y-6">
-                    <button
-                        type="button"
-                        onClick={() => setIsSignUp(!isSignUp)}
-                        className="text-xs font-bold text-slate-400 hover:text-indigo-600 transition-all uppercase tracking-widest"
-                    >
-                        {isSignUp ? 'Already have an account? Login' : 'New to Trade Adhyayan? Sign Up'}
-                    </button>
+                        <div className="mt-10 text-center space-y-6">
+                            <button
+                                type="button"
+                                onClick={() => setIsSignUp(!isSignUp)}
+                                className="text-xs font-bold text-slate-400 hover:text-indigo-600 transition-all uppercase tracking-widest"
+                            >
+                                {isSignUp ? 'Already have an account? Login' : 'New to Trade Adhyayan? Sign Up'}
+                            </button>
 
-                    <div className="flex items-center gap-4 py-2">
-                        <div className="h-[1px] flex-1 bg-slate-100" />
-                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">or</span>
-                        <div className="h-[1px] flex-1 bg-slate-100" />
-                    </div>
+                            <div className="flex items-center gap-4 py-2">
+                                <div className="h-[1px] flex-1 bg-slate-100" />
+                                <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">or</span>
+                                <div className="h-[1px] flex-1 bg-slate-100" />
+                            </div>
 
-                    <button
-                        type="button"
-                        onClick={() => navigate('/dashboard')}
-                        className="w-full py-4 bg-slate-50 border border-slate-100 rounded-2xl text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-100 transition-all"
-                    >
-                        Demo Portal Access
-                    </button>
-                </div>
+                            <button
+                                type="button"
+                                onClick={() => navigate('/dashboard')}
+                                className="w-full py-4 bg-slate-50 border border-slate-100 rounded-2xl text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-100 transition-all"
+                            >
+                                Demo Portal Access
+                            </button>
+                        </div>
+                    </>
+                )}
             </div>
 
             <p className="mt-10 text-[10px] text-slate-400 font-bold tracking-[0.4em] uppercase">
