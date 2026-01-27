@@ -55,7 +55,6 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
         },
         {
             label: 'Tools', items: [
-                { icon: <Link size={20} />, label: 'Broker Link', path: '/broker-link' },
                 { icon: <Wrench size={20} />, label: 'Tools', path: '/tools' },
                 { icon: <Globe size={20} />, label: 'Community', path: '/community' },
                 { icon: <Settings size={20} />, label: 'Settings', path: '/settings' },

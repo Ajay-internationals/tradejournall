@@ -1,5 +1,8 @@
 import { supabase } from './supabase';
 import type { Database } from '@/types/supabase';
+import { encryptToken } from './encryption';
+import { BROKER_PROVIDERS } from './brokers/broker-service';
+import { getRealQuantity } from './stats';
 
 type Tables = Database['public']['Tables'];
 export type Trade = Tables['trades']['Row'];
@@ -154,7 +157,7 @@ export const api = {
             return data;
         }
     },
-    brokers: {
+    /* brokers: {
         list: async (userId: string) => {
             const { data, error } = await supabase
                 .from('broker_links')
@@ -164,20 +167,70 @@ export const api = {
             return data;
         },
         connect: async (userId: string, brokerName: string, apiKey: string) => {
+            const encryptedKey = encryptToken(apiKey);
             const { data, error } = await supabase
                 .from('broker_links')
                 .upsert({
                     user_id: userId,
                     broker_name: brokerName,
-                    api_key: apiKey,
+                    api_key: encryptedKey,
                     status: 'CONNECTED',
                     last_sync: new Date().toISOString()
                 })
                 .select();
             if (error) throw error;
             return data;
+        },
+        sync: async (userId: string, brokerName: string) => {
+            const { data: connection, error: connError } = await supabase
+                .from('broker_links')
+                .select('*')
+                .eq('user_id', userId)
+                .eq('broker_name', brokerName)
+                .single();
+
+            if (connError || !connection) throw new Error("Broker not connected");
+
+            const { data: existingTrades, error: tradesError } = await supabase
+                .from('trades')
+                .select('*')
+                .eq('user_id', userId);
+
+            if (tradesError) throw tradesError;
+
+            const provider = BROKER_PROVIDERS[brokerName];
+            if (!provider) throw new Error(`Provider for ${brokerName} not found`);
+
+            const newTrades = await provider.syncTrades(connection.api_key, existingTrades || []);
+
+            if (newTrades.length === 0) return { count: 0 };
+
+            const tradesToInsert = newTrades.map(t => ({
+                ...t,
+                user_id: userId,
+                emotion: 'UNDEFINED',
+                tags: [],
+                fees: 0
+            }));
+            const { error: insertError } = await supabase
+                .from('trades')
+                .insert(tradesToInsert as any);
+
+            if (insertError) throw insertError;
+
+            await supabase
+                .from('broker_links')
+                .update({ last_sync: new Date().toISOString() })
+                .eq('id', connection.id);
+
+            return { count: newTrades.length };
+        },
+        getSyncLogs: async (userId: string) => {
+            // Placeholder for fetching sync activity logs
+            // Ideally we'd have a separate table broker_sync_logs
+            return [];
         }
-    },
+    }, */
     rules: {
         list: async (userId: string) => {
             const { data, error } = await supabase

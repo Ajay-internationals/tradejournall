@@ -55,29 +55,3 @@ export function useChallenges() {
     };
 }
 
-export function useBrokers() {
-    const { user } = useAuth();
-    const queryClient = useQueryClient();
-
-    const query = useQuery({
-        queryKey: ['brokers', user?.id],
-        queryFn: () => api.brokers.list(user!.id),
-        enabled: !!user,
-    });
-
-    const connectBroker = useMutation({
-        mutationFn: ({ brokerName, apiKey }: { brokerName: string; apiKey: string }) => {
-            if (!user) throw new Error("User not logged in");
-            return api.brokers.connect(user.id, brokerName, apiKey);
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['brokers', user?.id] });
-        },
-    });
-
-    return {
-        links: query.data || [],
-        isLoading: query.isLoading,
-        connectBroker
-    };
-}

@@ -19,10 +19,16 @@ export function calculateStats(trades: Trade[], masterCapital: number = 0): Trad
         netPnl: 0,
         avgPnlPerTrade: 0,
         avgRR: 0,
-        totalInvested: masterCapital, // This acts as our "Baseline"
+        totalInvested: masterCapital,
+        maxDrawdown: 0,
+        expectancy: 0,
+        recoveryFactor: 0,
+        avgRiskReward: 0
     };
 
     if (!trades.length) return baseStats;
+
+    const sortedTrades = [...trades].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     const totalTrades = trades.length;
     const wins = trades.filter((t) => t.net_pnl > 0);
@@ -40,9 +46,25 @@ export function calculateStats(trades: Trade[], masterCapital: number = 0): Trad
     const avgWin = winningTrades ? totalProfit / winningTrades : 0;
     const avgLoss = losingTrades ? totalLoss / losingTrades : 0;
 
+    const expectancy = (winRate / 100 * avgWin) - ((1 - winRate / 100) * avgLoss);
+
     const avgPnlPerTrade = netPnl / totalTrades;
     const bestTrade = Math.max(...trades.map((t) => t.net_pnl));
     const worstTrade = Math.min(...trades.map((t) => t.net_pnl));
+
+    // Calculate Max Drawdown
+    let peak = masterCapital;
+    let currentBalance = masterCapital;
+    let maxDD = 0;
+
+    sortedTrades.forEach(t => {
+        currentBalance += t.net_pnl;
+        if (currentBalance > peak) peak = currentBalance;
+        const drawdown = peak - currentBalance;
+        if (drawdown > maxDD) maxDD = drawdown;
+    });
+
+    const recoveryFactor = maxDD === 0 ? profitFactor : netPnl / maxDD;
 
     const rMultiples = trades.map(t => {
         if (!t.stop_loss || t.stop_loss === t.entry_price) return 0;
@@ -68,8 +90,11 @@ export function calculateStats(trades: Trade[], masterCapital: number = 0): Trad
         netPnl,
         avgPnlPerTrade,
         avgRR,
-        // The user wants "calculated properly" - we show Capital + PnL as the Active Balance
         totalInvested: masterCapital + netPnl,
+        maxDrawdown: maxDD,
+        expectancy,
+        recoveryFactor,
+        avgRiskReward: avgRR
     };
 }
 

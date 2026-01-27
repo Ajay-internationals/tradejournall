@@ -97,7 +97,6 @@ export default function App() {
                   <Route path="/mentorship" element={<Mentorship />} />
 
                   <Route path="/mentor-guidance" element={<MentorGuidance />} />
-                  <Route path="/broker-link" element={<BrokerLink />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/source-code" element={<SourceCode />} />
                 </Route>

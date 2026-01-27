@@ -4,7 +4,7 @@ import {
     Brain, BarChart3, Trophy, Sparkles, ChevronRight,
     Smartphone, Target, History,
     Activity, CheckCircle2, XCircle,
-    ArrowRight, Lock, RotateCcw, BarChart, Users, Mail, Phone
+    ArrowRight, Lock, RotateCcw, BarChart, Users, Mail, Phone, Zap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PublicHeader } from '@/components/layout/PublicHeader';
@@ -71,11 +71,11 @@ export default function Landing() {
 
                     <h1 className="text-4xl md:text-7xl font-heading tracking-tight mb-4 md:mb-8 leading-[1.1] text-slate-900">
                         Refine Your Edge.<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-600 to-indigo-600">Trade Like a Pro.</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-sky-600 to-indigo-600">Sync Like a Pro.</span>
                     </h1>
 
                     <h2 className="text-lg md:text-3xl font-semibold text-slate-600 mb-6 md:mb-10 max-w-4xl mx-auto leading-relaxed">
-                        Automatic broker sync, psychology tracking, and institutional-grade analytics for serious traders.
+                        Instant clipboard sync, psychology tracking, and institutional-grade analytics for serious traders.
                     </h2>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 md:mb-16">
@@ -100,7 +100,7 @@ export default function Landing() {
                     {/* Trust Badges */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8 border-t border-slate-100 max-w-3xl mx-auto">
                         <TrustBadge icon={<CheckCircle2 className="text-emerald-500 w-5 h-5" />} text="100% Secure & Private" />
-                        <TrustBadge icon={<Smartphone className="text-indigo-500 w-5 h-5" />} text="Multi-Broker Sync" />
+                        <TrustBadge icon={<Zap className="text-indigo-500 w-5 h-5" />} text="Instant Clipboard Sync" />
                         <TrustBadge icon={<Lock className="text-sky-500 w-5 h-5" />} text="Bank-Grade Encryption" />
                     </div>
                 </div>
@@ -111,17 +111,17 @@ export default function Landing() {
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
                     <div>
                         <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6 md:mb-8 leading-tight">
-                            Stop making the same mistakes over and over.
+                            Journaling shouldn't feel like a chore.
                         </h2>
                         <div className="space-y-6 mb-10 md:mb-12">
-                            <ProblemItem text="Excel journals take too much time to maintain" />
+                            <ProblemItem text="Manual Excel entry takes too much energy" />
                             <ProblemItem text="Hard to spot emotional patterns and bias" />
                             <ProblemItem text="No visibility on strategy-wise performance" />
                             <ProblemItem text="Lack of accountability during market hours" />
                         </div>
                         <div className="inline-block p-1 px-1 bg-white border border-slate-200 rounded-[2rem] shadow-sm">
                             <div className="px-10 py-5 bg-indigo-600 rounded-[1.8rem] text-white">
-                                <p className="text-xl font-bold font-heading">Trade Adhyayan is the solution.</p>
+                                <p className="text-xl font-bold font-heading">Paste & Pivot with Trade Adhyayan.</p>
                             </div>
                         </div>
                     </div>
@@ -155,11 +155,11 @@ export default function Landing() {
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12 md:mb-20">
                         <h2 className="text-indigo-600 font-bold font-heading tracking-widest uppercase text-sm mb-4">Powerful Features</h2>
-                        <h3 className="text-3xl md:text-5xl font-bold font-heading">Everything you need to grow.</h3>
+                        <h3 className="text-3xl md:text-5xl font-bold font-heading">Journal a day in 10 seconds.</h3>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <MiniFeature icon={<RotateCcw className="text-indigo-600" />} title="Auto Sync" text="Direct fetch trades from Zerodha, Upstox & more." />
+                        <MiniFeature icon={<Zap className="text-indigo-600" />} title="Quick Paste" text="Copy your trade book and paste directly to journal." />
                         <MiniFeature icon={<Target className="text-emerald-500" />} title="Strategy Analysis" text="Deep dive into setup-wise win rate & ROI." />
                         <MiniFeature icon={<BarChart className="text-sky-600" />} title="Visual Equity" text="Beautiful performance charts and telemetry." />
                         <MiniFeature icon={<Brain className="text-purple-600" />} title="Psychology" text="Track emotions to prevent revenge trading." />
@@ -189,7 +189,7 @@ export default function Landing() {
                             period="/ mo"
                             isFeatured={true}
                             description="Professional tools for active traders."
-                            features={['Automated Sync', 'Strategy Data', 'Import Excel', 'Psychology Hub']}
+                            features={['Instant Clipboard Sync', 'Strategy Data', 'Import Excel', 'Psychology Hub']}
                         />
                         <PricingCard
                             title="Mentor"
@@ -233,11 +233,10 @@ export default function Landing() {
             <section id="partner" className="py-24 px-6 bg-slate-50/50">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-6">Trusted Partners</h2>
-                        <p className="text-slate-500 font-heading font-medium">Collaborating with industry leaders to bring you the best data.</p>
+                        <h2 className="text-3xl md:text-4xl font-bold font-heading text-slate-900 mb-6">Supported Formats</h2>
+                        <p className="text-slate-500 font-heading font-medium">Instantly sync data from major Indian brokers via CSV or Clipboard.</p>
                     </div>
                     <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                        {/* Partner Placeholders - utilizing text for simplicity as per request */}
                         <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-indigo-600 transition-colors">Zerodha</h3>
                         <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-cyan-600 transition-colors">Upstox</h3>
                         <h3 className="text-2xl font-bold font-heading text-slate-400 hover:text-emerald-600 transition-colors">AngelOne</h3>

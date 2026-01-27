@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { useTrades } from '@/hooks/useTrades';
 import { calculateStats, formatCurrency } from '@/lib/stats';
@@ -31,6 +32,7 @@ import { TradeForm } from '@/components/features/TradeForm';
 import { supabase } from '@/lib/supabase';
 
 export default function Dashboard() {
+    const navigate = useNavigate();
     const { user, profile, refreshProfile } = useAuth();
     const { trades, isLoading } = useTrades();
     const [isFormOpen, setIsFormOpen] = useState(false);
@@ -134,39 +136,42 @@ export default function Dashboard() {
                                 <span className="text-xl font-extrabold text-slate-900">{profile?.total_qp || 0}</span>
                             </div>
                         </div>
-                        <button
-                            onClick={() => setIsFormOpen(true)}
-                            className="px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-2xl font-black uppercase tracking-widest text-[11px] flex items-center gap-3 shadow-xl shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all"
-                        >
-                            <Plus size={20} />
-                            Log Trade
-                        </button>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            <button
+                                onClick={() => navigate('/journal')}
+                                className="px-6 py-4 bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-2xl font-black uppercase tracking-widest text-[11px] flex items-center gap-3 hover:bg-emerald-100 transition-all"
+                            >
+                                <Zap size={18} />
+                                Instant Paste
+                            </button>
+                            <button
+                                onClick={() => setIsFormOpen(true)}
+                                className="px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-2xl font-black uppercase tracking-widest text-[11px] flex items-center gap-3 shadow-xl shadow-purple-500/20 hover:scale-105 active:scale-95 transition-all"
+                            >
+                                <Plus size={20} />
+                                Log Trade
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Metrics Grid */}
             <h2 className="text-xl font-bold text-slate-900 mb-4 px-2">Key Performance Indicators</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <MetricCard icon={<Wallet size={16} />} label="Invested Amount" value={formatCurrency(profile?.initial_capital || 0)} variant="white" onClick={() => setIsSettingCapital(true)} />
-                <MetricCard icon={<Activity size={16} />} label="Total P/L" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? "emerald" : "rose"} />
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <MetricCard icon={<Wallet size={16} />} label="Equity / Capital" value={formatCurrency(profile?.initial_capital || 0)} variant="white" onClick={() => setIsSettingCapital(true)} />
+                <MetricCard icon={<Activity size={16} />} label="Net Gain/Loss" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? "emerald" : "rose"} />
+                <MetricCard icon={<Target size={16} />} label="Expectancy / T" value={formatCurrency(stats.expectancy)} variant="purple" />
+                <MetricCard icon={<AlertTriangle size={16} />} label="Max Drawdown" value={formatCurrency(stats.maxDrawdown)} variant="rose" />
+                <MetricCard icon={<Zap size={16} />} label="Profit Factor" value={stats.profitFactor.toFixed(2)} variant="emerald" />
                 <MetricCard icon={<Target size={16} />} label="Avg R:R" value={`1:${stats.avgRR.toFixed(2)}`} variant="amber" />
-                <MetricCard icon={<Zap size={16} />} label="Profit Factor" value={stats.profitFactor.toFixed(2)} variant="purple" />
 
-                <MetricCard icon={<TrendingUp size={16} />} label="Best Trade" value={formatCurrency(stats.bestTrade)} variant="emerald" />
-                <MetricCard icon={<TrendingDown size={16} />} label="Worst Trade" value={formatCurrency(stats.worstTrade)} variant="rose" />
-                <MetricCard icon={<History size={16} />} label="Total Trades" value={stats.totalTrades.toString()} variant="white" />
-                <MetricCard icon={<Zap size={16} />} label="Win %" value={`${stats.winRate.toFixed(2)}%`} variant="purple" />
-
-                <MetricCard icon={<Trophy size={16} />} label="Winning Trades" value={stats.winningTrades.toString()} variant="emerald" />
-                <MetricCard icon={<X size={16} />} label="Losing Trades" value={stats.losingTrades.toString()} variant="rose" />
-                <MetricCard icon={<ArrowUpRight size={16} />} label="Total Profit" value={formatCurrency(stats.totalProfit)} variant="emerald" />
-                <MetricCard icon={<ArrowDownRight size={16} />} label="Total Loss" value={formatCurrency(stats.totalLoss)} variant="rose" />
-
-                <MetricCard icon={<TrendingUp size={16} />} label="Avg Profit" value={formatCurrency(stats.avgWin)} variant="emerald" />
-                <MetricCard icon={<TrendingDown size={16} />} label="Avg Loss" value={formatCurrency(stats.avgLoss)} variant="rose" />
-                <MetricCard icon={<Activity size={16} />} label="Net P&L" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? "emerald" : "rose"} />
-                <MetricCard icon={<Target size={16} />} label="Avg P&L / Trade" value={formatCurrency(stats.avgPnlPerTrade)} variant="amber" />
+                <MetricCard icon={<TrendingUp size={16} />} label="Best Capture" value={formatCurrency(stats.bestTrade)} variant="emerald" />
+                <MetricCard icon={<TrendingDown size={16} />} label="Worst Drop" value={formatCurrency(stats.worstTrade)} variant="rose" />
+                <MetricCard icon={<History size={16} />} label="Total Volume" value={stats.totalTrades.toString()} variant="white" />
+                <MetricCard icon={<Zap size={16} />} label="Strike Rate" value={`${stats.winRate.toFixed(1)}%`} variant="purple" />
+                <MetricCard icon={<Trophy size={16} />} label="Edge Multiplier" value={stats.recoveryFactor.toFixed(2)} variant="emerald" />
+                <MetricCard icon={<Activity size={16} />} label="Avg Outcome" value={formatCurrency(stats.avgPnlPerTrade)} variant="amber" />
             </div>
 
             {/* Charts & Activity */}

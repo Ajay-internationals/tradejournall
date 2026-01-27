@@ -72,4 +72,8 @@ export interface TradeStats {
     avgPnlPerTrade: number;
     avgRR: number;
     totalInvested: number;
+    maxDrawdown: number;
+    expectancy: number;
+    recoveryFactor: number;
+    avgRiskReward: number;
 }
