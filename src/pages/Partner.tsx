@@ -62,14 +62,14 @@ export default function Partner() {
                 <div className="max-w-6xl mx-auto text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 mb-8">
                         <Users className="w-4 h-4 text-indigo-600" />
-                        <span className="text-[10px] font-black tracking-[0.2em] text-indigo-600 uppercase">Institutional Partnership</span>
+                        <span className="text-[10px] font-black tracking-[0.2em] text-indigo-600 uppercase">Partner Ecosystem</span>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 leading-[1.05]">
-                        Empower Your <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Trading Community</span>
+                        For Educators & <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Sub-Brokers</span>
                     </h1>
                     <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 font-medium">
-                        Join hands with Trade Adhyayan to provide professional-grade journaling and analytics to your students. Track progress, mentor effectively, and grow your institute.
+                        Join hands with Trade Adhyayan to provide professional-grade journaling and analytics to your students and clients. Track progress, mentor effectively, and add institutional value to your services.
                     </p>
                 </div>
             </section>
@@ -80,18 +80,18 @@ export default function Partner() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                         <PartnerFeature
                             icon={<GraduationCap size={32} />}
-                            title="Student Tracking"
-                            description="Real-time visibility into your students' trade logs and emotional discipline."
+                            title="Student Oversight"
+                            description="Real-time visibility into your students' or clients' trade logs and emotional discipline."
                         />
                         <PartnerFeature
                             icon={<BarChart size={32} />}
-                            title="Bulk Licensing"
-                            description="Customized pricing plans for institutes with 50+ students."
+                            title="Institutional Branding"
+                            description="Deploy Trade Adhyayan as your official analytics partner for your entire user base."
                         />
                         <PartnerFeature
                             icon={<Rocket size={32} />}
-                            title="Priority Induction"
-                            description="Dedicated account support for onboarding your entire community."
+                            title="Priority Support"
+                            description="Dedicated assistance for onboarding and managing your growing community."
                         />
                     </div>
                 </div>

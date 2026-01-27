@@ -177,12 +177,12 @@ export default function Landing() {
                             title="Mentor"
                             price="₹4999"
                             period="/ mo"
-                            description="For academies and professional teams."
+                            description="For Students seeking Guidance & Mentorship."
                             features={[
-                                'Student Management Portal',
-                                'Mass Review System',
-                                'Institutional Reporting',
-                                'Custom Setup Audits'
+                                'Direct Mentor Feedback',
+                                'Weekly Performance Audit',
+                                'Institutional Grade Tools',
+                                'Community Access'
                             ]}
                         />
                     </div>
@@ -236,9 +236,8 @@ export default function Landing() {
                             <p className="text-slate-500 text-lg mb-10 font-heading font-medium">Have questions about the platform or want to explore enterprise solutions? We're here to help.</p>
 
                             <div className="space-y-8">
-                                <ContactItem icon={<Mail className="w-6 h-6" />} label="Email Us" value="support@tradeadhyayan.com" />
-                                <ContactItem icon={<Phone className="w-6 h-6" />} label="Call Us" value="+91 98765 43210" />
-                                <ContactItem icon={<Users className="w-6 h-6" />} label="Support" value="24/7 Live Chat" />
+                                <ContactItem icon={<Mail className="w-6 h-6" />} label="Email Us" value="tradeadhyayan.info@gmail.com" />
+                                <ContactItem icon={<Users className="w-6 h-6" />} label="Support" value="24/7 Support Desk" />
                             </div>
                         </div>
                         <form className="space-y-6 bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">

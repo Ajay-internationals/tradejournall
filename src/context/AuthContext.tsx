@@ -34,10 +34,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 if (userData.user) {
                     const { data: newProfile, error: createError } = await supabase
                         .from('users')
-                        // @ts-ignore
                         .insert({
                             id: userData.user.id,
-                            email: userData.user.email,
+                            email: userData.user.email!,
                             full_name: userData.user.user_metadata?.full_name || '',
                             phone_number: userData.user.user_metadata?.phone_number || '',
                             plan: 'FREE'
@@ -45,10 +44,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                         .select()
                         .single();
 
-                    if (newProfile) setProfile(newProfile as UserProfile);
+                    if (newProfile) setProfile(newProfile as any);
                 }
             } else if (data) {
-                setProfile(data as UserProfile);
+                setProfile(data as any);
             }
         } catch (error) {
             console.error('Profile Fetch Error:', error);
@@ -61,11 +60,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (user) await fetchProfile(user.id);
     };
 
-    const upgradePlan = async (plan: 'FREE' | 'PREMIUM') => {
+    const upgradePlan = async (plan: string) => {
         if (!user) return;
         const { error } = await supabase
             .from('users')
-            // @ts-ignore
             .update({
                 plan,
                 subscription_status: 'ACTIVE',

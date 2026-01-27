@@ -1,6 +1,8 @@
-import { Zap, ShieldCheck, Link2, AlertCircle, CheckCircle2, RefreshCcw } from 'lucide-react';
+import { Zap, ShieldCheck, Link2, AlertCircle, CheckCircle2, RefreshCcw, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { api } from '@/lib/api';
 
 const BROKERS = [
     { id: 'zerodha', name: 'Zerodha', logo: 'Z' },
@@ -10,12 +12,44 @@ const BROKERS = [
 ];
 
 export default function BrokerLink() {
+    const { user } = useAuth();
     const [selectedBroker, setSelectedBroker] = useState(BROKERS[1]);
+    const [apiKey, setApiKey] = useState('');
     const [connectionStatus, setConnectionStatus] = useState<'DISCONNECTED' | 'CONNECTING' | 'CONNECTED'>('DISCONNECTED');
+    const [loading, setLoading] = useState(true);
 
-    const handleConnect = () => {
+    useEffect(() => {
+        if (user) {
+            loadConnections();
+        }
+    }, [user]);
+
+    const loadConnections = async () => {
+        try {
+            const connections = await api.brokers.list(user!.id);
+            const active = connections.find(c => c.status === 'CONNECTED');
+            if (active) {
+                setConnectionStatus('CONNECTED');
+                const broker = BROKERS.find(b => b.name === active.broker_name);
+                if (broker) setSelectedBroker(broker);
+            }
+        } catch (error) {
+            console.error('Failed to load connections:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleConnect = async () => {
+        if (!user || !apiKey) return;
         setConnectionStatus('CONNECTING');
-        setTimeout(() => setConnectionStatus('CONNECTED'), 2000);
+        try {
+            await api.brokers.connect(user.id, selectedBroker.name, apiKey);
+            setConnectionStatus('CONNECTED');
+        } catch (error: any) {
+            alert(error.message);
+            setConnectionStatus('DISCONNECTED');
+        }
     };
 
     return (
@@ -61,18 +95,20 @@ export default function BrokerLink() {
                                     {selectedBroker.logo}
                                 </div>
                                 <input
-                                    type="text"
-                                    placeholder={`${selectedBroker.name.toUpperCase()}-ID-XXXX`}
+                                    type="password"
+                                    value={apiKey}
+                                    onChange={(e) => setApiKey(e.target.value)}
+                                    placeholder={`${selectedBroker.name.toUpperCase()} API KEY / TOKEN`}
                                     className="w-full bg-[var(--app-bg)] border border-[var(--app-border)] rounded-2xl py-4 pl-16 pr-6 text-sm font-black focus:border-indigo-500 transition-all outline-none"
                                 />
                             </div>
                         </div>
                         <button
                             onClick={handleConnect}
-                            disabled={connectionStatus === 'CONNECTING'}
-                            className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl hover:bg-indigo-700 transition-all active:scale-95 flex items-center justify-center gap-3"
+                            disabled={connectionStatus === 'CONNECTING' || !apiKey}
+                            className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase text-xs tracking-widest shadow-xl hover:bg-indigo-700 transition-all active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {connectionStatus === 'CONNECTING' ? <RefreshCcw className="animate-spin" size={16} /> : <Link2 size={16} />}
+                            {connectionStatus === 'CONNECTING' ? <Loader2 className="animate-spin" size={16} /> : <Link2 size={16} />}
                             {connectionStatus === 'CONNECTED' ? `Refresh ${selectedBroker.name} Link` : `Link ${selectedBroker.name} Account`}
                         </button>
                     </div>

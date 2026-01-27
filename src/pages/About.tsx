@@ -21,6 +21,41 @@ export default function About() {
                 </div>
             </section>
 
+            <section className="py-20 px-6">
+                <div className="max-w-5xl mx-auto font-body">
+                    <div className="flex flex-col md:flex-row items-center gap-16 bg-indigo-600 rounded-[4rem] p-12 md:p-20 text-white shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+                            <CheckCircle2 size={240} />
+                        </div>
+                        <div className="w-full md:w-1/3 shrink-0">
+                            <div className="aspect-square bg-white/20 rounded-[3rem] border border-white/20 flex items-center justify-center text-5xl font-black shadow-inner">AM</div>
+                        </div>
+                        <div className="space-y-8 relative z-10">
+                            <div>
+                                <h2 className="text-sm font-black uppercase tracking-[0.5em] text-indigo-200 mb-4 italic">Meet the Founder</h2>
+                                <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 leading-tight">Mr. Ajay Mishra</h3>
+                                <p className="text-lg font-bold text-indigo-100 italic">Built by a Trader Who Believes Discipline Beats Prediction</p>
+                            </div>
+
+                            <div className="space-y-6 text-indigo-50 font-medium leading-relaxed italic opacity-90">
+                                <p>
+                                    Trade Adhyayan was not created to promise profits. It was created to solve the real problem traders face after learning strategies — inconsistency, emotional decisions, and lack of honest review.
+                                </p>
+                                <p>
+                                    The founder has spent years observing one hard truth: Most traders don’t fail because they lack knowledge. They fail because they lack structure, feedback, and accountability.
+                                </p>
+                                <p>
+                                    After working closely with retail traders, investors, and students, one pattern kept repeating — traders knew setups, traders knew risk rules, but execution kept breaking under pressure.
+                                </p>
+                                <p>
+                                    Trade Adhyayan was built to become a mirror for traders — showing them exactly how they trade, not how they think they trade.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className="py-20 px-6 bg-slate-50">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 font-body">
                     <AboutCard

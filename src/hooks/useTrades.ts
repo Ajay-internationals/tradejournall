@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { useAuth } from '@/context/AuthContext';
-import type { Trade } from '@/types';
+import { Trade } from '@/types';
+import type { Database } from '@/types/supabase';
+
+type TradeInsert = Database['public']['Tables']['trades']['Insert'];
+type TradeUpdate = Database['public']['Tables']['trades']['Update'];
 
 export function useTrades() {
     const { user } = useAuth();
@@ -21,9 +25,9 @@ export function useTrades() {
     }, [query.data]);
 
     const addTrade = useMutation({
-        mutationFn: (newTrade: Omit<Trade, 'id' | 'created_at' | 'user_id'>) => {
+        mutationFn: (newTrade: Omit<TradeInsert, 'user_id'>) => {
             if (!user) throw new Error("User not logged in");
-            return api.trades.create({ ...newTrade, user_id: user.id });
+            return api.trades.create({ ...newTrade, user_id: user.id } as TradeInsert);
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['trades', user?.id] });
@@ -31,7 +35,7 @@ export function useTrades() {
     });
 
     const updateTrade = useMutation({
-        mutationFn: ({ id, updates }: { id: string, updates: Partial<Trade> }) => {
+        mutationFn: ({ id, updates }: { id: string, updates: TradeUpdate }) => {
             return api.trades.update(id, updates);
         },
         onSuccess: () => {
@@ -59,7 +63,7 @@ export function useTrades() {
     });
 
     return {
-        trades: query.data || [],
+        trades: (query.data || []) as Trade[],
         isLoading: query.isLoading,
         isError: query.isError,
         addTrade,

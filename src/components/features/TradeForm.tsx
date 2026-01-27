@@ -112,7 +112,7 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
 
         try {
             if (!isNaN(cap) && user) {
-                await supabase.from('users').update({ initial_capital: cap } as never).eq('id', user.id);
+                await supabase.from('users').update({ initial_capital: cap }).eq('id', user.id);
                 await refreshProfile();
             }
 

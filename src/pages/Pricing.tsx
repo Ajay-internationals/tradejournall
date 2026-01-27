@@ -29,8 +29,8 @@ export default function Pricing() {
             name: 'Mentor',
             price: '₹4,999',
             period: 'per month',
-            description: 'A Trading Coach in Your Corner',
-            subDescription: 'The Mentor Plan brings human accountability to your trading.',
+            description: 'For Students seeking Guidance',
+            subDescription: 'The Mentor Plan connects you with human expertise and accountability.',
             popular: false,
             sections: [
                 {

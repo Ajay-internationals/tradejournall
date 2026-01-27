@@ -29,20 +29,20 @@ export interface Trade {
     user_id: string;
     date: string;
     instrument: string;
-    asset_class: AssetClass;
-    direction: 'LONG' | 'SHORT';
+    asset_class: string | null;
+    direction: string;
     entry_price: number;
     exit_price: number;
     quantity: number;
     fees: number;
-    stop_loss?: number;
-    emotion?: string;
-    strategy?: string;
+    stop_loss: number | null;
+    emotion: string | null;
+    strategy: string | null;
     gross_pnl: number;
     net_pnl: number;
-    tags: string[];
-    notes: string;
-    import_id?: string;
+    tags: string[] | null;
+    notes: string | null;
+    import_id: string | null;
     created_at: string;
 }
 

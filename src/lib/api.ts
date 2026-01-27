@@ -1,5 +1,12 @@
 import { supabase } from './supabase';
-import type { Trade, Strategy, TradeImport } from '@/types';
+import type { Database } from '@/types/supabase';
+
+type Tables = Database['public']['Tables'];
+export type Trade = Tables['trades']['Row'];
+export type Strategy = Tables['strategies']['Row'];
+export type TradeImport = Tables['trade_imports']['Row'];
+export type BrokerLink = Tables['broker_links']['Row'];
+export type Rule = Tables['rules']['Row'];
 
 export const api = {
     trades: {
@@ -11,32 +18,30 @@ export const api = {
                 .order('date', { ascending: false });
 
             if (error) throw error;
-            return data as Trade[];
+            return data;
         },
 
-        create: async (trade: Omit<Trade, 'id' | 'created_at'>) => {
+        create: async (trade: Tables['trades']['Insert']) => {
             const { data, error } = await supabase
                 .from('trades')
-                // @ts-ignore
-                .insert(trade as any)
+                .insert(trade)
                 .select()
                 .single();
 
             if (error) throw error;
-            return data as Trade;
+            return data;
         },
 
-        update: async (tradeId: string, updates: Partial<Trade>) => {
+        update: async (tradeId: string, updates: Tables['trades']['Update']) => {
             const { data, error } = await supabase
                 .from('trades')
-                // @ts-ignore
-                .update(updates as any)
+                .update(updates)
                 .eq('id', tradeId)
-                .select();
+                .select()
+                .single();
 
             if (error) throw error;
-            if (!data || data.length === 0) throw new Error("Update failed: Trade not found or permission denied.");
-            return data[0] as Trade;
+            return data;
         },
 
         delete: async (tradeId: string) => {
@@ -51,65 +56,56 @@ export const api = {
     strategies: {
         list: async (userId: string) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('strategies')
                 .select('*')
                 .eq('user_id', userId)
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
-            return data as Strategy[];
+            return data;
         },
-        create: async (strategy: Omit<Strategy, 'id' | 'created_at'>) => {
+        create: async (strategy: Tables['strategies']['Insert']) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('strategies')
-                // @ts-ignore
-                .insert(strategy as any)
+                .insert(strategy)
                 .select()
                 .single();
 
             if (error) throw error;
-            return data as Strategy;
+            return data;
         }
     },
     imports: {
         list: async (userId: string) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('trade_imports')
                 .select('*')
                 .eq('user_id', userId)
                 .order('created_at', { ascending: false });
             if (error) throw error;
-            return data as TradeImport[];
+            return data;
         },
-        create: async (payload: Omit<TradeImport, 'id' | 'created_at' | 'user_id'>) => {
+        create: async (payload: Tables['trade_imports']['Insert']) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('trade_imports')
-                // @ts-ignore
-                .insert(payload as any)
+                .insert(payload)
                 .select()
                 .single();
             if (error) throw error;
-            return data as TradeImport;
+            return data;
         },
-        update: async (importId: string, updates: Partial<TradeImport>) => {
+        update: async (importId: string, updates: Tables['trade_imports']['Update']) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('trade_imports')
-                // @ts-ignore
-                .update(updates as any)
+                .update(updates)
                 .eq('id', importId)
                 .select()
                 .single();
             if (error) throw error;
-            return data as TradeImport;
+            return data;
         },
         delete: async (importId: string) => {
             const { error } = await supabase
-                // @ts-ignore
                 .from('trade_imports')
                 .delete()
                 .eq('id', importId);
@@ -119,7 +115,6 @@ export const api = {
     roadmap: {
         list: async (userId: string) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('roadmap_progress')
                 .select('*')
                 .eq('user_id', userId);
@@ -128,15 +123,13 @@ export const api = {
         },
         toggleStep: async (userId: string, stepId: string, isCompleted: boolean) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('roadmap_progress')
-                // @ts-ignore
                 .upsert({
                     user_id: userId,
                     step_id: stepId,
                     is_completed: isCompleted,
                     completed_at: isCompleted ? new Date().toISOString() : null
-                } as any)
+                })
                 .select();
             if (error) throw error;
             return data;
@@ -145,7 +138,6 @@ export const api = {
     challenges: {
         list: async (userId: string) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('challenges')
                 .select('*')
                 .eq('user_id', userId);
@@ -154,10 +146,8 @@ export const api = {
         },
         updateProgress: async (challengeId: string, value: number) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('challenges')
-                // @ts-ignore
-                .update({ current_value: value } as any)
+                .update({ current_value: value })
                 .eq('id', challengeId)
                 .select();
             if (error) throw error;
@@ -167,7 +157,6 @@ export const api = {
     brokers: {
         list: async (userId: string) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('broker_links')
                 .select('*')
                 .eq('user_id', userId);
@@ -176,16 +165,14 @@ export const api = {
         },
         connect: async (userId: string, brokerName: string, apiKey: string) => {
             const { data, error } = await supabase
-                // @ts-ignore
                 .from('broker_links')
-                // @ts-ignore
                 .upsert({
                     user_id: userId,
                     broker_name: brokerName,
                     api_key: apiKey,
                     status: 'CONNECTED',
                     last_sync: new Date().toISOString()
-                } as any)
+                })
                 .select();
             if (error) throw error;
             return data;
@@ -204,7 +191,7 @@ export const api = {
         create: async (userId: string, text: string) => {
             const { data, error } = await supabase
                 .from('rules')
-                .insert({ user_id: userId, text } as any)
+                .insert({ user_id: userId, text })
                 .select()
                 .single();
             if (error) throw error;
@@ -213,7 +200,7 @@ export const api = {
         toggle: async (id: string, completed: boolean) => {
             const { data, error } = await supabase
                 .from('rules')
-                .update({ completed } as never)
+                .update({ completed })
                 .eq('id', id)
                 .select()
                 .single();
@@ -229,11 +216,10 @@ export const api = {
         }
     },
     users: {
-        updateProfile: async (userId: string, updates: { full_name?: string, avatar_url?: string, phone_number?: string }) => {
+        updateProfile: async (userId: string, updates: Tables['users']['Update']) => {
             const { data, error } = await supabase
                 .from('users')
-                // @ts-ignore
-                .update(updates as any)
+                .update(updates)
                 .eq('id', userId)
                 .select()
                 .single();
