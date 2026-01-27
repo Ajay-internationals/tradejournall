@@ -16,16 +16,23 @@ export function PublicHeader() {
                     </span>
                 </Link>
 
-                <div className="hidden md:flex items-center gap-10">
+                <div className="hidden md:flex items-center gap-6">
                     <HeaderLink label="Features" href="/#features" />
                     <HeaderLink label="Pricing" href="/pricing" />
                     <HeaderLink label="Strategies" href="/strategies" />
                     <HeaderLink label="Community" href="/community" />
                     <Link
                         to="/login"
-                        className="px-8 py-3.5 bg-indigo-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-slate-900 transition-all active:scale-95"
+                        className="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition-all"
                     >
                         Login
+                    </Link>
+                    <Link
+                        to="/login"
+                        state={{ defaultSignUp: true }}
+                        className="px-8 py-3.5 bg-indigo-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-slate-900 transition-all active:scale-95"
+                    >
+                        Get Started
                     </Link>
                 </div>
             </div>

@@ -146,28 +146,34 @@ export default function Dashboard() {
             </div>
 
             {/* Metrics Grid */}
-            {/* Metrics Grid */}
-            <h2 className="text-xl font-bold text-slate-900 mb-4 px-2">Key Performance Indicators</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <MetricCard icon={<Wallet />} label="Invested Amount" value={formatCurrency(profile?.initial_capital || 0)} variant="white" onClick={() => setIsSettingCapital(true)} />
-                <MetricCard icon={<Activity />} label="Total P/L" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? "emerald" : "rose"} />
-                <MetricCard icon={<Target />} label="Avg R:R" value={`1:${stats.avgRR.toFixed(2)}`} variant="amber" />
-                <MetricCard icon={<Zap />} label="Profit Factor" value={stats.profitFactor.toFixed(2)} variant="purple" />
+            <div className="flex items-center justify-between mb-8 px-2">
+                <div>
+                    <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-600 mb-2">Performance Intelligence</h2>
+                    <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">Institutional Terminal</h3>
+                </div>
+                <div className="hidden md:flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Real-Time Sync Active</span>
+                </div>
+            </div>
 
-                <MetricCard icon={<TrendingUp />} label="Best Trade" value={formatCurrency(stats.bestTrade)} variant="emerald" />
-                <MetricCard icon={<TrendingDown />} label="Worst Trade" value={formatCurrency(stats.worstTrade)} variant="rose" />
-                <MetricCard icon={<History />} label="Total Trades" value={stats.totalTrades.toString()} variant="white" />
-                <MetricCard icon={<Zap />} label="Win %" value={`${stats.winRate.toFixed(2)}%`} variant="purple" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <MetricCard icon={<Wallet size={20} />} label="Capital" value={formatCurrency(profile?.initial_capital || 0)} variant="white" onClick={() => setIsSettingCapital(true)} />
+                <MetricCard icon={<Activity size={20} />} label="Net P&L" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? "emerald" : "rose"} />
+                <MetricCard icon={<Target size={20} />} label="Avg R:R" value={`1:${stats.avgRR.toFixed(2)}`} variant="amber" />
+                <MetricCard icon={<Zap size={20} />} label="Profit Factor" value={stats.profitFactor.toFixed(2)} variant="purple" />
 
-                <MetricCard icon={<Trophy />} label="Winning Trades" value={stats.winningTrades.toString()} variant="emerald" />
-                <MetricCard icon={<X />} label="Losing Trades" value={stats.losingTrades.toString()} variant="rose" />
-                <MetricCard icon={<ArrowUpRight />} label="Total Profit" value={formatCurrency(stats.totalProfit)} variant="emerald" />
-                <MetricCard icon={<ArrowDownRight />} label="Total Loss" value={formatCurrency(stats.totalLoss)} variant="rose" />
+                <MetricCard icon={<TrendingUp size={20} />} label="Peak Trade" value={formatCurrency(stats.bestTrade)} variant="emerald" />
+                <MetricCard icon={<TrendingDown size={20} />} label="Low Trade" value={formatCurrency(stats.worstTrade)} variant="rose" />
+                <MetricCard icon={<History size={20} />} label="Frequency" value={`${stats.totalTrades} Trades`} variant="white" />
+                <MetricCard icon={<Zap size={20} />} label="Win Rate" value={`${stats.winRate.toFixed(1)}%`} variant="purple" />
+            </div>
 
-                <MetricCard icon={<TrendingUp />} label="Avg Profit" value={formatCurrency(stats.avgWin)} variant="emerald" />
-                <MetricCard icon={<TrendingDown />} label="Avg Loss" value={formatCurrency(stats.avgLoss)} variant="rose" />
-                <MetricCard icon={<Activity />} label="Net P&L" value={formatCurrency(stats.netPnl)} variant={stats.netPnl >= 0 ? "emerald" : "rose"} />
-                <MetricCard icon={<Target />} label="Avg P&L / Trade" value={formatCurrency(stats.avgPnlPerTrade)} variant="amber" />
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <MiniMetric label="Total Profit" value={formatCurrency(stats.totalProfit)} positive />
+                <MiniMetric label="Total Loss" value={formatCurrency(stats.totalLoss)} />
+                <MiniMetric label="Avg Win" value={formatCurrency(stats.avgWin)} positive />
+                <MiniMetric label="Avg Loss" value={formatCurrency(stats.avgLoss)} />
             </div>
 
             {/* Charts & Activity */}
@@ -264,7 +270,7 @@ export default function Dashboard() {
     );
 }
 
-function MetricCard({ icon, label, value, variant = "primary", isGhost = false, onClick }: any) {
+function MetricCard({ icon, label, value, variant = "white", onClick }: any) {
     const variants = {
         emerald: "bg-[#10b981] text-white shadow-lg shadow-[#10b981]/20 border-transparent",
         amber: "bg-[#f59e0b] text-white shadow-lg shadow-[#f59e0b]/20 border-transparent",
@@ -277,24 +283,38 @@ function MetricCard({ icon, label, value, variant = "primary", isGhost = false, 
         <div
             onClick={onClick}
             className={cn(
-                "p-6 rounded-[2rem] flex flex-col justify-between h-40 border transition-all hover:scale-[1.02] hover:-translate-y-1 group relative overflow-hidden",
+                "p-8 rounded-[3rem] flex flex-col justify-between h-52 border transition-all hover:scale-[1.02] hover:-translate-y-2 group relative overflow-hidden",
                 variants[variant as keyof typeof variants],
                 onClick && "cursor-pointer active:scale-95"
             )}
         >
             <div className="relative z-10 flex items-center justify-between w-full">
-                <div className="flex items-center gap-3 opacity-90">
+                <div className="flex items-center gap-4">
                     <div className={cn(
-                        "w-8 h-8 rounded-lg flex items-center justify-center border transition-all",
-                        variant === 'white' ? "bg-slate-50 border-slate-100 text-slate-500" : "bg-white/20 border-white/20 text-white"
+                        "w-12 h-12 rounded-2xl flex items-center justify-center border transition-all",
+                        variant === 'white' ? "bg-slate-50 border-slate-100 text-indigo-600" : "bg-white/20 border-white/20 text-white"
                     )}>
-                        {cloneElement(icon, { size: 14 })}
+                        {icon}
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider">{label}</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">{label}</span>
                 </div>
-                {onClick && <Settings size={14} className="opacity-0 group-hover:opacity-50 transition-all" />}
+                {onClick && <Settings size={16} className="opacity-0 group-hover:opacity-50 transition-all text-indigo-600" />}
             </div>
-            <span className="relative z-10 text-xl font-bold tracking-tight">{value}</span>
+            <span className="relative z-10 text-3xl font-black tracking-tighter">{value}</span>
+        </div>
+    );
+}
+
+function MiniMetric({ label, value, positive }: { label: string, value: string, positive?: boolean }) {
+    return (
+        <div className="p-6 bg-slate-50 border border-slate-100 rounded-[2rem] flex flex-col justify-center">
+            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">{label}</p>
+            <p className={cn(
+                "text-lg font-black tracking-tight",
+                positive ? "text-emerald-600" : (value.startsWith('-') || value.includes('Loss') ? "text-rose-600" : "text-slate-900")
+            )}>
+                {value}
+            </p>
         </div>
     );
 }

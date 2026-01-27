@@ -19,26 +19,43 @@ export default function Landing() {
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <Logo />
                     <nav className="hidden md:flex items-center gap-8">
-                        {['Features', 'About Us', 'Pricing', 'Partner', 'Contact Us'].map((item) => (
+                        {[
+                            { name: 'Features', href: 'features', type: 'scroll' },
+                            { name: 'About Us', href: '/about', type: 'link' },
+                            { name: 'Pricing', href: '/pricing', type: 'link' },
+                            { name: 'Partner', href: '/partner', type: 'link' },
+                            { name: 'Contact Us', href: 'contact-us', type: 'scroll' }
+                        ].map((item) => (
                             <button
-                                key={item}
+                                key={item.name}
                                 onClick={() => {
-                                    const id = item.toLowerCase().replace(' ', '-');
-                                    const el = document.getElementById(id);
-                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                    if (item.type === 'scroll') {
+                                        const el = document.getElementById(item.href);
+                                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                    } else {
+                                        navigate(item.href);
+                                    }
                                 }}
                                 className="text-sm font-bold font-heading text-slate-500 hover:text-indigo-600 transition-colors uppercase tracking-wider"
                             >
-                                {item}
+                                {item.name}
                             </button>
                         ))}
                     </nav>
-                    <button
-                        onClick={() => navigate('/login')}
-                        className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-bold font-heading text-xs uppercase tracking-widest hover:bg-slate-900 transition-all shadow-lg shadow-indigo-500/20"
-                    >
-                        Login
-                    </button>
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => navigate('/login')}
+                            className="px-6 py-2.5 text-slate-500 hover:text-indigo-600 font-bold font-heading text-xs uppercase tracking-widest transition-all"
+                        >
+                            Login
+                        </button>
+                        <button
+                            onClick={() => navigate('/login', { state: { defaultSignUp: true } })}
+                            className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-bold font-heading text-xs uppercase tracking-widest hover:bg-slate-900 transition-all shadow-lg shadow-indigo-500/20"
+                        >
+                            Get Started
+                        </button>
+                    </div>
                 </div>
             </header>
 
@@ -152,38 +169,41 @@ export default function Landing() {
 
             {/* Pricing Section */}
             <section id="pricing" className="py-12 md:py-24 px-6 bg-slate-50/50">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-12 md:mb-16">
-                        <h2 className="text-3xl md:text-6xl font-bold font-heading mb-4">Fair Pricing</h2>
-                        <p className="text-slate-500 text-lg font-heading text-slate-500 font-bold">Invest in your discipline, not just your capital.</p>
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-20">
+                        <h2 className="text-4xl md:text-5xl font-bold font-heading text-slate-900 mb-6">Investment in Your Business</h2>
+                        <p className="text-slate-500 font-heading text-slate-500 font-bold max-w-2xl mx-auto">Choose the tier that fits your trading size and psychological needs.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <PricingCard
-                            title="Starter"
-                            price="Free"
-                            description="For beginners starting their journey."
-                            features={['Manual Trade Logs', 'Basic Analytics', 'Single Device']}
+                            title="Free"
+                            price="₹0"
+                            period="/ mo"
+                            description="For traders exploring journal mechanics."
+                            features={['Manual entry', 'Basic P&L', 'Rule checklists']}
                         />
                         <PricingCard
                             title="Pro"
                             price="₹499"
                             period="/ mo"
-                            description="Advanced tools for serious traders."
-                            isFeatured
-                            features={['Automated Broker Sync', 'Psychology Matrix', 'Strategy Heatmaps']}
+                            isFeatured={true}
+                            description="Professional tools for active traders."
+                            features={['Automated Sync', 'Strategy Data', 'Import Excel', 'Psychology Hub']}
                         />
                         <PricingCard
                             title="Mentor"
                             price="₹4999"
                             period="/ mo"
                             description="For Students seeking Guidance & Mentorship."
-                            features={[
-                                'Direct Mentor Feedback',
-                                'Weekly Performance Audit',
-                                'Institutional Grade Tools',
-                                'Community Access'
-                            ]}
+                            features={['Daily trade reviews', 'Weekly Audit', 'Psychology Feedback', 'Community Access']}
+                        />
+                        <PricingCard
+                            title="Mentor+"
+                            price="₹9999"
+                            period="/ mo"
+                            description="For Professional coaching and accountability."
+                            features={['1:1 Video Calls', 'Priority EOD Reviews', 'Trading Roadmap']}
                         />
                     </div>
                 </div>

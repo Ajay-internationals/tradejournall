@@ -39,16 +39,10 @@ export default function About() {
 
                             <div className="space-y-6 text-indigo-50 font-medium leading-relaxed italic opacity-90">
                                 <p>
-                                    Trade Adhyayan was not created to promise profits. It was created to solve the real problem traders face after learning strategies — inconsistency, emotional decisions, and lack of honest review.
+                                    Trade Adhyayan was created to solve the real problem traders face: execution breakdown under pressure. After years of observing retail traders, the founder realized that most fail not from lack of knowledge, but from lack of structure and honest review.
                                 </p>
                                 <p>
-                                    The founder has spent years observing one hard truth: Most traders don’t fail because they lack knowledge. They fail because they lack structure, feedback, and accountability.
-                                </p>
-                                <p>
-                                    After working closely with retail traders, investors, and students, one pattern kept repeating — traders knew setups, traders knew risk rules, but execution kept breaking under pressure.
-                                </p>
-                                <p>
-                                    Trade Adhyayan was built to become a mirror for traders — showing them exactly how they trade, not how they think they trade.
+                                    This platform is built as a mirror—showing you exactly how you trade, not how you think you trade. We help you eliminate emotional decisions and replace them with data-driven consistency.
                                 </p>
                             </div>
                         </div>
