@@ -74,10 +74,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
             <nav className="flex-1 px-4 space-y-6 mt-4">
                 {menuItems.map((category) => (
                     <div key={category.label} className="space-y-2">
-                        <p className={cn(
-                            "px-6 text-[10px] font-bold uppercase text-slate-400 opacity-60",
-                            category.label === 'Performance' && "tracking-[0.8em] italic font-black"
-                        )}>
+                        <p className="px-6 text-[10px] font-bold uppercase text-slate-400 opacity-60">
                             {category.label}
                         </p>
                         <div className="space-y-1">

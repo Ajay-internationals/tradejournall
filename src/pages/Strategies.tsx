@@ -47,7 +47,7 @@ export default function Strategies() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">My Strategies</h1>
-                        <SubHeading variant="performance" className="mt-2 text-indigo-500 opacity-60">How you plan to trade</SubHeading>
+                        <SubHeading className="mt-2 text-indigo-500 opacity-60">How you plan to trade</SubHeading>
                     </div>
                 </div>
                 <div className="flex gap-4">
@@ -84,7 +84,7 @@ export default function Strategies() {
                     <div className="absolute top-0 right-0 p-6 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-1000">
                         <Zap size={100} className="fill-white" />
                     </div>
-                    <SubHeading variant="performance" className="text-indigo-300 opacity-60 mb-4">Setup Blueprints</SubHeading>
+                    <SubHeading className="text-indigo-300 opacity-60 mb-4">Setup Blueprints</SubHeading>
                     <div className="space-y-3 relative z-10">
                         {[
                             { name: "ORB Breakout", desc: "Opening Range Breakout setup" },

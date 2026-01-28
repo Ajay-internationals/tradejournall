@@ -44,7 +44,7 @@ export default function Mistakes() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">Trading Mistakes</h1>
-                        <SubHeading variant="performance" className="mt-2 text-rose-500 opacity-60">See where you are losing money</SubHeading>
+                        <SubHeading className="mt-2 text-rose-500 opacity-60">See where you are losing money</SubHeading>
                     </div>
                 </div>
                 <div className="flex gap-4">
@@ -98,7 +98,7 @@ export default function Mistakes() {
             )}
 
             <div className="space-y-8">
-                <SubHeading variant="performance" className="text-center opacity-40">My Common Mistakes</SubHeading>
+                <SubHeading className="text-center opacity-40">My Common Mistakes</SubHeading>
                 {mistakesWithStats.length === 0 ? (
                     <div className="p-20 text-center border-2 border-dashed border-slate-200 rounded-[4rem] opacity-50 bg-slate-50/20">
                         <p className="text-slate-400 font-black font-heading uppercase tracking-[0.4em] text-[10px]">No mistakes logged yet. Good job!</p>
