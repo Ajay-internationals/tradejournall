@@ -16,9 +16,11 @@ import {
     History,
     FileText,
     Brain,
-    Trophy
+    Trophy,
+    Plus
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SubHeading } from '@/components/ui/SubHeading';
 import { useTrades } from '@/hooks/useTrades';
 import { useAutoFlags } from '@/hooks/useAutoFlags';
 import { formatCurrency } from '@/lib/stats';
@@ -82,9 +84,9 @@ export default function Mentorship() {
                         )}
                     </div>
                     <h1 className="text-4xl font-black tracking-tighter text-slate-900 leading-none uppercase">Mentorship Portal ✨</h1>
-                    <p className="text-slate-400 font-black uppercase tracking-[0.4em] text-[10px] mt-4 opacity-50 italic">
+                    <SubHeading className="mt-4 opacity-50">
                         {role === 'student' ? 'Guided Performance Hub' : 'Academy Management Terminal'}
-                    </p>
+                    </SubHeading>
                 </div>
 
                 <div className="flex p-2 bg-indigo-50 rounded-3xl border border-slate-200 shadow-inner">
@@ -170,9 +172,9 @@ function MentorView({ activeTab, setActiveTab, selectedStudent, setSelectedStude
                     {activeTab === 'dashboard' && (
                         <>
                             <section>
-                                <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2 ml-4">
+                                <SubHeading className="mb-6 flex items-center gap-2 ml-4">
                                     <Users size={16} className="text-indigo-600" /> Student Oversight
-                                </h3>
+                                </SubHeading>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {MOCK_STUDENTS.map(s => (
                                         <StudentCard key={s.id} student={s} onClick={() => setSelectedStudent(s)} />
@@ -252,11 +254,35 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
             </div>
 
             <div className="space-y-8">
+                <div className="p-10 bg-indigo-900 text-white border border-slate-200 rounded-[3.5rem] shadow-xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-1000">
+                        <Zap size={140} className="fill-white" />
+                    </div>
+                    <SubHeading className="text-indigo-300 opacity-60 mb-8">Mentorship Blueprints</SubHeading>
+                    <div className="space-y-4 relative z-10">
+                        {[
+                            { text: "Consistency King", cat: "PSYCH" },
+                            { text: "Size Scale-Up", cat: "RISK" },
+                            { text: "Zero Revenge Mode", cat: "CORE" }
+                        ].map((b, i) => (
+                            <button key={i} className="w-full p-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-2xl flex items-center justify-between transition-all group/item">
+                                <div className="flex items-center gap-4">
+                                    <div className="px-2 py-1 bg-indigo-500/20 rounded-md text-[8px] font-black text-indigo-300 border border-indigo-500/30">
+                                        {b.cat}
+                                    </div>
+                                    <span className="text-sm font-bold">{b.text}</span>
+                                </div>
+                                <Plus size={14} className="opacity-40 group-hover/item:opacity-100 transition-opacity" />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="p-10 bg-white text-slate-900 border border-slate-200 rounded-[3.5rem] shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-5 rotate-12">
                         <Target size={140} />
                     </div>
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-8 italic">Weekly Focus</h3>
+                    <SubHeading className="mb-8 opacity-50">Weekly Focus</SubHeading>
                     <p className="text-xl font-black leading-tight mb-8">
                         {MOCK_WEEKLY.nextWeekRules[0]}
                     </p>
@@ -281,7 +307,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                 <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Execution Audit Stream</h2>
                 <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Mentor Sync Active</span>
+                    <SubHeading className="mb-0">Mentor Sync Active</SubHeading>
                 </div>
             </header>
 
@@ -306,7 +332,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                                         <span key={tag} className="px-5 py-2 bg-indigo-50 text-slate-400 text-[9px] font-black uppercase tracking-widest rounded-full border border-slate-200">{tag}</span>
                                     ))}
                                 </div>
-                                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest italic">{new Date(review.date).toLocaleDateString()}</span>
+                                <SubHeading className="mb-0 opacity-50">{new Date(review.date).toLocaleDateString()}</SubHeading>
                             </div>
 
                             <p className="text-xl font-medium text-slate-900 leading-relaxed italic">
@@ -385,7 +411,7 @@ function WeeklyReviewSummary() {
                     <Trophy size={200} />
                 </div>
                 <div className="relative z-10 max-w-4xl">
-                    <h2 className="text-[12px] font-black uppercase tracking-[0.5em] text-indigo-400 mb-8 italic">Batch Summary: {MOCK_WEEKLY.period}</h2>
+                    <SubHeading className="text-indigo-400 mb-8">Batch Summary: {MOCK_WEEKLY.period}</SubHeading>
                     <h3 className="text-5xl font-black tracking-tighter mb-10 leading-tight">Focusing on Execution Process.</h3>
                     <div className="p-10 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-[3rem] backdrop-blur-sm">
                         <p className="text-xl font-medium text-indigo-900 dark:text-indigo-100 leading-relaxed italic">
@@ -491,7 +517,7 @@ function StatusCard({ label, value, subValue, icon, variant = 'white' }: any) {
     return (
         <div className="p-12 bg-white border border-slate-200 rounded-[4rem] shadow-sm flex items-center justify-between group hover:border-indigo-400 transition-all">
             <div className="space-y-4">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 opacity-60 italic">{label}</p>
+                <SubHeading className="mb-0 opacity-60">{label}</SubHeading>
                 <p className={cn(
                     "text-5xl font-black leading-none tracking-tighter",
                     variant === 'rose' ? "text-rose-500" :
@@ -549,9 +575,9 @@ function Metric({ label, value, color }: any) {
 function AlertsPanel() {
     return (
         <div className="p-10 bg-white border border-rose-100 dark:border-rose-500/20 rounded-[3.5rem] shadow-sm">
-            <h3 className="text-xs font-black uppercase tracking-widest mb-8 flex items-center gap-3 text-rose-500 italic">
+            <SubHeading className="mb-8 flex items-center gap-3 text-rose-500">
                 <AlertCircle size={18} /> Priority Audit
-            </h3>
+            </SubHeading>
             <div className="space-y-6">
                 <AlertItem type="Rule" text="Priya M. exceeded max trades per day (4)." />
                 <AlertItem type="Limit" text="Amit K. hit stop-loss limit for the week." />
@@ -573,7 +599,7 @@ function AlertItem({ type, text }: any) {
 function MentorCapacity({ ratio }: { ratio: string }) {
     return (
         <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
-            <h3 className="text-xs font-black uppercase tracking-widest mb-8 text-slate-400 italic">Academy Capacity</h3>
+            <SubHeading className="mb-8 opacity-50">Academy Capacity</SubHeading>
             <div className="space-y-6">
                 <div className="flex justify-between items-end">
                     <p className="text-xs font-black uppercase text-slate-900 dark:text-white">Active Load</p>
@@ -606,9 +632,9 @@ function ReviewQueue() {
 function ProgressBar({ label, value }: { label: string, value: number }) {
     return (
         <div>
-            <div className="flex justify-between text-[11px] font-black uppercase mb-4 tracking-widest leading-none italic">
-                <span className="text-slate-400">{label}</span>
-                <span className="text-indigo-600">{value}% Accuracy</span>
+            <div className="flex justify-between mb-4">
+                <SubHeading className="mb-0 opacity-50">{label}</SubHeading>
+                <span className="text-[10px] font-black uppercase text-indigo-600 tracking-wider leading-none">{value}% Accuracy</span>
             </div>
             <div className="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-200">
                 <div className="h-full bg-indigo-500 rounded-full shadow-lg" style={{ width: `${value}%` }}></div>
@@ -653,7 +679,7 @@ function ChecklistSection() {
     const points = ['Stop-Loss Hardware-Set', 'Rule-Based Entry Confirmed', 'Max Daily Loss Cap', 'RR 1:2.5 Minimum'];
     return (
         <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-400 text-center italic">Institutional Focus</h3>
+            <SubHeading className="mb-10 text-center opacity-40">Institutional Focus</SubHeading>
             <div className="space-y-6">
                 {points.map(p => (
                     <div key={p} className="flex items-center gap-5 group">
@@ -673,7 +699,7 @@ function ReviewTimeline() {
             <div className="space-y-16">
                 <div className="relative pl-12 border-l-4 border-slate-100 dark:border-slate-800 pb-12 last:pb-0 group">
                     <div className="absolute left-[-14px] top-0 w-6 h-6 rounded-full bg-indigo-600 border-4 border-white dark:border-slate-900 shadow-xl scale-125"></div>
-                    <p className="text-[11px] font-black text-indigo-500 mb-4 uppercase tracking-[0.2em] italic">Jan 24, 2026 • EOD Audit</p>
+                    <SubHeading className="mb-4 text-indigo-500 opacity-60">Jan 24, 2026 • EOD Audit</SubHeading>
                     <p className="text-xl font-medium text-slate-900 leading-relaxed mb-8 italic">"Outstanding emotional control. You transitioned from a losing morning to a break-even afternoon without forcing any revenge trades. This is the hallmark of professional scaling."</p>
                     <div className="flex gap-4">
                         <span className="px-5 py-2 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-full text-[9px] font-black uppercase text-indigo-600 tracking-wider">Protocol Maintained</span>
@@ -694,7 +720,7 @@ function WeeklyReviewHub() {
                 </div>
                 <div className="relative z-10">
                     <h3 className="text-5xl font-black mb-6 tracking-tighter uppercase">Academy Performance</h3>
-                    <p className="text-indigo-400 font-black uppercase tracking-[0.4em] text-[12px] mb-16 italic">Batch Analysis: JAN 19 - 25</p>
+                    <SubHeading className="text-indigo-400 mb-16 opacity-60 text-sm">Batch Analysis: JAN 19 - 25</SubHeading>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
                         <div className="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 backdrop-blur-sm">
                             <p className="text-[10px] opacity-40 font-black uppercase tracking-widest mb-4 italic">Total Delta</p>
