@@ -30,7 +30,7 @@ export default function Rules() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">My Trading Rules</h1>
-                        <SubHeading className="mt-2 opacity-50">Follow these to stay profitable</SubHeading>
+                        <SubHeading variant="performance" className="mt-2 opacity-50">Follow these to stay profitable</SubHeading>
                     </div>
                 </div>
                 <button
@@ -58,7 +58,7 @@ export default function Rules() {
                     <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-1000">
                         <Zap size={140} className="fill-white" />
                     </div>
-                    <SubHeading className="text-indigo-300 opacity-60">Rule Blueprints</SubHeading>
+                    <SubHeading variant="performance" className="text-indigo-300 opacity-60">Rule Blueprints</SubHeading>
                     <div className="space-y-4 relative z-10">
                         {[
                             { text: "Max 3 Trades / Day", cat: "RISK" },
@@ -78,7 +78,7 @@ export default function Rules() {
                 </div>
 
                 <div className="p-12 bg-white border border-slate-200 rounded-[3rem] shadow-sm flex flex-col items-center justify-center text-center space-y-6">
-                    <SubHeading className="opacity-40">System Health</SubHeading>
+                    <SubHeading variant="performance" className="opacity-40">System Health</SubHeading>
                     <div className="w-20 h-2 bg-slate-100 rounded-full overflow-hidden">
                         <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${(completedCount / (rules.length || 1)) * 100}%` }} />
                     </div>

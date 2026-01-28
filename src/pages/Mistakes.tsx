@@ -1,4 +1,5 @@
 import { AlertOctagon, HeartCrack, Zap, Search, ShieldAlert, Activity, BarChart, CheckCircle2, Plus, Trash2, X } from 'lucide-react';
+import { SubHeading } from '@/components/ui/SubHeading';
 import { cn } from '@/lib/utils';
 import { useTrades } from '@/hooks/useTrades';
 import { useMistakes } from '@/hooks/useMistakes';
@@ -43,7 +44,7 @@ export default function Mistakes() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">Trading Mistakes</h1>
-                        <p className="text-[10px] font-black font-heading text-rose-500 uppercase tracking-[0.3em] mt-2 opacity-60">See where you are losing money</p>
+                        <SubHeading variant="performance" className="mt-2 text-rose-500 opacity-60">See where you are losing money</SubHeading>
                     </div>
                 </div>
                 <div className="flex gap-4">
@@ -97,7 +98,7 @@ export default function Mistakes() {
             )}
 
             <div className="space-y-8">
-                <h3 className="text-[10px] font-black font-heading uppercase tracking-[0.4em] text-slate-400 text-center opacity-40">My Common Mistakes</h3>
+                <SubHeading variant="performance" className="text-center opacity-40">My Common Mistakes</SubHeading>
                 {mistakesWithStats.length === 0 ? (
                     <div className="p-20 text-center border-2 border-dashed border-slate-200 rounded-[4rem] opacity-50 bg-slate-50/20">
                         <p className="text-slate-400 font-black font-heading uppercase tracking-[0.4em] text-[10px]">No mistakes logged yet. Good job!</p>
