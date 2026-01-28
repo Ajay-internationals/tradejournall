@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useTrades } from '@/hooks/useTrades';
 import { useStrategies } from '@/hooks/useStrategies';
+import { useMistakes } from '@/hooks/useMistakes';
 import { cn } from '@/lib/utils';
-import { X, Zap, ArrowRight, ShieldAlert, Coins, LineChart, BarChart, TrendingUp, TrendingDown, Activity, Sparkles, Wallet, Calendar, Plus } from 'lucide-react';
+import { X, Zap, ArrowRight, ShieldAlert, Coins, LineChart, BarChart, Activity, Sparkles, Wallet, Calendar, Plus, HeartCrack } from 'lucide-react';
 import type { Trade } from '@/types';
 import { getRealQuantity } from '@/lib/stats';
 import { supabase } from '@/lib/supabase';
@@ -25,6 +26,7 @@ const ASSET_CLASSES = [
 export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
     const { addTrade, updateTrade } = useTrades();
     const { strategies } = useStrategies();
+    const { mistakes } = useMistakes();
     const { user, profile, refreshProfile } = useAuth();
 
     const [formData, setFormData] = useState({
@@ -42,6 +44,7 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
         tags: editTrade?.tags?.join(', ') || '',
         notes: editTrade?.notes || '',
         initial_capital: profile?.initial_capital ? profile.initial_capital.toString() : '100000',
+        mistake_ids: editTrade?.mistake_ids || [] as string[],
     });
 
     const [pnl, setPnl] = useState({ gross: 0, net: 0, rMultiple: 0 });
@@ -108,6 +111,7 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
             net_pnl: net,
             tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
             notes: formData.notes,
+            mistake_ids: formData.mistake_ids,
         };
 
         try {
@@ -131,6 +135,15 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const toggleMistake = (id: string) => {
+        setFormData(prev => ({
+            ...prev,
+            mistake_ids: prev.mistake_ids.includes(id)
+                ? prev.mistake_ids.filter(mId => mId !== id)
+                : [...prev.mistake_ids, id]
+        }));
     };
 
     return (
@@ -215,6 +228,33 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
                         <InputGroup label="Brokerage/Fees" name="fees" value={formData.fees} onChange={handleChange} isRed />
                     </div>
 
+                    {/* Mistakes Section */}
+                    {mistakes.length > 0 && (
+                        <div className="space-y-4">
+                            <label className="text-[10px] font-bold text-rose-500 uppercase tracking-widest ml-1 flex items-center gap-2">
+                                <HeartCrack size={12} />
+                                Did you make any mistakes?
+                            </label>
+                            <div className="flex flex-wrap gap-2">
+                                {mistakes.map((m) => (
+                                    <button
+                                        key={m.id}
+                                        type="button"
+                                        onClick={() => toggleMistake(m.id)}
+                                        className={cn(
+                                            "px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-tight border transition-all",
+                                            formData.mistake_ids.includes(m.id)
+                                                ? "bg-rose-500 text-white border-rose-500 shadow-md"
+                                                : "bg-white border-slate-200 text-slate-400 hover:border-rose-200"
+                                        )}
+                                    >
+                                        {m.title}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
                     <div className="grid grid-cols-1">
                         <InputGroup label="Baseline Capital / Equity" name="initial_capital" value={formData.initial_capital} onChange={handleChange} isBlue icon={<Wallet size={12} />} />
                     </div>
@@ -257,7 +297,7 @@ function InputGroup({ label, name, value, onChange, isRed = false, isBlue = fals
             </label>
             <input
                 type="number"
-                step="0.05"
+                step="0.01"
                 name={name}
                 value={value}
                 onChange={onChange}

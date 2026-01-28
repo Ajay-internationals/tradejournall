@@ -1,27 +1,23 @@
-import { ShieldCheck, Flame, Plus, Check, Trash2, Loader2, X } from 'lucide-react';
+import { ShieldCheck, Flame, Plus, Check, Trash2, Loader2, X, Tag, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useRules, Rule } from '@/hooks/useRules';
 
 export default function Rules() {
-    const { rules, addRule, toggleRule, deleteRule, isLoading } = useRules() as {
-        rules: Rule[],
-        addRule: any,
-        toggleRule: any,
-        deleteRule: any,
-        isLoading: boolean
-    };
-    const [newRuleText, setNewRuleText] = useState('');
+    const { rules, addRule, toggleRule, deleteRule, isLoading } = useRules();
+    const [newRuleData, setNewRuleData] = useState({ text: '', category: 'GENERAL', priority: 'P2' });
     const [isAdding, setIsAdding] = useState(false);
+    const [filter, setFilter] = useState('ALL');
 
     const handleAddRule = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!newRuleText.trim()) return;
-        await addRule.mutateAsync(newRuleText);
-        setNewRuleText('');
+        if (!newRuleData.text.trim()) return;
+        await addRule.mutateAsync(newRuleData);
+        setNewRuleData({ text: '', category: 'GENERAL', priority: 'P2' });
         setIsAdding(false);
     };
 
+    const filteredRules = rules.filter(r => filter === 'ALL' || r.category === filter);
     const completedCount = rules.filter(r => r.completed).length;
 
     return (
@@ -32,16 +28,16 @@ export default function Rules() {
                         <ShieldCheck className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">System Protocol</h1>
-                        <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.3em] uppercase mt-2 opacity-50 italic">Operational Discipline Framework</p>
+                        <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">My Trading Rules</h1>
+                        <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.3em] uppercase mt-2 opacity-50 italic">Follow these to stay profitable</p>
                     </div>
                 </div>
                 <button
                     onClick={() => setIsAdding(true)}
-                    className="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-black font-heading rounded-2xl text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl shadow-indigo-100 hover:scale-105 active:scale-95 transition-all"
+                    className="w-full md:w-auto px-10 py-5 bg-slate-900 text-white font-black font-heading rounded-2xl text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl hover:scale-105 active:scale-95 transition-all"
                 >
                     <Plus size={18} />
-                    New Mandate
+                    Add New Rule
                 </button>
             </div>
 
@@ -52,43 +48,89 @@ export default function Rules() {
                     </div>
                     <div className="space-y-2">
                         <p className="text-5xl font-black font-heading tracking-tight text-slate-900 leading-none">{completedCount}/{rules.length}</p>
-                        <p className="text-[10px] font-black font-heading text-slate-400 tracking-[0.4em] uppercase opacity-40">Persistence Index</p>
+                        <p className="text-[10px] font-black font-heading text-slate-400 tracking-[0.4em] uppercase opacity-40">Rules Followed Today</p>
                     </div>
-                    <p className="text-xs text-slate-400 max-w-[220px] leading-relaxed italic font-bold">"Discipline is the divergence between a gambler and an operator."</p>
+                    <p className="text-xs text-slate-400 max-w-[220px] leading-relaxed italic font-bold">"Discipline is the difference between a gambler and a professional."</p>
                 </div>
 
-                <div className="lg:col-span-2 space-y-4">
+                <div className="lg:col-span-2 space-y-6">
+                    {/* Category Filter */}
+                    <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+                        {['ALL', 'RISK', 'MINDSET', 'EXECUTION', 'GENERAL'].map(cat => (
+                            <button
+                                key={cat}
+                                onClick={() => setFilter(cat)}
+                                className={cn(
+                                    "px-6 py-3 rounded-xl text-[9px] font-black font-heading uppercase tracking-widest transition-all whitespace-nowrap border",
+                                    filter === cat
+                                        ? "bg-indigo-600 text-white border-transparent shadow-lg shadow-indigo-100"
+                                        : "bg-white text-slate-400 border-slate-100 hover:border-indigo-200"
+                                )}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+
                     {/* Add Rule Inline Form */}
                     {isAdding && (
-                        <form onSubmit={handleAddRule} className="p-8 bg-indigo-50/50 border border-indigo-100 rounded-[2.5rem] flex flex-col sm:flex-row items-center gap-4 animate-in slide-in-from-top-4 duration-500 mb-6">
-                            <input
-                                autoFocus
-                                type="text"
-                                value={newRuleText}
-                                onChange={(e) => setNewRuleText(e.target.value)}
-                                placeholder="Define your operational constraint..."
-                                className="flex-1 w-full bg-white border border-slate-200 rounded-2xl py-4 px-8 text-sm font-bold font-heading outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all"
-                            />
-                            <div className="flex gap-2 w-full sm:w-auto">
-                                <button type="submit" disabled={addRule.isPending} className="flex-1 sm:flex-none p-4 bg-indigo-600 text-white rounded-xl shadow-lg hover:bg-slate-900 transition-all active:scale-95">
-                                    {addRule.isPending ? <Loader2 className="animate-spin" size={20} /> : <Check size={20} />}
-                                </button>
-                                <button type="button" onClick={() => setIsAdding(false)} className="flex-1 sm:flex-none p-4 bg-white text-slate-400 rounded-xl shadow-sm hover:text-rose-500 transition-all active:scale-95">
-                                    <X size={20} />
-                                </button>
+                        <form onSubmit={handleAddRule} className="p-8 bg-indigo-50/50 border border-indigo-100 rounded-[2.5rem] space-y-4 animate-in slide-in-from-top-4 duration-500">
+                            <div className="flex flex-col sm:flex-row items-center gap-4">
+                                <input
+                                    autoFocus
+                                    type="text"
+                                    value={newRuleData.text}
+                                    onChange={(e) => setNewRuleData({ ...newRuleData, text: e.target.value })}
+                                    placeholder="I will not trade after 3 losses..."
+                                    className="flex-1 w-full bg-white border border-slate-200 rounded-2xl py-4 px-8 text-sm font-bold font-heading outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all"
+                                />
+                                <div className="flex gap-2 w-full sm:w-auto">
+                                    <button type="submit" disabled={addRule.isPending} className="flex-1 sm:flex-none p-4 bg-indigo-600 text-white rounded-xl shadow-lg hover:bg-slate-900 transition-all active:scale-95">
+                                        {addRule.isPending ? <Loader2 className="animate-spin" size={20} /> : <Check size={20} />}
+                                    </button>
+                                    <button type="button" onClick={() => setIsAdding(false)} className="flex-1 sm:flex-none p-4 bg-white text-slate-400 rounded-xl shadow-sm hover:text-rose-500 transition-all active:scale-95">
+                                        <X size={20} />
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="flex flex-wrap gap-4 px-4">
+                                <div className="space-y-1">
+                                    <p className="text-[8px] font-black font-heading text-slate-400 uppercase tracking-widest opacity-60">Category</p>
+                                    <select
+                                        value={newRuleData.category}
+                                        onChange={e => setNewRuleData({ ...newRuleData, category: e.target.value })}
+                                        className="bg-transparent border-none text-[10px] font-black font-heading uppercase tracking-widest text-indigo-600 outline-none p-0 cursor-pointer appearance-none"
+                                    >
+                                        <option value="GENERAL">General</option>
+                                        <option value="RISK">Risk</option>
+                                        <option value="MINDSET">Mindset</option>
+                                        <option value="EXECUTION">Execution</option>
+                                    </select>
+                                </div>
+                                <div className="space-y-1 border-l border-slate-200 pl-4">
+                                    <p className="text-[8px] font-black font-heading text-slate-400 uppercase tracking-widest opacity-60">Priority</p>
+                                    <select
+                                        value={newRuleData.priority}
+                                        onChange={e => setNewRuleData({ ...newRuleData, priority: e.target.value })}
+                                        className="bg-transparent border-none text-[10px] font-black font-heading uppercase tracking-widest text-indigo-600 outline-none p-0 cursor-pointer appearance-none"
+                                    >
+                                        <option value="P1">P1 (Critical)</option>
+                                        <option value="P2">P2 (Standard)</option>
+                                        <option value="P3">P3 (Minor)</option>
+                                    </select>
+                                </div>
                             </div>
                         </form>
                     )}
 
-                    {rules.length === 0 && !isAdding && (
+                    {filteredRules.length === 0 && !isAdding && (
                         <div className="p-20 text-center border-2 border-dashed border-slate-200 rounded-[3rem] opacity-50 bg-slate-50/30">
-                            <p className="text-slate-400 font-black font-heading uppercase tracking-[0.4em] text-[10px]">Framework Empty</p>
-                            <button onClick={() => setIsAdding(true)} className="mt-4 text-indigo-600 font-black font-heading text-[10px] uppercase tracking-widest underline decoration-2 underline-offset-8 hover:text-slate-900 transition-colors">Initialize First Directive</button>
+                            <p className="text-slate-400 font-black font-heading uppercase tracking-[0.4em] text-[10px]">No rules in this category</p>
                         </div>
                     )}
 
                     <div className="space-y-3">
-                        {rules.map(rule => (
+                        {filteredRules.map(rule => (
                             <div
                                 key={rule.id}
                                 className={cn(
@@ -105,12 +147,24 @@ export default function Rules() {
                                     )}>
                                         {rule.completed ? <Check size={20} /> : <div className="w-2 h-2 rounded-full bg-current opacity-20" />}
                                     </div>
-                                    <span className={cn("text-[15px] font-bold font-heading tracking-tight", rule.completed && "line-through opacity-40")}>{rule.text}</span>
+                                    <div className="flex flex-col">
+                                        <span className={cn("text-[15px] font-bold font-heading tracking-tight", rule.completed && "line-through opacity-40")}>{rule.text}</span>
+                                        <div className="flex gap-2 mt-2">
+                                            <span className="text-[8px] font-black font-heading uppercase tracking-widest text-slate-400 flex items-center gap-1">
+                                                <Tag size={10} /> {rule.category || 'GENERAL'}
+                                            </span>
+                                            {rule.priority === 'P1' && (
+                                                <span className="text-[8px] font-black font-heading uppercase tracking-widest text-rose-500 flex items-center gap-1">
+                                                    <AlertCircle size={10} /> HIGH PRIORITY
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="flex items-center gap-6">
                                     <button
                                         onClick={() => deleteRule.mutate(rule.id)}
-                                        className="p-3 text-slate-300 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-all hover:bg-rose-50 rounded-xl"
+                                        className="p-3 text-slate-200 hover:text-rose-500 opacity-0 group-hover:opacity-100 transition-all hover:bg-rose-50 rounded-xl"
                                     >
                                         <Trash2 size={18} />
                                     </button>

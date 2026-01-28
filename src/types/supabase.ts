@@ -93,6 +93,41 @@ export type Database = {
                     },
                 ]
             }
+            mistakes: {
+                Row: {
+                    id: string
+                    user_id: string | null
+                    title: string
+                    description: string | null
+                    severity: string | null
+                    created_at: string | null
+                }
+                Insert: {
+                    id?: string
+                    user_id?: string | null
+                    title: string
+                    description?: string | null
+                    severity?: string | null
+                    created_at?: string | null
+                }
+                Update: {
+                    id?: string
+                    user_id?: string | null
+                    title?: string
+                    description?: string | null
+                    severity?: string | null
+                    created_at?: string | null
+                }
+                Relationships: [
+                    {
+                        foreignKeyName: "mistakes_user_id_fkey"
+                        columns: ["user_id"]
+                        isOneToOne: false
+                        referencedRelation: "users"
+                        referencedColumns: ["id"]
+                    }
+                ]
+            }
             partner_inquiries: {
                 Row: {
                     created_at: string | null
@@ -206,6 +241,8 @@ export type Database = {
                     id: string
                     text: string
                     user_id: string | null
+                    category: string | null
+                    priority: string | null
                 }
                 Insert: {
                     completed?: boolean | null
@@ -213,6 +250,8 @@ export type Database = {
                     id?: string
                     text: string
                     user_id?: string | null
+                    category?: string | null
+                    priority?: string | null
                 }
                 Update: {
                     completed?: boolean | null
@@ -220,6 +259,8 @@ export type Database = {
                     id?: string
                     text?: string
                     user_id?: string | null
+                    category?: string | null
+                    priority?: string | null
                 }
                 Relationships: [
                     {
@@ -237,24 +278,27 @@ export type Database = {
                     description: string | null
                     id: string
                     name: string
-                    rules: string[] | null
                     user_id: string | null
+                    status: string | null
+                    risk_per_trade: number | null
                 }
                 Insert: {
                     created_at?: string | null
                     description?: string | null
                     id?: string
                     name: string
-                    rules?: string[] | null
                     user_id?: string | null
+                    status?: string | null
+                    risk_per_trade?: number | null
                 }
                 Update: {
                     created_at?: string | null
                     description?: string | null
                     id?: string
                     name?: string
-                    rules?: string[] | null
                     user_id?: string | null
+                    status?: string | null
+                    risk_per_trade?: number | null
                 }
                 Relationships: [
                     {
@@ -325,6 +369,7 @@ export type Database = {
                     strategy: string | null
                     tags: string[] | null
                     user_id: string
+                    mistake_ids: string[] | null
                 }
                 Insert: {
                     asset_class?: string | null
@@ -346,6 +391,7 @@ export type Database = {
                     strategy?: string | null
                     tags?: string[] | null
                     user_id: string
+                    mistake_ids?: string[] | null
                 }
                 Update: {
                     asset_class?: string | null
@@ -367,6 +413,7 @@ export type Database = {
                     strategy?: string | null
                     tags?: string[] | null
                     user_id?: string
+                    mistake_ids?: string[] | null
                 }
                 Relationships: [
                     {

@@ -7,6 +7,8 @@ export interface Rule {
     user_id: string;
     text: string;
     completed: boolean;
+    category?: string;
+    priority?: string;
     created_at: string;
 }
 
@@ -21,9 +23,9 @@ export function useRules() {
     });
 
     const addRule = useMutation({
-        mutationFn: (text: string) => {
+        mutationFn: ({ text, category, priority }: { text: string, category?: string, priority?: string }) => {
             if (!user) throw new Error("User not logged in");
-            return api.rules.create(user.id, text);
+            return api.rules.create({ user_id: user.id, text, category, priority });
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['rules', user?.id] });

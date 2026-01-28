@@ -241,10 +241,10 @@ export const api = {
             if (error) throw error;
             return data;
         },
-        create: async (userId: string, text: string) => {
+        create: async (rule: Tables['rules']['Insert']) => {
             const { data, error } = await supabase
                 .from('rules')
-                .insert({ user_id: userId, text })
+                .insert(rule)
                 .select()
                 .single();
             if (error) throw error;
@@ -263,6 +263,33 @@ export const api = {
         delete: async (id: string) => {
             const { error } = await supabase
                 .from('rules')
+                .delete()
+                .eq('id', id);
+            if (error) throw error;
+        }
+    },
+    mistakes: {
+        list: async (userId: string) => {
+            const { data, error } = await supabase
+                .from('mistakes')
+                .select('*')
+                .eq('user_id', userId)
+                .order('created_at', { ascending: false });
+            if (error) throw error;
+            return data;
+        },
+        create: async (userId: string, mistake: { title: string, description?: string, severity?: string }) => {
+            const { data, error } = await supabase
+                .from('mistakes')
+                .insert({ user_id: userId, ...mistake })
+                .select()
+                .single();
+            if (error) throw error;
+            return data;
+        },
+        delete: async (id: string) => {
+            const { error } = await supabase
+                .from('mistakes')
                 .delete()
                 .eq('id', id);
             if (error) throw error;

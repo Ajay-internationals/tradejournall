@@ -12,6 +12,8 @@ export function StrategyForm({ onClose }: StrategyFormProps) {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
+        status: 'ACTIVE' as const,
+        risk_per_trade: 0
     });
 
     const handleSubmit = async (e: React.FormEvent) => {

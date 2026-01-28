@@ -49,10 +49,23 @@ export default function Login() {
                     }
                 });
                 if (error) throw error;
-                if (data.user && data.session) {
-                    navigate('/dashboard');
-                } else {
-                    setIsSignUpComplete(true);
+
+                if (data.user) {
+                    // Manually trigger custom email via Edge Function to bypass Supabase limits & redirect issues
+                    // Note: Supabase will still send its default email if not disabled, but this ensures a reliable custom one.
+                    await supabase.functions.invoke('auth-mailer', {
+                        body: {
+                            email,
+                            full_name: fullName,
+                            confirmation_url: `https://tradeadhyayan.vercel.app/login?type=signup&email=${email}`
+                        }
+                    });
+
+                    if (data.session) {
+                        navigate('/dashboard');
+                    } else {
+                        setIsSignUpComplete(true);
+                    }
                 }
             } else {
                 const { data, error } = await supabase.auth.signInWithPassword({

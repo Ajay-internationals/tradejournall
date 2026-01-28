@@ -20,8 +20,8 @@ export default function Partner() {
         e.preventDefault();
         setLoading(true);
         try {
-            const { error } = await (supabase
-                .from('partner_inquiries') as any)
+            const { error } = await (supabase as any)
+                .from('partner_inquiries')
                 .insert([formData]);
 
             if (error) throw error;

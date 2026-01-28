@@ -21,6 +21,17 @@ export interface Strategy {
     user_id: string;
     name: string;
     description: string;
+    status: 'ACTIVE' | 'BACKTESTING' | 'ARCHIVED';
+    risk_per_trade: number;
+    created_at: string;
+}
+
+export interface Mistake {
+    id: string;
+    user_id: string;
+    title: string;
+    description: string | null;
+    severity: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
     created_at: string;
 }
 
@@ -43,6 +54,7 @@ export interface Trade {
     tags: string[] | null;
     notes: string | null;
     import_id: string | null;
+    mistake_ids: string[] | null;
     created_at: string;
 }
 
