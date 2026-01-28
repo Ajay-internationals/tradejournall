@@ -16,6 +16,14 @@ The dashboard has been streamlined to 4 core KPIs for high-performance focus:
 - ✅ Win Rate (Strike Rate %)
 - ✅ **New**: Daily Rules Checklist (Discipline Tracker)
 - ✅ **New**: Psychology Audit (Mistake Impact Breakdown)
+- ✅ **New**: Global "HUGE SPACING" Institutional Subheadings (`tracking-[0.8em]`)
+
+### 3. Mentorship & Guidance (v3.5)
+The mentorship module has been transformed into a functional coaching terminal:
+- ✅ **New**: Institutional Roadmap (The 4 Phases of Mastery)
+- ✅ **New**: Mentor Toolkit (PDF Resources, Masterclasses, Risk Sheets)
+- ✅ **New**: Access Protocol (Streamlined enrollment flow)
+- ✅ **New**: Rule & Strategy Blueprints (One-click professional templates)
 
 ### 3. Strategy Labs Enhancement
 - ✅ Added "View Trades" button on each strategy card
@@ -180,6 +188,6 @@ For issues or questions:
 
 ---
 
-**Deployment Status**: ✅ v3 Refinements Live
+**Deployment Status**: ✅ v3.5 Institutional Features Live
 **Build Status**: ✅ Successful
 **Last Updated**: 2026-01-28
