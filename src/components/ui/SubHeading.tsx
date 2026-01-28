@@ -8,7 +8,7 @@ interface SubHeadingProps {
 export function SubHeading({ children, className }: SubHeadingProps) {
     return (
         <p className={cn(
-            "text-[10px] font-black uppercase tracking-[0.8em] text-slate-400 mb-6 italic leading-none whitespace-nowrap",
+            "text-[10px] font-bold text-slate-400 mb-6 leading-none",
             className
         )}>
             {children}
