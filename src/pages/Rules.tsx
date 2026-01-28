@@ -1,4 +1,5 @@
-import { ShieldCheck, Flame, Plus, Check, Trash2, Loader2, X, Tag, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Flame, Plus, Check, Trash2, Loader2, X, Tag, AlertCircle, Zap } from 'lucide-react';
+import { SubHeading } from '@/components/ui/SubHeading';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useRules, Rule } from '@/hooks/useRules';
@@ -29,7 +30,7 @@ export default function Rules() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">My Trading Rules</h1>
-                        <p className="text-slate-400 text-[10px] font-bold font-heading tracking-[0.3em] uppercase mt-2 opacity-50 italic">Follow these to stay profitable</p>
+                        <SubHeading className="mt-2 opacity-50">Follow these to stay profitable</SubHeading>
                     </div>
                 </div>
                 <button
@@ -51,6 +52,37 @@ export default function Rules() {
                         <p className="text-[10px] font-black font-heading text-slate-400 tracking-[0.4em] uppercase opacity-40">Rules Followed Today</p>
                     </div>
                     <p className="text-xs text-slate-400 max-w-[220px] leading-relaxed italic font-bold">"Discipline is the difference between a gambler and a professional."</p>
+                </div>
+
+                <div className="p-10 bg-indigo-900 text-white rounded-[3rem] shadow-xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-1000">
+                        <Zap size={140} className="fill-white" />
+                    </div>
+                    <SubHeading className="text-indigo-300 opacity-60">Rule Blueprints</SubHeading>
+                    <div className="space-y-4 relative z-10">
+                        {[
+                            { text: "Max 3 Trades / Day", cat: "RISK" },
+                            { text: "Hard SL on Every Entry", cat: "RISK" },
+                            { text: "No Revenge Trading", cat: "MINDSET" }
+                        ].map((blueprint, i) => (
+                            <button
+                                key={i}
+                                onClick={() => addRule.mutate({ text: blueprint.text, category: blueprint.cat as any, priority: 'P1' })}
+                                className="w-full p-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-2xl flex items-center justify-between transition-all group/btn"
+                            >
+                                <span className="text-[11px] font-black uppercase tracking-widest">{blueprint.text}</span>
+                                <Plus size={14} className="opacity-40 group-hover/btn:opacity-100" />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="p-12 bg-white border border-slate-200 rounded-[3rem] shadow-sm flex flex-col items-center justify-center text-center space-y-6">
+                    <SubHeading className="opacity-40">System Health</SubHeading>
+                    <div className="w-20 h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${(completedCount / (rules.length || 1)) * 100}%` }} />
+                    </div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">{(completedCount / (rules.length || 1) * 100).toFixed(0)}% Integrity</p>
                 </div>
 
                 <div className="lg:col-span-2 space-y-6">

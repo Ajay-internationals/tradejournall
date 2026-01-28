@@ -1,27 +1,28 @@
 import { useNavigate } from 'react-router-dom';
-import { Target, Users, Zap, ShieldCheck, MessageSquare, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
+import { Target, Users, Zap, ShieldCheck, MessageSquare, CheckCircle2, ArrowRight, Sparkles, BookOpen, Trophy, Rocket, GraduationCap } from 'lucide-react';
 import { PublicHeader } from '@/components/layout/PublicHeader';
+import { SubHeading } from '@/components/ui/SubHeading';
 
 export default function MentorGuidance() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-white text-slate-900 selection:bg-indigo-500/30 font-body">
+        <div className="min-h-screen bg-white text-slate-900 selection:bg-indigo-500/30 font-body pb-20">
             <PublicHeader />
 
             {/* Hero Section */}
             <section className="pt-40 pb-20 px-6">
                 <div className="max-w-6xl mx-auto text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 mb-8">
-                        <Sparkles className="w-4 h-4 text-indigo-600" />
-                        <span className="text-[10px] font-black tracking-[0.2em] text-indigo-600 uppercase">Personalized Coaching Terminal</span>
+                    <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-slate-900 mb-8 border border-white/10 shadow-2xl">
+                        <Sparkles className="w-4 h-4 text-indigo-400" />
+                        <SubHeading className="text-white opacity-90 !mb-0">Personalized Coaching Terminal</SubHeading>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 leading-[1.05]">
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 leading-[1.05] uppercase">
                         Master the Market with <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 text-6xl md:text-8xl">Professional Guidance</span>
                     </h1>
                     <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 font-medium">
-                        Don't trade alone. Get matched with expert mentors who provide structural accountability, detailed trade reviews, and behavioral corrections.
+                        Don't trade alone. Experience the 1:30 mentor-to-student ecosystem designed for pure institutional execution.
                     </p>
 
                     <button
@@ -36,16 +37,22 @@ export default function MentorGuidance() {
             {/* Content Section */}
             <section className="py-20 px-6 bg-slate-50">
                 <div className="max-w-7xl mx-auto font-body">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                        <div className="space-y-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
+                        <div className="lg:col-span-2 space-y-16">
+                            {/* Roadmap */}
                             <div>
-                                <h2 className="text-3xl font-black mb-6">Why Seek Mentor Guidance?</h2>
-                                <p className="text-slate-600 font-medium leading-relaxed">
-                                    Trading is 90% psychology and 10% strategy. A mentor acts as your behavioral mirror, pointing out the mistakes you're too biased to see yourself.
-                                </p>
+                                <SubHeading>Institutional Roadmap</SubHeading>
+                                <h2 className="text-4xl font-black mb-10 tracking-tighter uppercase">The 4 Phases of Mastery</h2>
+                                <div className="space-y-8">
+                                    <RoadmapStep number="01" title="The Structuralist" desc="Master the hard rules of risk. Zero violations for 20 consecutive trades." />
+                                    <RoadmapStep number="02" title="The Technician" desc="Identify high-probability setups with 70% precision in backtesting." />
+                                    <RoadmapStep number="03" title="The Operator" desc="Execute live with zero emotional bias. Focus purely on process over P/L." />
+                                    <RoadmapStep number="04" title="The Institutionalist" desc="Manage size. SCALE positions based on systematic edge, not ego." />
+                                </div>
                             </div>
 
-                            <div className="space-y-6">
+                            {/* Features Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                 <GuidancePoint
                                     icon={<ShieldCheck className="text-indigo-600" />}
                                     title="Structural Accountability"
@@ -56,46 +63,57 @@ export default function MentorGuidance() {
                                     title="Pattern Feedback"
                                     text="Mentors identify recurring overtrading, revenge trading, and setup-drift patterns."
                                 />
-                                <GuidancePoint
-                                    icon={<MessageSquare className="text-indigo-600" />}
-                                    title="Guided Improvement"
-                                    text="Receive actionable checklists and points for next-week focus to accelerate your learning curve."
-                                />
                             </div>
                         </div>
 
-                        <div className="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5">
-                                <Zap size={100} />
-                            </div>
-                            <h3 className="text-xl font-black mb-8 border-b border-slate-100 dark:border-slate-800 pb-6 uppercase tracking-widest text-indigo-600">Mentor Plan Inclusions</h3>
-                            <div className="space-y-4">
-                                <PlanFeature text="Multiple trading accounts (self + students)" />
-                                <PlanFeature text="Student performance tracking dashboard" />
-                                <PlanFeature text="Weekly Structured Review (Strategy & Discipline)" />
-                                <PlanFeature text="End-of-Day (EOD) Review notes on logged trades" />
-                                <PlanFeature text="Behavioral Feedback Heatmaps" />
-                                <PlanFeature text="Improvement checklist & Action points" />
-                            </div>
+                        <div className="space-y-8">
+                            <div className="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
+                                <div className="absolute top-0 right-0 p-8 opacity-5">
+                                    <Zap size={100} />
+                                </div>
+                                <SubHeading className="text-indigo-600">Mentor Plan Inclusions</SubHeading>
+                                <h3 className="text-xl font-black mb-8 border-b border-slate-100 pb-6 uppercase tracking-tight">Access Protocol</h3>
+                                <div className="space-y-4 mb-10">
+                                    <PlanFeature text="Multiple trading accounts (self + students)" />
+                                    <PlanFeature text="Student performance tracking dashboard" />
+                                    <PlanFeature text="Weekly Structured Review (Strategy & Discipline)" />
+                                    <PlanFeature text="End-of-Day (EOD) Review notes on logged trades" />
+                                    <PlanFeature text="Behavioral Feedback Heatmaps" />
+                                    <PlanFeature text="Improvement checklist & Action points" />
+                                </div>
 
-                            <div className="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="px-3 py-1 bg-amber-50 dark:bg-amber-500/10 rounded-full border border-amber-200 dark:border-amber-500/20">
-                                        <span className="text-[10px] font-black text-amber-600 uppercase tracking-widest">New: Mentor+</span>
+                                <div className="pt-8 border-t border-slate-100">
+                                    <div className="flex items-center gap-3 mb-6">
+                                        <div className="px-3 py-1 bg-amber-50 rounded-full border border-amber-200">
+                                            <span className="text-[10px] font-black text-amber-600 uppercase tracking-widest">New: Mentor+</span>
+                                        </div>
+                                        <span className="text-sm font-bold text-slate-400">₹9,999 / mo</span>
                                     </div>
-                                    <span className="text-sm font-bold text-slate-400">₹9,999 / mo</span>
+                                    <div className="space-y-3">
+                                        <PlanFeature text="1× monthly 1:1 video call" />
+                                        <PlanFeature text="Priority EOD reviews" />
+                                        <PlanFeature text="Custom rulebook creation" />
+                                    </div>
                                 </div>
-                                <div className="space-y-3">
-                                    <PlanFeature text="1× monthly 1:1 video call" />
-                                    <PlanFeature text="Priority EOD reviews" />
-                                    <PlanFeature text="Custom rulebook creation" />
-                                    <PlanFeature text="Personalized improvement roadmap" />
-                                </div>
+
+                                <button
+                                    onClick={() => navigate('/pricing')}
+                                    className="w-full mt-10 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-lg hover:bg-slate-900 transition-all"
+                                >
+                                    Activate Guidance
+                                </button>
                             </div>
 
-                            <div className="mt-12 p-6 bg-indigo-50 rounded-2xl">
-                                <p className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-2 italic underline">Limited Capacity</p>
-                                <p className="text-xs font-bold text-slate-500">Mentors maintain a restricted ratio (1:30) to ensure high-quality, personalized attention for every student.</p>
+                            <div className="p-10 bg-indigo-900 text-white rounded-[3rem] shadow-2xl relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-1000">
+                                    <Trophy size={120} className="fill-white" />
+                                </div>
+                                <SubHeading className="text-indigo-300 opacity-60">Mentor Toolkit</SubHeading>
+                                <div className="space-y-4 relative z-10">
+                                    <ToolLink icon={<Rocket size={16} />} text="Institutional Roadmap PDF" />
+                                    <ToolLink icon={<GraduationCap size={16} />} text="Mindset Masterclass" />
+                                    <ToolLink icon={<BookOpen size={16} />} text="Advanced Risk Sheet" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,6 +128,30 @@ export default function MentorGuidance() {
                 </div>
             </footer>
         </div>
+    );
+}
+
+function RoadmapStep({ number, title, desc }: { number: string; title: string; desc: string }) {
+    return (
+        <div className="flex gap-8 group">
+            <div className="text-4xl font-black text-slate-200 group-hover:text-indigo-600 transition-colors duration-500 leading-none">{number}</div>
+            <div className="flex-1 pb-8 border-b border-slate-200 group-last:border-none">
+                <h4 className="text-xl font-black mb-2 uppercase tracking-tight">{title}</h4>
+                <p className="text-sm text-slate-500 font-medium leading-relaxed">{desc}</p>
+            </div>
+        </div>
+    );
+}
+
+function ToolLink({ icon, text }: { icon: React.ReactNode; text: string }) {
+    return (
+        <button className="w-full p-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-2xl flex items-center gap-4 transition-all group/btn">
+            <div className="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-300">
+                {icon}
+            </div>
+            <span className="text-[11px] font-black uppercase tracking-widest text-indigo-100">{text}</span>
+            <ArrowRight size={14} className="ml-auto opacity-0 group-hover/btn:opacity-100 transition-all -translate-x-2 group-hover/btn:translate-x-0" />
+        </button>
     );
 }
 

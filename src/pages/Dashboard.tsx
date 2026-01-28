@@ -26,6 +26,7 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianG
 import { cn } from '@/lib/utils';
 import { useState, useEffect, useMemo } from 'react';
 import { TradeForm } from '@/components/features/TradeForm';
+import { SubHeading } from '@/components/ui/SubHeading';
 import { supabase } from '@/lib/supabase';
 
 export default function Dashboard() {
@@ -156,7 +157,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between mb-10">
                         <div>
                             <h2 className="text-2xl font-black text-slate-900 font-heading uppercase tracking-tight">Equity Curve</h2>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mt-2 opacity-60">Capital fluctuation over time</p>
+                            <SubHeading className="mt-2 opacity-60">Capital fluctuation over time</SubHeading>
                         </div>
                     </div>
                     <div className="h-[350px] w-full">
@@ -186,7 +187,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between mb-10">
                         <div>
                             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Daily Rules</h2>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mt-2 opacity-60">Stay Disciplined</p>
+                            <SubHeading className="mt-2 opacity-60">Stay Disciplined</SubHeading>
                         </div>
                         <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner">
                             <ShieldCheck className="w-6 h-6" />
@@ -234,7 +235,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between mb-10">
                         <div>
                             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Psychology Audit</h2>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mt-2 opacity-60">Mistakes breakdown</p>
+                            <SubHeading className="mt-2 opacity-60">Mistakes breakdown</SubHeading>
                         </div>
                         <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-500 shadow-inner">
                             <HeartCrack className="w-6 h-6" />
@@ -267,7 +268,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between mb-10">
                         <div>
                             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Recent Activity</h2>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mt-2 opacity-60">Latest executions</p>
+                            <SubHeading className="mt-2 opacity-60">Latest executions</SubHeading>
                         </div>
                         <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner">
                             <Activity className="w-6 h-6" />

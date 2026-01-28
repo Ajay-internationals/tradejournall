@@ -1,4 +1,5 @@
-import { Microscope, Play, LayoutGrid, BarChart3, Target, Shield, Clock, TrendingUp, Info, Plus, ChevronRight, Activity, Filter, Trash2, Edit2, MoreVertical, X, Check, Loader2 } from 'lucide-react';
+import { Microscope, Play, LayoutGrid, BarChart3, Target, Shield, Clock, TrendingUp, Info, Plus, ChevronRight, Activity, Filter, Trash2, Edit2, MoreVertical, X, Check, Loader2, Zap } from 'lucide-react';
+import { SubHeading } from '@/components/ui/SubHeading';
 import { useState, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { useStrategies } from '@/hooks/useStrategies';
@@ -46,7 +47,7 @@ export default function Strategies() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">My Strategies</h1>
-                        <p className="text-[10px] font-black font-heading text-indigo-500 uppercase tracking-[0.3em] mt-2 opacity-60">How you plan to trade</p>
+                        <SubHeading className="mt-2 text-indigo-500 opacity-60">How you plan to trade</SubHeading>
                     </div>
                 </div>
                 <div className="flex gap-4">
@@ -60,21 +61,47 @@ export default function Strategies() {
                 </div>
             </header>
 
-            <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar px-4">
-                {['ALL', 'ACTIVE', 'BACKTESTING', 'ARCHIVED'].map(status => (
-                    <button
-                        key={status}
-                        onClick={() => setFilter(status)}
-                        className={cn(
-                            "px-6 py-3 rounded-xl text-[9px] font-black font-heading uppercase tracking-widest transition-all whitespace-nowrap border",
-                            filter === status
-                                ? "bg-indigo-600 text-white border-transparent shadow-lg shadow-indigo-100"
-                                : "bg-white text-slate-400 border-slate-100 hover:border-indigo-200"
-                        )}
-                    >
-                        {status}
-                    </button>
-                ))}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 px-4">
+                <div className="lg:col-span-3">
+                    <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+                        {['ALL', 'ACTIVE', 'BACKTESTING', 'ARCHIVED'].map(status => (
+                            <button
+                                key={status}
+                                onClick={() => setFilter(status)}
+                                className={cn(
+                                    "px-6 py-3 rounded-xl text-[9px] font-black font-heading uppercase tracking-widest transition-all whitespace-nowrap border",
+                                    filter === status
+                                        ? "bg-indigo-600 text-white border-transparent shadow-lg shadow-indigo-100"
+                                        : "bg-white text-slate-400 border-slate-100 hover:border-indigo-200"
+                                )}
+                            >
+                                {status}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <div className="lg:col-span-1 p-8 bg-indigo-900 text-white rounded-[2.5rem] shadow-xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-6 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-1000">
+                        <Zap size={100} className="fill-white" />
+                    </div>
+                    <SubHeading className="text-indigo-300 opacity-60 mb-4">Setup Blueprints</SubHeading>
+                    <div className="space-y-3 relative z-10">
+                        {[
+                            { name: "ORB Breakout", desc: "Opening Range Breakout setup" },
+                            { name: "VWAP Reversal", desc: "Mean reversion at VWAP" },
+                            { name: "VCP Setup", desc: "Volatility Compression pattern" }
+                        ].map((temp, i) => (
+                            <button
+                                key={i}
+                                onClick={() => addStrategy.mutate({ name: temp.name, description: temp.desc, status: 'ACTIVE', risk_per_trade: 0 })}
+                                className="w-full p-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl flex items-center justify-between transition-all group/btn"
+                            >
+                                <span className="text-[10px] font-black uppercase tracking-widest">{temp.name}</span>
+                                <Plus size={12} className="opacity-40 group-hover/btn:opacity-100" />
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             {isAdding && (
