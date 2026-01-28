@@ -8,24 +8,14 @@
 - ✅ Landing page now uses white theme with modern design
 - ✅ App properly switches between light and dark themes
 
-### 2. Dashboard Metrics
-All requested metrics are now displayed:
-- ✅ Invested Amount
-- ✅ Total P/L
-- ✅ Avg R:R
-- ✅ Best Trade
-- ✅ Worst Trade
-- ✅ Total Trades
-- ✅ Winning Trades
-- ✅ Losing Trades
-- ✅ Win %
-- ✅ Total Profit
-- ✅ Total Loss
-- ✅ Average Profit
-- ✅ Average Loss
-- ✅ Net P&L
-- ✅ Avg P&L per Trade
-- ✅ Profit Factor
+### 2. Dashboard Metrics (v3 Refinement)
+The dashboard has been streamlined to 4 core KPIs for high-performance focus:
+- ✅ Total Invested (Capital Exposure)
+- ✅ Net P/L (Actual Realized Performance)
+- ✅ Risk to Reward Ratio (Efficiency Metric)
+- ✅ Win Rate (Strike Rate %)
+- ✅ **New**: Daily Rules Checklist (Discipline Tracker)
+- ✅ **New**: Psychology Audit (Mistake Impact Breakdown)
 
 ### 3. Strategy Labs Enhancement
 - ✅ Added "View Trades" button on each strategy card
@@ -190,6 +180,6 @@ For issues or questions:
 
 ---
 
-**Deployment Status**: ✅ Ready for Production
+**Deployment Status**: ✅ v3 Refinements Live
 **Build Status**: ✅ Successful
-**Last Updated**: 2026-01-25
+**Last Updated**: 2026-01-28
