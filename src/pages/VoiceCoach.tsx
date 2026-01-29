@@ -107,7 +107,7 @@ export default function VoiceCoach() {
 
                         <div className="mt-12 p-8 bg-indigo-500/5 border border-indigo-500/10 rounded-[2.5rem] text-center shadow-inner">
                             <MessageSquare className="w-10 h-10 text-indigo-400 mx-auto mb-4" />
-                            <p className="text-xs font-bold text-[var(--app-text-muted)] leading-relaxed uppercase tracking-widest">
+                            <p className="text-xs font-bold text-[var(--app-text-muted)] leading-relaxed uppercase">
                                 Journaling your voice is the fastest way to master trading psychology.
                             </p>
                         </div>
@@ -124,7 +124,7 @@ function DebriefItem({ date, mood, insight }: any) {
             <div className="flex items-center justify-between">
                 <p className="text-[10px] font-black text-[var(--app-text-muted)] tracking-[0.4em] uppercase">{date}</p>
                 <div className={cn(
-                    "px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest",
+                    "px-3 py-1 rounded-lg text-[9px] font-black uppercase",
                     mood === 'Zen Mode' ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400"
                 )}>
                     {mood}

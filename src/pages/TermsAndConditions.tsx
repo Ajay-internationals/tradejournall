@@ -39,7 +39,7 @@ export default function TermsAndConditions() {
                     </section>
                 </div>
 
-                <p className="mt-20 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Last Updated: January 2026</p>
+                <p className="mt-20 text-[10px] font-bold text-slate-400 uppercase">Last Updated: January 2026</p>
                 <div className="mt-8 flex items-center gap-2">
                     <CheckCircle2 size={12} className="text-indigo-400" />
                     <p className="text-[10px] font-bold text-slate-900 uppercase">Made in India • For India</p>

@@ -289,7 +289,7 @@ export default function Landing() {
                     <h2 className="text-4xl md:text-7xl font-bold font-heading text-white mb-10 tracking-tighter">Ready to master the markets?</h2>
                     <button
                         onClick={() => navigate('/login', { state: { defaultSignUp: true } })}
-                        className="px-16 py-6 bg-white text-indigo-600 rounded-full font-bold font-heading text-xs uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-2xl active:scale-95"
+                        className="px-16 py-6 bg-white text-indigo-600 rounded-full font-bold font-heading text-xs uppercase hover:scale-105 transition-all shadow-2xl active:scale-95"
                     >
                         Start Your Free Trial
                     </button>
@@ -389,7 +389,7 @@ function PricingCard({ title, price, period, description, features, isFeatured =
         )}>
             {isFeatured && <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-indigo-600 text-white rounded-full text-[10px] font-bold font-heading uppercase tracking-widest shadow-lg">Most Popular</div>}
 
-            <h4 className={cn("text-xs font-bold font-heading uppercase tracking-[0.2em] mb-4", isFeatured ? "text-indigo-400" : "text-indigo-600")}>{title}</h4>
+            <h4 className={cn("text-xs font-bold font-heading uppercase mb-4", isFeatured ? "text-indigo-400" : "text-indigo-600")}>{title}</h4>
             <div className="flex items-baseline gap-2 mb-4 leading-none">
                 <span className="text-5xl font-bold font-heading">{price}</span>
                 {period && <span className={cn("text-sm font-bold font-heading", isFeatured ? "text-slate-400" : "text-slate-500 tracking-wide")}>{period}</span>}

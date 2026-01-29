@@ -63,11 +63,11 @@ export default function Settings() {
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold tracking-tight text-slate-900 leading-none uppercase">Account Settings</h1>
-                        <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-2 opacity-50">Profile & Security</p>
+                        <p className="text-slate-400 font-bold text-[10px] mt-2 opacity-50">Profile & Security</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-full border border-indigo-100">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-600">Secure Environment</span>
+                    <span className="text-[10px] font-bold text-indigo-600">Secure Environment</span>
                 </div>
             </header>
 
@@ -178,7 +178,7 @@ export default function Settings() {
                     </div>
                     <div>
                         <p className="font-bold text-rose-600 leading-none">Security Zone</p>
-                        <p className="text-[10px] font-bold text-rose-400 uppercase tracking-widest mt-1">End Active Session</p>
+                        <p className="text-[10px] font-bold text-rose-400 mt-1">End Active Session</p>
                     </div>
                 </div>
                 <button
