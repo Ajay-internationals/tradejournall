@@ -66,7 +66,7 @@ export default function Pricing() {
                 <div className="max-w-7xl mx-auto text-center font-body">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 mb-8">
                         <Sparkles className="w-4 h-4 text-indigo-600" />
-                        <span className="text-[10px] font-black tracking-[0.2em] text-indigo-600 uppercase">Invest in your discipline</span>
+                        <span className="text-[10px] font-bold text-indigo-600 uppercase">Invest in your discipline</span>
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[1.05]">
@@ -107,7 +107,7 @@ export default function Pricing() {
                                         {plan.period !== 'forever' && <span className="text-slate-500 font-bold uppercase text-[9px] tracking-widest">/{plan.period}</span>}
                                     </div>
                                     <p className={cn(
-                                        "text-[12px] font-black uppercase tracking-widest leading-none mb-4",
+                                        "text-[12px] font-bold leading-none mb-4",
                                         plan.popular ? "text-indigo-400" : "text-slate-900"
                                     )}>
                                         {plan.description}
@@ -155,7 +155,7 @@ export default function Pricing() {
                                 <button
                                     onClick={() => navigate(plan.name.includes('Mentor') ? '/login' : '/login')}
                                     className={cn(
-                                        "w-full py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] transition-all",
+                                        "w-full py-5 rounded-2xl font-bold uppercase text-[10px] transition-all",
                                         plan.popular
                                             ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-[0_20px_40px_rgba(79,70,229,0.3)]'
                                             : 'bg-slate-100 text-slate-900 hover:bg-slate-200'

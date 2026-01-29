@@ -53,7 +53,7 @@ export default function Strategies() {
                 <div className="flex gap-4">
                     <button
                         onClick={() => setIsAdding(true)}
-                        className="px-10 py-5 bg-slate-900 text-white font-black font-heading rounded-2xl text-[11px] uppercase tracking-widest flex items-center gap-3 shadow-xl hover:scale-105 transition-all"
+                        className="px-10 py-5 bg-slate-900 text-white font-bold font-heading rounded-2xl text-[11px] flex items-center gap-3 shadow-xl hover:scale-105 transition-all"
                     >
                         <Plus size={18} />
                         Add New Strategy
@@ -69,7 +69,7 @@ export default function Strategies() {
                                 key={status}
                                 onClick={() => setFilter(status)}
                                 className={cn(
-                                    "px-6 py-3 rounded-xl text-[9px] font-black font-heading uppercase tracking-widest transition-all whitespace-nowrap border",
+                                    "px-6 py-3 rounded-xl text-[9px] font-bold font-heading transition-all whitespace-nowrap border",
                                     filter === status
                                         ? "bg-indigo-600 text-white border-transparent shadow-lg shadow-indigo-100"
                                         : "bg-white text-slate-400 border-slate-100 hover:border-indigo-200"
@@ -197,11 +197,11 @@ function StrategyCard({ strategy }: { strategy: any }) {
 
             <div className="grid grid-cols-2 gap-6 mb-10 leading-none">
                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-[8px] font-black font-heading uppercase tracking-[0.2em] text-slate-400 mb-2">Win Rate</p>
+                    <p className="text-[8px] font-bold font-heading text-slate-400 mb-2">Win Rate</p>
                     <p className="text-xl font-bold font-heading text-slate-900 tracking-tighter">{stats.winRate.toFixed(1)}%</p>
                 </div>
                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-[8px] font-black font-heading uppercase tracking-[0.2em] text-slate-400 mb-2">Profit Score</p>
+                    <p className="text-[8px] font-bold font-heading text-slate-400 mb-2">Profit Score</p>
                     <p className="text-xl font-bold font-heading text-slate-900 tracking-tighter">{stats.profitFactor.toFixed(2)}</p>
                 </div>
             </div>

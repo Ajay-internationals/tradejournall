@@ -35,7 +35,7 @@ export default function Rules() {
                 </div>
                 <button
                     onClick={() => setIsAdding(true)}
-                    className="w-full md:w-auto px-10 py-5 bg-slate-900 text-white font-black font-heading rounded-2xl text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl hover:scale-105 active:scale-95 transition-all"
+                    className="w-full md:w-auto px-10 py-5 bg-slate-900 text-white font-bold font-heading rounded-2xl text-[11px] flex items-center justify-center gap-3 shadow-xl hover:scale-105 active:scale-95 transition-all"
                 >
                     <Plus size={18} />
                     Add New Rule
@@ -93,7 +93,7 @@ export default function Rules() {
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={cn(
-                                    "px-6 py-3 rounded-xl text-[9px] font-black font-heading uppercase tracking-widest transition-all whitespace-nowrap border",
+                                    "px-6 py-3 rounded-xl text-[9px] font-bold font-heading transition-all whitespace-nowrap border",
                                     filter === cat
                                         ? "bg-indigo-600 text-white border-transparent shadow-lg shadow-indigo-100"
                                         : "bg-white text-slate-400 border-slate-100 hover:border-indigo-200"
