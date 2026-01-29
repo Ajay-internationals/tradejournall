@@ -547,6 +547,33 @@ export type Database = {
                 }
                 Relationships: []
             }
+            webinar_registrations: {
+                Row: {
+                    id: string
+                    created_at: string
+                    name: string
+                    whatsapp: string
+                    webinar_date: string
+                    email: string | null
+                }
+                Insert: {
+                    id?: string
+                    created_at?: string
+                    name: string
+                    whatsapp: string
+                    webinar_date: string
+                    email?: string | null
+                }
+                Update: {
+                    id?: string
+                    created_at?: string
+                    name?: string
+                    whatsapp?: string
+                    webinar_date?: string
+                    email?: string | null
+                }
+                Relationships: []
+            }
         }
         Views: {
             [_ in never]: never
