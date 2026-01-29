@@ -8,10 +8,10 @@ const curricula = [
         title: 'Market Structure 101',
         duration: '2h 15m',
         lessons: 12,
-        category: 'Institutional',
+        category: 'Advanced',
         level: 'Advanced',
         color: 'bg-indigo-600',
-        description: 'Master the mechanical identification of institutional order blocks and liquidity sweeps.'
+        description: 'Master the mechanical identification of order blocks and liquidity sweeps.'
     },
     {
         id: 'psychology',
@@ -47,11 +47,11 @@ export default function Learn() {
                     </div>
                     <div>
                         <h1 className="text-4xl font-bold tracking-tight">Knowledge Hub</h1>
-                        <p className="text-slate-500 text-sm font-bold tracking-wide uppercase">Institutional training for the serious operator</p>
+                        <p className="text-slate-500 text-sm font-bold tracking-wide">Professional training for serious traders</p>
                     </div>
                 </div>
                 <div className="flex bg-indigo-50/50 p-1 rounded-2xl border border-slate-200 shrink-0 shadow-sm">
-                    {['ALL', 'INSTITUTIONAL', 'PSYCHOLOGY', 'ELITE'].map(tab => (
+                    {['ALL', 'ADVANCED', 'PSYCHOLOGY', 'ELITE'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -77,7 +77,7 @@ export default function Learn() {
                         </div>
                         <div className="p-8 flex-1 flex flex-col">
                             <div className="flex items-center gap-2 mb-4">
-                                <span className="px-2 py-0.5 bg-indigo-50/50 rounded text-[8px] font-bold text-slate-400 uppercase tracking-[0.2em] border border-slate-200">{course.category}</span>
+                                <span className="px-2 py-0.5 bg-indigo-50/50 rounded text-[8px] font-bold text-slate-400 border border-slate-200">{course.category}</span>
                             </div>
                             <h3 className="text-2xl font-bold mb-3 text-slate-900">{course.title}</h3>
                             <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-1">{course.description}</p>
@@ -93,7 +93,7 @@ export default function Learn() {
                                 </div>
                             </div>
 
-                            <button className="w-full py-4 bg-indigo-600 text-white rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-500/20">
+                            <button className="w-full py-4 bg-indigo-600 text-white rounded-2xl text-[11px] font-bold hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-500/20">
                                 Enter Curriculum
                             </button>
                         </div>
@@ -117,7 +117,7 @@ export default function Learn() {
                 <div className="p-10 bg-white border border-slate-200 rounded-[3rem] flex flex-col justify-center shadow-xl">
                     <h4 className="text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase mb-8">Trending Topics</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {['Order Flow', 'Gamma Exposure', 'VCP Mastery', 'Bias Neutrality', 'Market Profile', 'Institutional Liquidity'].map(topic => (
+                        {['Order Flow', 'Gamma Exposure', 'VCP Mastery', 'Bias Neutrality', 'Market Profile', 'Market Liquidity'].map(topic => (
                             <div key={topic} className="p-5 bg-indigo-50/50 border border-slate-200 rounded-2xl hover:bg-indigo-500/5 hover:border-indigo-500/20 transition-all cursor-pointer group flex items-center justify-between shadow-sm">
                                 <span className="text-xs font-bold text-slate-400 group-hover:text-slate-900">{topic}</span>
                                 <ChevronRight size={14} className="text-[var(--app-border)] group-hover:text-purple-500" />

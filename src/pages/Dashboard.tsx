@@ -110,12 +110,12 @@ export default function Dashboard() {
                             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
                                 <div className="flex items-center gap-2 px-3 py-1 bg-indigo-50 rounded-full border border-indigo-100">
                                     <Sparkles size={12} className="text-indigo-600" />
-                                    <span className="text-[10px] font-black text-indigo-600 uppercase tracking-[0.2em]">Institutional Access</span>
+                                    <span className="text-[10px] font-bold text-indigo-600">Premium Membership</span>
                                 </div>
                                 {profile?.plan === 'PREMIUM' && (
                                     <div className="flex items-center gap-2 px-3 py-1 bg-amber-50 rounded-full border border-amber-200">
                                         <Trophy size={11} className="text-amber-600" />
-                                        <span className="text-[10px] font-black text-amber-600 uppercase tracking-[0.2em]">Pro</span>
+                                        <span className="text-[10px] font-bold text-amber-600">Pro</span>
                                     </div>
                                 )}
                             </div>
@@ -256,7 +256,7 @@ export default function Dashboard() {
                                 </div>
                                 <div className="text-right">
                                     <p className="text-lg font-black text-rose-500 leading-none tracking-tighter">-{formatCurrency(m.totalLost)}</p>
-                                    <p className="text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mt-1">Total Impact</p>
+                                    <p className="text-[9px] font-bold text-slate-300 mt-1">Total Impact</p>
                                 </div>
                             </div>
                         ))}
@@ -359,7 +359,7 @@ function MetricCard({ icon, label, value, variant = "white", onClick }: { icon: 
                     )}>
                         {icon}
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">{label}</span>
+                    <span className="text-[10px] font-bold opacity-80">{label}</span>
                 </div>
                 {onClick && <Settings size={14} className="opacity-40 group-hover:opacity-100 transition-all" />}
             </div>

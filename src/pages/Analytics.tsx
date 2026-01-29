@@ -126,7 +126,7 @@ export default function Analytics() {
 
                         <button
                             onClick={handleUpgrade}
-                            className="px-16 py-7 bg-indigo-600 text-white font-black rounded-[2.2rem] hover:bg-black transition-all hover:scale-105 shadow-3xl uppercase tracking-[0.2em] text-[10px]"
+                            className="px-16 py-7 bg-indigo-600 text-white font-black rounded-[2.2rem] hover:bg-black transition-all hover:scale-105 shadow-3xl text-[10px]"
                         >
                             UPGRADE TO TERMINAL PRO <Zap size={14} className="inline ml-3 fill-white" />
                         </button>
@@ -300,7 +300,7 @@ function ProFeatureCard({ icon, title, sub }: any) {
             </div>
             <div className="leading-tight mt-1">
                 <p className="text-xl font-black tracking-tight mb-2 text-slate-900">{title}</p>
-                <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] opacity-40 leading-none mt-2">{sub}</p>
+                <p className="text-[10px] text-slate-400 font-bold leading-none mt-2">{sub}</p>
             </div>
         </div>
     );
