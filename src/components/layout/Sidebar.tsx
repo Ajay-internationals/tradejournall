@@ -61,8 +61,8 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
             ]
         },
         ...(profile?.role === 'ADMIN' ? [{
-            label: 'Administration', items: [
-                { icon: <Shield size={20} />, label: 'Admin Terminal', path: '/admin' },
+            label: 'Admin', items: [
+                { icon: <Shield size={20} />, label: 'Dashboard', path: '/admin' },
             ]
         }] : [])
     ];
