@@ -38,7 +38,7 @@ export default function Contact() {
                                         <Mail size={24} />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">General Inquiries</p>
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase">General Inquiries</p>
                                         <p className="text-lg font-black text-slate-900 mt-1">tradeadhyayan.info@gmail.com</p>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@ export default function Contact() {
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
+                                        <label className="text-[10px] font-bold text-slate-400 uppercase ml-1">Full Name</label>
                                         <input required type="text" className="w-full bg-white border border-slate-100 rounded-2xl py-4 px-6 text-sm font-bold focus:outline-none focus:border-indigo-600 transition-all font-body" />
                                     </div>
                                     <div className="space-y-2">
@@ -64,7 +64,7 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={!!status}
-                                    className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase tracking-widest text-[11px] hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 disabled:bg-emerald-500 shadow-xl shadow-indigo-100"
+                                    className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase text-[11px] hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 disabled:bg-emerald-500 shadow-xl shadow-indigo-100"
                                 >
                                     {status === 'SUCCESS' ? <>Message Sent</> : <>Transmit <Send size={14} /></>}
                                 </button>

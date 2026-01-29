@@ -175,7 +175,7 @@ export default function Analytics() {
                                 <div className="flex items-center justify-between mb-10">
                                     <div>
                                         <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Equity Curve</h3>
-                                        <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Normalized Capital Flux</p>
+                                        <p className="text-[10px] font-bold font-heading text-slate-400 mt-2 opacity-40 italic">Normalized Capital Flux</p>
                                     </div>
                                 </div>
                                 <div className="h-[400px]">
@@ -192,7 +192,7 @@ export default function Analytics() {
                                 <div className="flex items-center justify-between mb-10">
                                     <div>
                                         <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Execution Timing</h3>
-                                        <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Daily Performance Alpha</p>
+                                        <p className="text-[10px] font-bold font-heading text-slate-400 mt-2 opacity-40 italic">Daily Performance Alpha</p>
                                     </div>
                                 </div>
                                 <div className="h-[350px]">
@@ -227,7 +227,7 @@ export default function Analytics() {
                             <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm flex flex-col items-center">
                                 <div className="w-full mb-10 text-center">
                                     <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Allocation</h3>
-                                    <p className="text-[10px] font-black font-heading text-slate-400 uppercase tracking-widest mt-2 opacity-40 italic">Asset Class Exposure</p>
+                                    <p className="text-[10px] font-bold font-heading text-slate-400 mt-2 opacity-40 italic">Asset Class Exposure</p>
                                 </div>
                                 <div className="h-[250px] w-full">
                                     <ResponsiveContainer width="100%" height="100%">
@@ -260,7 +260,7 @@ export default function Analytics() {
                                 </div>
                                 <div className="w-full mt-10 space-y-4">
                                     {assetData.map((alt, idx) => (
-                                        <div key={idx} className="flex items-center justify-between text-[11px] font-black font-heading uppercase tracking-widest">
+                                        <div key={idx} className="flex items-center justify-between text-[11px] font-bold font-heading uppercase">
                                             <div className="flex items-center gap-4 text-slate-400">
                                                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PIE_COLORS[idx % PIE_COLORS.length] }} />
                                                 <span>{alt.name}</span>

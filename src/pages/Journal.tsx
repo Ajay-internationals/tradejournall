@@ -138,7 +138,7 @@ export default function Journal() {
                 ) : (
                     <div className="grid grid-cols-1 gap-3">
                         {/* Header Row (Hidden on mobile) */}
-                        <div className="hidden md:grid grid-cols-12 gap-4 px-8 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                        <div className="hidden md:grid grid-cols-12 gap-4 px-8 py-2 text-[10px] font-bold text-slate-400 uppercase">
                             <div className="col-span-4 pl-4">Entry Information</div>
                             <div className="col-span-2 text-center">Setup</div>
                             <div className="col-span-2 text-center">Status</div>
