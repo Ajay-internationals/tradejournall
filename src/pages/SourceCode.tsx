@@ -21,7 +21,7 @@ export default function SourceCode() {
                 <div className="max-w-xl space-y-6 relative z-10">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full">
                         <Zap size={14} className="text-indigo-400 fill-indigo-400" />
-                        <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">Built with React 19 & Vite</span>
+                        <span className="text-[10px] font-bold text-indigo-400 uppercase">Built with React 19 & Vite</span>
                     </div>
                     <h2 className="text-4xl font-bold ">Transparency is Edge.</h2>
                     <p className="text-slate-400 text-lg leading-relaxed font-medium">

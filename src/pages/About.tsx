@@ -65,7 +65,7 @@ export default function About() {
                     <AboutCard
                         icon={<Heart className="text-indigo-600" />}
                         title="For the Community"
-                        text="Built to empower the Indian retail trading ecosystem with institutional-grade tools."
+                        text="Built to empower the Indian retail trading ecosystem with professional-grade tools."
                     />
                 </div>
             </section>

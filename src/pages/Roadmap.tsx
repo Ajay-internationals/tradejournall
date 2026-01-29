@@ -7,7 +7,7 @@ const steps = [
         id: 'setup',
         title: 'Genesis',
         icon: <Rocket size={20} />,
-        desc: 'Establishing institutional infrastructure.',
+        desc: 'Establishing platform infrastructure.',
         tasks: ['Link Data Broker', 'Surveillance Sync', 'Define Risk Unit']
     },
     {
@@ -36,7 +36,7 @@ const steps = [
         title: 'Ascent',
         icon: <TrendingUp size={20} />,
         desc: 'Scaling size with precision.',
-        tasks: ['Portfolio Expansion', 'Institutional Flow', 'Elite Performance']
+        tasks: ['Portfolio Expansion', 'Professional Flow', 'Elite Performance']
     }
 ];
 
@@ -79,7 +79,7 @@ export default function Roadmap() {
                                     {completed ? <CheckCircle2 size={24} /> : locked ? <Lock size={20} /> : step.icon}
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Phase 0{idx + 1}</p>
+                                    <p className="text-[10px] font-bold text-slate-400 uppercase">Phase 0{idx + 1}</p>
                                     <p className={cn("text-[8px] font-black uppercase mt-1", completed ? "text-emerald-500" : locked ? "text-slate-400" : "text-indigo-600")}>
                                         {completed ? 'Archived' : locked ? 'Locked' : 'Active'}
                                     </p>

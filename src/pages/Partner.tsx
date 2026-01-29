@@ -41,7 +41,7 @@ export default function Partner() {
                 </div>
                 <h1 className="text-4xl font-black mb-4">Transmission Successful!</h1>
                 <p className="text-slate-500 font-bold uppercase tracking-widest text-sm max-w-md mb-12">
-                    Thank you for reaching out. Our institutional desk will review your credentials and contact you shortly.
+                    Thank you for reaching out. Our support desk will review your credentials and contact you shortly.
                 </p>
                 <button
                     onClick={() => navigate('/')}
