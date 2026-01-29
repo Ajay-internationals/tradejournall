@@ -41,13 +41,13 @@ export default function MentorGuidance() {
                         <div className="lg:col-span-2 space-y-16">
                             {/* Roadmap */}
                             <div>
-                                <SubHeading>Institutional Roadmap</SubHeading>
+                                <SubHeading>Professional Roadmap</SubHeading>
                                 <h2 className="text-4xl font-black mb-10 tracking-tighter uppercase">The 4 Phases of Mastery</h2>
                                 <div className="space-y-8">
                                     <RoadmapStep number="01" title="The Structuralist" desc="Master the hard rules of risk. Zero violations for 20 consecutive trades." />
                                     <RoadmapStep number="02" title="The Technician" desc="Identify high-probability setups with 70% precision in backtesting." />
                                     <RoadmapStep number="03" title="The Operator" desc="Execute live with zero emotional bias. Focus purely on process over P/L." />
-                                    <RoadmapStep number="04" title="The Institutionalist" desc="Manage size. SCALE positions based on systematic edge, not ego." />
+                                    <RoadmapStep number="04" title="The Professional" desc="Manage size. SCALE positions based on systematic edge, not ego." />
                                 </div>
                             </div>
 
@@ -110,7 +110,7 @@ export default function MentorGuidance() {
                                 </div>
                                 <SubHeading className="text-indigo-300 opacity-60">Mentor Toolkit</SubHeading>
                                 <div className="space-y-4 relative z-10">
-                                    <ToolLink icon={<Rocket size={16} />} text="Institutional Roadmap PDF" />
+                                    <ToolLink icon={<Rocket size={16} />} text="Professional Roadmap PDF" />
                                     <ToolLink icon={<GraduationCap size={16} />} text="Mindset Masterclass" />
                                     <ToolLink icon={<BookOpen size={16} />} text="Advanced Risk Sheet" />
                                 </div>

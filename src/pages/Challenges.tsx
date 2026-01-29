@@ -26,7 +26,7 @@ export default function Challenges() {
                     <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform"><Trophy size={180} /></div>
                     <div className="relative z-10">
                         <h1 className="text-4xl font-black tracking-tight mb-2">Performance Apex</h1>
-                        <p className="text-indigo-100 font-bold uppercase tracking-widest text-[10px] mb-8">Execute with institutional discipline</p>
+                        <p className="text-indigo-100 font-bold uppercase text-[10px] mb-8">Execute with professional discipline</p>
                         <div className="flex gap-12">
                             <div><p className="text-[9px] opacity-60 font-black uppercase mb-1">Total Rewards</p><p className="text-3xl font-black">4,250 QP</p></div>
                             <div><p className="text-[9px] opacity-60 font-black uppercase mb-1">Global Rank</p><p className="text-3xl font-black">#82</p></div>
