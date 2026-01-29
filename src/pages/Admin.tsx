@@ -34,23 +34,26 @@ export default function Admin() {
     const [stats, setStats] = useState<AdminStats | null>(null);
     const [users, setUsers] = useState<any[]>([]);
     const [trades, setTrades] = useState<any[]>([]);
+    const [webinarRegistrations, setWebinarRegistrations] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'trades'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'users' | 'trades' | 'webinar'>('overview');
     const [searchQuery, setSearchQuery] = useState('');
 
     const loadAdminData = async () => {
         try {
             setLoading(true);
             setError(null);
-            const [s, u, t] = await Promise.all([
+            const [s, u, t, w] = await Promise.all([
                 api.admin.getStats(),
                 api.admin.listUsers(),
-                api.admin.listAllTrades()
+                api.admin.listAllTrades(),
+                api.admin.listWebinarRegistrations()
             ]);
             setStats(s);
             setUsers(u || []);
             setTrades(t || []);
+            setWebinarRegistrations(w || []);
         } catch (err: any) {
             console.error('Admin Load Error:', err);
             setError(err.message || 'Failed to load platform data');
@@ -109,6 +112,26 @@ export default function Admin() {
         a.click();
     };
 
+    const exportWebinarCSV = () => {
+        const headers = ['Name', 'WhatsApp', 'Date', 'Registered At'];
+        const csvContent = [
+            headers.join(','),
+            ...webinarRegistrations.map(r => [
+                `"${r.name}"`,
+                r.whatsapp,
+                r.webinar_date,
+                new Date(r.created_at).toLocaleString()
+            ].join(','))
+        ].join('\n');
+
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `webinar_registrations_${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+    };
+
     const formatDate = (dateString: string) => {
         if (!dateString) return 'N/A';
         try {
@@ -162,7 +185,7 @@ export default function Admin() {
                         <RefreshCw size={18} className={loading ? "animate-spin" : ""} />
                     </button>
                     <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
-                        {(['overview', 'users', 'trades'] as const).map((tab) => (
+                        {(['overview', 'users', 'trades', 'webinar'] as const).map((tab) => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
@@ -414,6 +437,65 @@ export default function Admin() {
                                         </td>
                                     </tr>
                                 ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
+
+            {activeTab === 'webinar' && (
+                <div className="bg-white rounded-[3rem] border border-slate-200 overflow-hidden shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div className="p-10 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div>
+                            <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tight font-heading">Webinar Signups</h3>
+                            <SubHeading className="mt-2 mb-0">Manage event attendees</SubHeading>
+                        </div>
+                        <button onClick={exportWebinarCSV} className="px-8 py-4 bg-indigo-600 text-white rounded-2xl text-[10px] font-bold uppercase flex items-center gap-2 hover:bg-slate-900 transition-all shadow-lg shadow-indigo-600/20 font-heading">
+                            <Download size={18} /> Export List
+                        </button>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left">
+                            <thead className="bg-slate-50 text-[10px] font-bold uppercase text-slate-400 font-heading">
+                                <tr>
+                                    <th className="px-10 py-5">Attendee</th>
+                                    <th className="px-10 py-5">WhatsApp</th>
+                                    <th className="px-10 py-5">Webinar Date</th>
+                                    <th className="px-10 py-5 text-right">Registered</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100">
+                                {webinarRegistrations.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={4} className="px-10 py-20 text-center text-slate-400 text-sm italic font-medium">
+                                            No registrations yet.
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    webinarRegistrations.map((r) => (
+                                        <tr key={r.id} className="hover:bg-slate-50/50 transition-colors">
+                                            <td className="px-10 py-6">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center font-bold text-indigo-600">
+                                                        {r.name[0]?.toUpperCase()}
+                                                    </div>
+                                                    <p className="font-bold text-slate-900">{r.name}</p>
+                                                </div>
+                                            </td>
+                                            <td className="px-10 py-6 font-bold text-slate-600">
+                                                {r.whatsapp}
+                                            </td>
+                                            <td className="px-10 py-6">
+                                                <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[9px] font-bold uppercase">
+                                                    {r.webinar_date}
+                                                </span>
+                                            </td>
+                                            <td className="px-10 py-6 text-right text-slate-500 text-xs">
+                                                {formatDate(r.created_at)}
+                                            </td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </div>

@@ -7,14 +7,29 @@ import {
 } from 'lucide-react';
 import { PublicHeader } from '@/components/layout/PublicHeader';
 import { cn } from '@/lib/utils';
+import { api } from '@/lib/api';
 
 export default function Webinar() {
     const [registered, setRegistered] = useState(false);
     const [formData, setFormData] = useState({ name: '', whatsapp: '' });
+    const [loading, setLoading] = useState(false);
 
-    const handleRegister = (e: React.FormEvent) => {
+    const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
-        setRegistered(true);
+        setLoading(true);
+        try {
+            await api.webinar.register({
+                name: formData.name,
+                whatsapp: formData.whatsapp,
+                webinar_date: '1 Feb, Sunday'
+            });
+            setRegistered(true);
+        } catch (err) {
+            console.error('Registration failed:', err);
+            alert('Something went wrong. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -74,9 +89,10 @@ export default function Webinar() {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold font-heading uppercase tracking-widest text-xs hover:bg-slate-900 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-indigo-100"
+                                    disabled={loading}
+                                    className="w-full py-5 bg-indigo-600 text-white rounded-2xl font-bold font-heading uppercase tracking-widest text-xs hover:bg-slate-900 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-indigo-100 disabled:opacity-50"
                                 >
-                                    Register for Free
+                                    {loading ? 'Processing...' : 'Register for Free'}
                                 </button>
                                 <p className="text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-4 flex items-center justify-center gap-2">
                                     <ShieldCheck size={14} className="text-emerald-500" /> No Spam. Only Learning.

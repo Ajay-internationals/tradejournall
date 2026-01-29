@@ -341,6 +341,27 @@ export const api = {
 
             if (error) throw error;
             return data;
+        },
+        listWebinarRegistrations: async () => {
+            const { data, error } = await supabase
+                .from('webinar_registrations')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+            return data;
+        }
+    },
+    webinar: {
+        register: async (registration: { name: string, whatsapp: string, webinar_date: string, email?: string }) => {
+            const { data, error } = await supabase
+                .from('webinar_registrations')
+                .insert(registration)
+                .select()
+                .single();
+
+            if (error) throw error;
+            return data;
         }
     }
 };
