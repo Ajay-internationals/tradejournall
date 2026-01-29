@@ -95,34 +95,28 @@ export type Database = {
             }
             mistakes: {
                 Row: {
-                    count: number | null
-                    created_at: string | null
-                    description: string | null
                     id: string
-                    last_occurrence: string | null
-                    severity: string | null
-                    title: string
                     user_id: string | null
+                    title: string
+                    description: string | null
+                    severity: string | null
+                    created_at: string | null
                 }
                 Insert: {
-                    count?: number | null
-                    created_at?: string | null
-                    description?: string | null
                     id?: string
-                    last_occurrence?: string | null
-                    severity?: string | null
-                    title: string
                     user_id?: string | null
+                    title: string
+                    description?: string | null
+                    severity?: string | null
+                    created_at?: string | null
                 }
                 Update: {
-                    count?: number | null
-                    created_at?: string | null
-                    description?: string | null
                     id?: string
-                    last_occurrence?: string | null
-                    severity?: string | null
-                    title?: string
                     user_id?: string | null
+                    title?: string
+                    description?: string | null
+                    severity?: string | null
+                    created_at?: string | null
                 }
                 Relationships: [
                     {
@@ -131,35 +125,35 @@ export type Database = {
                         isOneToOne: false
                         referencedRelation: "users"
                         referencedColumns: ["id"]
-                    },
+                    }
                 ]
             }
             partner_inquiries: {
                 Row: {
-                    broker: string | null
                     created_at: string | null
                     email: string
                     id: string
                     message: string | null
                     name: string
+                    phone: string | null
                     status: string | null
                 }
                 Insert: {
-                    broker?: string | null
                     created_at?: string | null
                     email: string
                     id?: string
                     message?: string | null
                     name: string
+                    phone?: string | null
                     status?: string | null
                 }
                 Update: {
-                    broker?: string | null
                     created_at?: string | null
                     email?: string
                     id?: string
                     message?: string | null
                     name?: string
+                    phone?: string | null
                     status?: string | null
                 }
                 Relationships: []
@@ -167,35 +161,46 @@ export type Database = {
             profiles: {
                 Row: {
                     avatar_url: string | null
-                    created_at: string | null
+                    daily_streak: number | null
                     email: string | null
                     full_name: string | null
                     id: string
+                    last_activity_date: string | null
+                    phone_number: string | null
                     plan: string | null
-                    role: string | null
                     updated_at: string | null
                 }
                 Insert: {
                     avatar_url?: string | null
-                    created_at?: string | null
+                    daily_streak?: number | null
                     email?: string | null
                     full_name?: string | null
                     id: string
+                    last_activity_date?: string | null
+                    phone_number?: string | null
                     plan?: string | null
-                    role?: string | null
                     updated_at?: string | null
                 }
                 Update: {
                     avatar_url?: string | null
-                    created_at?: string | null
+                    daily_streak?: number | null
                     email?: string | null
                     full_name?: string | null
                     id?: string
+                    last_activity_date?: string | null
+                    phone_number?: string | null
                     plan?: string | null
-                    role?: string | null
                     updated_at?: string | null
                 }
-                Relationships: []
+                Relationships: [
+                    {
+                        foreignKeyName: "profiles_id_fkey"
+                        columns: ["id"]
+                        isOneToOne: true
+                        referencedRelation: "users"
+                        referencedColumns: ["id"]
+                    },
+                ]
             }
             roadmap_progress: {
                 Row: {
@@ -235,24 +240,27 @@ export type Database = {
                     created_at: string | null
                     id: string
                     text: string
-                    type: string | null
                     user_id: string | null
+                    category: string | null
+                    priority: string | null
                 }
                 Insert: {
                     completed?: boolean | null
                     created_at?: string | null
                     id?: string
                     text: string
-                    type?: string | null
                     user_id?: string | null
+                    category?: string | null
+                    priority?: string | null
                 }
                 Update: {
                     completed?: boolean | null
                     created_at?: string | null
                     id?: string
                     text?: string
-                    type?: string | null
                     user_id?: string | null
+                    category?: string | null
+                    priority?: string | null
                 }
                 Relationships: [
                     {
@@ -269,28 +277,28 @@ export type Database = {
                     created_at: string | null
                     description: string | null
                     id: string
-                    is_active: boolean | null
                     name: string
-                    rules: string[] | null
                     user_id: string | null
+                    status: string | null
+                    risk_per_trade: number | null
                 }
                 Insert: {
                     created_at?: string | null
                     description?: string | null
                     id?: string
-                    is_active?: boolean | null
                     name: string
-                    rules?: string[] | null
                     user_id?: string | null
+                    status?: string | null
+                    risk_per_trade?: number | null
                 }
                 Update: {
                     created_at?: string | null
                     description?: string | null
                     id?: string
-                    is_active?: boolean | null
                     name?: string
-                    rules?: string[] | null
                     user_id?: string | null
+                    status?: string | null
+                    risk_per_trade?: number | null
                 }
                 Relationships: [
                     {
@@ -304,27 +312,30 @@ export type Database = {
             }
             trade_imports: {
                 Row: {
-                    broker: string | null
-                    created_at: string | null
+                    created_at: string
+                    fail_count: number | null
+                    filename: string | null
                     id: string
-                    status: string | null
-                    trade_count: number | null
+                    success_count: number | null
+                    total_count: number | null
                     user_id: string | null
                 }
                 Insert: {
-                    broker?: string | null
-                    created_at?: string | null
+                    created_at?: string
+                    fail_count?: number | null
+                    filename?: string | null
                     id?: string
-                    status?: string | null
-                    trade_count?: number | null
+                    success_count?: number | null
+                    total_count?: number | null
                     user_id?: string | null
                 }
                 Update: {
-                    broker?: string | null
-                    created_at?: string | null
+                    created_at?: string
+                    fail_count?: number | null
+                    filename?: string | null
                     id?: string
-                    status?: string | null
-                    trade_count?: number | null
+                    success_count?: number | null
+                    total_count?: number | null
                     user_id?: string | null
                 }
                 Relationships: [
@@ -339,74 +350,77 @@ export type Database = {
             }
             trades: {
                 Row: {
-                    attachment_url: string | null
-                    created_at: string | null
+                    asset_class: string | null
+                    created_at: string
                     date: string
                     direction: string
                     emotion: string | null
-                    exit_price: number | null
-                    fees: number | null
+                    entry_price: number
+                    exit_price: number
+                    fees: number
+                    gross_pnl: number
                     id: string
+                    import_id: string | null
                     instrument: string
                     net_pnl: number
                     notes: string | null
-                    order_id: string | null
-                    price: number
                     quantity: number
                     stop_loss: number | null
-                    strategy_id: string | null
+                    strategy: string | null
                     tags: string[] | null
-                    target: number | null
-                    user_id: string | null
+                    user_id: string
+                    mistake_ids: string[] | null
                 }
                 Insert: {
-                    attachment_url?: string | null
-                    created_at?: string | null
+                    asset_class?: string | null
+                    created_at?: string
                     date: string
                     direction: string
                     emotion?: string | null
-                    exit_price?: number | null
-                    fees?: number | null
+                    entry_price: number
+                    exit_price: number
+                    fees: number
+                    gross_pnl: number
                     id?: string
+                    import_id?: string | null
                     instrument: string
                     net_pnl: number
                     notes?: string | null
-                    order_id?: string | null
-                    price: number
                     quantity: number
                     stop_loss?: number | null
-                    strategy_id?: string | null
+                    strategy?: string | null
                     tags?: string[] | null
-                    target?: number | null
-                    user_id?: string | null
+                    user_id: string
+                    mistake_ids?: string[] | null
                 }
                 Update: {
-                    attachment_url?: string | null
-                    created_at?: string | null
+                    asset_class?: string | null
+                    created_at?: string
                     date?: string
                     direction?: string
                     emotion?: string | null
-                    exit_price?: number | null
-                    fees?: number | null
+                    entry_price?: number
+                    exit_price?: number
+                    fees?: number
+                    gross_pnl?: number
                     id?: string
+                    import_id?: string | null
                     instrument?: string
                     net_pnl?: number
                     notes?: string | null
-                    order_id?: string | null
-                    price?: number
                     quantity?: number
                     stop_loss?: number | null
-                    strategy_id?: string | null
+                    strategy?: string | null
                     tags?: string[] | null
-                    target?: number | null
-                    user_id?: string | null
+                    user_id?: string
+                    mistake_ids?: string[] | null
                 }
                 Relationships: [
                     {
-                        foreignKeyName: "trades_strategy_id_fkey"
-                        columns: ["strategy_id"]
+                        foreignKeyName: "trades_import_id_fkey"
+                        columns: ["import_id"]
                         isOneToOne: false
-                        referencedRelation: "strategies"
+                        referencedRelation: "trade_imports"
                         referencedColumns: ["id"]
                     },
                     {
@@ -420,37 +434,33 @@ export type Database = {
             }
             user_challenges: {
                 Row: {
-                    challenge_id: string | null
                     completed_at: string | null
+                    current_value: number | null
                     id: string
-                    progress_value: number | null
+                    progress_percent: number | null
                     status: string | null
+                    type: string
                     user_id: string | null
                 }
                 Insert: {
-                    challenge_id?: string | null
                     completed_at?: string | null
+                    current_value?: number | null
                     id?: string
-                    progress_value?: number | null
+                    progress_percent?: number | null
                     status?: string | null
+                    type: string
                     user_id?: string | null
                 }
                 Update: {
-                    challenge_id?: string | null
                     completed_at?: string | null
+                    current_value?: number | null
                     id?: string
-                    progress_value?: number | null
+                    progress_percent?: number | null
                     status?: string | null
+                    type?: string
                     user_id?: string | null
                 }
                 Relationships: [
-                    {
-                        foreignKeyName: "user_challenges_challenge_id_fkey"
-                        columns: ["challenge_id"]
-                        isOneToOne: false
-                        referencedRelation: "challenges"
-                        referencedColumns: ["id"]
-                    },
                     {
                         foreignKeyName: "user_challenges_user_id_fkey"
                         columns: ["user_id"]
@@ -462,24 +472,27 @@ export type Database = {
             }
             user_daily_tasks: {
                 Row: {
-                    completed_at: string | null
+                    created_at: string
                     id: string
                     is_completed: boolean | null
-                    task_id: string
+                    task_date: string | null
+                    task_name: string
                     user_id: string | null
                 }
                 Insert: {
-                    completed_at?: string | null
+                    created_at?: string
                     id?: string
                     is_completed?: boolean | null
-                    task_id: string
+                    task_date?: string | null
+                    task_name: string
                     user_id?: string | null
                 }
                 Update: {
-                    completed_at?: string | null
+                    created_at?: string
                     id?: string
                     is_completed?: boolean | null
-                    task_id?: string
+                    task_date?: string | null
+                    task_name?: string
                     user_id?: string | null
                 }
                 Relationships: [
@@ -494,67 +507,43 @@ export type Database = {
             }
             users: {
                 Row: {
-                    created_at: string | null
+                    avatar_url: string | null
+                    created_at: string
+                    current_period_end: string | null
                     email: string
                     full_name: string | null
                     id: string
                     initial_capital: number | null
-                    last_login: string | null
+                    phone_number: string | null
                     plan: string | null
                     role: string | null
-                    subscription_end: string | null
                     subscription_status: string | null
                 }
                 Insert: {
-                    created_at?: string | null
+                    avatar_url?: string | null
+                    created_at?: string
+                    current_period_end?: string | null
                     email: string
                     full_name?: string | null
                     id: string
                     initial_capital?: number | null
-                    last_login?: string | null
+                    phone_number?: string | null
                     plan?: string | null
                     role?: string | null
-                    subscription_end?: string | null
                     subscription_status?: string | null
                 }
                 Update: {
-                    created_at?: string | null
+                    avatar_url?: string | null
+                    created_at?: string
+                    current_period_end?: string | null
                     email?: string
                     full_name?: string | null
                     id?: string
                     initial_capital?: number | null
-                    last_login?: string | null
+                    phone_number?: string | null
                     plan?: string | null
                     role?: string | null
-                    subscription_end?: string | null
                     subscription_status?: string | null
-                }
-                Relationships: []
-            }
-            webinar_registrations: {
-                Row: {
-                    created_at: string | null
-                    email: string | null
-                    id: string
-                    name: string
-                    webinar_date: string
-                    whatsapp: string
-                }
-                Insert: {
-                    created_at?: string | null
-                    email?: string | null
-                    id?: string
-                    name: string
-                    webinar_date: string
-                    whatsapp: string
-                }
-                Update: {
-                    created_at?: string | null
-                    email?: string | null
-                    id?: string
-                    name?: string
-                    webinar_date?: string
-                    whatsapp?: string
                 }
                 Relationships: []
             }
@@ -573,85 +562,3 @@ export type Database = {
         }
     }
 }
-
-type PublicSchema = Database['public']
-
-export type Tables<
-    PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
-    | { schema: keyof Database },
-    TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
-    : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-    ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-            Row: infer R
-        }
-    ? R
-    : never
-    : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-            Row: infer R
-        }
-    ? R
-    : never
-    : never
-
-export type TablesInsert<
-    PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
-    TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-    ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-        Insert: infer I
-    }
-    ? I
-    : never
-    : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I
-    }
-    ? I
-    : never
-    : never
-
-export type TablesUpdate<
-    PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
-    TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-    ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-        Update: infer U
-    }
-    ? U
-    : never
-    : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U
-    }
-    ? U
-    : never
-    : never
-
-export type Enums<
-    PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
-    | { schema: keyof Database },
-    EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
-    : never = never,
-> = PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-    : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
-    : never
