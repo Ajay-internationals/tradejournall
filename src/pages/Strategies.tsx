@@ -152,8 +152,8 @@ export default function Strategies() {
                         </div>
                     </div>
                     <div className="flex justify-end gap-3">
-                        <button type="button" onClick={() => setIsAdding(false)} className="px-8 py-4 bg-slate-100 text-slate-400 rounded-2xl font-black font-heading uppercase text-[10px] tracking-widest hover:bg-slate-200 transition-all">Cancel</button>
-                        <button type="submit" disabled={addStrategy.isPending} className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-black font-heading uppercase text-[10px] tracking-widest shadow-lg shadow-indigo-100 hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+                        <button type="button" onClick={() => setIsAdding(false)} className="px-8 py-4 bg-slate-100 text-slate-400 rounded-2xl font-bold font-heading uppercase text-[10px] hover:bg-slate-200 transition-all">Cancel</button>
+                        <button type="submit" disabled={addStrategy.isPending} className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold font-heading uppercase text-[10px] shadow-lg shadow-indigo-100 hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
                             {addStrategy.isPending ? <Loader2 className="animate-spin" size={16} /> : <Check size={16} />}
                             Save Strategy
                         </button>
@@ -181,7 +181,7 @@ function StrategyCard({ strategy }: { strategy: any }) {
         <div className="bg-white border border-slate-200 rounded-[3rem] p-10 hover:border-indigo-500 transition-all group relative overflow-hidden flex flex-col shadow-sm">
             <div className="flex items-center justify-between mb-8">
                 <div className={cn(
-                    "px-4 py-2 rounded-xl text-[8px] font-black font-heading uppercase tracking-[0.2em]",
+                    "px-4 py-2 rounded-xl text-[8px] font-bold font-heading uppercase",
                     strategy.status === 'ACTIVE' ? "bg-emerald-500 text-white shadow-lg shadow-emerald-100" :
                         strategy.status === 'BACKTESTING' ? "bg-amber-500 text-white shadow-lg shadow-amber-100" : "bg-slate-100 text-slate-500"
                 )}>

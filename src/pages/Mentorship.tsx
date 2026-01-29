@@ -322,14 +322,14 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                             )}>
                                 {review.rating}
                             </div>
-                            <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest">{review.type} Grade</span>
+                            <span className="text-[10px] font-bold uppercase text-slate-400">{review.type} Grade</span>
                         </div>
 
                         <div className="flex-1 space-y-8">
                             <div className="flex items-center justify-between">
                                 <div className="flex flex-wrap gap-3">
                                     {review.tags.map(tag => (
-                                        <span key={tag} className="px-5 py-2 bg-indigo-50 text-slate-400 text-[9px] font-black uppercase tracking-widest rounded-full border border-slate-200">{tag}</span>
+                                        <span key={tag} className="px-5 py-2 bg-indigo-50 text-slate-400 text-[9px] font-bold uppercase rounded-full border border-slate-200">{tag}</span>
                                     ))}
                                 </div>
                                 <SubHeading className="mb-0 opacity-50">{new Date(review.date).toLocaleDateString()}</SubHeading>
@@ -344,7 +344,7 @@ function TradeReviewView({ acknowledged, onAcknowledge }: any) {
                                     onClick={() => onAcknowledge(review.id)}
                                     disabled={acknowledged.includes(review.id)}
                                     className={cn(
-                                        "px-10 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all",
+                                        "px-10 py-4 rounded-2xl text-[10px] font-bold uppercase transition-all",
                                         acknowledged.includes(review.id)
                                             ? "bg-indigo-50 border border-emerald-500/20 text-emerald-500 cursor-default flex items-center gap-3"
                                             : "bg-indigo-600 text-white shadow-xl hover:bg-slate-900"
