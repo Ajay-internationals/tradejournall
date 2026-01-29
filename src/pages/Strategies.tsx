@@ -96,7 +96,7 @@ export default function Strategies() {
                                 onClick={() => addStrategy.mutate({ name: temp.name, description: temp.desc, status: 'ACTIVE', risk_per_trade: 0 })}
                                 className="w-full p-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl flex items-center justify-between transition-all group/btn"
                             >
-                                <span className="text-[10px] font-black uppercase tracking-widest">{temp.name}</span>
+                                <span className="text-[10px] font-bold uppercase">{temp.name}</span>
                                 <Plus size={12} className="opacity-40 group-hover/btn:opacity-100" />
                             </button>
                         ))}
@@ -210,7 +210,7 @@ function StrategyCard({ strategy }: { strategy: any }) {
                 <div className="flex items-center justify-between p-4 bg-indigo-50 rounded-2xl">
                     <div className="flex items-center gap-3">
                         <Shield size={14} className="text-indigo-600" />
-                        <span className="text-[9px] font-black font-heading uppercase tracking-widest text-indigo-900">Current Risk</span>
+                        <span className="text-[9px] font-bold font-heading uppercase text-indigo-900">Current Risk</span>
                     </div>
                     <span className="text-[11px] font-black font-heading text-indigo-600">₹{strategy.risk_per_trade || 0}</span>
                 </div>

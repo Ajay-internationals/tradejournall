@@ -75,7 +75,7 @@ export default function Mentorship() {
                 <div>
                     <div className="flex items-center gap-3 mb-4">
                         <div className="px-3 py-1 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-full">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600">Unified Portal</span>
+                            <span className="text-[10px] font-bold uppercase text-indigo-600">Unified Portal</span>
                         </div>
                         {role === 'mentor' && (
                             <div className="px-3 py-1 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-full">
