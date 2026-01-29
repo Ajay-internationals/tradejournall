@@ -89,7 +89,7 @@ export default function VoiceCoach() {
                     <div className="flex items-center justify-between">
                         <h3 className="text-2xl font-black font-heading text-[var(--app-text)]">Recent Audit</h3>
                         <div className="px-4 py-2 bg-indigo-500/10 rounded-full border border-indigo-500/20 shadow-sm">
-                            <span className="text-[9px] font-black text-indigo-400 tracking-widest uppercase">Premium Only</span>
+                            <span className="text-[9px] font-bold text-indigo-400 uppercase">Premium Only</span>
                         </div>
                     </div>
 

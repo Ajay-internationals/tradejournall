@@ -139,7 +139,7 @@ export default function Community() {
                 {/* Right Profile / Info Panel */}
                 <div className="w-80 border-l border-[var(--app-border)] bg-[var(--app-bg)]/30 p-8 space-y-8 hidden xl:block">
                     <section>
-                        <h3 className="text-[10px] font-black tracking-[0.2em] text-slate-500 uppercase mb-6">Your Status</h3>
+                        <h3 className="text-[10px] font-bold text-slate-500 uppercase mb-6">Your Status</h3>
                         <div className="p-6 bg-white border border-slate-100 rounded-[2rem] shadow-xl text-center">
                             <div className="w-16 h-16 bg-indigo-50 ring-4 ring-indigo-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-indigo-600 font-black text-xl">
                                 {disciplineScore}
@@ -150,7 +150,7 @@ export default function Community() {
                     </section>
 
                     <section>
-                        <h3 className="text-[10px] font-black tracking-[0.2em] text-slate-500 uppercase mb-6">Moderation Rules</h3>
+                        <h3 className="text-[10px] font-bold text-slate-500 uppercase mb-6">Moderation Rules</h3>
                         <div className="space-y-4">
                             <RuleItem text="No tips / buy-sell calls" />
                             <RuleItem text="No P&L shaming" />
