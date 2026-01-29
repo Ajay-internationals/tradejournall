@@ -69,7 +69,7 @@ export default function Partner() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Sub-Brokers</span>
                     </h1>
                     <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 font-medium">
-                        Join hands with Trade Adhyayan to provide professional-grade journaling and analytics to your students and clients. Track progress, mentor effectively, and add institutional value to your services.
+                        Join hands with Trade Adhyayan to provide professional-grade journaling and analytics to your students and clients. Track progress, mentor effectively, and add professional value to your services.
                     </p>
                 </div>
             </section>
@@ -85,7 +85,7 @@ export default function Partner() {
                         />
                         <PartnerFeature
                             icon={<BarChart size={32} />}
-                            title="Institutional Branding"
+                            title="Professional Branding"
                             description="Deploy Trade Adhyayan as your official analytics partner for your entire user base."
                         />
                         <PartnerFeature

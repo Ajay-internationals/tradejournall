@@ -63,7 +63,7 @@ export function StrategyForm({ onClose }: StrategyFormProps) {
                         <textarea
                             required
                             rows={4}
-                            placeholder="Describe the institutional logic..."
+                            placeholder="Describe the professional logic..."
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl py-5 px-6 text-sm font-bold focus:outline-none focus:border-indigo-500 transition-all text-slate-900 dark:text-white resize-none"

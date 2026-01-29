@@ -22,7 +22,7 @@ export default function MentorGuidance() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 text-6xl md:text-8xl">Professional Guidance</span>
                     </h1>
                     <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 font-medium">
-                        Don't trade alone. Experience the 1:30 mentor-to-student ecosystem designed for pure institutional execution.
+                        Don't trade alone. Experience the 1:30 mentor-to-student ecosystem designed for pure professional execution.
                     </p>
 
                     <button

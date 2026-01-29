@@ -106,7 +106,7 @@ export default function Login() {
                         </div>
                         <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Check Your Inbox</h2>
                         <p className="text-slate-500 font-bold leading-relaxed text-sm">
-                            We've sent a verification link to <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-4">{email}</span>. Please click the link to activate your institutional terminal access.
+                            We've sent a verification link to <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-4">{email}</span>. Please click the link to activate your professional terminal access.
                         </p>
                         <div className="space-y-4 pt-4">
                             <button

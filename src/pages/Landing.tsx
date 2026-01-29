@@ -75,7 +75,7 @@ export default function Landing() {
                     </h1>
 
                     <h2 className="text-lg md:text-3xl font-semibold text-slate-600 mb-6 md:mb-10 max-w-4xl mx-auto leading-relaxed">
-                        Instant Trade Import, psychology tracking, and institutional-grade analytics for serious traders.
+                        Instant Trade Import, psychology tracking, and pro-grade analytics for serious traders.
                     </h2>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 md:mb-16">
