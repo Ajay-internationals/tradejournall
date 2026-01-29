@@ -29,7 +29,7 @@ export default function Rules() {
                         <ShieldCheck className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">My Trading Rules</h1>
+                        <h1 className="text-3xl font-bold font-heading tracking-tight text-slate-900 uppercase">My Trading Rules</h1>
                         <SubHeading className="mt-2 opacity-50">Follow these to stay profitable</SubHeading>
                     </div>
                 </div>
@@ -48,8 +48,8 @@ export default function Rules() {
                         <Flame size={40} className="text-rose-500" />
                     </div>
                     <div className="space-y-2">
-                        <p className="text-5xl font-black font-heading tracking-tight text-slate-900 leading-none">{completedCount}/{rules.length}</p>
-                        <p className="text-[10px] font-black font-heading text-slate-400 tracking-[0.4em] uppercase opacity-40">Rules Followed Today</p>
+                        <p className="text-5xl font-bold font-heading tracking-tight text-slate-900 leading-none">{completedCount}/{rules.length}</p>
+                        <p className="text-[10px] font-bold font-heading text-slate-400 tracking-[0.4em] uppercase opacity-40">Rules Followed Today</p>
                     </div>
                     <p className="text-xs text-slate-400 max-w-[220px] leading-relaxed italic font-bold">"Discipline is the difference between a gambler and a professional."</p>
                 </div>
@@ -70,7 +70,7 @@ export default function Rules() {
                                 onClick={() => addRule.mutate({ text: blueprint.text, category: blueprint.cat as any, priority: 'P1' })}
                                 className="w-full p-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-2xl flex items-center justify-between transition-all group/btn"
                             >
-                                <span className="text-[11px] font-black uppercase tracking-widest">{blueprint.text}</span>
+                                <span className="text-[11px] font-bold uppercase ">{blueprint.text}</span>
                                 <Plus size={14} className="opacity-40 group-hover/btn:opacity-100" />
                             </button>
                         ))}
@@ -82,7 +82,7 @@ export default function Rules() {
                     <div className="w-20 h-2 bg-slate-100 rounded-full overflow-hidden">
                         <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${(completedCount / (rules.length || 1)) * 100}%` }} />
                     </div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">{(completedCount / (rules.length || 1) * 100).toFixed(0)}% Integrity</p>
+                    <p className="text-[10px] font-bold uppercase  text-slate-400">{(completedCount / (rules.length || 1) * 100).toFixed(0)}% Integrity</p>
                 </div>
 
                 <div className="lg:col-span-2 space-y-6">
@@ -127,11 +127,11 @@ export default function Rules() {
                             </div>
                             <div className="flex flex-wrap gap-4 px-4">
                                 <div className="space-y-1">
-                                    <p className="text-[8px] font-black font-heading text-slate-400 uppercase tracking-widest opacity-60">Category</p>
+                                    <p className="text-[8px] font-bold font-heading text-slate-400 uppercase  opacity-60">Category</p>
                                     <select
                                         value={newRuleData.category}
                                         onChange={e => setNewRuleData({ ...newRuleData, category: e.target.value })}
-                                        className="bg-transparent border-none text-[10px] font-black font-heading uppercase tracking-widest text-indigo-600 outline-none p-0 cursor-pointer appearance-none"
+                                        className="bg-transparent border-none text-[10px] font-bold font-heading uppercase  text-indigo-600 outline-none p-0 cursor-pointer appearance-none"
                                     >
                                         <option value="GENERAL">General</option>
                                         <option value="RISK">Risk</option>
@@ -140,11 +140,11 @@ export default function Rules() {
                                     </select>
                                 </div>
                                 <div className="space-y-1 border-l border-slate-200 pl-4">
-                                    <p className="text-[8px] font-black font-heading text-slate-400 uppercase tracking-widest opacity-60">Priority</p>
+                                    <p className="text-[8px] font-bold font-heading text-slate-400 uppercase  opacity-60">Priority</p>
                                     <select
                                         value={newRuleData.priority}
                                         onChange={e => setNewRuleData({ ...newRuleData, priority: e.target.value })}
-                                        className="bg-transparent border-none text-[10px] font-black font-heading uppercase tracking-widest text-indigo-600 outline-none p-0 cursor-pointer appearance-none"
+                                        className="bg-transparent border-none text-[10px] font-bold font-heading uppercase  text-indigo-600 outline-none p-0 cursor-pointer appearance-none"
                                     >
                                         <option value="P1">P1 (Critical)</option>
                                         <option value="P2">P2 (Standard)</option>
@@ -157,7 +157,7 @@ export default function Rules() {
 
                     {filteredRules.length === 0 && !isAdding && (
                         <div className="p-20 text-center border-2 border-dashed border-slate-200 rounded-[3rem] opacity-50 bg-slate-50/30">
-                            <p className="text-slate-400 font-black font-heading uppercase tracking-[0.4em] text-[10px]">No rules in this category</p>
+                            <p className="text-slate-400 font-bold font-heading uppercase tracking-[0.4em] text-[10px]">No rules in this category</p>
                         </div>
                     )}
 
@@ -182,11 +182,11 @@ export default function Rules() {
                                     <div className="flex flex-col">
                                         <span className={cn("text-[15px] font-bold font-heading tracking-tight", rule.completed && "line-through opacity-40")}>{rule.text}</span>
                                         <div className="flex gap-2 mt-2">
-                                            <span className="text-[8px] font-black font-heading uppercase tracking-widest text-slate-400 flex items-center gap-1">
+                                            <span className="text-[8px] font-bold font-heading uppercase  text-slate-400 flex items-center gap-1">
                                                 <Tag size={10} /> {rule.category || 'GENERAL'}
                                             </span>
                                             {rule.priority === 'P1' && (
-                                                <span className="text-[8px] font-black font-heading uppercase tracking-widest text-rose-500 flex items-center gap-1">
+                                                <span className="text-[8px] font-bold font-heading uppercase  text-rose-500 flex items-center gap-1">
                                                     <AlertCircle size={10} /> HIGH PRIORITY
                                                 </span>
                                             )}

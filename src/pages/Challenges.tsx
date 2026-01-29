@@ -16,7 +16,7 @@ export default function Challenges() {
         setDailyTasks(prev => prev.map(t => t.id === id ? { ...t, completed: !t.completed } : t));
     };
 
-    if (isLoading) return <div className="h-screen flex items-center justify-center font-black uppercase text-indigo-600 animate-pulse">Loading Missions...</div>;
+    if (isLoading) return <div className="h-screen flex items-center justify-center font-bold uppercase text-indigo-600 animate-pulse">Loading Missions...</div>;
 
     return (
         <div className="space-y-12 animate-in fade-in duration-700 pb-20 font-body">
@@ -25,11 +25,11 @@ export default function Challenges() {
                 <div className="lg:col-span-2 p-10 bg-indigo-600 text-white rounded-[3rem] shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform"><Trophy size={180} /></div>
                     <div className="relative z-10">
-                        <h1 className="text-4xl font-black tracking-tight mb-2">Performance Apex</h1>
+                        <h1 className="text-4xl font-bold tracking-tight mb-2">Performance Apex</h1>
                         <p className="text-indigo-100 font-bold uppercase text-[10px] mb-8">Execute with professional discipline</p>
                         <div className="flex gap-12">
-                            <div><p className="text-[9px] opacity-60 font-black uppercase mb-1">Total Rewards</p><p className="text-3xl font-black">4,250 QP</p></div>
-                            <div><p className="text-[9px] opacity-60 font-black uppercase mb-1">Global Rank</p><p className="text-3xl font-black">#82</p></div>
+                            <div><p className="text-[9px] opacity-60 font-bold uppercase mb-1">Total Rewards</p><p className="text-3xl font-bold">4,250 QP</p></div>
+                            <div><p className="text-[9px] opacity-60 font-bold uppercase mb-1">Global Rank</p><p className="text-3xl font-bold">#82</p></div>
                         </div>
                     </div>
                 </div>
@@ -37,16 +37,16 @@ export default function Challenges() {
                 <div className="p-8 bg-amber-500 text-white rounded-[3rem] shadow-2xl flex flex-col justify-between">
                     <div className="flex items-center justify-between">
                         <Flame size={48} className="animate-pulse" />
-                        <span className="text-[10px] font-black uppercase tracking-widest bg-black/10 px-3 py-1 rounded-full">Active Streak</span>
+                        <span className="text-[10px] font-bold uppercase  bg-black/10 px-3 py-1 rounded-full">Active Streak</span>
                     </div>
                     <div>
-                        <p className="text-5xl font-black mb-1">{streak} Days</p>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-80">Don't break the chain!</p>
+                        <p className="text-5xl font-bold mb-1">{streak} Days</p>
+                        <p className="text-[10px] font-bold uppercase  opacity-80">Don't break the chain!</p>
                     </div>
                 </div>
 
                 <div className="p-8 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3rem] shadow-xl">
-                    <h3 className="text-xs font-black uppercase tracking-widest mb-6 flex items-center gap-2">
+                    <h3 className="text-xs font-bold uppercase  mb-6 flex items-center gap-2">
                         <Clock size={16} className="text-indigo-500" /> Daily Sync
                     </h3>
                     <div className="space-y-4">
@@ -67,7 +67,7 @@ export default function Challenges() {
             {/* Missions Grid */}
             <div className="space-y-8">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-xs font-black uppercase tracking-[0.4em] text-slate-400 px-4">Active Tactical Missions</h2>
+                    <h2 className="text-xs font-bold uppercase tracking-[0.4em] text-slate-400 px-4">Active Tactical Missions</h2>
                     <div className="flex gap-2">
                         <FilterBadge label="All" active />
                         <FilterBadge label="Discipline" />
@@ -81,7 +81,7 @@ export default function Challenges() {
                     ))}
                     <div className="p-8 bg-[var(--app-bg)] border-2 border-dashed border-[var(--app-border)] rounded-[3rem] flex flex-col items-center justify-center text-center opacity-40 hover:opacity-100 transition-opacity cursor-pointer group">
                         <Plus className="mb-4 text-slate-400 group-hover:scale-110 transition-transform" size={40} />
-                        <p className="text-[10px] font-black uppercase tracking-widest">Request Custom Mission</p>
+                        <p className="text-[10px] font-bold uppercase ">Request Custom Mission</p>
                     </div>
                 </div>
             </div>
@@ -103,20 +103,20 @@ function MissionCard({ challenge, onAction }: any) {
                     {challenge.type === 'DISCIPLINE' ? <Shield className="text-indigo-500" /> : <Target className="text-amber-500" />}
                 </div>
                 {isCompleted ? (
-                    <span className="flex items-center gap-1 text-[8px] font-black uppercase text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-full"><Award size={10} /> Verified</span>
+                    <span className="flex items-center gap-1 text-[8px] font-bold uppercase text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-full"><Award size={10} /> Verified</span>
                 ) : (
-                    <span className="text-[8px] font-black uppercase text-indigo-500 bg-indigo-500/10 px-3 py-1 rounded-full">In Motion</span>
+                    <span className="text-[8px] font-bold uppercase text-indigo-500 bg-indigo-500/10 px-3 py-1 rounded-full">In Motion</span>
                 )}
             </div>
 
-            <h3 className="text-2xl font-black mb-2 tracking-tight">{challenge.title}</h3>
+            <h3 className="text-2xl font-bold mb-2 tracking-tight">{challenge.title}</h3>
             <p className="text-xs font-bold text-slate-500 leading-relaxed uppercase mb-10 min-h-[48px]">{challenge.description}</p>
 
             <div className="space-y-6 pt-6 border-t border-[var(--app-border)]">
                 <div>
                     <div className="flex justify-between items-end mb-2">
-                        <span className="text-[9px] font-black uppercase text-slate-400">Progress</span>
-                        <span className="text-[10px] font-black">{challenge.current_value} / {challenge.target_value}</span>
+                        <span className="text-[9px] font-bold uppercase text-slate-400">Progress</span>
+                        <span className="text-[10px] font-bold">{challenge.current_value} / {challenge.target_value}</span>
                     </div>
                     <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
                         <div
@@ -128,17 +128,17 @@ function MissionCard({ challenge, onAction }: any) {
 
                 <div className="flex items-center justify-between">
                     <div>
-                        <p className="text-[8px] font-black uppercase text-slate-400">Reward</p>
+                        <p className="text-[8px] font-bold uppercase text-slate-400">Reward</p>
                         <div className="flex items-center gap-1.5">
                             <Star size={12} className="text-amber-500 fill-amber-500" />
-                            <span className="text-lg font-black text-amber-600">{challenge.reward_qp} QP</span>
+                            <span className="text-lg font-bold text-amber-600">{challenge.reward_qp} QP</span>
                         </div>
                     </div>
                     <button
                         onClick={onAction}
                         disabled={isCompleted}
                         className={cn(
-                            "px-6 py-3 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all",
+                            "px-6 py-3 rounded-2xl text-[9px] font-bold uppercase  transition-all",
                             isCompleted
                                 ? "bg-emerald-500 text-white cursor-default"
                                 : "bg-indigo-600 text-white hover:bg-indigo-700 shadow-xl active:scale-95"
@@ -155,7 +155,7 @@ function MissionCard({ challenge, onAction }: any) {
 function FilterBadge({ label, active = false }: any) {
     return (
         <button className={cn(
-            "px-5 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all",
+            "px-5 py-2 rounded-xl text-[9px] font-bold uppercase  transition-all",
             active ? "bg-indigo-600 text-white shadow-lg" : "text-slate-400 hover:text-indigo-600 bg-slate-50"
         )}>
             {label}

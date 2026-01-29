@@ -43,14 +43,14 @@ export default function Mistakes() {
                         <AlertOctagon className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">Trading Mistakes</h1>
+                        <h1 className="text-3xl font-bold font-heading tracking-tight text-slate-900 uppercase">Trading Mistakes</h1>
                         <SubHeading className="mt-2 text-rose-500 opacity-60">See where you are losing money</SubHeading>
                     </div>
                 </div>
                 <div className="flex gap-4">
                     <button
                         onClick={() => setIsAdding(true)}
-                        className="px-10 py-5 bg-slate-900 text-white font-black font-heading rounded-2xl text-[11px] uppercase tracking-widest flex items-center gap-3 shadow-xl hover:scale-105 transition-all"
+                        className="px-10 py-5 bg-slate-900 text-white font-bold font-heading rounded-2xl text-[11px] uppercase  flex items-center gap-3 shadow-xl hover:scale-105 transition-all"
                     >
                         <Plus size={18} />
                         Add New Mistake
@@ -67,7 +67,7 @@ export default function Mistakes() {
             {isAdding && (
                 <form onSubmit={handleAddMistake} className="p-10 bg-white border border-rose-100 rounded-[3rem] flex flex-col md:flex-row gap-6 animate-in slide-in-from-top-4 duration-500 shadow-xl shadow-rose-50/50">
                     <div className="flex-1 space-y-2">
-                        <label className="text-[10px] font-black font-heading uppercase tracking-widest text-slate-400 opacity-60 ml-4">Mistake Name</label>
+                        <label className="text-[10px] font-bold font-heading uppercase  text-slate-400 opacity-60 ml-4">Mistake Name</label>
                         <input
                             autoFocus
                             type="text"
@@ -78,7 +78,7 @@ export default function Mistakes() {
                         />
                     </div>
                     <div className="w-full md:w-64 space-y-2">
-                        <label className="text-[10px] font-black font-heading uppercase tracking-widest text-slate-400 opacity-60 ml-4">Danger Level</label>
+                        <label className="text-[10px] font-bold font-heading uppercase  text-slate-400 opacity-60 ml-4">Danger Level</label>
                         <select
                             className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-8 text-sm font-bold font-heading outline-none focus:bg-white focus:border-rose-500 appearance-none"
                             value={newMistake.severity}
@@ -91,7 +91,7 @@ export default function Mistakes() {
                         </select>
                     </div>
                     <div className="flex items-end gap-3 pb-1">
-                        <button type="submit" className="px-8 py-4 bg-rose-500 text-white rounded-2xl font-black font-heading uppercase text-[10px] tracking-widest shadow-lg shadow-rose-100 hover:scale-105 active:scale-95 transition-all">Save Mistake</button>
+                        <button type="submit" className="px-8 py-4 bg-rose-500 text-white rounded-2xl font-bold font-heading uppercase text-[10px]  shadow-lg shadow-rose-100 hover:scale-105 active:scale-95 transition-all">Save Mistake</button>
                         <button type="button" onClick={() => setIsAdding(false)} className="p-4 bg-slate-100 text-slate-400 rounded-2xl hover:text-rose-500 transition-all"><X size={20} /></button>
                     </div>
                 </form>
@@ -101,8 +101,8 @@ export default function Mistakes() {
                 <SubHeading className="text-center opacity-40">My Common Mistakes</SubHeading>
                 {mistakesWithStats.length === 0 ? (
                     <div className="p-20 text-center border-2 border-dashed border-slate-200 rounded-[4rem] opacity-50 bg-slate-50/20">
-                        <p className="text-slate-400 font-black font-heading uppercase tracking-[0.4em] text-[10px]">No mistakes logged yet. Good job!</p>
-                        <button onClick={() => setIsAdding(true)} className="mt-4 text-rose-500 font-black font-heading text-[10px] uppercase tracking-widest underline decoration-2 underline-offset-8">Add your first mistake</button>
+                        <p className="text-slate-400 font-bold font-heading uppercase tracking-[0.4em] text-[10px]">No mistakes logged yet. Good job!</p>
+                        <button onClick={() => setIsAdding(true)} className="mt-4 text-rose-500 font-bold font-heading text-[10px] uppercase  underline decoration-2 underline-offset-8">Add your first mistake</button>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -117,7 +117,7 @@ export default function Mistakes() {
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span className={cn(
-                                            "px-4 py-2 rounded-xl text-[9px] font-black font-heading uppercase tracking-widest",
+                                            "px-4 py-2 rounded-xl text-[9px] font-bold font-heading uppercase ",
                                             p.severity === 'CRITICAL' || p.severity === 'HIGH' ? "bg-rose-500 text-white shadow-lg shadow-rose-100" : "bg-slate-100 text-slate-500"
                                         )}>
                                             {p.severity}
@@ -130,21 +130,21 @@ export default function Mistakes() {
                                         </button>
                                     </div>
                                 </div>
-                                <h4 className="text-2xl font-black font-heading tracking-tight uppercase mb-2 text-slate-900">{p.title}</h4>
+                                <h4 className="text-2xl font-bold font-heading tracking-tight uppercase mb-2 text-slate-900">{p.title}</h4>
                                 <div className="flex items-center gap-8 mb-10">
                                     <div>
-                                        <p className="text-[9px] font-black font-heading uppercase text-slate-400 tracking-widest mb-1 opacity-50">Total Loss</p>
-                                        <p className="text-2xl font-black font-heading tracking-tight text-rose-500">₹{p.totalCost.toLocaleString()}</p>
+                                        <p className="text-[9px] font-bold font-heading uppercase text-slate-400  mb-1 opacity-50">Total Loss</p>
+                                        <p className="text-2xl font-bold font-heading tracking-tight text-rose-500">₹{p.totalCost.toLocaleString()}</p>
                                     </div>
                                     <div className="h-8 w-[1px] bg-slate-100" />
                                     <div>
-                                        <p className="text-[9px] font-black font-heading uppercase text-slate-400 tracking-widest mb-1 opacity-50">How Often</p>
-                                        <p className="text-2xl font-black font-heading tracking-tight text-slate-900">{p.tradeCount}x</p>
+                                        <p className="text-[9px] font-bold font-heading uppercase text-slate-400  mb-1 opacity-50">How Often</p>
+                                        <p className="text-2xl font-bold font-heading tracking-tight text-slate-900">{p.tradeCount}x</p>
                                     </div>
                                 </div>
                                 <div className="mt-auto p-6 bg-slate-900 text-white rounded-[1.5rem] shadow-xl">
-                                    <p className="text-[8px] font-black font-heading uppercase tracking-[0.3em] mb-3 opacity-40">How to Fix</p>
-                                    <p className="text-[11px] font-black font-heading uppercase tracking-widest leading-relaxed">
+                                    <p className="text-[8px] font-bold font-heading uppercase tracking-[0.3em] mb-3 opacity-40">How to Fix</p>
+                                    <p className="text-[11px] font-bold font-heading uppercase  leading-relaxed">
                                         {p.severity === 'CRITICAL' ? 'Stop trading for 1 hour after this happens.' : 'Review your checklist before next entry.'}
                                     </p>
                                 </div>
@@ -164,7 +164,7 @@ function AuditCard({ label, value, sub, icon }: any) {
                 <p className="text-[10px] font-bold font-heading uppercase tracking-[0.3em] text-indigo-500/40 mb-3">{label}</p>
                 <div className="flex items-baseline gap-4">
                     <p className="text-4xl font-bold font-heading tracking-tighter text-slate-900">{value}</p>
-                    <p className="text-[10px] font-bold font-heading text-rose-500 uppercase tracking-widest">{sub}</p>
+                    <p className="text-[10px] font-bold font-heading text-rose-500 uppercase ">{sub}</p>
                 </div>
             </div>
             <div className="w-16 h-16 bg-indigo-500/5 border border-indigo-500/10 rounded-3xl flex items-center justify-center shadow-inner">

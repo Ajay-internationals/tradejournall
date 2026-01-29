@@ -23,13 +23,13 @@ export default function PatternAI() {
                     <Wand2 size={40} className="text-indigo-400" />
                 </div>
                 <div className="space-y-4">
-                    <h2 className="text-3xl font-black text-slate-900">Scanning {tradeCount} Data Points...</h2>
+                    <h2 className="text-3xl font-bold text-slate-900">Scanning {tradeCount} Data Points...</h2>
                     <p className="text-slate-500 max-w-xl mx-auto text-lg font-medium leading-relaxed">
                         Our AI is analyzing {tradeCount} execution logs across your terminal map to identify recurring profitable patterns and cognitive biases.
                     </p>
                 </div>
                 <div className="flex gap-4 justify-center">
-                    <button className="px-10 py-5 bg-indigo-600 text-white font-black uppercase tracking-widest text-[11px] rounded-2xl hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-indigo-500/20 flex items-center gap-2">
+                    <button className="px-10 py-5 bg-indigo-600 text-white font-bold uppercase  text-[11px] rounded-2xl hover:bg-slate-900 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-indigo-500/20 flex items-center gap-2">
                         {tradeCount < 50 ? 'Force Preliminary Scan' : 'Generate Full Report'}
                         <Sparkles size={18} />
                     </button>

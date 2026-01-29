@@ -50,7 +50,7 @@ function ProtectedRoute() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-sm font-bold text-slate-400 tracking-widest uppercase">Syncing your journal...</p>
+            <p className="text-sm font-bold text-slate-400  uppercase">Syncing your journal...</p>
           </div>
         </div>
       </div>

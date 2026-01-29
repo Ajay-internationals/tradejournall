@@ -56,7 +56,7 @@ export default function Learn() {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={cn(
-                                "px-4 py-2 rounded-xl text-[10px] font-bold tracking-widest uppercase transition-all",
+                                "px-4 py-2 rounded-xl text-[10px] font-bold  uppercase transition-all",
                                 activeTab === tab ? "bg-indigo-600 text-white shadow-lg" : "text-slate-400 hover:text-slate-900"
                             )}
                         >{tab}</button>
@@ -72,7 +72,7 @@ export default function Learn() {
                             <PlayCircle className="w-16 h-16 text-white opacity-40 group-hover:opacity-100 transition-all z-10 group-hover:scale-110" />
                             <div className="absolute top-6 left-6 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/10">
                                 <Star size={10} className="text-amber-500 fill-amber-500" />
-                                <span className="text-[9px] font-black uppercase tracking-widest text-white">{course.level}</span>
+                                <span className="text-[9px] font-bold uppercase  text-white">{course.level}</span>
                             </div>
                         </div>
                         <div className="p-8 flex-1 flex flex-col">
@@ -105,12 +105,12 @@ export default function Learn() {
                 <div className="p-10 bg-gradient-to-br from-purple-600/10 to-[var(--app-card)] border border-purple-500/20 rounded-[3rem] relative overflow-hidden group shadow-xl">
                     <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-purple-600/5 blur-[80px] rounded-full" />
                     <div className="relative z-10">
-                        <div className="flex items-center gap-2 text-purple-500 mb-6 font-bold uppercase tracking-widest text-xs">
+                        <div className="flex items-center gap-2 text-purple-500 mb-6 font-bold uppercase  text-xs">
                             <Sparkles size={16} /> Beta Access
                         </div>
                         <h2 className="text-3xl font-bold mb-4 leading-tight text-slate-900">Neural Trading Matrix</h2>
                         <p className="text-slate-400 text-base leading-relaxed mb-10 max-w-md">Our next-gen training simulator uses AI to analyze your decision-making in historical high-volatility sessions.</p>
-                        <button className="px-10 py-4 bg-purple-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg hover:scale-105 transition-all hover:bg-purple-700">Request Early Access</button>
+                        <button className="px-10 py-4 bg-purple-600 text-white rounded-2xl text-xs font-bold uppercase  shadow-lg hover:scale-105 transition-all hover:bg-purple-700">Request Early Access</button>
                     </div>
                 </div>
 

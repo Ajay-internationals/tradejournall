@@ -17,17 +17,17 @@ export function StatsCard({ title, value, icon, trend, trendUp, className }: Sta
             className
         )}>
             <div className="space-y-3">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">{title}</p>
-                <h3 className="text-3xl font-black tracking-tight">{value}</h3>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">{title}</p>
+                <h3 className="text-3xl font-bold tracking-tight">{value}</h3>
                 {trend && (
                     <div className="flex items-center gap-2">
                         <span className={cn(
-                            "text-[10px] font-black px-2 py-0.5 rounded-full",
+                            "text-[10px] font-bold px-2 py-0.5 rounded-full",
                             trendUp ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400"
                         )}>
                             {trendUp ? '+' : ''}{trend}
                         </span>
-                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Growth</span>
+                        <span className="text-[10px] font-bold text-slate-600 uppercase ">Growth</span>
                     </div>
                 )}
             </div>

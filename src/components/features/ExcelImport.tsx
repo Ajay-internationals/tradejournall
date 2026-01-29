@@ -140,12 +140,12 @@ export function ExcelImport({ onComplete }: { onComplete?: () => void }) {
         <div className="p-8 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[3rem] shadow-2xl animate-in fade-in duration-500">
             <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
                 <div>
-                    <h3 className="text-2xl font-black mb-1 font-heading">Bulk Trade Import</h3>
+                    <h3 className="text-2xl font-bold mb-1 font-heading">Bulk Trade Import</h3>
                     <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.3em]">Import from Excel/CSV</p>
                 </div>
                 <button
                     onClick={downloadTemplate}
-                    className="flex items-center gap-3 px-6 py-3 bg-[var(--app-bg)]/50 border border-[var(--app-border)] rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-500/10 hover:border-indigo-500/30 transition-all text-indigo-400"
+                    className="flex items-center gap-3 px-6 py-3 bg-[var(--app-bg)]/50 border border-[var(--app-border)] rounded-2xl text-[10px] font-bold uppercase  hover:bg-indigo-500/10 hover:border-indigo-500/30 transition-all text-indigo-400"
                 >
                     <Download size={14} />
                     Download Template
@@ -172,11 +172,11 @@ export function ExcelImport({ onComplete }: { onComplete?: () => void }) {
                         <div className="flex flex-col items-center gap-6">
                             <div className="relative">
                                 <Loader2 className="w-20 h-20 text-indigo-500 animate-spin" />
-                                <div className="absolute inset-0 flex items-center justify-center font-black text-xs">
+                                <div className="absolute inset-0 flex items-center justify-center font-bold text-xs">
                                     {Math.round((progress.current / progress.total) * 100)}%
                                 </div>
                             </div>
-                            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest animate-pulse">
+                            <p className="text-sm font-bold text-slate-400 uppercase  animate-pulse">
                                 Importing {progress.current} of {progress.total} trades...
                             </p>
                         </div>
@@ -216,7 +216,7 @@ export function ExcelImport({ onComplete }: { onComplete?: () => void }) {
                     )}>
                         {status.type === 'success' ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}
                     </div>
-                    <p className="text-xs font-black uppercase tracking-widest leading-loose">{status.message}</p>
+                    <p className="text-xs font-bold uppercase  leading-loose">{status.message}</p>
                 </div>
             )}
         </div>

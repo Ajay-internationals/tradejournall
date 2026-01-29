@@ -69,12 +69,12 @@ export default function Pricing() {
                         <span className="text-[10px] font-bold text-indigo-600 uppercase">Invest in your discipline</span>
                     </div>
 
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-[1.05]">
+                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05]">
                         Transparent <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Investment</span>
                     </h1>
 
-                    <p className="text-lg text-slate-500 max-w-2xl mx-auto font-bold uppercase tracking-widest text-[11px]">
+                    <p className="text-lg text-slate-500 max-w-2xl mx-auto font-bold uppercase  text-[11px]">
                         Choose the plan that fits your trading business.
                     </p>
                 </div>
@@ -95,16 +95,16 @@ export default function Pricing() {
                                 )}
                             >
                                 {plan.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-full shadow-lg whitespace-nowrap">
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 bg-indigo-600 text-white text-[10px] font-bold uppercase tracking-[0.3em] rounded-full shadow-lg whitespace-nowrap">
                                         Most Comprehensive
                                     </div>
                                 )}
 
                                 <div className="mb-8">
-                                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 text-indigo-500">{plan.name}</h3>
+                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-4 text-indigo-500">{plan.name}</h3>
                                     <div className="flex items-baseline gap-2 mb-4">
-                                        <span className="text-4xl font-black">{plan.price}</span>
-                                        {plan.period !== 'forever' && <span className="text-slate-500 font-bold uppercase text-[9px] tracking-widest">/{plan.period}</span>}
+                                        <span className="text-4xl font-bold">{plan.price}</span>
+                                        {plan.period !== 'forever' && <span className="text-slate-500 font-bold uppercase text-[9px] ">/{plan.period}</span>}
                                     </div>
                                     <p className={cn(
                                         "text-[12px] font-bold leading-none mb-4",
@@ -133,7 +133,7 @@ export default function Pricing() {
                                     {plan.sections?.map((section, sIdx) => (
                                         <div key={sIdx} className="space-y-3 pt-4 border-t border-slate-100/10 first:border-t-0 first:pt-0">
                                             <h4 className={cn(
-                                                "text-[9px] font-black uppercase tracking-[0.2em]",
+                                                "text-[9px] font-bold uppercase ",
                                                 plan.popular ? "text-indigo-300" : "text-indigo-600"
                                             )}>{section.title}</h4>
                                             {section.items.map((item, iIdx) => (
@@ -173,9 +173,9 @@ export default function Pricing() {
             <footer className="py-20 px-6 border-t border-slate-200 bg-slate-50 text-center font-body">
                 <div className="flex items-center justify-center gap-3 mb-4">
                     <CheckCircle2 size={12} className="text-indigo-600" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">Made in India • For India</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400">Made in India • For India</p>
                 </div>
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Trade Adhyayan © 2026</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase ">Trade Adhyayan © 2026</p>
             </footer>
         </div>
     );

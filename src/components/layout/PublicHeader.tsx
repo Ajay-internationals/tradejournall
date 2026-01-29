@@ -11,7 +11,7 @@ export function PublicHeader() {
                     <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-200 group-hover:scale-110 transition-all duration-300">
                         <Zap size={28} fill="currentColor" />
                     </div>
-                    <span className="text-2xl font-black tracking-tighter text-slate-900">
+                    <span className="text-2xl font-bold tracking-tighter text-slate-900">
                         Trade Adhyayan
                     </span>
                 </Link>
@@ -23,14 +23,14 @@ export function PublicHeader() {
                     <HeaderLink label="Community" href="/community" />
                     <Link
                         to="/login"
-                        className="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition-all"
+                        className="text-[10px] font-bold uppercase  text-slate-500 hover:text-indigo-600 transition-all"
                     >
                         Login
                     </Link>
                     <Link
                         to="/login"
                         state={{ defaultSignUp: true }}
-                        className="px-8 py-3.5 bg-indigo-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-slate-900 transition-all active:scale-95"
+                        className="px-8 py-3.5 bg-indigo-600 text-white rounded-full text-[10px] font-bold uppercase  shadow-xl shadow-indigo-100 hover:bg-slate-900 transition-all active:scale-95"
                     >
                         Get Started
                     </Link>
@@ -44,7 +44,7 @@ function HeaderLink({ label, href }: { label: string; href: string }) {
     return (
         <Link
             to={href}
-            className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-indigo-600 transition-colors"
+            className="text-[10px] font-bold uppercase  text-slate-500 hover:text-indigo-600 transition-colors"
         >
             {label}
         </Link>

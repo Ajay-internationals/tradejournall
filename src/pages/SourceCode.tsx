@@ -44,15 +44,15 @@ export default function SourceCode() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="p-6 bg-white/5 border border-white/5 rounded-[2rem] text-center space-y-2">
-                    <p className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.2em]">License</p>
+                    <p className="text-[10px] font-bold text-slate-600 uppercase ">License</p>
                     <p className="font-bold">MIT Open Source</p>
                 </div>
                 <div className="p-6 bg-white/5 border border-white/5 rounded-[2rem] text-center space-y-2">
-                    <p className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.2em]">Framework</p>
+                    <p className="text-[10px] font-bold text-slate-600 uppercase ">Framework</p>
                     <p className="font-bold">Next.js 15 (Edge)</p>
                 </div>
                 <div className="p-6 bg-white/5 border border-white/5 rounded-[2rem] text-center space-y-2">
-                    <p className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.2em]">Design</p>
+                    <p className="text-[10px] font-bold text-slate-600 uppercase ">Design</p>
                     <p className="font-bold">Tailwind v4.0</p>
                 </div>
             </div>

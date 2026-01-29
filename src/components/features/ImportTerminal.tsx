@@ -246,13 +246,13 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                     <div className="flex items-center gap-8 text-rose-500">
                         <Database size={64} className="animate-bounce" />
                         <div>
-                            <h2 className="text-4xl font-black italic tracking-tighter uppercase">Migration Sync Alert</h2>
-                            <p className="text-[10px] font-black uppercase text-rose-400 tracking-[0.4em] mt-2">Action Required: Tables Missing</p>
+                            <h2 className="text-4xl font-bold italic tracking-tighter uppercase">Migration Sync Alert</h2>
+                            <p className="text-[10px] font-bold uppercase text-rose-400 tracking-[0.4em] mt-2">Action Required: Tables Missing</p>
                         </div>
                     </div>
 
                     <div className="bg-white p-10 rounded-[3.5rem] shadow-xl space-y-6">
-                        <p className="text-sm font-black uppercase tracking-tight text-indigo-300">
+                        <p className="text-sm font-bold uppercase tracking-tight text-indigo-300">
                             The terminal cannot journalize imports because the <span className="text-indigo-600 italic">Trade Records</span> schema is missing.
                         </p>
                         <div className="relative group">
@@ -278,7 +278,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
             <div className="flex flex-col md:flex-row items-center justify-between gap-10 p-10 bg-white border border-indigo-50 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)]">
                 <div className="space-y-2 text-center md:text-left">
                     <h3 className="text-3xl font-bold tracking-tight text-indigo-950">Trade Import</h3>
-                    <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Synchronize your trading data from external sources.</p>
+                    <p className="text-xs font-bold text-indigo-400 uppercase ">Synchronize your trading data from external sources.</p>
                 </div>
                 <div className="flex bg-slate-50 p-1.5 rounded-2xl border border-slate-100">
                     <TabButton active={mode === 'QUICK_PASTE'} onClick={() => setMode('QUICK_PASTE')} label="Clipboard Paste" icon={<ClipboardPaste size={16} />} />
@@ -293,7 +293,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                         <div className="space-y-6">
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
-                                    <h4 className="text-sm font-bold text-indigo-950 uppercase tracking-widest flex items-center gap-2">
+                                    <h4 className="text-sm font-bold text-indigo-950 uppercase  flex items-center gap-2">
                                         Paste Data Blocks
                                     </h4>
                                     <button
@@ -318,7 +318,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
 
                             {/* Visual Header Guide */}
                             <div className="bg-indigo-50/50 border border-indigo-100 rounded-2xl p-6">
-                                <p className="text-[10px] font-bold uppercase text-indigo-400 mb-4 tracking-widest text-center">Required Column Sequence</p>
+                                <p className="text-[10px] font-bold uppercase text-indigo-400 mb-4  text-center">Required Column Sequence</p>
                                 <div className="flex flex-wrap gap-2 justify-center">
                                     {['Date', 'Symbol', 'Side', 'Entry', 'Exit', 'Qty', 'SL', 'Asset', 'Setup', 'Notes'].map((h, i) => (
                                         <div key={h} className="text-center group relative">
@@ -342,7 +342,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                         {parsedPreview.length > 0 && (
                             <div className="space-y-6 animate-in slide-in-from-bottom-6 duration-700 pt-6 border-t border-dashed border-indigo-100">
                                 <div className="flex items-center justify-between">
-                                    <h5 className="text-xs font-bold uppercase tracking-widest text-indigo-900 flex items-center gap-2">
+                                    <h5 className="text-xs font-bold uppercase  text-indigo-900 flex items-center gap-2">
                                         <CheckCircle2 size={16} className="text-emerald-500" />
                                         Ready to Import ({parsedPreview.length} entries)
                                     </h5>
@@ -351,10 +351,10 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                     <table className="w-full text-left">
                                         <thead className="bg-slate-50 text-slate-500 sticky top-0 z-10 border-b border-slate-200">
                                             <tr>
-                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Date / Asset</th>
-                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Symbol</th>
-                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest">Side</th>
-                                                <th className="px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-right">Execution</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase ">Date / Asset</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase ">Symbol</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase ">Side</th>
+                                                <th className="px-6 py-3 text-[10px] font-bold uppercase  text-right">Execution</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-slate-100">
@@ -363,7 +363,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                                     <td className="px-6 py-3">
                                                         <div className="flex flex-col">
                                                             <span className="text-xs font-bold text-slate-700">{p.date}</span>
-                                                            <span className="text-[9px] text-indigo-400 font-bold uppercase tracking-widest">{p.asset}</span>
+                                                            <span className="text-[9px] text-indigo-400 font-bold uppercase ">{p.asset}</span>
                                                         </div>
                                                     </td>
                                                     <td className="px-6 py-3">
@@ -392,7 +392,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                                 <button
                                     onClick={handlePasteSync}
                                     disabled={isImporting}
-                                    className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold uppercase text-xs tracking-widest shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2"
+                                    className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold uppercase text-xs  shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2"
                                 >
                                     {isImporting ? <Loader2 className="animate-spin" size={16} /> : <CheckCircle2 size={16} />}
                                     Confirm Import
@@ -410,7 +410,7 @@ CREATE POLICY "Users can manage their own imports" ON public.trade_imports FOR A
                     <Upload className="w-16 h-16 text-indigo-200 mx-auto mb-6 group-hover:text-indigo-500 transition-all group-hover:scale-110" />
                     <h4 className="text-xl font-bold tracking-tight mb-2 text-indigo-900">Upload Data File</h4>
                     <p className="text-xs font-medium text-slate-400 mb-8">Supports .xlsx and .csv formats</p>
-                    <button className="px-8 py-3 bg-white border border-indigo-200 text-[10px] font-bold uppercase tracking-widest rounded-xl hover:border-indigo-400 transition-all shadow-sm flex items-center gap-2 mx-auto" onClick={(e) => { e.stopPropagation(); downloadTemplate(); }}>
+                    <button className="px-8 py-3 bg-white border border-indigo-200 text-[10px] font-bold uppercase  rounded-xl hover:border-indigo-400 transition-all shadow-sm flex items-center gap-2 mx-auto" onClick={(e) => { e.stopPropagation(); downloadTemplate(); }}>
                         <Download size={14} /> Download Template
                     </button>
                 </div>
@@ -427,7 +427,7 @@ function TabButton({ active, onClick, label, icon }: any) {
     return (
         <button
             onClick={onClick}
-            className={cn("px-10 py-5 rounded-[2rem] text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-4", active ? "bg-indigo-600 text-white shadow-2xl scale-105" : "text-indigo-500/60 hover:text-indigo-600")}
+            className={cn("px-10 py-5 rounded-[2rem] text-[10px] font-bold uppercase  transition-all flex items-center gap-4", active ? "bg-indigo-600 text-white shadow-2xl scale-105" : "text-indigo-500/60 hover:text-indigo-600")}
         >
             {icon && React.cloneElement(icon, { size: 20 })}{label}
         </button>
@@ -446,7 +446,7 @@ function ImportHistory({ imports, isImportsLoading, deleteImport }: any) {
                             <div className="w-20 h-20 bg-indigo-600 rounded-3xl flex items-center justify-center text-white shadow-3xl"><History size={32} /></div>
                             <div className="space-y-1">
                                 <p className="text-2xl font-bold italic tracking-tighter uppercase">{imp.filename}</p>
-                                <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-[0.2em]">{new Date(imp.created_at).toLocaleDateString()} • {imp.success_count} SUCCESS • {imp.fail_count} FAILED</p>
+                                <p className="text-[10px] text-indigo-500 font-bold uppercase ">{new Date(imp.created_at).toLocaleDateString()} • {imp.success_count} SUCCESS • {imp.fail_count} FAILED</p>
                             </div>
                         </div>
                         <button onClick={() => deleteImport.mutate(imp.id)} className="p-6 bg-rose-500/10 text-rose-500 rounded-3xl opacity-0 group-hover:opacity-100 hover:bg-rose-500 hover:text-white transition-all shadow-3xl transform hover:rotate-12"><Trash2 size={24} /></button>
@@ -469,9 +469,9 @@ function StatusIndicator({ status }: any) {
                 </div>
                 <div className="flex-1">
                     <p className="text-3xl font-bold italic tracking-tighter uppercase">{status.type === 'success' ? 'Sync Success' : 'Sync Warning'}</p>
-                    <p className="text-[11px] font-bold uppercase tracking-widest opacity-80 mt-1">{status.message}</p>
+                    <p className="text-[11px] font-bold uppercase  opacity-80 mt-1">{status.message}</p>
                 </div>
-                <button onClick={() => window.location.reload()} className="px-12 py-6 bg-white text-indigo-950 rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-3xl hover:bg-black hover:text-white transition-all italic">Refresh Stream</button>
+                <button onClick={() => window.location.reload()} className="px-12 py-6 bg-white text-indigo-950 rounded-2xl text-[10px] font-bold uppercase  shadow-3xl hover:bg-black hover:text-white transition-all italic">Refresh Stream</button>
             </div>
         </div>
     );

@@ -14,27 +14,27 @@ export default function TermsAndConditions() {
                     <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
                         <FileText size={24} />
                     </div>
-                    <h1 className="text-4xl font-black">Terms & Conditions</h1>
+                    <h1 className="text-4xl font-bold">Terms & Conditions</h1>
                 </div>
 
                 <div className="prose prose-slate max-w-none space-y-8 font-medium text-slate-600 leading-relaxed">
                     <section>
-                        <h2 className="text-xl font-black text-slate-900 mb-4 uppercase tracking-wider">1. Acceptance of Terms</h2>
+                        <h2 className="text-xl font-bold text-slate-900 mb-4 uppercase tracking-wider">1. Acceptance of Terms</h2>
                         <p>By accessing or using Trade Adhyayan, you agree to comply with and be bound by these Terms & Conditions. If you do not agree, please do not use our services.</p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-black text-slate-900 mb-4 uppercase tracking-wider">2. Use of Service</h2>
+                        <h2 className="text-xl font-bold text-slate-900 mb-4 uppercase tracking-wider">2. Use of Service</h2>
                         <p>Trade Adhyayan provides trade journaling and analytics tools. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-black text-slate-900 mb-4 uppercase tracking-wider">3. No Financial Advice</h2>
+                        <h2 className="text-xl font-bold text-slate-900 mb-4 uppercase tracking-wider">3. No Financial Advice</h2>
                         <p>The analytics provided by Trade Adhyayan are for educational and informational purposes only. They do not constitute financial or investment advice. Trading involves significant risk.</p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-black text-slate-900 mb-4 uppercase tracking-wider">4. Third-Party Integrations</h2>
+                        <h2 className="text-xl font-bold text-slate-900 mb-4 uppercase tracking-wider">4. Third-Party Integrations</h2>
                         <p>If you connect your broker account, you authorize us to fetch trade history data via read-only API access. We are not responsible for broker-side errors or data discrepancies.</p>
                     </section>
                 </div>

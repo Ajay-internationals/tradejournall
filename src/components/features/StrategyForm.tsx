@@ -36,8 +36,8 @@ export function StrategyForm({ onClose }: StrategyFormProps) {
                             <Target className="w-7 h-7 text-white" />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-none">Architect</h2>
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">{formData.name || 'Protocol Definition'}</p>
+                            <h2 className="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white uppercase leading-none">Architect</h2>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase  mt-2">{formData.name || 'Protocol Definition'}</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-2 text-slate-400 hover:text-rose-500 transition-colors">
@@ -47,7 +47,7 @@ export function StrategyForm({ onClose }: StrategyFormProps) {
 
                 <form onSubmit={handleSubmit} className="p-8 space-y-8">
                     <div className="space-y-3">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-4">Setup Identifier</label>
+                        <label className="text-[10px] font-bold uppercase  text-slate-400 ml-4">Setup Identifier</label>
                         <input
                             type="text"
                             required
@@ -59,7 +59,7 @@ export function StrategyForm({ onClose }: StrategyFormProps) {
                     </div>
 
                     <div className="space-y-3">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-4">Edge Description</label>
+                        <label className="text-[10px] font-bold uppercase  text-slate-400 ml-4">Edge Description</label>
                         <textarea
                             required
                             rows={4}
@@ -74,12 +74,12 @@ export function StrategyForm({ onClose }: StrategyFormProps) {
                         <button
                             type="button"
                             onClick={onClose}
-                            className="flex-1 py-4 bg-slate-50 dark:bg-slate-800 rounded-xl text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all shadow-sm"
+                            className="flex-1 py-4 bg-slate-50 dark:bg-slate-800 rounded-xl text-xs font-bold uppercase  text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all shadow-sm"
                         >Discard</button>
                         <button
                             type="submit"
                             disabled={addStrategy.isPending}
-                            className="flex-[2] py-4 bg-indigo-600 text-white rounded-xl text-xs font-bold uppercase flex items-center justify-center gap-3 shadow-lg hover:bg-slate-900 transition-all tracking-widest"
+                            className="flex-[2] py-4 bg-indigo-600 text-white rounded-xl text-xs font-bold uppercase flex items-center justify-center gap-3 shadow-lg hover:bg-slate-900 transition-all "
                         >
                             {addStrategy.isPending ? 'Committing...' : 'Commit Architecture'}
                             <ArrowRight size={16} />

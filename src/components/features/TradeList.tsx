@@ -43,7 +43,7 @@ export function TradeList({ trades }: TradeListProps) {
     if (!trades.length) {
         return (
             <div className="text-center py-20 px-8 bg-indigo-500/5 border border-indigo-500/10 rounded-[3rem] dark:bg-indigo-950/20">
-                <p className="text-indigo-500 font-black uppercase tracking-[0.3em] text-[10px] italic">Zero Records Found • Commencing Execution</p>
+                <p className="text-indigo-500 font-bold uppercase tracking-[0.3em] text-[10px] italic">Zero Records Found • Commencing Execution</p>
             </div>
         );
     }
@@ -90,7 +90,7 @@ export function TradeList({ trades }: TradeListProps) {
                             <tr key={trade.id} className="hover:bg-indigo-500/5 transition-all group">
                                 <td className="px-8 py-6">
                                     <span className={cn(
-                                        "px-3 py-1 rounded-[14px] text-[10px] font-black uppercase shadow-sm",
+                                        "px-3 py-1 rounded-[14px] text-[10px] font-bold uppercase shadow-sm",
                                         trade.direction === 'LONG' ? "bg-emerald-500 text-white" : "bg-rose-500 text-white"
                                     )}>
                                         {trade.direction === 'LONG' ? 'Buy' : 'Sell'}
@@ -98,38 +98,38 @@ export function TradeList({ trades }: TradeListProps) {
                                 </td>
                                 <td className="px-8 py-6">
                                     <div className="flex flex-col">
-                                        <span className="font-black text-sm tracking-tight dark:text-indigo-100 italic">{trade.instrument}</span>
-                                        <span className="text-[10px] text-indigo-500/50 font-black uppercase tracking-widest">{trade.asset_class}</span>
+                                        <span className="font-bold text-sm tracking-tight dark:text-indigo-100 italic">{trade.instrument}</span>
+                                        <span className="text-[10px] text-indigo-500/50 font-bold uppercase ">{trade.asset_class}</span>
                                     </div>
                                 </td>
-                                <td className="px-8 py-6 text-xs text-indigo-900/60 dark:text-indigo-100/40 font-black italic">
+                                <td className="px-8 py-6 text-xs text-indigo-900/60 dark:text-indigo-100/40 font-bold italic">
                                     <div className="flex items-center gap-2">
                                         <Calendar size={12} className="opacity-40" />
                                         {new Date(trade.date).toLocaleDateString()}
                                     </div>
                                 </td>
-                                <td className="px-8 py-6 text-right font-black text-xs dark:text-indigo-100">
+                                <td className="px-8 py-6 text-right font-bold text-xs dark:text-indigo-100">
                                     {trade.quantity}
                                 </td>
                                 <td className="px-8 py-6 text-right">
-                                    <div className="flex flex-col text-xs font-black">
+                                    <div className="flex flex-col text-xs font-bold">
                                         <span className="text-indigo-500/40 italic">@{trade.entry_price}</span>
                                         <span className="text-indigo-900 dark:text-indigo-100 italic">@{trade.exit_price}</span>
                                     </div>
                                 </td>
                                 <td className="px-8 py-6 text-right">
-                                    <span className="text-xs font-black text-rose-500 italic">
+                                    <span className="text-xs font-bold text-rose-500 italic">
                                         {trade.stop_loss ? `₹${trade.stop_loss}` : '---'}
                                     </span>
                                 </td>
                                 <td className="px-8 py-6 text-right">
-                                    <span className="text-xs font-black text-indigo-500/40 italic">
+                                    <span className="text-xs font-bold text-indigo-500/40 italic">
                                         ₹{trade.fees || 0}
                                     </span>
                                 </td>
                                 <td className="px-8 py-6 text-right">
                                     <span className={cn(
-                                        "text-sm font-black tracking-tighter italic",
+                                        "text-sm font-bold tracking-tighter italic",
                                         trade.net_pnl >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
                                     )}>
                                         {trade.net_pnl >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl)}

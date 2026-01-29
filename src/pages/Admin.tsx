@@ -154,7 +154,7 @@ export default function Admin() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                    <h1 className="text-4xl font-black text-slate-900 tracking-tight uppercase leading-none font-heading">Admin Dashboard</h1>
+                    <h1 className="text-4xl font-bold text-slate-900 tracking-tight uppercase leading-none font-heading">Admin Dashboard</h1>
                     <SubHeading className="mt-4">Platform Overview & Management</SubHeading>
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
@@ -214,7 +214,7 @@ export default function Admin() {
                     <div className="bg-white rounded-[3rem] border border-slate-200 overflow-hidden shadow-sm">
                         <div className="p-10 border-b border-slate-100 flex items-center justify-between">
                             <div>
-                                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight font-heading">New Registrations</h3>
+                                <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tight font-heading">New Registrations</h3>
                                 <SubHeading className="mt-2 mb-0">Latest join requests</SubHeading>
                             </div>
                             <button onClick={() => setActiveTab('users')} className="px-6 py-3 bg-slate-100 text-slate-400 rounded-2xl text-[9px] font-bold uppercase flex items-center gap-2 hover:bg-slate-200 hover:text-indigo-600 transition-all font-heading">
@@ -274,7 +274,7 @@ export default function Admin() {
                 <div className="bg-white rounded-[3rem] border border-slate-200 overflow-hidden shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="p-10 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div>
-                            <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight font-heading">Member Registry</h3>
+                            <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tight font-heading">Member Registry</h3>
                             <SubHeading className="mt-2 mb-0">Identify and manage users</SubHeading>
                         </div>
                         <div className="flex gap-4">
@@ -363,7 +363,7 @@ export default function Admin() {
             {activeTab === 'trades' && (
                 <div className="bg-white rounded-[3rem] border border-slate-200 overflow-hidden shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="p-10 border-b border-slate-100">
-                        <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight font-heading">Global Activity</h3>
+                        <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tight font-heading">Global Activity</h3>
                         <SubHeading className="mt-2 mb-0">Monitoring live executions</SubHeading>
                     </div>
                     <div className="overflow-x-auto">
@@ -434,7 +434,7 @@ function StatCard({ icon, label, value, trend }: { icon: React.ReactNode, label:
 
             <div className="space-y-2">
                 <p className="text-[10px] font-bold text-slate-400 uppercase font-heading">{label}</p>
-                <p className="text-3xl font-black text-slate-900 font-heading">{value}</p>
+                <p className="text-3xl font-bold text-slate-900 font-heading">{value}</p>
                 <div className="flex items-center gap-1.5 pt-2">
                     <ArrowUpRight size={10} className="text-emerald-500" />
                     <span className="text-[10px] font-bold text-emerald-500 uppercase">{trend}</span>

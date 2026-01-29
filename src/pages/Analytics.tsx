@@ -113,7 +113,7 @@ export default function Analytics() {
                             <Lock className="w-10 h-10 text-white" />
                         </div>
 
-                        <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tighter dark:text-indigo-100">Unlock Intelligence ✨</h1>
+                        <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tighter dark:text-indigo-100">Unlock Intelligence ✨</h1>
                         <p className="text-indigo-900/40 dark:text-indigo-200/40 max-w-2xl mb-16 text-xl font-medium leading-relaxed">
                             Stop guessing. Start knowing. Get deep terminal insights into your strategy performance, mistakes, and best days.
                         </p>
@@ -126,7 +126,7 @@ export default function Analytics() {
 
                         <button
                             onClick={handleUpgrade}
-                            className="px-16 py-7 bg-indigo-600 text-white font-black rounded-[2.2rem] hover:bg-black transition-all hover:scale-105 shadow-3xl text-[10px]"
+                            className="px-16 py-7 bg-indigo-600 text-white font-bold rounded-[2.2rem] hover:bg-black transition-all hover:scale-105 shadow-3xl text-[10px]"
                         >
                             UPGRADE TO TERMINAL PRO <Zap size={14} className="inline ml-3 fill-white" />
                         </button>
@@ -174,7 +174,7 @@ export default function Analytics() {
                             <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
                                 <div className="flex items-center justify-between mb-10">
                                     <div>
-                                        <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Equity Curve</h3>
+                                        <h3 className="text-xl font-bold font-heading tracking-tight text-slate-900 uppercase">Equity Curve</h3>
                                         <p className="text-[10px] font-bold font-heading text-slate-400 mt-2 opacity-40 italic">Normalized Capital Flux</p>
                                     </div>
                                 </div>
@@ -191,7 +191,7 @@ export default function Analytics() {
                             <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
                                 <div className="flex items-center justify-between mb-10">
                                     <div>
-                                        <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Execution Timing</h3>
+                                        <h3 className="text-xl font-bold font-heading tracking-tight text-slate-900 uppercase">Execution Timing</h3>
                                         <p className="text-[10px] font-bold font-heading text-slate-400 mt-2 opacity-40 italic">Daily Performance Alpha</p>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@ export default function Analytics() {
                         <div className="space-y-8">
                             <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm flex flex-col items-center">
                                 <div className="w-full mb-10 text-center">
-                                    <h3 className="text-xl font-black font-heading tracking-tight text-slate-900 uppercase">Allocation</h3>
+                                    <h3 className="text-xl font-bold font-heading tracking-tight text-slate-900 uppercase">Allocation</h3>
                                     <p className="text-[10px] font-bold font-heading text-slate-400 mt-2 opacity-40 italic">Asset Class Exposure</p>
                                 </div>
                                 <div className="h-[250px] w-full">
@@ -282,8 +282,8 @@ function MiniInsightCard({ label, value, icon }: any) {
     return (
         <div className="p-12 bg-white border border-slate-200 rounded-[3.5rem] flex items-center justify-between shadow-sm group hover:scale-[1.03] transition-all duration-500">
             <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4 opacity-50 group-hover:opacity-100 transition-opacity uppercase">{label}</p>
-                <p className="text-3xl font-black tracking-tighter text-slate-900 leading-none">{value}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-4 opacity-50 group-hover:opacity-100 transition-opacity uppercase">{label}</p>
+                <p className="text-3xl font-bold tracking-tighter text-slate-900 leading-none">{value}</p>
             </div>
             <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-all transform group-hover:rotate-6">
                 {icon}
@@ -299,7 +299,7 @@ function ProFeatureCard({ icon, title, sub }: any) {
                 {icon}
             </div>
             <div className="leading-tight mt-1">
-                <p className="text-xl font-black tracking-tight mb-2 text-slate-900">{title}</p>
+                <p className="text-xl font-bold tracking-tight mb-2 text-slate-900">{title}</p>
                 <p className="text-[10px] text-slate-400 font-bold leading-none mt-2">{sub}</p>
             </div>
         </div>

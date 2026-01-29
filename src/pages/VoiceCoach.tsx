@@ -33,7 +33,7 @@ export default function VoiceCoach() {
                 </div>
                 <div>
                     <h1 className="text-4xl font-extrabold tracking-tight font-heading">Voice Coach</h1>
-                    <p className="text-slate-500 text-[10px] font-black tracking-[0.4em] uppercase">AI Mindset Analysis</p>
+                    <p className="text-slate-500 text-[10px] font-bold tracking-[0.4em] uppercase">AI Mindset Analysis</p>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@ export default function VoiceCoach() {
                     </div>
 
                     <div className="space-y-4 relative z-10">
-                        <h2 className="text-3xl font-black font-heading">
+                        <h2 className="text-3xl font-bold font-heading">
                             {isRecording ? "Listening to Your Edge..." : "De-brief Your Trade"}
                         </h2>
                         <p className="text-slate-500 max-w-xs mx-auto font-medium leading-relaxed">
@@ -64,7 +64,7 @@ export default function VoiceCoach() {
                         <button
                             onClick={handleAction}
                             className={cn(
-                                "w-full py-6 text-white font-black uppercase tracking-[0.3em] text-[10px] rounded-[2rem] hover:scale-105 active:scale-95 transition-all shadow-2xl flex items-center justify-center gap-4",
+                                "w-full py-6 text-white font-bold uppercase tracking-[0.3em] text-[10px] rounded-[2rem] hover:scale-105 active:scale-95 transition-all shadow-2xl flex items-center justify-center gap-4",
                                 isRecording ? "bg-rose-500 hover:bg-rose-600" : "bg-indigo-600 hover:bg-indigo-700"
                             )}
                         >
@@ -76,7 +76,7 @@ export default function VoiceCoach() {
                             <button
                                 onClick={handleAnalyze}
                                 disabled={isAnalyzing}
-                                className="w-full py-6 bg-emerald-500 text-white font-black uppercase tracking-[0.3em] text-[10px] rounded-[2rem] hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-4 hover:bg-emerald-600 disabled:opacity-50"
+                                className="w-full py-6 bg-emerald-500 text-white font-bold uppercase tracking-[0.3em] text-[10px] rounded-[2rem] hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-4 hover:bg-emerald-600 disabled:opacity-50"
                             >
                                 {isAnalyzing ? <Loader2 size={18} className="animate-spin" /> : <Sparkles size={18} />}
                                 {isAnalyzing ? "Analyzing Subtext..." : "Analyze Mindset"}
@@ -87,7 +87,7 @@ export default function VoiceCoach() {
 
                 <div className="p-10 bg-[var(--app-card)] border border-[var(--app-border)] rounded-[4rem] space-y-10 shadow-2xl flex flex-col">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-2xl font-black font-heading text-[var(--app-text)]">Recent Audit</h3>
+                        <h3 className="text-2xl font-bold font-heading text-[var(--app-text)]">Recent Audit</h3>
                         <div className="px-4 py-2 bg-indigo-500/10 rounded-full border border-indigo-500/20 shadow-sm">
                             <span className="text-[9px] font-bold text-indigo-400 uppercase">Premium Only</span>
                         </div>
@@ -122,9 +122,9 @@ function DebriefItem({ date, mood, insight }: any) {
     return (
         <div className="p-8 bg-[var(--app-bg)]/40 border border-[var(--app-border)] rounded-[2.5rem] flex flex-col gap-4 group cursor-pointer hover:bg-indigo-500/5 transition-all shadow-sm">
             <div className="flex items-center justify-between">
-                <p className="text-[10px] font-black text-[var(--app-text-muted)] tracking-[0.4em] uppercase">{date}</p>
+                <p className="text-[10px] font-bold text-[var(--app-text-muted)] tracking-[0.4em] uppercase">{date}</p>
                 <div className={cn(
-                    "px-3 py-1 rounded-lg text-[9px] font-black uppercase",
+                    "px-3 py-1 rounded-lg text-[9px] font-bold uppercase",
                     mood === 'Zen Mode' ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400"
                 )}>
                     {mood}

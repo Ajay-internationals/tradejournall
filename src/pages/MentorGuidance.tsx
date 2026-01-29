@@ -17,7 +17,7 @@ export default function MentorGuidance() {
                         <Sparkles className="w-4 h-4 text-indigo-400" />
                         <SubHeading className="text-white opacity-90 !mb-0">Personalized Coaching Terminal</SubHeading>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8 leading-[1.05] uppercase">
+                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.05] uppercase">
                         Master the Market with <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 text-6xl md:text-8xl">Professional Guidance</span>
                     </h1>
@@ -27,7 +27,7 @@ export default function MentorGuidance() {
 
                     <button
                         onClick={() => navigate('/pricing')}
-                        className="px-10 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl hover:scale-105 transition-all"
+                        className="px-10 py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase  text-xs shadow-2xl hover:scale-105 transition-all"
                     >
                         Explore Mentor Plan <ArrowRight className="inline-block ml-2 w-4 h-4" />
                     </button>
@@ -42,7 +42,7 @@ export default function MentorGuidance() {
                             {/* Roadmap */}
                             <div>
                                 <SubHeading>Professional Roadmap</SubHeading>
-                                <h2 className="text-4xl font-black mb-10 tracking-tighter uppercase">The 4 Phases of Mastery</h2>
+                                <h2 className="text-4xl font-bold mb-10 tracking-tighter uppercase">The 4 Phases of Mastery</h2>
                                 <div className="space-y-8">
                                     <RoadmapStep number="01" title="The Structuralist" desc="Master the hard rules of risk. Zero violations for 20 consecutive trades." />
                                     <RoadmapStep number="02" title="The Technician" desc="Identify high-probability setups with 70% precision in backtesting." />
@@ -72,7 +72,7 @@ export default function MentorGuidance() {
                                     <Zap size={100} />
                                 </div>
                                 <SubHeading className="text-indigo-600">Mentor Plan Inclusions</SubHeading>
-                                <h3 className="text-xl font-black mb-8 border-b border-slate-100 pb-6 uppercase tracking-tight">Access Protocol</h3>
+                                <h3 className="text-xl font-bold mb-8 border-b border-slate-100 pb-6 uppercase tracking-tight">Access Protocol</h3>
                                 <div className="space-y-4 mb-10">
                                     <PlanFeature text="Multiple trading accounts (self + students)" />
                                     <PlanFeature text="Student performance tracking dashboard" />
@@ -85,7 +85,7 @@ export default function MentorGuidance() {
                                 <div className="pt-8 border-t border-slate-100">
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="px-3 py-1 bg-amber-50 rounded-full border border-amber-200">
-                                            <span className="text-[10px] font-black text-amber-600 uppercase tracking-widest">New: Mentor+</span>
+                                            <span className="text-[10px] font-bold text-amber-600 uppercase ">New: Mentor+</span>
                                         </div>
                                         <span className="text-sm font-bold text-slate-400">₹9,999 / mo</span>
                                     </div>
@@ -98,7 +98,7 @@ export default function MentorGuidance() {
 
                                 <button
                                     onClick={() => navigate('/pricing')}
-                                    className="w-full mt-10 py-5 bg-indigo-600 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-lg hover:bg-slate-900 transition-all"
+                                    className="w-full mt-10 py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase  text-[10px] shadow-lg hover:bg-slate-900 transition-all"
                                 >
                                     Activate Guidance
                                 </button>
@@ -121,7 +121,7 @@ export default function MentorGuidance() {
             </section>
 
             <footer className="py-20 px-6 border-t border-slate-200 bg-white text-center font-body">
-                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">Trade Adhyayan • Mentorship Ecosystem</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400">Trade Adhyayan • Mentorship Ecosystem</p>
                 <div className="flex items-center justify-center gap-2 mt-4">
                     <CheckCircle2 size={12} className="text-indigo-400" />
                     <p className="text-[10px] font-bold text-slate-900 uppercase">Made in India • For India</p>
@@ -134,9 +134,9 @@ export default function MentorGuidance() {
 function RoadmapStep({ number, title, desc }: { number: string; title: string; desc: string }) {
     return (
         <div className="flex gap-8 group">
-            <div className="text-4xl font-black text-slate-200 group-hover:text-indigo-600 transition-colors duration-500 leading-none">{number}</div>
+            <div className="text-4xl font-bold text-slate-200 group-hover:text-indigo-600 transition-colors duration-500 leading-none">{number}</div>
             <div className="flex-1 pb-8 border-b border-slate-200 group-last:border-none">
-                <h4 className="text-xl font-black mb-2 uppercase tracking-tight">{title}</h4>
+                <h4 className="text-xl font-bold mb-2 uppercase tracking-tight">{title}</h4>
                 <p className="text-sm text-slate-500 font-medium leading-relaxed">{desc}</p>
             </div>
         </div>
@@ -149,7 +149,7 @@ function ToolLink({ icon, text }: { icon: React.ReactNode; text: string }) {
             <div className="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center text-indigo-300">
                 {icon}
             </div>
-            <span className="text-[11px] font-black uppercase tracking-widest text-indigo-100">{text}</span>
+            <span className="text-[11px] font-bold uppercase  text-indigo-100">{text}</span>
             <ArrowRight size={14} className="ml-auto opacity-0 group-hover/btn:opacity-100 transition-all -translate-x-2 group-hover/btn:translate-x-0" />
         </button>
     );
@@ -162,7 +162,7 @@ function GuidancePoint({ icon, title, text }: any) {
                 {icon}
             </div>
             <div>
-                <h4 className="font-black text-lg mb-1">{title}</h4>
+                <h4 className="font-bold text-lg mb-1">{title}</h4>
                 <p className="text-sm text-slate-500 font-medium leading-relaxed">{text}</p>
             </div>
         </div>

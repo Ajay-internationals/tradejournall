@@ -23,7 +23,7 @@ export default function Calendar() {
             <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-xl">
                 <div className="grid grid-cols-7 gap-4 mb-6">
                     {days.map(day => (
-                        <div key={day} className="text-center text-[10px] font-bold text-slate-400 tracking-widest uppercase">{day}</div>
+                        <div key={day} className="text-center text-[10px] font-bold text-slate-400  uppercase">{day}</div>
                     ))}
                 </div>
                 <div className="grid grid-cols-7 gap-4">

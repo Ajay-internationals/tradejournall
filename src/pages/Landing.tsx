@@ -45,13 +45,13 @@ export default function Landing() {
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => navigate('/login')}
-                            className="px-6 py-2.5 text-slate-500 hover:text-indigo-600 font-bold font-heading text-xs uppercase tracking-widest transition-all"
+                            className="px-6 py-2.5 text-slate-500 hover:text-indigo-600 font-bold font-heading text-xs uppercase  transition-all"
                         >
                             Login
                         </button>
                         <button
                             onClick={() => navigate('/login', { state: { defaultSignUp: true } })}
-                            className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-bold font-heading text-xs uppercase tracking-widest hover:bg-slate-900 transition-all shadow-lg shadow-indigo-500/20"
+                            className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-bold font-heading text-xs uppercase  hover:bg-slate-900 transition-all shadow-lg shadow-indigo-500/20"
                         >
                             Get Started
                         </button>
@@ -154,7 +154,7 @@ export default function Landing() {
             <section id="features" className="py-12 md:py-24 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-12 md:mb-20">
-                        <h2 className="text-indigo-600 font-bold font-heading tracking-widest uppercase text-sm mb-4">Powerful Features</h2>
+                        <h2 className="text-indigo-600 font-bold font-heading  uppercase text-sm mb-4">Powerful Features</h2>
                         <h3 className="text-3xl md:text-5xl font-bold font-heading">Journal a day in 10 seconds.</h3>
                     </div>
 
@@ -212,7 +212,7 @@ export default function Landing() {
             {/* About Us Section */}
             <section id="about-us" className="py-24 px-6 bg-white">
                 <div className="max-w-4xl mx-auto text-center space-y-12">
-                    <div className="inline-flex items-center gap-3 px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold font-heading uppercase tracking-widest">
+                    <div className="inline-flex items-center gap-3 px-6 py-2 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold font-heading uppercase ">
                         <span>Our Mission</span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-bold font-heading text-slate-900">Empowering the disciplined trader.</h2>
@@ -387,7 +387,7 @@ function PricingCard({ title, price, period, description, features, isFeatured =
                 ? "bg-slate-900 text-white border-slate-800 shadow-2xl scale-105 z-10"
                 : "bg-white text-slate-900 border-slate-100 shadow-xl hover:-translate-y-2"
         )}>
-            {isFeatured && <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-indigo-600 text-white rounded-full text-[10px] font-bold font-heading uppercase tracking-widest shadow-lg">Most Popular</div>}
+            {isFeatured && <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1.5 bg-indigo-600 text-white rounded-full text-[10px] font-bold font-heading uppercase  shadow-lg">Most Popular</div>}
 
             <h4 className={cn("text-xs font-bold font-heading uppercase mb-4", isFeatured ? "text-indigo-400" : "text-indigo-600")}>{title}</h4>
             <div className="flex items-baseline gap-2 mb-4 leading-none">

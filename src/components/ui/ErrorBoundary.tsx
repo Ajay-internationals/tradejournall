@@ -28,7 +28,7 @@ export class ErrorBoundary extends Component<Props, State> {
             return (
                 <div className="min-h-screen bg-rose-50 flex items-center justify-center p-8">
                     <div className="max-w-md w-full bg-white p-8 rounded-[2rem] shadow-xl border border-rose-100 text-center">
-                        <h1 className="text-2xl font-black text-rose-600 mb-4">Caught an Exception</h1>
+                        <h1 className="text-2xl font-bold text-rose-600 mb-4">Caught an Exception</h1>
                         <p className="text-slate-600 mb-6">{this.state.error?.message}</p>
                         <button
                             onClick={() => window.location.reload()}

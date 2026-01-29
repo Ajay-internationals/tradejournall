@@ -46,7 +46,7 @@ export default function Strategies() {
                         <Microscope className="w-10 h-10 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-black font-heading tracking-tight text-slate-900 uppercase">My Strategies</h1>
+                        <h1 className="text-3xl font-bold font-heading tracking-tight text-slate-900 uppercase">My Strategies</h1>
                         <SubHeading className="mt-2 text-indigo-500 opacity-60">How you plan to trade</SubHeading>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ export default function Strategies() {
                 <form onSubmit={handleCreate} className="p-10 bg-white border border-indigo-100 rounded-[3rem] space-y-8 animate-in slide-in-from-top-4 duration-500 shadow-xl shadow-indigo-50/50">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black font-heading uppercase tracking-widest text-slate-400 opacity-60 ml-4">Strategy Name</label>
+                            <label className="text-[10px] font-bold font-heading uppercase  text-slate-400 opacity-60 ml-4">Strategy Name</label>
                             <input
                                 autoFocus
                                 required
@@ -120,7 +120,7 @@ export default function Strategies() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black font-heading uppercase tracking-widest text-slate-400 opacity-60 ml-4">Current Status</label>
+                            <label className="text-[10px] font-bold font-heading uppercase  text-slate-400 opacity-60 ml-4">Current Status</label>
                             <select
                                 className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-8 text-sm font-bold font-heading outline-none focus:bg-white focus:border-indigo-500 appearance-none"
                                 value={newStrategy.status}
@@ -132,7 +132,7 @@ export default function Strategies() {
                             </select>
                         </div>
                         <div className="space-y-2 md:col-span-2">
-                            <label className="text-[10px] font-black font-heading uppercase tracking-widest text-slate-400 opacity-60 ml-4">Description</label>
+                            <label className="text-[10px] font-bold font-heading uppercase  text-slate-400 opacity-60 ml-4">Description</label>
                             <textarea
                                 placeholder="What is the setup for this strategy?"
                                 className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 px-8 text-sm font-bold font-heading outline-none focus:bg-white focus:border-indigo-500 transition-all min-h-[100px]"
@@ -141,7 +141,7 @@ export default function Strategies() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-[10px] font-black font-heading uppercase tracking-widest text-slate-400 opacity-60 ml-4">Risk Per Trade (₹)</label>
+                            <label className="text-[10px] font-bold font-heading uppercase  text-slate-400 opacity-60 ml-4">Risk Per Trade (₹)</label>
                             <input
                                 type="number"
                                 placeholder="500"
@@ -164,7 +164,7 @@ export default function Strategies() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
                 {filteredStrategies.length === 0 && !isAdding && (
                     <div className="col-span-full p-32 text-center border-2 border-dashed border-slate-200 rounded-[4rem] opacity-50 bg-slate-50/20">
-                        <p className="text-slate-400 font-black font-heading uppercase tracking-[0.4em] text-[10px]">No strategies found in this category</p>
+                        <p className="text-slate-400 font-bold font-heading uppercase tracking-[0.4em] text-[10px]">No strategies found in this category</p>
                     </div>
                 )}
                 {filteredStrategies.map((strategy) => (
@@ -192,7 +192,7 @@ function StrategyCard({ strategy }: { strategy: any }) {
                 </button>
             </div>
 
-            <h4 className="text-2xl font-black font-heading tracking-tight text-slate-900 uppercase mb-4 leading-tight">{strategy.name}</h4>
+            <h4 className="text-2xl font-bold font-heading tracking-tight text-slate-900 uppercase mb-4 leading-tight">{strategy.name}</h4>
             <p className="text-sm text-slate-400 font-medium font-body leading-relaxed mb-10 line-clamp-2">{strategy.description || 'No description provided.'}</p>
 
             <div className="grid grid-cols-2 gap-6 mb-10 leading-none">
@@ -212,9 +212,9 @@ function StrategyCard({ strategy }: { strategy: any }) {
                         <Shield size={14} className="text-indigo-600" />
                         <span className="text-[9px] font-bold font-heading uppercase text-indigo-900">Current Risk</span>
                     </div>
-                    <span className="text-[11px] font-black font-heading text-indigo-600">₹{strategy.risk_per_trade || 0}</span>
+                    <span className="text-[11px] font-bold font-heading text-indigo-600">₹{strategy.risk_per_trade || 0}</span>
                 </div>
-                <button className="w-full py-5 bg-slate-900 text-white font-black font-heading rounded-2xl text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-lg group-hover:bg-indigo-600 transition-all">
+                <button className="w-full py-5 bg-slate-900 text-white font-bold font-heading rounded-2xl text-[10px] uppercase  flex items-center justify-center gap-3 shadow-lg group-hover:bg-indigo-600 transition-all">
                     Trade History ({stats.totalTrades})
                     <ChevronRight size={14} />
                 </button>

@@ -156,7 +156,7 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
                         </div>
                         <div>
                             <h2 className="text-3xl font-bold tracking-tight text-slate-900 leading-none">{editTrade ? 'Edit Trade' : 'New Trade Log'}</h2>
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-2">{editTrade ? 'Update existing data' : 'Record market execution'}</p>
+                            <p className="text-xs font-bold text-slate-400 uppercase  mt-2">{editTrade ? 'Update existing data' : 'Record market execution'}</p>
                         </div>
                     </div>
                     <button onClick={onClose} className="p-3 bg-slate-50 rounded-xl transition-all text-slate-400 hover:text-rose-500 hover:bg-rose-50 border border-slate-100">
@@ -166,7 +166,7 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
 
                 <form onSubmit={handleSubmit} className="p-10 space-y-8">
                     <div className="space-y-4">
-                        <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Asset Category</label>
+                        <label className="text-[10px] font-bold text-slate-400 uppercase  ml-1">Asset Category</label>
                         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                             {ASSET_CLASSES.map((asset) => (
                                 <button
@@ -189,25 +189,25 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
 
                     <div className="grid grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Symbol</label>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase  ml-1">Symbol</label>
                             <input type="text" name="instrument" required placeholder="SBIN, NIFTY..." value={formData.instrument} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-indigo-500 transition-all outline-none text-slate-900" />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Trade Date</label>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase  ml-1">Trade Date</label>
                             <input type="date" name="date" required value={formData.date} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-indigo-500 transition-all outline-none text-slate-900" />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Direction</label>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase  ml-1">Direction</label>
                             <div className="grid grid-cols-2 gap-3">
-                                <button type="button" onClick={() => setFormData(prev => ({ ...prev, direction: 'LONG' }))} className={cn("py-4 rounded-xl text-[10px] font-bold tracking-widest transition-all", formData.direction === 'LONG' ? "bg-emerald-600 text-white shadow-lg" : "bg-slate-50 text-slate-400")}>BUY</button>
-                                <button type="button" onClick={() => setFormData(prev => ({ ...prev, direction: 'SHORT' }))} className={cn("py-4 rounded-xl text-[10px] font-bold tracking-widest transition-all", formData.direction === 'SHORT' ? "bg-rose-600 text-white shadow-lg" : "bg-slate-50 text-slate-400")}>SELL</button>
+                                <button type="button" onClick={() => setFormData(prev => ({ ...prev, direction: 'LONG' }))} className={cn("py-4 rounded-xl text-[10px] font-bold  transition-all", formData.direction === 'LONG' ? "bg-emerald-600 text-white shadow-lg" : "bg-slate-50 text-slate-400")}>BUY</button>
+                                <button type="button" onClick={() => setFormData(prev => ({ ...prev, direction: 'SHORT' }))} className={cn("py-4 rounded-xl text-[10px] font-bold  transition-all", formData.direction === 'SHORT' ? "bg-rose-600 text-white shadow-lg" : "bg-slate-50 text-slate-400")}>SELL</button>
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Strategy</label>
+                            <label className="text-[10px] font-bold text-slate-400 uppercase  ml-1">Strategy</label>
                             <select name="strategy" value={formData.strategy} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 px-6 text-xs font-bold focus:border-indigo-500 outline-none">
                                 <option value="BREAKOUT">Breakout</option>
                                 <option value="SCALPING">Scalping</option>
@@ -231,7 +231,7 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
                     {/* Mistakes Section */}
                     {mistakes.length > 0 && (
                         <div className="space-y-4">
-                            <label className="text-[10px] font-bold text-rose-500 uppercase tracking-widest ml-1 flex items-center gap-2">
+                            <label className="text-[10px] font-bold text-rose-500 uppercase  ml-1 flex items-center gap-2">
                                 <HeartCrack size={12} />
                                 Did you make any mistakes?
                             </label>
@@ -263,18 +263,18 @@ export function TradeForm({ onClose, editTrade, onSuccess }: TradeFormProps) {
                         <div className="p-8 bg-indigo-600 text-white border border-indigo-400 rounded-3xl flex justify-between items-center shadow-xl relative overflow-hidden group">
                             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-indigo-700 -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
                             <div>
-                                <p className="text-[10px] font-bold opacity-60 uppercase tracking-widest mb-1">R:R Multiple</p>
+                                <p className="text-[10px] font-bold opacity-60 uppercase  mb-1">R:R Multiple</p>
                                 <p className="text-3xl font-bold">{pnl.rMultiple.toFixed(2)}x</p>
                             </div>
                             <div className="text-right">
-                                <p className="text-[10px] font-bold opacity-60 uppercase tracking-widest mb-1">Estimated P&L</p>
+                                <p className="text-[10px] font-bold opacity-60 uppercase  mb-1">Estimated P&L</p>
                                 <p className="text-3xl font-bold">₹{pnl.net.toFixed(0)}</p>
                             </div>
                         </div>
 
                         <div className="flex gap-4">
                             <button type="button" onClick={onClose} className="flex-1 py-5 bg-slate-50 text-slate-500 rounded-2xl font-bold hover:bg-slate-100 transition-all uppercase text-xs">Cancel</button>
-                            <button type="submit" className="flex-[2] py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase text-xs tracking-widest shadow-xl hover:bg-slate-900 transition-all flex items-center justify-center gap-3">
+                            <button type="submit" className="flex-[2] py-5 bg-indigo-600 text-white rounded-2xl font-bold uppercase text-xs  shadow-xl hover:bg-slate-900 transition-all flex items-center justify-center gap-3">
                                 {editTrade ? 'Save Changes' : 'Record Trade'}
                                 <ArrowRight size={16} />
                             </button>
@@ -290,7 +290,7 @@ function InputGroup({ label, name, value, onChange, isRed = false, isBlue = fals
     return (
         <div className="space-y-2">
             <label className={cn(
-                "text-[9px] font-bold uppercase tracking-widest ml-1 flex items-center gap-2",
+                "text-[9px] font-bold uppercase  ml-1 flex items-center gap-2",
                 isRed ? "text-rose-500" : isBlue ? "text-indigo-600" : "text-slate-400"
             )}>
                 {icon}{label}

@@ -56,8 +56,8 @@ export default function Roadmap() {
                     <TrendingUp className="w-9 h-9 text-white" />
                 </div>
                 <div>
-                    <h1 className="text-4xl font-black tracking-tight mb-1">Growth Roadmap</h1>
-                    <p className="text-slate-500 text-[10px] font-black tracking-[0.3em] uppercase">Phase-driven Trader Evolution</p>
+                    <h1 className="text-4xl font-bold tracking-tight mb-1">Growth Roadmap</h1>
+                    <p className="text-slate-500 text-[10px] font-bold tracking-[0.3em] uppercase">Phase-driven Trader Evolution</p>
                 </div>
             </header>
 
@@ -80,13 +80,13 @@ export default function Roadmap() {
                                 </div>
                                 <div className="text-right">
                                     <p className="text-[10px] font-bold text-slate-400 uppercase">Phase 0{idx + 1}</p>
-                                    <p className={cn("text-[8px] font-black uppercase mt-1", completed ? "text-emerald-500" : locked ? "text-slate-400" : "text-indigo-600")}>
+                                    <p className={cn("text-[8px] font-bold uppercase mt-1", completed ? "text-emerald-500" : locked ? "text-slate-400" : "text-indigo-600")}>
                                         {completed ? 'Archived' : locked ? 'Locked' : 'Active'}
                                     </p>
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-black mb-2">{step.title}</h3>
+                            <h3 className="text-xl font-bold mb-2">{step.title}</h3>
                             <p className="text-xs font-bold text-slate-500 leading-relaxed uppercase tracking-tight mb-8">{step.desc}</p>
 
                             <div className="space-y-3 mb-10">
@@ -102,7 +102,7 @@ export default function Roadmap() {
                                 onClick={() => !locked && toggleStep.mutate({ stepId: step.id, isCompleted: !completed })}
                                 disabled={locked}
                                 className={cn(
-                                    "w-full py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all",
+                                    "w-full py-4 rounded-2xl text-[10px] font-bold uppercase  transition-all",
                                     completed
                                         ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
                                         : locked
@@ -119,8 +119,8 @@ export default function Roadmap() {
                 <div className="p-8 border-2 border-dashed border-[var(--app-border)] rounded-[2.5rem] flex flex-col items-center justify-center text-center space-y-4 opacity-50">
                     <Sparkles className="text-slate-400" size={32} />
                     <div>
-                        <p className="text-sm font-black uppercase">Next Horizons</p>
-                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Continue evolving to unlock...</p>
+                        <p className="text-sm font-bold uppercase">Next Horizons</p>
+                        <p className="text-[10px] font-bold text-slate-500 uppercase ">Continue evolving to unlock...</p>
                     </div>
                 </div>
             </div>

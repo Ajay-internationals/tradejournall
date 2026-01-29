@@ -104,7 +104,7 @@ export default function Dashboard() {
                         </div>
 
                         <div className="text-center md:text-left">
-                            <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-3 text-slate-900 uppercase">
+                            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 text-slate-900 uppercase">
                                 Welcome, {profile?.full_name?.split(' ')[0] || 'Trader'}
                             </h1>
                             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
@@ -126,14 +126,14 @@ export default function Dashboard() {
                         <div className="flex flex-col sm:flex-row gap-3">
                             <button
                                 onClick={() => navigate('/journal')}
-                                className="px-8 py-5 bg-slate-100/50 text-slate-400 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center gap-3 hover:bg-slate-100 transition-all border border-slate-100"
+                                className="px-8 py-5 bg-slate-100/50 text-slate-400 rounded-2xl font-bold uppercase  text-[10px] flex items-center gap-3 hover:bg-slate-100 transition-all border border-slate-100"
                             >
                                 <History size={18} />
                                 History
                             </button>
                             <button
                                 onClick={() => setIsFormOpen(true)}
-                                className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center gap-3 shadow-xl hover:scale-105 active:scale-95 transition-all"
+                                className="px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold uppercase  text-[10px] flex items-center gap-3 shadow-xl hover:scale-105 active:scale-95 transition-all"
                             >
                                 <Plus size={20} />
                                 Record Trade
@@ -156,7 +156,7 @@ export default function Dashboard() {
                 <div className="lg:col-span-2 p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm">
                     <div className="flex items-center justify-between mb-10">
                         <div>
-                            <h2 className="text-2xl font-black text-slate-900 font-heading uppercase tracking-tight">Equity Curve</h2>
+                            <h2 className="text-2xl font-bold text-slate-900 font-heading uppercase tracking-tight">Equity Curve</h2>
                             <SubHeading className="mt-2 opacity-60">Capital fluctuation over time</SubHeading>
                         </div>
                     </div>
@@ -186,7 +186,7 @@ export default function Dashboard() {
                 <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm flex flex-col font-heading">
                     <div className="flex items-center justify-between mb-10">
                         <div>
-                            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Daily Rules</h2>
+                            <h2 className="text-2xl font-bold text-slate-900 uppercase tracking-tight">Daily Rules</h2>
                             <SubHeading className="mt-2 opacity-60">Stay Disciplined</SubHeading>
                         </div>
                         <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner">
@@ -197,7 +197,7 @@ export default function Dashboard() {
                     <div className="space-y-3 flex-1 overflow-y-auto no-scrollbar pr-1">
                         {rules.length === 0 ? (
                             <div className="py-12 text-center opacity-40">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">No rules established</p>
+                                <p className="text-[10px] font-bold uppercase  text-slate-400">No rules established</p>
                             </div>
                         ) : (
                             rules.map((rule) => (
@@ -222,7 +222,7 @@ export default function Dashboard() {
                     </div>
                     <button
                         onClick={() => navigate('/rules')}
-                        className="mt-8 py-5 border border-slate-100 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:bg-slate-50 hover:text-indigo-600 transition-all"
+                        className="mt-8 py-5 border border-slate-100 rounded-2xl text-[10px] font-bold uppercase  text-slate-400 hover:bg-slate-50 hover:text-indigo-600 transition-all"
                     >
                         Manage All Rules
                     </button>
@@ -234,7 +234,7 @@ export default function Dashboard() {
                 <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm font-heading">
                     <div className="flex items-center justify-between mb-10">
                         <div>
-                            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Psychology Audit</h2>
+                            <h2 className="text-2xl font-bold text-slate-900 uppercase tracking-tight">Psychology Audit</h2>
                             <SubHeading className="mt-2 opacity-60">Mistakes breakdown</SubHeading>
                         </div>
                         <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-500 shadow-inner">
@@ -251,11 +251,11 @@ export default function Dashboard() {
                                     </div>
                                     <div>
                                         <p className="text-sm font-bold text-slate-900 uppercase">{m.title}</p>
-                                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-1">Severity: {m.severity}</p>
+                                        <p className="text-[9px] font-bold text-slate-400 uppercase  mt-1">Severity: {m.severity}</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-lg font-black text-rose-500 leading-none tracking-tighter">-{formatCurrency(m.totalLost)}</p>
+                                    <p className="text-lg font-bold text-rose-500 leading-none tracking-tighter">-{formatCurrency(m.totalLost)}</p>
                                     <p className="text-[9px] font-bold text-slate-300 mt-1">Total Impact</p>
                                 </div>
                             </div>
@@ -267,7 +267,7 @@ export default function Dashboard() {
                 <div className="p-10 bg-white border border-slate-200 rounded-[3rem] shadow-sm font-heading">
                     <div className="flex items-center justify-between mb-10">
                         <div>
-                            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Recent Activity</h2>
+                            <h2 className="text-2xl font-bold text-slate-900 uppercase tracking-tight">Recent Activity</h2>
                             <SubHeading className="mt-2 opacity-60">Latest executions</SubHeading>
                         </div>
                         <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner">
@@ -280,17 +280,17 @@ export default function Dashboard() {
                             <div key={trade.id} className="p-6 bg-slate-50 border border-slate-100 rounded-[2rem] flex items-center justify-between hover:border-indigo-200 transition-all cursor-pointer group leading-none">
                                 <div className="flex items-center gap-5">
                                     <div className={cn(
-                                        "w-10 h-10 rounded-xl flex items-center justify-center text-[11px] font-black text-white shadow-sm",
+                                        "w-10 h-10 rounded-xl flex items-center justify-center text-[11px] font-bold text-white shadow-sm",
                                         trade.net_pnl >= 0 ? "bg-emerald-500 shadow-emerald-500/20" : "bg-rose-500 shadow-rose-500/20"
                                     )}>
                                         {trade.direction[0]}
                                     </div>
                                     <div>
-                                        <p className="text-sm font-black text-slate-900 uppercase tracking-tight">{trade.instrument}</p>
-                                        <p className="text-[9px] text-slate-400 font-black uppercase tracking-widest mt-1 opacity-60">{new Date(trade.date).toLocaleDateString()}</p>
+                                        <p className="text-sm font-bold text-slate-900 uppercase tracking-tight">{trade.instrument}</p>
+                                        <p className="text-[9px] text-slate-400 font-bold uppercase  mt-1 opacity-60">{new Date(trade.date).toLocaleDateString()}</p>
                                     </div>
                                 </div>
-                                <p className={cn("text-lg font-black tracking-tighter", trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500")}>
+                                <p className={cn("text-lg font-bold tracking-tighter", trade.net_pnl >= 0 ? "text-emerald-500" : "text-rose-500")}>
                                     {trade.net_pnl >= 0 ? '+' : ''}{formatCurrency(trade.net_pnl)}
                                 </p>
                             </div>
@@ -307,8 +307,8 @@ export default function Dashboard() {
                             <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6 shadow-inner">
                                 <Wallet size={32} />
                             </div>
-                            <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Set Capital</h3>
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 opacity-60 leading-relaxed">Define your baseline equity for all calculations.</p>
+                            <h3 className="text-2xl font-bold text-slate-900 uppercase tracking-tight">Set Capital</h3>
+                            <p className="text-[10px] font-bold text-slate-400 uppercase  mt-2 opacity-60 leading-relaxed">Define your baseline equity for all calculations.</p>
                         </div>
                         <div className="space-y-4">
                             <input
@@ -316,12 +316,12 @@ export default function Dashboard() {
                                 type="number"
                                 value={tempCapital}
                                 onChange={(e) => setTempCapital(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] py-5 px-8 text-2xl font-black outline-none focus:border-indigo-500 focus:bg-white focus:ring-8 focus:ring-indigo-500/5 transition-all text-slate-900 tracking-tighter"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] py-5 px-8 text-2xl font-bold outline-none focus:border-indigo-500 focus:bg-white focus:ring-8 focus:ring-indigo-500/5 transition-all text-slate-900 tracking-tighter"
                                 placeholder="₹ 0.00"
                             />
                             <div className="flex gap-3 pt-4">
-                                <button onClick={() => setIsSettingCapital(false)} className="flex-1 py-5 bg-slate-100 rounded-2xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:bg-slate-200 transition-all">Cancel</button>
-                                <button onClick={handleUpdateCapital} className="flex-1 py-5 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-xl hover:bg-indigo-600 transition-all">Update Equity</button>
+                                <button onClick={() => setIsSettingCapital(false)} className="flex-1 py-5 bg-slate-100 rounded-2xl text-[10px] font-bold uppercase  text-slate-400 hover:bg-slate-200 transition-all">Cancel</button>
+                                <button onClick={handleUpdateCapital} className="flex-1 py-5 bg-slate-900 text-white rounded-2xl text-[10px] font-bold uppercase  shadow-xl hover:bg-indigo-600 transition-all">Update Equity</button>
                             </div>
                         </div>
                     </div>
@@ -363,7 +363,7 @@ function MetricCard({ icon, label, value, variant = "white", onClick }: { icon: 
                 </div>
                 {onClick && <Settings size={14} className="opacity-40 group-hover:opacity-100 transition-all" />}
             </div>
-            <span className="relative z-10 text-3xl font-black tracking-tighter">{value}</span>
+            <span className="relative z-10 text-3xl font-bold tracking-tighter">{value}</span>
         </div>
     );
 }

@@ -88,13 +88,13 @@ export default function Tools() {
                         <Settings className="w-10 h-10 text-white relative z-10" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-black tracking-tighter text-slate-900 uppercase">Utility Labs ✨</h1>
-                        <p className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.4em] mt-2 opacity-60">High-Fidelity Calculation Terminal</p>
+                        <h1 className="text-4xl font-bold tracking-tighter text-slate-900 uppercase">Utility Labs ✨</h1>
+                        <p className="text-[10px] font-bold text-indigo-500 uppercase tracking-[0.4em] mt-2 opacity-60">High-Fidelity Calculation Terminal</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-4 bg-emerald-500/10 px-8 py-4 rounded-3xl border border-emerald-500/10 shadow-xl shadow-emerald-500/5">
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                    <span className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.4em]">Engine Standby</span>
+                    <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-[0.4em]">Engine Standby</span>
                 </div>
             </header>
 
@@ -109,8 +109,8 @@ export default function Tools() {
                             <Calculator className="text-white" size={24} />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-black tracking-tighter text-slate-900 uppercase">Architect</h2>
-                            <p className="text-[10px] font-black text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Sizing Protocol</p>
+                            <h2 className="text-2xl font-bold tracking-tighter text-slate-900 uppercase">Architect</h2>
+                            <p className="text-[10px] font-bold text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Sizing Protocol</p>
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@ export default function Tools() {
 
                     <button
                         onClick={calculateSize}
-                        className="w-full py-6 bg-indigo-600 text-white rounded-3xl font-black uppercase text-[10px] tracking-[0.3em] flex items-center justify-center gap-4 shadow-3xl hover:bg-black transition-all active:scale-95"
+                        className="w-full py-6 bg-indigo-600 text-white rounded-3xl font-bold uppercase text-[10px] tracking-[0.3em] flex items-center justify-center gap-4 shadow-3xl hover:bg-black transition-all active:scale-95"
                     >
                         Forecast Exposure <ArrowRight size={16} />
                     </button>
@@ -134,12 +134,12 @@ export default function Tools() {
                                 <Activity size={100} />
                             </div>
                             <div className="relative z-10">
-                                <p className="text-[10px] font-black opacity-60 uppercase tracking-[0.3em] mb-2">Alpha Units</p>
-                                <p className="text-4xl font-black tracking-tighter">{Math.floor(positionSize.result)} <span className="text-xs opacity-50 not-italic font-black">QTY</span></p>
+                                <p className="text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] mb-2">Alpha Units</p>
+                                <p className="text-4xl font-bold tracking-tighter">{Math.floor(positionSize.result)} <span className="text-xs opacity-50 not-italic font-bold">QTY</span></p>
                             </div>
                             <div className="relative z-10 text-right">
-                                <p className="text-[10px] font-black opacity-60 uppercase tracking-[0.3em] mb-2">Risk Delta</p>
-                                <p className="text-3xl font-black tracking-tighter text-rose-300">₹{positionSize.riskAmount.toLocaleString()}</p>
+                                <p className="text-[10px] font-bold opacity-60 uppercase tracking-[0.3em] mb-2">Risk Delta</p>
+                                <p className="text-3xl font-bold tracking-tighter text-rose-300">₹{positionSize.riskAmount.toLocaleString()}</p>
                             </div>
                         </div>
                     )}
@@ -155,8 +155,8 @@ export default function Tools() {
                             <TrendingUp className="text-white" size={24} />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-black tracking-tighter text-slate-900 uppercase">Multiplier</h2>
-                            <p className="text-[10px] font-black text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Growth Matrix</p>
+                            <h2 className="text-2xl font-bold tracking-tighter text-slate-900 uppercase">Multiplier</h2>
+                            <p className="text-[10px] font-bold text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Growth Matrix</p>
                         </div>
                     </div>
 
@@ -170,7 +170,7 @@ export default function Tools() {
 
                     <button
                         onClick={calculateCompound}
-                        className="w-full py-6 bg-emerald-500 text-white rounded-3xl font-black uppercase text-[10px] tracking-[0.3em] flex items-center justify-center gap-4 shadow-3xl hover:bg-black transition-all active:scale-95"
+                        className="w-full py-6 bg-emerald-500 text-white rounded-3xl font-bold uppercase text-[10px] tracking-[0.3em] flex items-center justify-center gap-4 shadow-3xl hover:bg-black transition-all active:scale-95"
                     >
                         Forecast ROI <Zap size={16} fill="white" />
                     </button>
@@ -180,11 +180,11 @@ export default function Tools() {
                             <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none">
                                 <Activity size={100} />
                             </div>
-                            <p className="text-[10px] font-black opacity-40 uppercase tracking-[0.4em] mb-3 relative z-10">Projected Valuation</p>
-                            <p className="text-5xl font-black text-emerald-400 tracking-tighter relative z-10">₹{Math.floor(compoundStats.result).toLocaleString()}</p>
+                            <p className="text-[10px] font-bold opacity-40 uppercase tracking-[0.4em] mb-3 relative z-10">Projected Valuation</p>
+                            <p className="text-5xl font-bold text-emerald-400 tracking-tighter relative z-10">₹{Math.floor(compoundStats.result).toLocaleString()}</p>
                             <div className="mt-8 flex items-center gap-4 relative z-10">
                                 <span className="text-[10px] font-bold opacity-30">Efficiency Delta: </span>
-                                <span className="text-lg font-black text-emerald-400">+{((compoundStats.result / parseFloat(compoundStats.initial) - 1) * 100).toFixed(0)}%</span>
+                                <span className="text-lg font-bold text-emerald-400">+{((compoundStats.result / parseFloat(compoundStats.initial) - 1) * 100).toFixed(0)}%</span>
                             </div>
                         </div>
                     )}
@@ -202,22 +202,22 @@ export default function Tools() {
                                     <BarChart2 className="text-white" size={28} />
                                 </div>
                                 <div>
-                                    <h2 className="text-3xl font-black tracking-tighter text-slate-900 uppercase">Simulator</h2>
-                                    <p className="text-[10px] font-black text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Monte Carlo Engine</p>
+                                    <h2 className="text-3xl font-bold tracking-tighter text-slate-900 uppercase">Simulator</h2>
+                                    <p className="text-[10px] font-bold text-indigo-500/50 uppercase tracking-[0.3em] mt-1">Monte Carlo Engine</p>
                                 </div>
                             </div>
                             <div className="space-y-8">
                                 <InputGroup label="Win Rate Edge (%)" value={simulator.winRate} onChange={(v) => setSimulator({ ...simulator, winRate: v })} />
                                 <InputGroup label="Realized Avg R:R" value={simulator.avgRR} onChange={(v) => setSimulator({ ...simulator, avgRR: v })} />
                                 <InputGroup label="Sync Batch Size" value={simulator.trades} onChange={(v) => setSimulator({ ...simulator, trades: v })} />
-                                <button onClick={runSimulation} className="w-full py-7 bg-indigo-600 text-white rounded-[2rem] font-black uppercase text-[10px] tracking-[0.4em] shadow-3xl hover:bg-black transition-all hover:scale-105 active:scale-95">Compute Variance</button>
+                                <button onClick={runSimulation} className="w-full py-7 bg-indigo-600 text-white rounded-[2rem] font-bold uppercase text-[10px] tracking-[0.4em] shadow-3xl hover:bg-black transition-all hover:scale-105 active:scale-95">Compute Variance</button>
                             </div>
                         </div>
 
                         <div className="flex-1 min-h-[450px] bg-[var(--app-bg)] rounded-[3rem] p-10 border border-[var(--app-border)] shadow-inner">
                             {simData.length > 0 ? (
                                 <div className="h-full w-full">
-                                    <p className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.5em] mb-12 text-center opacity-60">Equity Stream Variance Matrix</p>
+                                    <p className="text-[10px] font-bold text-indigo-500 uppercase tracking-[0.5em] mb-12 text-center opacity-60">Equity Stream Variance Matrix</p>
                                     <ResponsiveContainer width="100%" height="70%">
                                         <AreaChart data={simData}>
                                             <defs>
@@ -238,11 +238,11 @@ export default function Tools() {
                                     <div className="mt-12 flex justify-between items-center px-10">
                                         <div>
                                             <p className="text-[10px] font-bold text-indigo-500/40 mb-2">Final Stream</p>
-                                            <p className="text-3xl font-black tracking-tighter text-slate-900 uppercase">₹{Math.floor(simData[simData.length - 1].equity).toLocaleString()}</p>
+                                            <p className="text-3xl font-bold tracking-tighter text-slate-900 uppercase">₹{Math.floor(simData[simData.length - 1].equity).toLocaleString()}</p>
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-[10px] font-black text-indigo-500/40 uppercase tracking-widest mb-2">Alpha Delta</p>
-                                            <p className={cn("text-3xl font-black tracking-tighter", simData[simData.length - 1].equity > parseFloat(simulator.initial) ? "text-emerald-500" : "text-rose-500")}>
+                                            <p className="text-[10px] font-bold text-indigo-500/40 uppercase  mb-2">Alpha Delta</p>
+                                            <p className={cn("text-3xl font-bold tracking-tighter", simData[simData.length - 1].equity > parseFloat(simulator.initial) ? "text-emerald-500" : "text-rose-500")}>
                                                 {simData[simData.length - 1].equity > parseFloat(simulator.initial) ? '+' : ''}{((simData[simData.length - 1].equity / parseFloat(simulator.initial) - 1) * 100).toFixed(1)}%
                                             </p>
                                         </div>
@@ -251,7 +251,7 @@ export default function Tools() {
                             ) : (
                                 <div className="h-full flex flex-col items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
                                     <Activity size={100} className="mb-8 animate-pulse text-indigo-500" />
-                                    <p className="text-[11px] font-black uppercase tracking-[0.8em] text-indigo-600 animate-pulse">Awaiting Telemetry...</p>
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.8em] text-indigo-600 animate-pulse">Awaiting Telemetry...</p>
                                 </div>
                             )}
                         </div>
@@ -265,14 +265,14 @@ export default function Tools() {
 function InputGroup({ label, value, onChange, placeholder, isRed = false }: any) {
     return (
         <div className="space-y-3 leading-none">
-            <label className="text-[10px] font-black text-indigo-500 uppercase tracking-[0.3em] ml-2 opacity-60">{label}</label>
+            <label className="text-[10px] font-bold text-indigo-500 uppercase tracking-[0.3em] ml-2 opacity-60">{label}</label>
             <input
                 type="number"
                 value={value}
                 placeholder={placeholder}
                 onChange={(e) => onChange(e.target.value)}
                 className={cn(
-                    "w-full bg-[var(--app-bg)] border border-[var(--app-border)] rounded-2xl py-5 px-8 text-sm font-black focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all shadow-inner text-[var(--app-text)] placeholder:text-slate-400",
+                    "w-full bg-[var(--app-bg)] border border-[var(--app-border)] rounded-2xl py-5 px-8 text-sm font-bold focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/5 transition-all shadow-inner text-[var(--app-text)] placeholder:text-slate-400",
                     isRed && "bg-rose-500/5 text-rose-500 border-rose-500/20 focus:border-rose-500 focus:ring-rose-500/5"
                 )}
             />

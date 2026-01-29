@@ -104,26 +104,26 @@ export default function Login() {
                         <div className="w-24 h-24 bg-emerald-50 text-emerald-600 rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 shadow-inner">
                             <Mail size={40} className="animate-bounce" />
                         </div>
-                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Check Your Inbox</h2>
+                        <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Check Your Inbox</h2>
                         <p className="text-slate-500 font-bold leading-relaxed text-sm">
                             We've sent a verification link to <span className="text-indigo-600 underline decoration-indigo-200 underline-offset-4">{email}</span>. Please click the link to activate your institutional terminal access.
                         </p>
                         <div className="space-y-4 pt-4">
                             <button
                                 onClick={() => window.open('https://mail.google.com', '_blank')}
-                                className="w-full py-5 bg-indigo-600 text-white font-black rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-indigo-500/10 flex items-center justify-center gap-3"
+                                className="w-full py-5 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-slate-900 transition-all shadow-xl shadow-indigo-500/10 flex items-center justify-center gap-3"
                             >
                                 Open Gmail <ArrowRight size={18} />
                             </button>
                             <button
                                 onClick={() => setIsSignUpComplete(false)}
-                                className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 transition-colors"
+                                className="text-[10px] font-bold uppercase  text-slate-400 hover:text-indigo-600 transition-colors"
                             >
                                 Back to Login
                             </button>
                         </div>
                         <div className="p-6 bg-slate-50 border border-slate-100 rounded-3xl text-left">
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                            <p className="text-[10px] font-bold text-slate-400 uppercase  mb-2 flex items-center gap-2">
                                 <Sparkles size={12} className="text-amber-500" /> Pro Tip
                             </p>
                             <p className="text-[10px] font-bold text-slate-500 leading-normal">
@@ -218,21 +218,21 @@ export default function Login() {
                             <button
                                 type="button"
                                 onClick={() => setIsSignUp(!isSignUp)}
-                                className="text-xs font-bold text-slate-400 hover:text-indigo-600 transition-all uppercase tracking-widest"
+                                className="text-xs font-bold text-slate-400 hover:text-indigo-600 transition-all uppercase "
                             >
                                 {isSignUp ? 'Already have an account? Login' : 'New to Trade Adhyayan? Sign Up'}
                             </button>
 
                             <div className="flex items-center gap-4 py-2">
                                 <div className="h-[1px] flex-1 bg-slate-100" />
-                                <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">or</span>
+                                <span className="text-[10px] font-bold text-slate-300 uppercase ">or</span>
                                 <div className="h-[1px] flex-1 bg-slate-100" />
                             </div>
 
                             <button
                                 type="button"
                                 onClick={() => navigate('/dashboard')}
-                                className="w-full py-4 bg-slate-50 border border-slate-100 rounded-2xl text-[11px] font-bold uppercase tracking-widest text-slate-500 hover:bg-slate-100 transition-all"
+                                className="w-full py-4 bg-slate-50 border border-slate-100 rounded-2xl text-[11px] font-bold uppercase  text-slate-500 hover:bg-slate-100 transition-all"
                             >
                                 Demo Portal Access
                             </button>

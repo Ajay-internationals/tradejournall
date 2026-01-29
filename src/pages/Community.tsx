@@ -30,7 +30,7 @@ export default function Community() {
                 {/* Channel Sidebar */}
                 <div className="w-72 border-r border-[var(--app-border)] bg-[var(--app-bg)]/30 flex flex-col p-6 space-y-8">
                     <div>
-                        <h2 className="text-[10px] font-black tracking-[0.3em] text-slate-500 uppercase mb-6 px-4">Community Channels</h2>
+                        <h2 className="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase mb-6 px-4">Community Channels</h2>
                         <div className="space-y-1">
                             <ChannelItem
                                 active={activeChannel === 'announcements'}
@@ -66,7 +66,7 @@ export default function Community() {
                     <div className="p-4 bg-indigo-50/5 border border-indigo-500/10 rounded-2xl">
                         <div className="flex items-center gap-2 mb-2 text-indigo-500">
                             <ShieldCheck size={14} />
-                            <span className="text-[9px] font-black uppercase tracking-widest">Moderation Guard</span>
+                            <span className="text-[9px] font-bold uppercase ">Moderation Guard</span>
                         </div>
                         <p className="text-[10px] text-slate-500 font-bold leading-relaxed">No buy/sell tips or P&L shaming allowed. AI-driven keyword detection active.</p>
                     </div>
@@ -81,7 +81,7 @@ export default function Community() {
                                 {activeChannel === 'daily-trades' ? <Zap size={20} /> : <MessageSquare size={20} />}
                             </div>
                             <div>
-                                <h3 className="text-sm font-black uppercase tracking-widest">#{activeChannel}</h3>
+                                <h3 className="text-sm font-bold uppercase ">#{activeChannel}</h3>
                                 <p className="text-[10px] font-bold text-slate-400">1.2k Trading Operators Active</p>
                             </div>
                         </div>
@@ -129,7 +129,7 @@ export default function Community() {
                         ) : (
                             <div className="p-6 bg-slate-100/50 rounded-3xl border border-dashed border-slate-300 flex items-center justify-center flex-col text-center">
                                 <Lock className="text-slate-400 mb-3" size={24} />
-                                <p className="text-xs font-black uppercase tracking-widest text-slate-400">Posting rights locked</p>
+                                <p className="text-xs font-bold uppercase  text-slate-400">Posting rights locked</p>
                                 <p className="text-[10px] font-bold text-slate-400 mt-2">Maintain a discipline score {'>'} 70 for 7 days to unlock.</p>
                             </div>
                         )}
@@ -141,11 +141,11 @@ export default function Community() {
                     <section>
                         <h3 className="text-[10px] font-bold text-slate-500 uppercase mb-6">Your Status</h3>
                         <div className="p-6 bg-white border border-slate-100 rounded-[2rem] shadow-xl text-center">
-                            <div className="w-16 h-16 bg-indigo-50 ring-4 ring-indigo-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-indigo-600 font-black text-xl">
+                            <div className="w-16 h-16 bg-indigo-50 ring-4 ring-indigo-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-indigo-600 font-bold text-xl">
                                 {disciplineScore}
                             </div>
-                            <p className="text-xs font-black uppercase mb-1">Discipline Score</p>
-                            <p className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest">Elite Operator</p>
+                            <p className="text-xs font-bold uppercase mb-1">Discipline Score</p>
+                            <p className="text-[9px] font-bold text-emerald-500 uppercase ">Elite Operator</p>
                         </div>
                     </section>
 
@@ -200,16 +200,16 @@ function Message({ user, time, text, isMentor = false, isSystem = false }: any) 
     return (
         <div className="flex gap-4 group">
             <div className={cn(
-                "w-10 h-10 rounded-xl flex items-center justify-center text-xs font-black shadow-sm shrink-0",
+                "w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold shadow-sm shrink-0",
                 isMentor ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-500"
             )}>
                 {user[0]}
             </div>
             <div className="space-y-1">
                 <div className="flex items-center gap-3">
-                    <span className={cn("text-xs font-black uppercase", isMentor ? "text-indigo-600" : "text-slate-900")}>{user}</span>
+                    <span className={cn("text-xs font-bold uppercase", isMentor ? "text-indigo-600" : "text-slate-900")}>{user}</span>
                     <span className="text-[8px] font-bold text-slate-400">{time}</span>
-                    {isMentor && <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[7px] font-black uppercase tracking-widest rounded-full">Pro Mentor</span>}
+                    {isMentor && <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 text-[7px] font-bold uppercase  rounded-full">Pro Mentor</span>}
                 </div>
                 <div className={cn(
                     "p-4 rounded-2xl rounded-tl-none text-sm font-medium leading-relaxed max-w-xl",

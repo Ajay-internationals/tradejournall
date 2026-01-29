@@ -80,7 +80,7 @@ export default function Settings() {
                 <div className="relative z-10">
                     <div className="flex flex-col md:flex-row items-center gap-10 mb-14">
                         <div className="relative">
-                            <div className="w-32 h-32 bg-white border border-slate-200 rounded-[2.5rem] flex items-center justify-center text-4xl font-black text-indigo-600 shadow-2xl overflow-hidden ring-4 ring-indigo-50">
+                            <div className="w-32 h-32 bg-white border border-slate-200 rounded-[2.5rem] flex items-center justify-center text-4xl font-bold text-indigo-600 shadow-2xl overflow-hidden ring-4 ring-indigo-50">
                                 {formData.avatar_url ? (
                                     <img src={formData.avatar_url} alt="Profile" className="w-full h-full object-cover" />
                                 ) : (profile?.full_name?.[0] || 'T')}
@@ -95,7 +95,7 @@ export default function Settings() {
                             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-none opacity-50">{profile?.email}</p>
                             <div className="mt-6">
                                 <span className={cn(
-                                    "px-6 py-2 rounded-full text-[9px] font-bold tracking-widest uppercase border shadow-sm",
+                                    "px-6 py-2 rounded-full text-[9px] font-bold  uppercase border shadow-sm",
                                     profile?.plan === 'PREMIUM' ? "bg-amber-50 text-amber-600 border-amber-200" : "bg-indigo-50 text-indigo-600 border-indigo-200"
                                 )}>
                                     {profile?.plan || 'Free'} Membership
@@ -132,12 +132,12 @@ export default function Settings() {
                         </div>
 
                         <div className="md:col-span-2 space-y-4">
-                            <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 ml-6 opacity-40">Avatar Stream (URL)</label>
+                            <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 ml-6 opacity-40">Avatar Stream (URL)</label>
                             <input
                                 type="text"
                                 value={formData.avatar_url}
                                 onChange={e => setFormData({ ...formData, avatar_url: e.target.value })}
-                                className="w-full px-10 py-6 bg-indigo-50 border border-slate-200 rounded-[2rem] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-black text-sm text-slate-900 shadow-sm"
+                                className="w-full px-10 py-6 bg-indigo-50 border border-slate-200 rounded-[2rem] focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all font-bold text-sm text-slate-900 shadow-sm"
                             />
                         </div>
 
@@ -183,7 +183,7 @@ export default function Settings() {
                 </div>
                 <button
                     onClick={() => signOut()}
-                    className="px-8 py-3 bg-rose-600 text-white rounded-xl text-xs font-bold hover:bg-rose-700 transition-all uppercase tracking-widest shadow-lg shadow-rose-500/10"
+                    className="px-8 py-3 bg-rose-600 text-white rounded-xl text-xs font-bold hover:bg-rose-700 transition-all uppercase  shadow-lg shadow-rose-500/10"
                 >
                     Logout
                 </button>
@@ -210,7 +210,7 @@ function SettingsAction({ icon, title, description, actionText, onClick, color }
             <button
                 onClick={onClick}
                 className={cn(
-                    "w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all shadow-md",
+                    "w-full py-4 rounded-xl text-xs font-bold uppercase  transition-all shadow-md",
                     color === 'red'
                         ? "bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white"
                         : "bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white"

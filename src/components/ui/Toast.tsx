@@ -42,7 +42,7 @@ export function Toast({ message, type = 'success', onClose, duration = 3000 }: T
             isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95"
         )}>
             {icons[type]}
-            <p className="text-xs font-black uppercase tracking-widest">{message}</p>
+            <p className="text-xs font-bold uppercase ">{message}</p>
         </div>
     );
 }

@@ -126,7 +126,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                     </div>
                     <div>
                         <p className="font-bold text-slate-900 leading-tight">{profile?.full_name?.split(' ')[0] || 'Trader'}</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{profile?.plan || 'Free'}</p>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase ">{profile?.plan || 'Free'}</p>
                     </div>
                 </div>
 

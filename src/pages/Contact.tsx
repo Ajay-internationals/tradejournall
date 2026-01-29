@@ -23,9 +23,9 @@ export default function Contact() {
                         <div>
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 mb-8">
                                 <MessageSquare className="w-4 h-4 text-indigo-600" />
-                                <span className="text-[10px] font-black tracking-[0.2em] text-indigo-600 uppercase">Support Terminal</span>
+                                <span className="text-[10px] font-bold  text-indigo-600 uppercase">Support Terminal</span>
                             </div>
-                            <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-8 leading-[1.1]">
+                            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-[1.1]">
                                 How can we <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 text-5xl md:text-7xl">help?</span>
                             </h1>
                             <p className="text-lg text-slate-600 leading-relaxed mb-12 font-medium">
@@ -39,7 +39,7 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-bold text-slate-400 uppercase">General Inquiries</p>
-                                        <p className="text-lg font-black text-slate-900 mt-1">tradeadhyayan.info@gmail.com</p>
+                                        <p className="text-lg font-bold text-slate-900 mt-1">tradeadhyayan.info@gmail.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -53,12 +53,12 @@ export default function Contact() {
                                         <input required type="text" className="w-full bg-white border border-slate-100 rounded-2xl py-4 px-6 text-sm font-bold focus:outline-none focus:border-indigo-600 transition-all font-body" />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Work Email</label>
+                                        <label className="text-[10px] font-bold text-slate-400 uppercase  ml-1">Work Email</label>
                                         <input required type="email" className="w-full bg-white border border-slate-100 rounded-2xl py-4 px-6 text-sm font-bold focus:outline-none focus:border-indigo-600 transition-all font-body" />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Message</label>
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase  ml-1">Message</label>
                                     <textarea required rows={5} className="w-full bg-white border border-slate-100 rounded-2xl py-4 px-6 text-sm font-bold focus:outline-none focus:border-indigo-600 transition-all resize-none font-body"></textarea>
                                 </div>
                                 <button
@@ -77,7 +77,7 @@ export default function Contact() {
             <footer className="py-20 px-6 border-t border-slate-200 bg-white text-center font-body">
                 <div className="flex items-center justify-center gap-2 mb-4">
                     <CheckCircle2 size={12} className="text-indigo-400" />
-                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">Made in India • For India</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-slate-400">Made in India • For India</p>
                 </div>
             </footer>
         </div>

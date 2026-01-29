@@ -66,7 +66,7 @@ export default function Journal() {
                     <button
                         onClick={() => setIsTerminalOpen(!isTerminalOpen)}
                         className={cn(
-                            "flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all shadow-sm border border-transparent",
+                            "flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-bold uppercase  transition-all shadow-sm border border-transparent",
                             isTerminalOpen
                                 ? "bg-slate-100 text-slate-600 hover:bg-slate-200"
                                 : "bg-indigo-50 text-indigo-600 hover:bg-indigo-100"
@@ -78,7 +78,7 @@ export default function Journal() {
 
                     <button
                         onClick={() => { setEditingTrade(undefined); setIsFormOpen(true); }}
-                        className="px-8 py-3 bg-indigo-600 text-white rounded-2xl text-xs font-bold uppercase tracking-widest shadow-lg shadow-indigo-200/50 hover:bg-indigo-700 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2"
+                        className="px-8 py-3 bg-indigo-600 text-white rounded-2xl text-xs font-bold uppercase  shadow-lg shadow-indigo-200/50 hover:bg-indigo-700 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2"
                     >
                         <Plus size={18} />
                         Log Trade
@@ -110,7 +110,7 @@ export default function Journal() {
                         <select
                             value={assetFilter}
                             onChange={(e) => setAssetFilter(e.target.value)}
-                            className="px-8 py-4 bg-white border border-slate-200 rounded-3xl text-xs font-bold text-indigo-900 uppercase tracking-widest outline-none focus:ring-4 focus:ring-indigo-50 transition-all cursor-pointer appearance-none shadow-[0_2px_10px_rgb(0,0,0,0.02)] min-w-[160px]"
+                            className="px-8 py-4 bg-white border border-slate-200 rounded-3xl text-xs font-bold text-indigo-900 uppercase  outline-none focus:ring-4 focus:ring-indigo-50 transition-all cursor-pointer appearance-none shadow-[0_2px_10px_rgb(0,0,0,0.02)] min-w-[160px]"
                         >
                             <option value="ALL">All Assets</option>
                             <option value="INDEX">Index</option>
@@ -167,7 +167,7 @@ export default function Journal() {
                                                     {new Date(trade.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                                                 </span>
                                                 <span className="w-1 h-1 rounded-full bg-slate-200" />
-                                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{trade.asset_class}</span>
+                                                <span className="text-[10px] font-bold text-slate-400 uppercase ">{trade.asset_class}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@ export default function Journal() {
                                     {/* 3. Status */}
                                     <div className="col-span-2 flex justify-center">
                                         <span className={cn(
-                                            "px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest flex items-center gap-2",
+                                            "px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase  flex items-center gap-2",
                                             trade.net_pnl >= 0
                                                 ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
                                                 : "bg-rose-50 text-rose-600 border border-rose-100"
