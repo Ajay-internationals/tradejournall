@@ -183,7 +183,7 @@ export default function Tools() {
                             <p className="text-[10px] font-black opacity-40 uppercase tracking-[0.4em] mb-3 relative z-10">Projected Valuation</p>
                             <p className="text-5xl font-black text-emerald-400 tracking-tighter relative z-10">₹{Math.floor(compoundStats.result).toLocaleString()}</p>
                             <div className="mt-8 flex items-center gap-4 relative z-10">
-                                <span className="text-[10px] font-black opacity-30 uppercase tracking-[0.2em]">Efficiency Delta: </span>
+                                <span className="text-[10px] font-bold opacity-30">Efficiency Delta: </span>
                                 <span className="text-lg font-black text-emerald-400">+{((compoundStats.result / parseFloat(compoundStats.initial) - 1) * 100).toFixed(0)}%</span>
                             </div>
                         </div>
@@ -237,7 +237,7 @@ export default function Tools() {
                                     </ResponsiveContainer>
                                     <div className="mt-12 flex justify-between items-center px-10">
                                         <div>
-                                            <p className="text-[10px] font-black text-indigo-500/40 uppercase tracking-widest mb-2">Final Stream</p>
+                                            <p className="text-[10px] font-bold text-indigo-500/40 mb-2">Final Stream</p>
                                             <p className="text-3xl font-black tracking-tighter text-slate-900 uppercase">₹{Math.floor(simData[simData.length - 1].equity).toLocaleString()}</p>
                                         </div>
                                         <div className="text-right">

@@ -59,30 +59,30 @@ export function TradeList({ trades }: TradeListProps) {
                 <table className="w-full text-left">
                     <thead>
                         <tr className="bg-indigo-600 text-white">
-                            <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em]">Flux</th>
+                            <th className="px-8 py-6 text-[10px] font-bold uppercase">Flux</th>
                             <th
-                                className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] cursor-pointer group"
+                                className="px-8 py-6 text-[10px] font-bold uppercase cursor-pointer group"
                                 onClick={() => handleSort('instrument')}
                             >
                                 <div className="flex items-center gap-2">Asset <SortIcon field="instrument" /></div>
                             </th>
                             <th
-                                className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] cursor-pointer group"
+                                className="px-8 py-6 text-[10px] font-bold uppercase cursor-pointer group"
                                 onClick={() => handleSort('date')}
                             >
                                 <div className="flex items-center gap-2">Time Delta <SortIcon field="date" /></div>
                             </th>
-                            <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-right">Size</th>
-                            <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-right">Price Matrix</th>
-                            <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-right">Risk</th>
-                            <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-right">Tax</th>
+                            <th className="px-8 py-6 text-[10px] font-bold uppercase text-right">Size</th>
+                            <th className="px-8 py-6 text-[10px] font-bold uppercase text-right">Price Matrix</th>
+                            <th className="px-8 py-6 text-[10px] font-bold uppercase text-right">Risk</th>
+                            <th className="px-8 py-6 text-[10px] font-bold uppercase text-right">Tax</th>
                             <th
-                                className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-right cursor-pointer group"
+                                className="px-8 py-6 text-[10px] font-bold uppercase text-right cursor-pointer group"
                                 onClick={() => handleSort('net_pnl')}
                             >
                                 <div className="flex items-center justify-end gap-2 text-indigo-100">Delta P/L <SortIcon field="net_pnl" /></div>
                             </th>
-                            <th className="px-8 py-6 text-[10px] font-black uppercase tracking-[0.2em] text-center">Kill</th>
+                            <th className="px-8 py-6 text-[10px] font-bold uppercase text-center">Kill</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-indigo-500/10">

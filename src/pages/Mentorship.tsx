@@ -247,7 +247,7 @@ function StudentHomeDashboard({ acknowledged, onAcknowledge }: any) {
                         </p>
                     </div>
 
-                    <button className="px-10 py-5 bg-indigo-600 text-white rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-lg hover:bg-slate-900 transition-all">
+                    <button className="px-10 py-5 bg-indigo-600 text-white rounded-2xl text-xs font-bold shadow-lg hover:bg-slate-900 transition-all">
                         View Detailed Audit
                     </button>
                 </div>
@@ -679,7 +679,7 @@ function ChecklistSection() {
     const points = ['Stop-Loss Hardware-Set', 'Rule-Based Entry Confirmed', 'Max Daily Loss Cap', 'RR 1:2.5 Minimum'];
     return (
         <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] shadow-sm">
-            <SubHeading className="mb-10 text-center opacity-40">Institutional Focus</SubHeading>
+            <SubHeading className="mb-10 text-center opacity-40">Professional Mentorship</SubHeading>
             <div className="space-y-6">
                 {points.map(p => (
                     <div key={p} className="flex items-center gap-5 group">
