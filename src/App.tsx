@@ -27,6 +27,7 @@ import Partner from '@/pages/Partner';
 import Mentorship from '@/pages/Mentorship';
 import MentorGuidance from '@/pages/MentorGuidance';
 import Community from '@/pages/Community';
+import Webinar from '@/pages/Webinar';
 import BrokerLink from '@/pages/BrokerLink';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Admin from '@/pages/Admin';
@@ -100,6 +101,7 @@ export default function App() {
               <Route path="/terms" element={<TermsAndConditions />} />
               <Route path="/refund" element={<RefundPolicy />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/webinar" element={<Webinar />} />
 
               <Route element={<ProtectedRoute />}>
                 <Route element={<AppShell />}>
