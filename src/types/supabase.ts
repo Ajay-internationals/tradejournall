@@ -516,6 +516,7 @@ export type Database = {
                     initial_capital: number | null
                     phone_number: string | null
                     plan: string | null
+                    role: string | null
                     subscription_status: string | null
                 }
                 Insert: {
@@ -528,6 +529,7 @@ export type Database = {
                     initial_capital?: number | null
                     phone_number?: string | null
                     plan?: string | null
+                    role?: string | null
                     subscription_status?: string | null
                 }
                 Update: {
@@ -540,6 +542,7 @@ export type Database = {
                     initial_capital?: number | null
                     phone_number?: string | null
                     plan?: string | null
+                    role?: string | null
                     subscription_status?: string | null
                 }
                 Relationships: []

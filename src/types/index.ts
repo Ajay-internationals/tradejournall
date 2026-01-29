@@ -11,6 +11,7 @@ export interface UserProfile {
     avatar_url?: string;
     experience?: string;
     referral_source?: string;
+    role: 'USER' | 'ADMIN';
     created_at: string;
 }
 

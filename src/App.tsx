@@ -29,6 +29,7 @@ import MentorGuidance from '@/pages/MentorGuidance';
 import Community from '@/pages/Community';
 import BrokerLink from '@/pages/BrokerLink';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
+import Admin from '@/pages/Admin';
 
 import TermsAndConditions from '@/pages/TermsAndConditions';
 import RefundPolicy from '@/pages/RefundPolicy';
@@ -57,6 +58,26 @@ function ProtectedRoute() {
 
   if (!user) {
     return <Navigate to="/" replace />;
+  }
+
+  return <Outlet />;
+}
+
+function AdminRoute() {
+  const { profile, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-12">
+        <div className="w-8 h-8 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  // Debug: If role is missing, we might need a manual refresh
+  if (!profile || profile.role !== 'ADMIN') {
+    console.warn('Admin Access Denied: User role is', profile?.role);
+    return <Navigate to="/dashboard" replace />;
   }
 
   return <Outlet />;
@@ -99,6 +120,10 @@ export default function App() {
                   <Route path="/mentor-guidance" element={<MentorGuidance />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/source-code" element={<SourceCode />} />
+
+                  <Route element={<AdminRoute />}>
+                    <Route path="/admin" element={<Admin />} />
+                  </Route>
                 </Route>
               </Route>
             </Routes>

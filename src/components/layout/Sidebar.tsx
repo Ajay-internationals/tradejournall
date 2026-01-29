@@ -59,7 +59,12 @@ export function Sidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () =>
                 { icon: <Globe size={20} />, label: 'Community', path: '/community' },
                 { icon: <Settings size={20} />, label: 'Settings', path: '/settings' },
             ]
-        }
+        },
+        ...(profile?.role === 'ADMIN' ? [{
+            label: 'Administration', items: [
+                { icon: <Shield size={20} />, label: 'Admin Terminal', path: '/admin' },
+            ]
+        }] : [])
     ];
 
     return (

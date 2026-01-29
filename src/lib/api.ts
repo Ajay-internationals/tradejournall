@@ -307,5 +307,40 @@ export const api = {
             if (error) throw error;
             return data;
         }
+    },
+    admin: {
+        getStats: async () => {
+            const { data: users, error: userError } = await supabase.from('users').select('id, plan, created_at');
+            const { data: trades, error: tradeError } = await supabase.from('trades').select('id, net_pnl, created_at');
+
+            if (userError || tradeError) throw userError || tradeError;
+
+            return {
+                totalUsers: users?.length || 0,
+                premiumUsers: users?.filter(u => u.plan === 'PREMIUM').length || 0,
+                totalTrades: trades?.length || 0,
+                totalVolume: trades?.reduce((acc, t) => acc + Math.abs(t.net_pnl), 0) || 0,
+                recentSignups: users?.filter(u => new Date(u.created_at) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).length || 0
+            };
+        },
+        listUsers: async () => {
+            const { data, error } = await supabase
+                .from('users')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+            return data;
+        },
+        listAllTrades: async (limit = 100) => {
+            const { data, error } = await supabase
+                .from('trades')
+                .select('*, users(full_name, email)')
+                .order('date', { ascending: false })
+                .limit(limit);
+
+            if (error) throw error;
+            return data;
+        }
     }
 };
