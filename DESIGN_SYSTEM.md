@@ -1,9 +1,9 @@
 # Trade Adhyayan v3: Design System & UI Manual
 
-This document captures the visual identity, design tokens, and structural elements that define the **Institutional Terminal** aesthetic of Trade Adhyayan.
+This document captures the visual identity, design tokens, and structural elements that define the **Professional Terminal** aesthetic of Trade Adhyayan.
 
 ## 🎨 Visual Identity & Philosophy
-The design follows a "Professional Grade" approach, combining clean data visualization with high-tech "Institutional" elements like bento grids, glassmorphism, and soft drop shadows.
+The design follows a "Professional Grade" approach, combining clean data visualization with high-tech elements like bento grids, glassmorphism, and soft drop shadows.
 
 ### Core Philosophy:
 - **Zero Distraction**: High-contrast typography for readability.
@@ -48,7 +48,7 @@ A geometric representation of "Trade Adhyayan" with a focus on symmetry and mode
 - **Primary Color**: Indigo-600
 - **Scale**: Multi-purpose (Hero: 1.25x, Header: 1x, Footer: 1.1x)
 
-### 3. Institutional Terminal
+### 3. Professional Terminal
 The data-entry nexus. Uses a sidebar + main canvas layout.
 - **Sidebar**: High-contrast dark/light mode toggle.
 - **Terminal Area**: Mono-spaced font support for pasting raw data.
@@ -61,4 +61,4 @@ The data-entry nexus. Uses a sidebar + main canvas layout.
 - **Interactions**: `hover:scale-105 active:scale-95`
 
 ---
-*Created on 2026-01-27 to preserve the v3.0 Institutional Interface.*
+*Created on 2026-01-27 to preserve the v3.0 Professional Interface.*

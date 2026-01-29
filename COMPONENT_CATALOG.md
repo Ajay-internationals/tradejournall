@@ -1,6 +1,6 @@
 # Trade Adhyayan v3: Component Catalog
 
-This catalog documents the key React components that form the building blocks of the **Institutional Terminal** UI.
+This catalog documents the key React components that form the building blocks of the **Professional Terminal** UI.
 
 ## 📦 Navigation & Layout
 
@@ -19,7 +19,7 @@ This catalog documents the key React components that form the building blocks of
 ### `Sidebar`
 - **Path**: `src/components/layout/Sidebar.tsx`
 - **Purpose**: Navigation for the Dashboard area.
-- **Style**: High-contrast, vertically stacked, featuring "Institutional" active states.
+- **Style**: High-contrast, vertically stacked, featuring "Professional" active states.
 
 ---
 

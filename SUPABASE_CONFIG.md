@@ -19,7 +19,7 @@ To provide a premium experience for your users:
 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 16px;">
   <h2 style="color: #1e293b; font-size: 24px; font-weight: 800; margin-bottom: 16px;">Welcome to Trade Adhyayan</h2>
   <p style="color: #64748b; line-height: 1.6; margin-bottom: 24px;">
-    You're one step away from institutional-grade analytics. Click the button below to verify your account and activate your terminal access.
+    You're one step away from professional-grade analytics. Click the button below to verify your account and activate your terminal access.
   </p>
   <div style="text-align: center; margin-bottom: 32px;">
     <a href="{{ .ConfirmationURL }}" style="background: #4f46e5; color: white; padding: 14px 28px; border-radius: 12px; text-decoration: none; display: inline-block; font-weight: bold; font-size: 14px; box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);">
