@@ -16,7 +16,7 @@ The dashboard has been streamlined to 4 core KPIs for high-performance focus:
 - ✅ Win Rate (Strike Rate %)
 - ✅ **New**: Daily Rules Checklist (Discipline Tracker)
 - ✅ **New**: Psychology Audit (Mistake Impact Breakdown)
-- ✅ **New**: Global "HUGE SPACING" Institutional Subheadings (`tracking-[0.8em]`)
+- ✅ **New**: Global "HUGE SPACING" Professional Subheadings (`tracking-[0.8em]`)
 
 ### 3. Mentorship & Guidance (v3.5)
 The mentorship module has been transformed into a functional coaching terminal:
