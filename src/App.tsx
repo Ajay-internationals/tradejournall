@@ -30,6 +30,7 @@ import Community from '@/pages/Community';
 import BrokerLink from '@/pages/BrokerLink';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Admin from '@/pages/Admin';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 
 import TermsAndConditions from '@/pages/TermsAndConditions';
 import RefundPolicy from '@/pages/RefundPolicy';
@@ -122,7 +123,14 @@ export default function App() {
                   <Route path="/source-code" element={<SourceCode />} />
 
                   <Route element={<AdminRoute />}>
-                    <Route path="/admin" element={<Admin />} />
+                    <Route
+                      path="/admin"
+                      element={
+                        <ErrorBoundary>
+                          <Admin />
+                        </ErrorBoundary>
+                      }
+                    />
                   </Route>
                 </Route>
               </Route>
